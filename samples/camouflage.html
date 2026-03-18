@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camouflage / DPM</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --olive: #4A5D23; --sage: #7A8450; --brown: #3D3D2B; --khaki: #8B7D4A; --sand: #C4B98A; --dark: #1E1E16; }
+  body { font-family: 'Barlow', sans-serif; background: var(--dark); color: var(--sand); }
+  .camo-bg { position: relative; overflow: hidden; }
+  .camo-bg::before { content: ''; position: absolute; inset: 0; opacity: .15; z-index: 0;
+    background:
+      radial-gradient(ellipse 80px 50px at 15% 25%, var(--olive) 60%, transparent 61%),
+      radial-gradient(ellipse 60px 90px at 40% 70%, var(--brown) 60%, transparent 61%),
+      radial-gradient(ellipse 100px 60px at 70% 20%, var(--sage) 60%, transparent 61%),
+      radial-gradient(ellipse 70px 80px at 85% 60%, var(--olive) 60%, transparent 61%),
+      radial-gradient(ellipse 90px 50px at 55% 45%, var(--khaki) 60%, transparent 61%),
+      radial-gradient(ellipse 50px 70px at 25% 80%, var(--sage) 60%, transparent 61%); }
+  .camo-bg > * { position: relative; z-index: 1; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 3px solid var(--olive); }
+  nav .logo { font-weight: 800; font-size: 16px; text-transform: uppercase; letter-spacing: 3px; color: var(--olive); }
+  nav .links { display: flex; gap: 20px; }
+  nav a { text-decoration: none; color: var(--sand); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: color .2s; }
+  nav a:hover { color: var(--olive); }
+  .hero { padding: 48px 24px 56px; border-bottom: 3px solid var(--olive); }
+  .hero .badge { display: inline-block; padding: 4px 12px; background: var(--olive); color: var(--sand); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+  .hero h1 { font-size: clamp(32px, 6vw, 56px); font-weight: 800; text-transform: uppercase; line-height: 1.05; margin-bottom: 12px; letter-spacing: -1px; }
+  .hero h1 span { color: var(--olive); }
+  .hero p { font-size: 14px; font-weight: 400; max-width: 480px; line-height: 1.7; color: rgba(196,185,138,.6); margin-bottom: 24px; }
+  .hero button { padding: 12px 28px; border: 2px solid var(--olive); background: transparent; color: var(--olive); font-family: inherit; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: all .2s; }
+  .hero button:hover { background: var(--olive); color: var(--dark); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; }
+  .card { padding: 24px; border-bottom: 2px solid var(--olive); border-right: 2px solid rgba(74,93,35,.3); }
+  .card .tag { display: inline-block; padding: 3px 8px; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; border: 1px solid; }
+  .card.c1 .tag { color: var(--olive); border-color: var(--olive); }
+  .card.c2 .tag { color: var(--khaki); border-color: var(--khaki); }
+  .card.c3 .tag { color: var(--sage); border-color: var(--sage); }
+  .card h3 { font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .card p { font-size: 12px; line-height: 1.7; color: rgba(196,185,138,.5); }
+  .card .spec { margin-top: 12px; font-size: 10px; font-weight: 600; color: rgba(196,185,138,.35); text-transform: uppercase; letter-spacing: 1px; }
+  .palette { display: flex; gap: 0; border-top: 2px solid var(--olive); }
+  .swatch { flex: 1; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 600; letter-spacing: 1px; }
+  footer { text-align: center; padding: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: rgba(196,185,138,.3); border-top: 3px solid var(--olive); }
+</style>
+</head>
+<body class="camo-bg">
+  <nav>
+    <div class="logo">DPM Tactical</div>
+    <div class="links"><a href="#">Ops</a><a href="#">Gear</a><a href="#">Intel</a><a href="#">Base</a></div>
+  </nav>
+  <section class="hero">
+    <div class="badge">Field Manual FM-26</div>
+    <h1>Disruptive <span>Pattern</span> Material</h1>
+    <p>Designed to break up visual outlines and merge with terrain. Tactical aesthetics meet functional design in a rugged UI built for the field.</p>
+    <button>Deploy</button>
+  </section>
+  <section class="cards">
+    <div class="card c1">
+      <div class="tag">Terrain</div>
+      <h3>Woodland</h3>
+      <p>Deep olive and brown blend into temperate forest canopy, disrupting form against leaf litter and undergrowth.</p>
+      <div class="spec">Pattern: DPM-W / Zone: Temperate</div>
+    </div>
+    <div class="card c2">
+      <div class="tag">Tactical</div>
+      <h3>Desert</h3>
+      <p>Khaki and sand tones merge with arid landscapes, providing concealment across open terrain and rocky outcrops.</p>
+      <div class="spec">Pattern: DPM-D / Zone: Arid</div>
+    </div>
+    <div class="card c3">
+      <div class="tag">Recon</div>
+      <h3>Urban</h3>
+      <p>Muted sage and grey adapted for built environments, where concrete and foliage create complex visual fields.</p>
+      <div class="spec">Pattern: DPM-U / Zone: Urban</div>
+    </div>
+  </section>
+  <div class="palette">
+    <div class="swatch" style="background:var(--olive);color:var(--sand)">#4A5D23</div>
+    <div class="swatch" style="background:var(--sage);color:var(--dark)">#7A8450</div>
+    <div class="swatch" style="background:var(--brown);color:var(--sand)">#3D3D2B</div>
+    <div class="swatch" style="background:var(--khaki);color:var(--dark)">#8B7D4A</div>
+    <div class="swatch" style="background:var(--sand);color:var(--dark)">#C4B98A</div>
+  </div>
+  <footer>Classification: Unclassified / Distribution: Unlimited</footer>
+</body>
+</html>

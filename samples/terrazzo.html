@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terrazzo</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --base: #E8D5B7; --dark: #3A3530; --rose: #D4726A; --teal: #5BA6A6; --gold: #D4A843; --lavender: #9B7DB8; --sage: #7FA87F; }
+  body { font-family: 'Poppins', sans-serif; background: var(--base); color: var(--dark); }
+  .terrazzo-bg { position: relative; overflow: hidden; }
+  .terrazzo-bg::before { content: ''; position: absolute; inset: 0; background:
+    radial-gradient(circle 6px at 12% 18%, var(--rose) 50%, transparent 51%),
+    radial-gradient(circle 4px at 28% 42%, var(--teal) 50%, transparent 51%),
+    radial-gradient(circle 8px at 55% 12%, var(--gold) 50%, transparent 51%),
+    radial-gradient(circle 5px at 72% 65%, var(--lavender) 50%, transparent 51%),
+    radial-gradient(circle 3px at 88% 30%, var(--sage) 50%, transparent 51%),
+    radial-gradient(circle 7px at 35% 78%, var(--rose) 50%, transparent 51%),
+    radial-gradient(circle 4px at 62% 88%, var(--teal) 50%, transparent 51%),
+    radial-gradient(circle 6px at 90% 80%, var(--gold) 50%, transparent 51%),
+    radial-gradient(circle 3px at 8% 60%, var(--lavender) 50%, transparent 51%),
+    radial-gradient(circle 5px at 48% 52%, var(--sage) 50%, transparent 51%),
+    radial-gradient(circle 4px at 20% 90%, var(--gold) 50%, transparent 51%),
+    radial-gradient(circle 7px at 78% 15%, var(--rose) 50%, transparent 51%),
+    radial-gradient(circle 3px at 42% 30%, var(--teal) 50%, transparent 51%),
+    radial-gradient(circle 5px at 95% 55%, var(--sage) 50%, transparent 51%);
+    opacity: .6; pointer-events: none; z-index: 0; }
+  .terrazzo-bg > * { position: relative; z-index: 1; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 32px; }
+  nav .logo { font-weight: 700; font-size: 20px; letter-spacing: 1px; }
+  nav .links { display: flex; gap: 24px; }
+  nav a { text-decoration: none; color: var(--dark); font-size: 14px; font-weight: 500; transition: color .2s; }
+  nav a:hover { color: var(--rose); }
+  .hero { padding: 60px 32px 80px; text-align: center; }
+  .hero h1 { font-size: clamp(36px, 6vw, 64px); font-weight: 700; line-height: 1.1; margin-bottom: 16px; }
+  .hero h1 span { color: var(--rose); }
+  .hero p { font-size: 16px; font-weight: 300; max-width: 520px; margin: 0 auto 28px; line-height: 1.6; color: #5A534D; }
+  .hero button { padding: 14px 36px; border: none; border-radius: 40px; background: var(--dark); color: var(--base); font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform .2s, background .2s; }
+  .hero button:hover { transform: scale(1.05); background: var(--rose); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; padding: 0 32px 60px; }
+  .card { background: rgba(255,255,255,.65); backdrop-filter: blur(4px); border-radius: 16px; padding: 28px; transition: transform .2s; }
+  .card:hover { transform: translateY(-4px); }
+  .card .chip { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 500; margin-bottom: 14px; }
+  .card .chip.rose { background: var(--rose); color: #fff; }
+  .card .chip.teal { background: var(--teal); color: #fff; }
+  .card .chip.gold { background: var(--gold); color: #fff; }
+  .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: 13px; line-height: 1.6; color: #5A534D; font-weight: 300; }
+  .palette { display: flex; gap: 12px; padding: 0 32px 40px; flex-wrap: wrap; }
+  .swatch { width: 48px; height: 48px; border-radius: 50%; border: 3px solid rgba(255,255,255,.5); }
+  footer { text-align: center; padding: 24px; font-size: 12px; color: #7A736C; border-top: 1px solid rgba(58,53,48,.15); }
+</style>
+</head>
+<body class="terrazzo-bg">
+  <nav>
+    <div class="logo">Terrazzo</div>
+    <div class="links">
+      <a href="#">Work</a><a href="#">About</a><a href="#">Shop</a><a href="#">Contact</a>
+    </div>
+  </nav>
+  <section class="hero">
+    <h1>Speckled <span>Surface</span> Design</h1>
+    <p>Playful sophistication meets warm materiality. Inspired by the timeless beauty of terrazzo flooring and confetti patterns.</p>
+    <button>Explore Collection</button>
+  </section>
+  <section class="cards">
+    <div class="card">
+      <span class="chip rose">Material</span>
+      <h3>Warm Neutrals</h3>
+      <p>A grounding base palette drawn from natural stone and earth tones, providing warmth and elegance.</p>
+    </div>
+    <div class="card">
+      <span class="chip teal">Pattern</span>
+      <h3>Color Pops</h3>
+      <p>Scattered bursts of color add playful energy to sophisticated compositions and surface designs.</p>
+    </div>
+    <div class="card">
+      <span class="chip gold">Texture</span>
+      <h3>Aggregate Mix</h3>
+      <p>Varying chip sizes and densities create visual rhythm and tactile interest across every surface.</p>
+    </div>
+  </section>
+  <div class="palette">
+    <div class="swatch" style="background:var(--base)"></div>
+    <div class="swatch" style="background:var(--dark)"></div>
+    <div class="swatch" style="background:var(--rose)"></div>
+    <div class="swatch" style="background:var(--teal)"></div>
+    <div class="swatch" style="background:var(--gold)"></div>
+    <div class="swatch" style="background:var(--lavender)"></div>
+    <div class="swatch" style="background:var(--sage)"></div>
+  </div>
+  <footer>&copy; 2026 Terrazzo Studio &mdash; Speckled surfaces, refined spaces</footer>
+</body>
+</html>

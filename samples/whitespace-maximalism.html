@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whitespace Maximalism - Sample</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Inter', sans-serif; background: #FFFFFF; color: #000000; line-height: 1.6; }
+
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column; padding: 3rem 6rem;
+  }
+  nav { display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-weight: 700; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: #BBB; }
+  .nav-links { display: flex; gap: 3rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: #BBB; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 400; }
+  .nav-links a:hover { color: #000; }
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+  .hero-content h1 {
+    font-size: 5rem; font-weight: 700; line-height: 1; letter-spacing: -0.05em;
+    margin-bottom: 4rem;
+  }
+  .hero-content p { font-size: 0.8rem; color: #999; max-width: 280px; margin-bottom: 4rem; letter-spacing: 0.02em; }
+  .hero-content button {
+    background: transparent; color: #000; border: 1px solid #DDD;
+    padding: 0.6rem 2rem; font-family: inherit; font-size: 0.65rem; text-transform: uppercase;
+    letter-spacing: 0.15em; cursor: pointer; transition: all 0.3s;
+  }
+  .hero-content button:hover { border-color: #000; }
+
+  .components { padding: 8rem 6rem; }
+  .components > h2 { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.25em; color: #CCC; margin-bottom: 6rem; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6rem; margin-bottom: 8rem; }
+  .card { text-align: center; }
+  .card-dot { width: 6px; height: 6px; background: #000; border-radius: 50%; margin: 0 auto 3rem; }
+  .card h4 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; }
+  .card p { font-size: 0.7rem; color: #AAA; max-width: 180px; margin: 0 auto; line-height: 1.8; }
+
+  .single-line { text-align: center; padding: 8rem 2rem; }
+  .single-line span { font-size: 0.6rem; color: #CCC; letter-spacing: 0.3em; text-transform: uppercase; }
+
+  .palette { display: flex; justify-content: center; gap: 2rem; padding: 4rem 0; }
+  .swatch { width: 32px; height: 32px; border: 1px solid #EEE; }
+
+  footer { padding: 4rem 6rem; text-align: center; font-size: 0.6rem; color: #CCC; letter-spacing: 0.2em; text-transform: uppercase; }
+
+  @media (max-width: 768px) {
+    .hero { padding: 2rem; }
+    .hero-content h1 { font-size: 3rem; }
+    .components { padding: 4rem 2rem; }
+    .grid { grid-template-columns: 1fr; gap: 4rem; }
+    footer { padding: 3rem 2rem; }
+  }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <div class="logo">Void</div>
+      <ul class="nav-links">
+        <li><a href="#">Space</a></li>
+        <li><a href="#">Breath</a></li>
+        <li><a href="#">Silence</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>Space.</h1>
+      <p>When everything is removed, what remains is everything that matters.</p>
+      <button>Begin</button>
+    </div>
+  </section>
+
+  <section class="components">
+    <h2>Principles</h2>
+    <div class="grid">
+      <div class="card"><div class="card-dot"></div><h4>Absence</h4><p>The power of what is not there defines what is.</p></div>
+      <div class="card"><div class="card-dot"></div><h4>Breath</h4><p>Content needs room to exist and be understood.</p></div>
+      <div class="card"><div class="card-dot"></div><h4>Focus</h4><p>One element, considered fully, outweighs many.</p></div>
+    </div>
+  </section>
+
+  <div class="single-line"><span>Less is not more. Just enough is more.</span></div>
+
+  <div class="palette">
+    <div class="swatch" style="background:#000000"></div>
+    <div class="swatch" style="background:#999999"></div>
+    <div class="swatch" style="background:#CCCCCC"></div>
+    <div class="swatch" style="background:#EEEEEE"></div>
+    <div class="swatch" style="background:#FFFFFF"></div>
+  </div>
+
+  <footer>Void &mdash; Whitespace Maximalism &mdash; 2026</footer>
+</body>
+</html>

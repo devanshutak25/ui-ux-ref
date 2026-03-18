@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psychedelic - Sample</title>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Righteous', Impact, sans-serif; background: #0D0D0D; color: #FF00FF; line-height: 1.5; overflow-x: hidden; }
+
+  .hero {
+    min-height: 70vh; display: flex; flex-direction: column; padding: 2rem; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #0D0D0D, #1A0033, #0D0D0D);
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: -50%; animation: swirl 12s linear infinite;
+    background: conic-gradient(from 0deg, #FF00FF, #00FFFF, #FF6B00, #39FF14, #FF00FF);
+    opacity: 0.12; filter: blur(80px);
+  }
+  @keyframes swirl { to { transform: rotate(360deg); } }
+  nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem; position: relative; z-index: 1; }
+  .logo { font-size: 1.4rem; text-transform: uppercase; background: linear-gradient(90deg, #FF00FF, #00FFFF, #39FF14); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: #00FFFF; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .nav-links a:hover { color: #39FF14; text-shadow: 0 0 10px #39FF14; }
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 1; }
+  .hero-content h1 {
+    font-size: 4rem; line-height: 1; margin-bottom: 1.5rem; text-transform: uppercase;
+    background: linear-gradient(90deg, #FF00FF, #FF6B00, #00FFFF, #39FF14);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    text-shadow: none; animation: hueShift 4s linear infinite;
+  }
+  @keyframes hueShift { 0%,100% { filter: hue-rotate(0deg); } 50% { filter: hue-rotate(60deg); } }
+  .hero-content p { font-size: 1rem; color: #00FFFF; margin-bottom: 2rem; max-width: 400px; font-family: sans-serif; }
+  .hero-content button {
+    background: linear-gradient(90deg, #FF00FF, #FF6B00); color: #FFF; border: none;
+    padding: 0.85rem 2.5rem; font-family: inherit; font-size: 1rem; text-transform: uppercase;
+    cursor: pointer; border-radius: 50px; transition: all 0.3s; letter-spacing: 0.08em;
+  }
+  .hero-content button:hover { box-shadow: 0 0 30px rgba(255,0,255,0.6), 0 0 60px rgba(0,255,255,0.3); transform: scale(1.05); }
+
+  .components { padding: 3rem 2rem; }
+  .components > h2 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: #39FF14; margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 0.75rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+  .card {
+    padding: 2rem; border: 2px solid; border-image: linear-gradient(135deg, #FF00FF, #00FFFF, #39FF14) 1;
+    text-align: center; position: relative; overflow: hidden;
+    background: rgba(13,13,13,0.9);
+  }
+  .card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(255,0,255,0.08), transparent 70%); }
+  .card h4 { font-size: 1.1rem; color: #FF6B00; margin-bottom: 0.75rem; position: relative; }
+  .card p { font-size: 0.85rem; color: #00FFFF; position: relative; font-family: sans-serif; }
+  .orb { width: 50px; height: 50px; border-radius: 50%; margin: 0 auto 1rem; filter: blur(2px); }
+
+  .palette { display: flex; gap: 0.5rem; margin-top: 2rem; }
+  .swatch { width: 48px; height: 48px; border: 1px solid #333; border-radius: 50%; }
+
+  footer { border-top: 2px solid; border-image: linear-gradient(90deg, #FF00FF, #00FFFF, #39FF14) 1; padding: 2rem; text-align: center; font-size: 0.8rem; color: #39FF14; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  @media (max-width: 600px) { .hero-content h1 { font-size: 2.4rem; } .nav-links { gap: 1rem; } }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <div class="logo">Kaleidoscope</div>
+      <ul class="nav-links">
+        <li><a href="#">Visions</a></li>
+        <li><a href="#">Trips</a></li>
+        <li><a href="#">Portal</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>Expand Your Perception</h1>
+      <p>Vibrant, warped, and wildly saturated. A visual journey beyond the ordinary.</p>
+      <button>Enter the Vortex</button>
+    </div>
+  </section>
+
+  <section class="components">
+    <h2>Dimensions</h2>
+    <div class="grid">
+      <div class="card"><div class="orb" style="background:radial-gradient(#FF00FF,#FF6B00)"></div><h4>Magenta Wave</h4><p>Pulsating frequencies of hot pink energy and distortion.</p></div>
+      <div class="card"><div class="orb" style="background:radial-gradient(#00FFFF,#39FF14)"></div><h4>Neon Flux</h4><p>Electric cyan bleeding into phosphorescent green.</p></div>
+      <div class="card"><div class="orb" style="background:radial-gradient(#FF6B00,#FF00FF)"></div><h4>Solar Flare</h4><p>Blazing orange spirals collapsing into ultraviolet depths.</p></div>
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#FF00FF"></div>
+      <div class="swatch" style="background:#00FFFF"></div>
+      <div class="swatch" style="background:#FF6B00"></div>
+      <div class="swatch" style="background:#39FF14"></div>
+      <div class="swatch" style="background:#0D0D0D"></div>
+    </div>
+  </section>
+
+  <footer>Kaleidoscope &mdash; Psychedelic Vision &mdash; 2026</footer>
+</body>
+</html>

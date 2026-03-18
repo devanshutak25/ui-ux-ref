@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neon Calligraphy</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --bg: #0A0A1A; --surface: #111128; --pink: #FF6EC7; --cyan: #00F3FF; --purple: #B366FF; --text: #C8C8E0; --dim: #6B6B8A; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid rgba(255,110,199,.15); }
+  .logo { font-family: 'Dancing Script', cursive; font-size: 30px; font-weight: 700; color: var(--pink); text-shadow: 0 0 20px rgba(255,110,199,.5), 0 0 40px rgba(255,110,199,.25); }
+  nav a { color: var(--dim); text-decoration: none; font-size: 13px; margin-left: 20px; font-weight: 400; transition: color .2s, text-shadow .2s; }
+  nav a:hover { color: var(--cyan); text-shadow: 0 0 10px rgba(0,243,255,.4); }
+  .hero { text-align: center; padding: 64px 24px 48px; }
+  h1 { font-family: 'Dancing Script', cursive; font-size: 56px; font-weight: 700; color: var(--pink); text-shadow: 0 0 20px rgba(255,110,199,.6), 0 0 60px rgba(255,110,199,.3), 0 0 100px rgba(255,110,199,.15); line-height: 1.2; margin-bottom: 16px; }
+  h1 span { color: var(--cyan); text-shadow: 0 0 20px rgba(0,243,255,.6), 0 0 60px rgba(0,243,255,.3), 0 0 100px rgba(0,243,255,.15); }
+  .hero p { font-size: 15px; font-weight: 300; color: var(--dim); max-width: 480px; margin: 0 auto 28px; line-height: 1.7; }
+  .neon-btn { display: inline-block; padding: 12px 36px; border: 1px solid var(--pink); color: var(--pink); background: transparent; font-family: 'Dancing Script', cursive; font-size: 20px; cursor: pointer; border-radius: 40px; box-shadow: 0 0 15px rgba(255,110,199,.25), inset 0 0 15px rgba(255,110,199,.1); transition: all .3s; }
+  .neon-btn:hover { background: rgba(255,110,199,.1); box-shadow: 0 0 30px rgba(255,110,199,.4), inset 0 0 20px rgba(255,110,199,.15); }
+  .glow-line { width: 120px; height: 1px; margin: 32px auto; background: linear-gradient(90deg, transparent, var(--pink), transparent); box-shadow: 0 0 8px rgba(255,110,199,.4); }
+  .section-title { text-align: center; font-family: 'Dancing Script', cursive; font-size: 36px; color: var(--cyan); text-shadow: 0 0 15px rgba(0,243,255,.5), 0 0 40px rgba(0,243,255,.2); padding: 20px 24px 8px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; padding: 20px 24px 48px; max-width: 960px; margin: 0 auto; }
+  .card { background: var(--surface); border: 1px solid rgba(255,110,199,.15); border-radius: 12px; padding: 24px; transition: border-color .3s, box-shadow .3s; }
+  .card:hover { border-color: rgba(255,110,199,.4); box-shadow: 0 0 25px rgba(255,110,199,.1); }
+  .card h3 { font-family: 'Dancing Script', cursive; font-size: 24px; margin-bottom: 8px; }
+  .card:nth-child(1) h3 { color: var(--pink); text-shadow: 0 0 10px rgba(255,110,199,.4); }
+  .card:nth-child(2) h3 { color: var(--cyan); text-shadow: 0 0 10px rgba(0,243,255,.4); }
+  .card:nth-child(3) h3 { color: var(--purple); text-shadow: 0 0 10px rgba(179,102,255,.4); }
+  .card p { font-size: 13px; color: var(--dim); line-height: 1.6; }
+  .card-footer { margin-top: 14px; font-family: 'Dancing Script', cursive; font-size: 16px; color: var(--dim); }
+  .quotes { padding: 0 24px 48px; max-width: 700px; margin: 0 auto; }
+  .quote { text-align: center; padding: 24px; border-left: 2px solid var(--cyan); margin-bottom: 20px; box-shadow: -4px 0 15px rgba(0,243,255,.1); }
+  .quote p { font-family: 'Dancing Script', cursive; font-size: 26px; color: var(--cyan); text-shadow: 0 0 10px rgba(0,243,255,.3); line-height: 1.4; }
+  .quote cite { display: block; margin-top: 8px; font-size: 12px; color: var(--dim); font-style: normal; }
+  .orb { position: fixed; width: 300px; height: 300px; border-radius: 50%; filter: blur(100px); opacity: .07; pointer-events: none; z-index: -1; }
+  .orb-1 { top: 10%; left: 10%; background: var(--pink); }
+  .orb-2 { bottom: 20%; right: 10%; background: var(--cyan); }
+  footer { text-align: center; padding: 24px; font-family: 'Dancing Script', cursive; font-size: 18px; color: var(--dim); border-top: 1px solid rgba(255,110,199,.1); }
+</style>
+</head>
+<body>
+  <div class="orb orb-1"></div><div class="orb orb-2"></div>
+  <nav><span class="logo">Lumiere</span><div><a href="#">Gallery</a><a href="#">About</a><a href="#">Contact</a></div></nav>
+  <section class="hero">
+    <h1>Where Light<br><span>Meets Script</span></h1>
+    <p>An elegant fusion of flowing calligraphy and luminous neon. Every letter glows with intention, every curve tells a story.</p>
+    <button class="neon-btn">Explore the Glow</button>
+  </section>
+  <div class="glow-line"></div>
+  <div class="section-title">The Collection</div>
+  <div class="cards">
+    <div class="card"><h3>Rose Whisper</h3><p>Delicate pink hues that pulse softly in the darkness. A reminder that the gentlest light can be the most captivating.</p><div class="card-footer">Series I</div></div>
+    <div class="card"><h3>Electric Current</h3><p>Cyan traces that crackle with energy. Sharp, bright, and alive — like lightning frozen in glass tubes.</p><div class="card-footer">Series II</div></div>
+    <div class="card"><h3>Violet Dream</h3><p>Purple gradients that blur the line between the real and the imagined. Soft enough to sleep under, vivid enough to remember.</p><div class="card-footer">Series III</div></div>
+  </div>
+  <div class="section-title">Words in Light</div>
+  <div class="quotes">
+    <div class="quote"><p>"The night is not dark to those who have learned to read in neon."</p><cite>Anonymous</cite></div>
+    <div class="quote"><p>"Every glow begins as a whisper of electricity."</p><cite>On Luminescence, 2024</cite></div>
+  </div>
+  <footer>Lumiere Studio ~ Handcrafted in Light ~ 2026</footer>
+</body>
+</html>

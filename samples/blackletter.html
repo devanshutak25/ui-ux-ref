@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blackletter / Gothic</title>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --bg: #1A1A1A; --burgundy: #8B0000; --gold: #C9A84C; --parchment: #D4C5A0; --bone: #F0E8D8; }
+  body { font-family: 'Cinzel', serif; background: var(--bg); color: var(--bone); }
+  .ornate-border { border: 2px solid var(--gold); outline: 1px solid rgba(201,168,76,.3); outline-offset: 4px; }
+  nav { display: flex; justify-content: center; gap: 32px; padding: 18px 24px; border-bottom: 2px solid var(--gold); }
+  nav a { text-decoration: none; color: var(--gold); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; transition: color .2s; }
+  nav a:hover { color: var(--bone); }
+  .hero { text-align: center; padding: 60px 24px 64px; border-bottom: 1px solid rgba(201,168,76,.25); background: linear-gradient(180deg, rgba(139,0,0,.15) 0%, transparent 100%); }
+  .hero h1 { font-family: 'UnifrakturMaguntia', cursive; font-size: clamp(42px, 8vw, 80px); color: var(--gold); line-height: 1.1; margin-bottom: 8px; text-shadow: 2px 2px 8px rgba(0,0,0,.6); }
+  .hero .sub { font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: var(--parchment); margin-bottom: 24px; }
+  .hero .divider { width: 80px; height: 2px; background: var(--burgundy); margin: 0 auto 24px; }
+  .hero p { max-width: 480px; margin: 0 auto; font-size: 14px; line-height: 1.8; color: rgba(240,232,216,.7); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; padding: 40px 32px; }
+  .card { padding: 28px; background: rgba(139,0,0,.1); border: 1px solid var(--gold); position: relative; }
+  .card::before { content: '\2720'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--bg); padding: 0 8px; color: var(--gold); font-size: 16px; }
+  .card h3 { font-family: 'UnifrakturMaguntia', cursive; font-size: 24px; color: var(--gold); margin-bottom: 10px; text-align: center; }
+  .card p { font-size: 13px; line-height: 1.7; color: rgba(240,232,216,.65); text-align: center; }
+  .card .label { display: block; text-align: center; margin-top: 14px; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--burgundy); }
+  .palette { display: flex; justify-content: center; gap: 16px; padding: 32px; }
+  .swatch { width: 48px; height: 48px; border: 1px solid var(--gold); position: relative; }
+  .swatch span { position: absolute; top: 52px; left: 50%; transform: translateX(-50%); font-size: 8px; letter-spacing: 1px; color: var(--parchment); white-space: nowrap; }
+  footer { text-align: center; padding: 24px; border-top: 2px solid var(--gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--parchment); }
+  footer span { color: var(--burgundy); }
+</style>
+</head>
+<body>
+  <nav>
+    <a href="#">Scriptorium</a><a href="#">Codex</a><a href="#">Guild</a><a href="#">Archive</a>
+  </nav>
+  <section class="hero">
+    <h1>Blackletter</h1>
+    <p class="sub">Anno Domini MMXXVI</p>
+    <div class="divider"></div>
+    <p>From the scriptoria of medieval Europe rises a typographic tradition of power and craft. Gothic letterforms command reverence through their density and ornamental precision.</p>
+  </section>
+  <section class="cards">
+    <div class="card">
+      <h3>Illuminated</h3>
+      <p>Gold leaf and deep burgundy bring manuscripts to life, each initial a work of devotion and artistry.</p>
+      <span class="label">Chapter I</span>
+    </div>
+    <div class="card">
+      <h3>Forged</h3>
+      <p>Heavy strokes and angular forms echo the ironwork of cathedral gates and heraldic crests.</p>
+      <span class="label">Chapter II</span>
+    </div>
+    <div class="card">
+      <h3>Sacred</h3>
+      <p>Vaulted arches and pointed spires find their echo in the vertical rhythm of gothic type.</p>
+      <span class="label">Chapter III</span>
+    </div>
+  </section>
+  <div class="palette">
+    <div class="swatch" style="background:var(--bg)"><span>#1A1A1A</span></div>
+    <div class="swatch" style="background:var(--burgundy)"><span>#8B0000</span></div>
+    <div class="swatch" style="background:var(--gold)"><span>#C9A84C</span></div>
+    <div class="swatch" style="background:var(--parchment)"><span>#D4C5A0</span></div>
+    <div class="swatch" style="background:var(--bone)"><span>#F0E8D8</span></div>
+  </div>
+  <footer>Finis <span>&cross;</span> Opus Completum</footer>
+</body>
+</html>

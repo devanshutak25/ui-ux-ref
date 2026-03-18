@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCB / Circuit Trace</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --pcb: #0A3D0A; --pcb-light: #0E4F0E; --copper: #B87333; --solder: #C0C0C0; --silk: #FFFFCC; --gold: #D4A84C; }
+  body { font-family: 'Share Tech Mono', monospace; background: var(--pcb); color: var(--silk);
+    background-image:
+      linear-gradient(var(--pcb-light) 1px, transparent 1px),
+      linear-gradient(90deg, var(--pcb-light) 1px, transparent 1px);
+    background-size: 24px 24px; }
+  .trace { border-left: 2px solid var(--copper); border-bottom: 2px solid var(--copper); }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 2px solid var(--copper); }
+  nav .logo { font-size: 16px; color: var(--copper); }
+  nav .logo .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--solder); margin-right: 6px; box-shadow: 0 0 4px rgba(192,192,192,.5); }
+  nav .links { display: flex; gap: 20px; }
+  nav a { text-decoration: none; color: var(--silk); font-size: 12px; transition: color .2s; }
+  nav a:hover { color: var(--copper); }
+  .hero { padding: 48px 24px 60px; border-bottom: 2px solid var(--copper); position: relative; }
+  .hero::before { content: ''; position: absolute; top: 24px; right: 24px; width: 80px; height: 80px; border: 2px solid var(--copper); border-radius: 50%; opacity: .3; }
+  .hero::after { content: ''; position: absolute; top: 48px; right: 48px; width: 32px; height: 32px; border: 2px solid var(--copper); border-radius: 50%; opacity: .3; }
+  .hero h1 { font-size: clamp(28px, 5vw, 48px); color: var(--copper); line-height: 1.2; margin-bottom: 8px; }
+  .hero .ref { font-size: 11px; color: var(--solder); margin-bottom: 16px; }
+  .hero p { font-size: 13px; max-width: 480px; line-height: 1.8; color: rgba(255,255,204,.6); margin-bottom: 24px; }
+  .hero button { padding: 10px 24px; border: 2px solid var(--copper); background: transparent; color: var(--copper); font-family: inherit; font-size: 12px; cursor: pointer; transition: all .2s; }
+  .hero button:hover { background: var(--copper); color: var(--pcb); }
+  .components { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; border-top: 2px solid var(--copper); }
+  .comp { padding: 24px; border-right: 2px solid var(--copper); border-bottom: 2px solid var(--copper); position: relative; }
+  .comp::before { content: ''; position: absolute; top: 12px; right: 12px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--copper); background: var(--solder); }
+  .comp .designator { font-size: 10px; color: var(--silk); opacity: .8; margin-bottom: 8px; }
+  .comp h3 { font-size: 14px; color: var(--copper); margin-bottom: 8px; }
+  .comp p { font-size: 12px; line-height: 1.7; color: rgba(255,255,204,.5); }
+  .comp .value { margin-top: 10px; font-size: 10px; color: var(--solder); padding: 4px 8px; border: 1px solid rgba(192,192,192,.3); display: inline-block; }
+  .traces { display: flex; gap: 0; padding: 0; border-bottom: 2px solid var(--copper); }
+  .trace-swatch { flex: 1; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 9px; border-right: 1px solid rgba(184,115,51,.3); }
+  footer { text-align: center; padding: 20px; font-size: 11px; color: rgba(255,255,204,.35); border-top: 2px solid var(--copper); }
+  footer span { color: var(--copper); }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo"><span class="dot"></span>PCB_TRACE v2.6</div>
+    <div class="links"><a href="#">SCHEMATIC</a><a href="#">LAYOUT</a><a href="#">BOM</a><a href="#">GERBER</a></div>
+  </nav>
+  <section class="hero">
+    <h1>CIRCUIT_BOARD</h1>
+    <div class="ref">REF: PCB-2026-001 | REV: A | LAYER: TOP</div>
+    <p>Copper traces route signals through layers of green solder mask. Every via, pad, and trace serves a purpose in the dance of electrons.</p>
+    <button>[ ROUTE TRACE ]</button>
+  </section>
+  <section class="components">
+    <div class="comp">
+      <div class="designator">U1 - IC</div>
+      <h3>Microcontroller</h3>
+      <p>The brain of the board. Processes inputs, drives outputs, runs the logic that brings hardware to life.</p>
+      <div class="value">ATmega328P</div>
+    </div>
+    <div class="comp">
+      <div class="designator">R1-R4 - RES</div>
+      <h3>Resistor Array</h3>
+      <p>Current limiters and voltage dividers. Tiny components with precise values keeping signals in check.</p>
+      <div class="value">10K OHM 0603</div>
+    </div>
+    <div class="comp">
+      <div class="designator">C1-C3 - CAP</div>
+      <h3>Capacitor Bank</h3>
+      <p>Energy reservoirs smoothing power rails and filtering noise. Decoupling the chaos of digital switching.</p>
+      <div class="value">100nF MLCC</div>
+    </div>
+  </section>
+  <div class="traces">
+    <div class="trace-swatch" style="background:var(--pcb);color:var(--silk)">PCB</div>
+    <div class="trace-swatch" style="background:var(--copper);color:var(--pcb)">COPPER</div>
+    <div class="trace-swatch" style="background:var(--solder);color:var(--pcb)">SOLDER</div>
+    <div class="trace-swatch" style="background:var(--silk);color:var(--pcb)">SILK</div>
+    <div class="trace-swatch" style="background:var(--gold);color:var(--pcb)">GOLD</div>
+  </div>
+  <footer>BOARD: <span>PCB_TRACE</span> | DRC: PASS | UNITS: mm</footer>
+</body>
+</html>

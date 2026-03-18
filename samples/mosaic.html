@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mosaic / Tesserae</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --navy: #1A5276; --crimson: #922B21; --forest: #196F3D; --gold: #B7950B; --cream: #FDF6E3; --grout: #C4B99A; --dark: #2C2416; --text: #4A3F30; }
+  body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--text); font-size: 14px; background-image: repeating-linear-gradient(0deg, var(--grout) 0px, var(--grout) 1px, transparent 1px, transparent 24px), repeating-linear-gradient(90deg, var(--grout) 0px, var(--grout) 1px, transparent 1px, transparent 24px); background-size: 24px 24px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; background: var(--navy); }
+  .logo { font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; color: var(--cream); letter-spacing: 3px; }
+  nav a { color: rgba(253,246,227,.7); text-decoration: none; font-size: 13px; margin-left: 20px; }
+  nav a:hover { color: var(--cream); }
+  .hero { text-align: center; padding: 48px 24px 36px; }
+  .mosaic-border { display: flex; justify-content: center; gap: 3px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tile { width: 20px; height: 20px; border-radius: 1px; }
+  .t-navy { background: var(--navy); }
+  .t-crimson { background: var(--crimson); }
+  .t-forest { background: var(--forest); }
+  .t-gold { background: var(--gold); }
+  .t-cream { background: #E8DCC8; }
+  h1 { font-family: 'Cinzel', serif; font-size: 40px; font-weight: 700; color: var(--dark); letter-spacing: 2px; margin-bottom: 12px; }
+  .hero p { font-size: 15px; color: var(--text); max-width: 500px; margin: 0 auto 24px; line-height: 1.7; }
+  .mosaic-btn { display: inline-block; padding: 10px 28px; background: var(--navy); color: var(--cream); border: none; font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 2px; cursor: pointer; transition: background .2s; }
+  .mosaic-btn:hover { background: var(--crimson); }
+  .section-title { text-align: center; font-family: 'Cinzel', serif; font-size: 26px; color: var(--dark); letter-spacing: 2px; padding: 32px 24px 4px; }
+  .section-sub { text-align: center; font-size: 12px; color: var(--grout); margin-bottom: 20px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 3px; padding: 0 24px 36px; max-width: 800px; margin: 0 auto; background: var(--grout); }
+  .grid-tile { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--cream); font-family: 'Cinzel', serif; text-align: center; padding: 12px; transition: transform .2s; }
+  .grid-tile:hover { transform: scale(1.04); z-index: 1; }
+  .grid-tile .num { font-size: 28px; font-weight: 700; }
+  .grid-tile .label { font-size: 10px; letter-spacing: 1px; margin-top: 4px; opacity: .8; text-transform: uppercase; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 3px; padding: 0 24px 36px; max-width: 900px; margin: 0 auto; }
+  .card { background: #FFF; padding: 24px; border-left: 4px solid; }
+  .card:nth-child(1) { border-color: var(--navy); }
+  .card:nth-child(2) { border-color: var(--crimson); }
+  .card:nth-child(3) { border-color: var(--forest); }
+  .card h3 { font-family: 'Cinzel', serif; font-size: 16px; margin-bottom: 6px; color: var(--dark); }
+  .card p { font-size: 13px; line-height: 1.6; color: var(--text); }
+  .palette { display: flex; gap: 3px; padding: 0 24px 36px; max-width: 500px; margin: 0 auto; }
+  .swatch { flex: 1; height: 60px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 6px; font-size: 10px; color: var(--cream); font-family: 'Cinzel', serif; letter-spacing: 1px; }
+  .pattern-row { display: flex; gap: 3px; justify-content: center; padding: 0 24px 36px; flex-wrap: wrap; }
+  .pattern-tile { width: 48px; height: 48px; border-radius: 1px; }
+  footer { text-align: center; padding: 24px; font-family: 'Cinzel', serif; font-size: 13px; color: var(--text); letter-spacing: 2px; background: var(--navy); color: var(--cream); }
+</style>
+</head>
+<body>
+  <nav><span class="logo">TESSERAE</span><div><a href="#">Gallery</a><a href="#">Patterns</a><a href="#">About</a></div></nav>
+  <section class="hero">
+    <div class="mosaic-border">
+      <div class="tile t-navy"></div><div class="tile t-gold"></div><div class="tile t-crimson"></div><div class="tile t-forest"></div><div class="tile t-navy"></div><div class="tile t-cream"></div><div class="tile t-gold"></div><div class="tile t-crimson"></div><div class="tile t-forest"></div><div class="tile t-navy"></div><div class="tile t-gold"></div><div class="tile t-crimson"></div>
+    </div>
+    <h1>Ancient Art, Modern Eye</h1>
+    <p>Inspired by the mosaic floors of Byzantine churches and Roman villas. Each small tile finds its place in a grander pattern.</p>
+    <button class="mosaic-btn">Explore Patterns</button>
+  </section>
+  <div class="section-title">By the Numbers</div>
+  <div class="section-sub">A mosaic of metrics</div>
+  <div class="grid">
+    <div class="grid-tile" style="background:var(--navy)"><span class="num">48</span><span class="label">Patterns</span></div>
+    <div class="grid-tile" style="background:var(--crimson)"><span class="num">12K</span><span class="label">Tiles Used</span></div>
+    <div class="grid-tile" style="background:var(--forest)"><span class="num">6</span><span class="label">Collections</span></div>
+    <div class="grid-tile" style="background:var(--gold)"><span class="num">340</span><span class="label">Artisans</span></div>
+  </div>
+  <div class="section-title">Featured Works</div>
+  <div class="section-sub">Grouted with care</div>
+  <div class="cards">
+    <div class="card"><h3>Ravenna Ceiling</h3><p>Gold and lapis lazuli tesserae form celestial patterns overhead. Over 2 million individual pieces set by hand across five years.</p></div>
+    <div class="card"><h3>Pompeii Floor</h3><p>Earth-toned geometric borders surround a central medallion. Discovered intact beneath volcanic ash, preserved for millennia.</p></div>
+    <div class="card"><h3>Istanbul Arch</h3><p>Green and white marble chips arranged in flowing botanical forms. The transition from stone to garden, captured in grout.</p></div>
+  </div>
+  <div class="section-title">Palette</div>
+  <div class="palette">
+    <div class="swatch" style="background:var(--navy)">Navy</div>
+    <div class="swatch" style="background:var(--crimson)">Crimson</div>
+    <div class="swatch" style="background:var(--forest)">Forest</div>
+    <div class="swatch" style="background:var(--gold)">Gold</div>
+  </div>
+  <div class="pattern-row">
+    <div class="pattern-tile t-navy"></div><div class="pattern-tile t-cream"></div><div class="pattern-tile t-crimson"></div><div class="pattern-tile t-cream"></div><div class="pattern-tile t-forest"></div><div class="pattern-tile t-cream"></div><div class="pattern-tile t-gold"></div><div class="pattern-tile t-cream"></div><div class="pattern-tile t-navy"></div><div class="pattern-tile t-cream"></div><div class="pattern-tile t-crimson"></div><div class="pattern-tile t-cream"></div><div class="pattern-tile t-forest"></div><div class="pattern-tile t-cream"></div><div class="pattern-tile t-gold"></div>
+  </div>
+  <footer>TESSERAE STUDIO ~ MMXXVI</footer>
+</body>
+</html>

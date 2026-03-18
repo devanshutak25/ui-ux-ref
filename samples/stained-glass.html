@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stained Glass - Sample</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Cinzel', Georgia, serif; background: #0A0A0F; color: #E8E0D0; line-height: 1.6; }
+
+  .hero {
+    min-height: 70vh; display: flex; flex-direction: column; padding: 2rem; position: relative; overflow: hidden;
+    background: linear-gradient(180deg, #0A0A0F 0%, #121218 100%);
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0; opacity: 0.15;
+    background:
+      radial-gradient(ellipse at 20% 40%, rgba(30,58,95,0.8) 0%, transparent 40%),
+      radial-gradient(ellipse at 70% 30%, rgba(139,34,82,0.7) 0%, transparent 35%),
+      radial-gradient(ellipse at 50% 80%, rgba(46,139,87,0.6) 0%, transparent 40%),
+      radial-gradient(ellipse at 80% 70%, rgba(218,165,32,0.5) 0%, transparent 30%);
+  }
+  nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem; position: relative; z-index: 1; }
+  .logo { font-weight: 900; font-size: 1.1rem; letter-spacing: 0.15em; text-transform: uppercase; color: #DAA520; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: #8B8070; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 400; }
+  .nav-links a:hover { color: #DAA520; }
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 1; }
+  .hero-content h1 { font-size: 3rem; font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: 0.06em; }
+  .hero-content h1 span { color: #DAA520; }
+  .hero-content p { font-size: 0.95rem; color: #8B8070; margin-bottom: 2rem; max-width: 440px; font-weight: 400; }
+  .hero-content button {
+    background: transparent; color: #DAA520; border: 2px solid #DAA520; padding: 0.8rem 2.5rem;
+    font-family: inherit; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; cursor: pointer; transition: all 0.3s;
+  }
+  .hero-content button:hover { background: #DAA520; color: #0A0A0F; }
+
+  .components { padding: 3rem 2rem; }
+  .components > h2 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: #8B8070; margin-bottom: 2rem; border-bottom: 1px solid #222; padding-bottom: 0.75rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 6px; margin-bottom: 3rem; }
+  .card {
+    padding: 2rem; text-align: center; position: relative; overflow: hidden;
+    border: 3px solid #1A1A22;
+  }
+  .card::before {
+    content: ''; position: absolute; inset: 0; opacity: 0.25;
+  }
+  .card:nth-child(1) { background: rgba(30,58,95,0.3); }
+  .card:nth-child(1)::before { background: radial-gradient(ellipse at center, rgba(30,58,95,0.5), transparent 70%); }
+  .card:nth-child(2) { background: rgba(139,34,82,0.3); }
+  .card:nth-child(2)::before { background: radial-gradient(ellipse at center, rgba(139,34,82,0.5), transparent 70%); }
+  .card:nth-child(3) { background: rgba(46,139,87,0.3); }
+  .card:nth-child(3)::before { background: radial-gradient(ellipse at center, rgba(46,139,87,0.5), transparent 70%); }
+  .card:nth-child(4) { background: rgba(218,165,32,0.3); }
+  .card:nth-child(4)::before { background: radial-gradient(ellipse at center, rgba(218,165,32,0.5), transparent 70%); }
+  .card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; position: relative; letter-spacing: 0.05em; }
+  .card p { font-size: 0.8rem; color: #8B8070; position: relative; }
+  .card-jewel { width: 40px; height: 40px; margin: 0 auto 1rem; border-radius: 4px; position: relative; transform: rotate(45deg); opacity: 0.7; }
+
+  .leading-strip { display: flex; gap: 6px; margin-bottom: 3rem; }
+  .lead-panel { flex: 1; height: 8px; border: 2px solid #1A1A22; }
+
+  .palette { display: flex; gap: 0.5rem; }
+  .swatch { width: 48px; height: 48px; border: 2px solid #1A1A22; }
+
+  footer { border-top: 3px solid #1A1A22; padding: 2rem; text-align: center; font-size: 0.75rem; color: #8B8070; letter-spacing: 0.12em; text-transform: uppercase; }
+
+  @media (max-width: 600px) { .hero-content h1 { font-size: 2rem; } .grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <div class="logo">Vitrum</div>
+      <ul class="nav-links">
+        <li><a href="#">Nave</a></li>
+        <li><a href="#">Rosette</a></li>
+        <li><a href="#">Light</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>Light Through <span>Colored</span> Glass</h1>
+      <p>Rich jewel tones separated by dark leading lines, casting cathedral warmth across the interface.</p>
+      <button>Enter the Cathedral</button>
+    </div>
+  </section>
+
+  <section class="components">
+    <h2>Panels</h2>
+    <div class="grid">
+      <div class="card"><div class="card-jewel" style="background:#1E3A5F"></div><h4>Sapphire</h4><p>Deep blue panels evoking twilight skies.</p></div>
+      <div class="card"><div class="card-jewel" style="background:#8B2252"></div><h4>Ruby</h4><p>Rich crimson glass filtering warm light.</p></div>
+      <div class="card"><div class="card-jewel" style="background:#2E8B57"></div><h4>Emerald</h4><p>Verdant panels reflecting forest canopy.</p></div>
+      <div class="card"><div class="card-jewel" style="background:#DAA520"></div><h4>Amber</h4><p>Golden light pouring through gilded panes.</p></div>
+    </div>
+    <div class="leading-strip">
+      <div class="lead-panel" style="background:rgba(30,58,95,0.4)"></div>
+      <div class="lead-panel" style="background:rgba(139,34,82,0.4)"></div>
+      <div class="lead-panel" style="background:rgba(46,139,87,0.4)"></div>
+      <div class="lead-panel" style="background:rgba(218,165,32,0.4)"></div>
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#1E3A5F"></div>
+      <div class="swatch" style="background:#8B2252"></div>
+      <div class="swatch" style="background:#2E8B57"></div>
+      <div class="swatch" style="background:#DAA520"></div>
+      <div class="swatch" style="background:#0A0A0F"></div>
+    </div>
+  </section>
+
+  <footer>Vitrum &mdash; Stained Glass Collection &mdash; 2026</footer>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Film Noir</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Sans+3:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --black: #000; --white: #FFF; --grey: #333; --red: #CC0000; --smoke: #999; }
+  body { font-family: 'Source Sans 3', sans-serif; background: var(--black); color: var(--white); }
+  .blinds { background: repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0px, rgba(255,255,255,.04) 6px, transparent 6px, transparent 18px); }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 32px; border-bottom: 1px solid var(--grey); }
+  nav .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; }
+  nav .logo span { color: var(--red); }
+  nav .links { display: flex; gap: 24px; }
+  nav a { text-decoration: none; color: var(--smoke); font-size: 13px; font-weight: 300; text-transform: uppercase; letter-spacing: 2px; transition: color .2s; }
+  nav a:hover { color: var(--red); }
+  .hero { padding: 64px 32px 80px; position: relative; overflow: hidden; }
+  .hero .blinds-overlay { position: absolute; inset: 0; background: repeating-linear-gradient(180deg, transparent 0px, transparent 20px, rgba(255,255,255,.03) 20px, rgba(255,255,255,.03) 22px); pointer-events: none; }
+  .hero .spotlight { position: absolute; top: -100px; right: 20%; width: 300px; height: 400px; background: radial-gradient(ellipse, rgba(255,255,255,.06) 0%, transparent 70%); pointer-events: none; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 7vw, 68px); font-weight: 700; line-height: 1.05; margin-bottom: 16px; position: relative; }
+  .hero h1 em { font-style: italic; color: var(--red); font-weight: 400; }
+  .hero p { font-size: 16px; font-weight: 300; max-width: 460px; line-height: 1.8; color: var(--smoke); margin-bottom: 28px; position: relative; }
+  .hero button { padding: 14px 36px; border: 1px solid var(--white); background: transparent; color: var(--white); font-family: inherit; font-size: 13px; font-weight: 300; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: all .2s; position: relative; }
+  .hero button:hover { background: var(--red); border-color: var(--red); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; border-top: 1px solid var(--grey); }
+  .card { padding: 28px; border-right: 1px solid var(--grey); border-bottom: 1px solid var(--grey); }
+  .card .chapter { font-family: 'Playfair Display', serif; font-size: 11px; font-style: italic; color: var(--red); margin-bottom: 12px; letter-spacing: 1px; }
+  .card h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+  .card p { font-size: 13px; font-weight: 300; line-height: 1.8; color: var(--smoke); }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--grey), var(--red), var(--grey), transparent); }
+  .palette { display: flex; gap: 0; }
+  .swatch { flex: 1; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 300; letter-spacing: 1px; border-right: 1px solid rgba(255,255,255,.1); }
+  footer { text-align: center; padding: 24px; font-size: 12px; font-weight: 300; color: var(--smoke); letter-spacing: 2px; text-transform: uppercase; border-top: 1px solid var(--grey); }
+  footer span { color: var(--red); }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Film <span>Noir</span></div>
+    <div class="links"><a href="#">Cases</a><a href="#">Dossier</a><a href="#">Archive</a><a href="#">Contact</a></div>
+  </nav>
+  <section class="hero">
+    <div class="blinds-overlay"></div>
+    <div class="spotlight"></div>
+    <h1>Shadows<br>Don't <em>Lie</em></h1>
+    <p>The city sleeps but the neon stays awake. In a world painted in shades of grey, only the truth bleeds red through venetian blinds.</p>
+    <button>Enter the Dark</button>
+  </section>
+  <div class="divider"></div>
+  <section class="cards">
+    <div class="card">
+      <div class="chapter">Chapter I</div>
+      <h3>The Setup</h3>
+      <p>Rain-slicked streets reflect the glow of a single streetlight. A figure emerges from the fog, collar turned up against the cold.</p>
+    </div>
+    <div class="card">
+      <div class="chapter">Chapter II</div>
+      <h3>The Confrontation</h3>
+      <p>Smoke curls from a cigarette in the darkness. Light cuts through venetian blinds, striping the room in bars of shadow and revelation.</p>
+    </div>
+    <div class="card">
+      <div class="chapter">Chapter III</div>
+      <h3>The Resolution</h3>
+      <p>Every shadow tells a story. In the end, it's not the darkness that's dangerous but what you find when you shine a light into it.</p>
+    </div>
+  </section>
+  <div class="palette">
+    <div class="swatch" style="background:var(--black);color:var(--white)">#000000</div>
+    <div class="swatch" style="background:var(--grey);color:var(--white)">#333333</div>
+    <div class="swatch" style="background:var(--smoke);color:var(--black)">#999999</div>
+    <div class="swatch" style="background:var(--white);color:var(--black)">#FFFFFF</div>
+    <div class="swatch" style="background:var(--red);color:var(--white)">#CC0000</div>
+  </div>
+  <footer>A <span>&bull;</span> Film Noir Production <span>&bull;</span> MMXXVI</footer>
+</body>
+</html>

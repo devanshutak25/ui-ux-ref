@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data-Dense Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --bg: #0F172A; --surface: #1E293B; --border: #334155; --text: #E2E8F0; --dim: #94A3B8; --blue: #3B82F6; --green: #22C55E; --red: #EF4444; --yellow: #EAB308; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 13px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .logo { font-weight: 700; font-size: 15px; color: var(--blue); }
+  .nav-right { display: flex; gap: 16px; align-items: center; font-size: 12px; color: var(--dim); }
+  .status { width: 7px; height: 7px; background: var(--green); border-radius: 50%; display: inline-block; }
+  .hero { padding: 20px; }
+  .hero h1 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .hero p { font-size: 12px; color: var(--dim); }
+  .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; padding: 0 20px 16px; }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+  .kpi-label { font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+  .kpi-value { font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; }
+  .kpi-change { font-size: 11px; margin-top: 4px; }
+  .kpi-change.up { color: var(--green); }
+  .kpi-change.down { color: var(--red); }
+  .sparkline { display: flex; align-items: flex-end; gap: 2px; height: 24px; margin-top: 8px; }
+  .sparkline span { flex: 1; background: var(--blue); border-radius: 1px; opacity: .6; }
+  .content { padding: 0 20px 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 12px; }
+  @media(max-width:768px) { .content { grid-template-columns: 1fr; } }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .panel-head { padding: 12px 14px; font-size: 12px; font-weight: 600; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+  .panel-head span { color: var(--dim); font-weight: 400; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 8px 14px; text-align: left; font-size: 12px; border-bottom: 1px solid var(--border); }
+  th { color: var(--dim); font-weight: 600; text-transform: uppercase; font-size: 10px; letter-spacing: .5px; }
+  td { font-family: 'IBM Plex Mono', monospace; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; }
+  .tag-green { background: rgba(34,197,94,.15); color: var(--green); }
+  .tag-red { background: rgba(239,68,68,.15); color: var(--red); }
+  .tag-yellow { background: rgba(234,179,8,.15); color: var(--yellow); }
+  .tag-blue { background: rgba(59,130,246,.15); color: var(--blue); }
+  .mini-chart { display: flex; align-items: flex-end; gap: 1px; height: 20px; }
+  .mini-chart span { width: 4px; background: var(--blue); border-radius: 1px; }
+  .sidebar-item { padding: 10px 14px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+  .sidebar-item:last-child { border-bottom: none; }
+  .sidebar-val { font-family: 'IBM Plex Mono', monospace; font-weight: 600; }
+  footer { padding: 16px 20px; text-align: center; font-size: 11px; color: var(--dim); border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+  <nav>
+    <span class="logo">● DataCore</span>
+    <div class="nav-right"><span class="status"></span> Live <span>|</span> 14:32:07 UTC</div>
+  </nav>
+  <div class="hero"><h1>Operations Overview</h1><p>Real-time metrics — last updated 3s ago</p></div>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-label">Requests / sec</div><div class="kpi-value">12,847</div><div class="kpi-change up">▲ 8.2%</div><div class="sparkline"><span style="height:40%"></span><span style="height:55%"></span><span style="height:45%"></span><span style="height:70%"></span><span style="height:60%"></span><span style="height:80%"></span><span style="height:90%"></span><span style="height:75%"></span></div></div>
+    <div class="kpi"><div class="kpi-label">Avg Latency</div><div class="kpi-value">23ms</div><div class="kpi-change up">▼ 12%</div><div class="sparkline"><span style="height:80%"></span><span style="height:65%"></span><span style="height:50%"></span><span style="height:55%"></span><span style="height:40%"></span><span style="height:35%"></span><span style="height:30%"></span><span style="height:25%"></span></div></div>
+    <div class="kpi"><div class="kpi-label">Error Rate</div><div class="kpi-value">0.03%</div><div class="kpi-change up">▼ 0.01%</div></div>
+    <div class="kpi"><div class="kpi-label">Active Users</div><div class="kpi-value">4,291</div><div class="kpi-change down">▼ 2.1%</div></div>
+  </div>
+  <div class="content">
+    <div class="panel">
+      <div class="panel-head">Service Status <span>12 services</span></div>
+      <table>
+        <tr><th>Service</th><th>Status</th><th>Latency</th><th>RPS</th><th>Trend</th></tr>
+        <tr><td>api-gateway</td><td><span class="tag tag-green">Healthy</span></td><td>12ms</td><td>4,231</td><td><div class="mini-chart"><span style="height:8px"></span><span style="height:12px"></span><span style="height:10px"></span><span style="height:15px"></span><span style="height:18px"></span></div></td></tr>
+        <tr><td>auth-service</td><td><span class="tag tag-green">Healthy</span></td><td>8ms</td><td>1,892</td><td><div class="mini-chart"><span style="height:10px"></span><span style="height:10px"></span><span style="height:12px"></span><span style="height:11px"></span><span style="height:12px"></span></div></td></tr>
+        <tr><td>payment-proc</td><td><span class="tag tag-yellow">Degraded</span></td><td>145ms</td><td>567</td><td><div class="mini-chart"><span style="height:6px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:16px"></span><span style="height:14px"></span></div></td></tr>
+        <tr><td>search-index</td><td><span class="tag tag-green">Healthy</span></td><td>34ms</td><td>3,102</td><td><div class="mini-chart"><span style="height:14px"></span><span style="height:12px"></span><span style="height:13px"></span><span style="height:15px"></span><span style="height:14px"></span></div></td></tr>
+        <tr><td>ml-pipeline</td><td><span class="tag tag-red">Down</span></td><td>—</td><td>0</td><td><div class="mini-chart"><span style="height:12px"></span><span style="height:8px"></span><span style="height:4px"></span><span style="height:1px"></span><span style="height:0"></span></div></td></tr>
+      </table>
+    </div>
+    <div class="panel">
+      <div class="panel-head">Resource Usage</div>
+      <div class="sidebar-item"><span>CPU Cluster A</span><span class="sidebar-val" style="color:var(--green)">42%</span></div>
+      <div class="sidebar-item"><span>CPU Cluster B</span><span class="sidebar-val" style="color:var(--yellow)">78%</span></div>
+      <div class="sidebar-item"><span>Memory</span><span class="sidebar-val">61%</span></div>
+      <div class="sidebar-item"><span>Disk I/O</span><span class="sidebar-val">23%</span></div>
+      <div class="sidebar-item"><span>Network In</span><span class="sidebar-val">1.2 Gbps</span></div>
+      <div class="sidebar-item"><span>Network Out</span><span class="sidebar-val">890 Mbps</span></div>
+      <div class="sidebar-item"><span>Queue Depth</span><span class="sidebar-val" style="color:var(--red)">1,247</span></div>
+    </div>
+  </div>
+  <footer>DataCore v3.4.1 · Region: us-east-1 · Refresh: 5s</footer>
+</body>
+</html>

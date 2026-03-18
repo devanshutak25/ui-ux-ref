@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Single-Color System - Sample</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Inter', sans-serif; background: #EFF6FF; color: #1E3A8A; line-height: 1.6; }
+
+  .hero {
+    min-height: 70vh; display: flex; flex-direction: column; padding: 2rem;
+    background: linear-gradient(180deg, #1E40AF 0%, #1E3A8A 100%); color: #EFF6FF;
+  }
+  nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem; }
+  .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; color: #BFDBFE; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: #93C5FD; font-size: 0.85rem; font-weight: 500; }
+  .nav-links a:hover { color: #FFFFFF; }
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 520px; }
+  .hero-content h1 { font-size: 3rem; font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; color: #FFF; letter-spacing: -0.03em; }
+  .hero-content p { font-size: 1rem; color: #93C5FD; margin-bottom: 2rem; max-width: 400px; }
+  .hero-content button {
+    align-self: flex-start; background: #BFDBFE; color: #1E3A8A; border: none;
+    padding: 0.75rem 2rem; font-family: inherit; font-size: 0.85rem; font-weight: 600;
+    cursor: pointer; border-radius: 6px; transition: all 0.2s;
+  }
+  .hero-content button:hover { background: #DBEAFE; }
+
+  .components { padding: 3rem 2rem; }
+  .components > h2 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: #3B82F6; margin-bottom: 2rem; border-bottom: 1px solid #BFDBFE; padding-bottom: 0.75rem; font-weight: 600; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+  .card {
+    padding: 1.5rem; border-radius: 10px; border: 1px solid #BFDBFE; background: #FFF;
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 16px rgba(30,64,175,0.1); }
+  .card-bar { height: 4px; border-radius: 2px; margin-bottom: 1rem; }
+  .card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; color: #1E3A8A; }
+  .card p { font-size: 0.8rem; color: #3B82F6; }
+
+  .shade-scale { display: flex; margin-bottom: 3rem; border-radius: 8px; overflow: hidden; }
+  .shade { flex: 1; height: 60px; display: flex; align-items: flex-end; padding: 0.4rem; }
+  .shade span { font-size: 0.55rem; font-weight: 600; }
+
+  .palette { display: flex; gap: 0.5rem; margin-top: 2rem; }
+  .swatch { width: 48px; height: 48px; border-radius: 8px; border: 1px solid #BFDBFE; }
+
+  footer { padding: 2rem; text-align: center; font-size: 0.8rem; color: #3B82F6; border-top: 1px solid #BFDBFE; }
+
+  @media (max-width: 600px) { .hero-content h1 { font-size: 2.2rem; } .nav-links { gap: 1rem; } }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <div class="logo">MonoBlue</div>
+      <ul class="nav-links">
+        <li><a href="#">System</a></li>
+        <li><a href="#">Scale</a></li>
+        <li><a href="#">Docs</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>One Color, Infinite Hierarchy</h1>
+      <p>A complete design system built from a single hue. Tints and shades create all the contrast you need.</p>
+      <button>Explore the Scale</button>
+    </div>
+  </section>
+
+  <section class="components">
+    <h2>Shade Scale</h2>
+    <div class="shade-scale">
+      <div class="shade" style="background:#EFF6FF"><span style="color:#1E3A8A">50</span></div>
+      <div class="shade" style="background:#DBEAFE"><span style="color:#1E3A8A">100</span></div>
+      <div class="shade" style="background:#BFDBFE"><span style="color:#1E3A8A">200</span></div>
+      <div class="shade" style="background:#93C5FD"><span style="color:#1E3A8A">300</span></div>
+      <div class="shade" style="background:#60A5FA"><span style="color:#FFF">400</span></div>
+      <div class="shade" style="background:#3B82F6"><span style="color:#FFF">500</span></div>
+      <div class="shade" style="background:#2563EB"><span style="color:#FFF">600</span></div>
+      <div class="shade" style="background:#1D4ED8"><span style="color:#FFF">700</span></div>
+      <div class="shade" style="background:#1E40AF"><span style="color:#FFF">800</span></div>
+      <div class="shade" style="background:#1E3A8A"><span style="color:#FFF">900</span></div>
+    </div>
+
+    <h2>Components</h2>
+    <div class="grid">
+      <div class="card"><div class="card-bar" style="background:#1E40AF"></div><h4>Primary Action</h4><p>Deep blue for high-priority elements and CTAs.</p></div>
+      <div class="card"><div class="card-bar" style="background:#3B82F6"></div><h4>Secondary Info</h4><p>Mid-tone blue for supporting content and links.</p></div>
+      <div class="card"><div class="card-bar" style="background:#93C5FD"></div><h4>Subtle Background</h4><p>Light blue tint for containers and highlights.</p></div>
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#1E3A8A"></div>
+      <div class="swatch" style="background:#1E40AF"></div>
+      <div class="swatch" style="background:#3B82F6"></div>
+      <div class="swatch" style="background:#93C5FD"></div>
+      <div class="swatch" style="background:#EFF6FF"></div>
+    </div>
+  </section>
+
+  <footer>MonoBlue &mdash; Single-Color Design System &mdash; 2026</footer>
+</body>
+</html>

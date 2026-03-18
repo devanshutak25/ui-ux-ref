@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neon Sign</title>
+<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --bg: #1A0A0A; --brick: #2A1515; --red: #FF0040; --blue: #00BFFF; --green: #39FF14; --yellow: #FFE600; --pink: #FF6EC7; --text: #D4C5B9; --dim: #7A6B5F; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; background-image: repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(255,255,255,.01) 48px, rgba(255,255,255,.01) 50px), repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(255,255,255,.015) 24px, rgba(255,255,255,.015) 25px); }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; border-bottom: 1px solid rgba(255,0,64,.15); }
+  .logo { font-family: 'Monoton', cursive; font-size: 22px; color: var(--red); text-shadow: 0 0 10px rgba(255,0,64,.7), 0 0 30px rgba(255,0,64,.4), 0 0 60px rgba(255,0,64,.2); }
+  nav a { color: var(--dim); text-decoration: none; font-size: 13px; margin-left: 20px; }
+  nav a:hover { color: var(--blue); text-shadow: 0 0 8px rgba(0,191,255,.4); }
+  .hero { text-align: center; padding: 56px 24px 44px; }
+  h1 { font-family: 'Monoton', cursive; font-size: 52px; line-height: 1.2; margin-bottom: 16px; }
+  .neon-red { color: var(--red); text-shadow: 0 0 10px rgba(255,0,64,.8), 0 0 40px rgba(255,0,64,.4), 0 0 80px rgba(255,0,64,.2); }
+  .neon-blue { color: var(--blue); text-shadow: 0 0 10px rgba(0,191,255,.8), 0 0 40px rgba(0,191,255,.4), 0 0 80px rgba(0,191,255,.2); }
+  .neon-green { color: var(--green); text-shadow: 0 0 10px rgba(57,255,20,.8), 0 0 40px rgba(57,255,20,.4), 0 0 80px rgba(57,255,20,.2); }
+  .flicker { animation: flicker 4s infinite; }
+  @keyframes flicker { 0%,100% { opacity:1; } 41% { opacity:1; } 42% { opacity:.7; } 43% { opacity:1; } 76% { opacity:1; } 77% { opacity:.5; } 78% { opacity:1; } }
+  .hero p { color: var(--dim); font-size: 15px; max-width: 460px; margin: 0 auto 28px; line-height: 1.6; }
+  .tube-btn { display: inline-block; padding: 12px 36px; border: 2px solid var(--red); color: var(--red); background: transparent; font-family: inherit; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; border-radius: 40px; box-shadow: 0 0 15px rgba(255,0,64,.3), inset 0 0 15px rgba(255,0,64,.1); transition: all .3s; }
+  .tube-btn:hover { box-shadow: 0 0 30px rgba(255,0,64,.5), inset 0 0 25px rgba(255,0,64,.2); background: rgba(255,0,64,.08); }
+  .section-title { text-align: center; font-family: 'Monoton', cursive; font-size: 28px; padding: 32px 24px 16px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; padding: 0 24px 44px; max-width: 960px; margin: 0 auto; }
+  .card { border: 1px solid rgba(255,255,255,.06); border-radius: 8px; padding: 24px; background: rgba(255,255,255,.02); position: relative; overflow: hidden; }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 3px 3px 0 0; }
+  .card:nth-child(1)::before { background: var(--red); box-shadow: 0 0 15px rgba(255,0,64,.5); }
+  .card:nth-child(2)::before { background: var(--blue); box-shadow: 0 0 15px rgba(0,191,255,.5); }
+  .card:nth-child(3)::before { background: var(--green); box-shadow: 0 0 15px rgba(57,255,20,.5); }
+  .card:nth-child(4)::before { background: var(--pink); box-shadow: 0 0 15px rgba(255,110,199,.5); }
+  .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .card:nth-child(1) h3 { color: var(--red); }
+  .card:nth-child(2) h3 { color: var(--blue); }
+  .card:nth-child(3) h3 { color: var(--green); }
+  .card:nth-child(4) h3 { color: var(--pink); }
+  .card p { font-size: 13px; color: var(--dim); line-height: 1.6; }
+  .open-sign { text-align: center; padding: 32px 24px; }
+  .open-sign span { font-family: 'Monoton', cursive; font-size: 42px; color: var(--green); text-shadow: 0 0 10px rgba(57,255,20,.8), 0 0 40px rgba(57,255,20,.4), 0 0 80px rgba(57,255,20,.2); border: 3px solid var(--green); padding: 12px 40px; border-radius: 8px; box-shadow: 0 0 20px rgba(57,255,20,.2), inset 0 0 20px rgba(57,255,20,.1); display: inline-block; animation: pulse-glow 2s ease-in-out infinite; }
+  @keyframes pulse-glow { 0%,100% { box-shadow: 0 0 20px rgba(57,255,20,.2), inset 0 0 20px rgba(57,255,20,.1); } 50% { box-shadow: 0 0 35px rgba(57,255,20,.35), inset 0 0 30px rgba(57,255,20,.15); } }
+  .specials { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; padding: 24px; max-width: 700px; margin: 0 auto; }
+  .special { text-align: center; padding: 16px; border: 1px solid rgba(255,230,0,.15); border-radius: 6px; }
+  .special .price { font-family: 'Monoton', cursive; font-size: 28px; color: var(--yellow); text-shadow: 0 0 10px rgba(255,230,0,.5); }
+  .special .name { font-size: 13px; color: var(--dim); margin-top: 4px; }
+  footer { text-align: center; padding: 24px; font-size: 12px; color: var(--dim); border-top: 1px solid rgba(255,255,255,.05); margin-top: 24px; }
+</style>
+</head>
+<body>
+  <nav><span class="logo">NITE</span><div><a href="#">Menu</a><a href="#">Events</a><a href="#">Reserve</a></div></nav>
+  <section class="hero">
+    <h1><span class="neon-red flicker">After</span> <span class="neon-blue">Dark</span></h1>
+    <p>Where the city sleeps and the signs come alive. A tribute to the glow of glass tubes and the hum of transformers.</p>
+    <button class="tube-btn">Come Inside</button>
+  </section>
+  <div class="open-sign"><span>OPEN</span></div>
+  <div class="section-title neon-blue">Tonight</div>
+  <div class="cards">
+    <div class="card"><h3>Crimson Lounge</h3><p>Velvet seats, low lighting, and the warm glow of red neon bouncing off polished surfaces. The signature space.</p></div>
+    <div class="card"><h3>Blue Room</h3><p>Cool tones and ambient beats. The ceiling is lined with tubes that shift in sync with the music.</p></div>
+    <div class="card"><h3>The Garden</h3><p>An outdoor space lit entirely by green neon woven through ivy. It feels like stepping into another world.</p></div>
+    <div class="card"><h3>Pink Parlour</h3><p>Retro jukebox, milkshake bar, and neon flamingos. Pure nostalgia with a modern edge.</p></div>
+  </div>
+  <div class="section-title" style="color:var(--yellow);text-shadow:0 0 10px rgba(255,230,0,.5)">Specials</div>
+  <div class="specials">
+    <div class="special"><div class="price">$12</div><div class="name">Electric Fizz</div></div>
+    <div class="special"><div class="price">$14</div><div class="name">Neon Noir</div></div>
+    <div class="special"><div class="price">$10</div><div class="name">Glow Tonic</div></div>
+  </div>
+  <footer>After Dark Bar & Lounge ~ Open Thu-Sat 8pm-2am ~ 21+</footer>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chalkboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --board: #2D4A3E; --board-dark: #243D33; --chalk: #F0EDE5; --chalk-dim: rgba(240,237,229,.55); --yellow: #F2E394; --pink: #E8A0BF; --blue: #9CC5E8; --orange: #E8B87A; }
+  body { font-family: 'Patrick Hand', cursive; background: var(--board); color: var(--chalk); font-size: 16px; position: relative; }
+  body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,.03), transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(255,255,255,.02), transparent 50%); pointer-events: none; z-index: 0; }
+  .frame { border: 12px solid #5C3A1E; border-image: linear-gradient(135deg, #8B6F47, #5C3A1E, #8B6F47) 1; position: relative; z-index: 1; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; border-bottom: 2px dashed var(--chalk-dim); }
+  .logo { font-size: 26px; color: var(--chalk); }
+  nav a { color: var(--chalk-dim); text-decoration: none; font-size: 18px; margin-left: 20px; }
+  nav a:hover { color: var(--chalk); text-decoration: underline wavy; }
+  .hero { text-align: center; padding: 48px 24px 36px; }
+  h1 { font-size: 48px; line-height: 1.1; margin-bottom: 12px; text-shadow: 1px 1px 2px rgba(0,0,0,.3); }
+  h1 .underline { border-bottom: 3px dashed var(--yellow); padding-bottom: 4px; }
+  .hero p { font-size: 20px; color: var(--chalk-dim); max-width: 500px; margin: 0 auto 24px; line-height: 1.5; }
+  .chalk-btn { display: inline-block; padding: 10px 28px; border: 2px dashed var(--chalk); color: var(--chalk); background: transparent; font-family: inherit; font-size: 18px; cursor: pointer; border-radius: 2px; transition: all .2s; }
+  .chalk-btn:hover { background: rgba(240,237,229,.1); }
+  .dust { position: absolute; width: 40px; height: 4px; background: rgba(240,237,229,.08); border-radius: 50%; }
+  .section-title { text-align: center; font-size: 28px; padding: 24px 24px 4px; color: var(--yellow); }
+  .section-title::after { content: ''; display: block; width: 80px; height: 2px; background: var(--yellow); margin: 6px auto 0; opacity: .5; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; padding: 20px 24px 36px; }
+  .card { border: 2px dashed var(--chalk-dim); padding: 20px; border-radius: 4px; position: relative; background: rgba(255,255,255,.02); }
+  .card h3 { font-size: 22px; margin-bottom: 8px; }
+  .card:nth-child(1) h3 { color: var(--yellow); }
+  .card:nth-child(2) h3 { color: var(--pink); }
+  .card:nth-child(3) h3 { color: var(--blue); }
+  .card:nth-child(4) h3 { color: var(--orange); }
+  .card p { font-size: 16px; color: var(--chalk-dim); line-height: 1.5; }
+  .card-tag { display: inline-block; margin-top: 10px; font-size: 14px; border: 1px solid var(--chalk-dim); padding: 2px 10px; border-radius: 2px; color: var(--chalk-dim); }
+  .sketch { text-align: center; padding: 20px; }
+  .sketch-line { display: inline-block; width: 60%; height: 1px; background: repeating-linear-gradient(90deg, var(--chalk-dim) 0px, var(--chalk-dim) 8px, transparent 8px, transparent 14px); margin: 8px 0; }
+  .tally-section { padding: 0 24px 36px; }
+  .tally-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--chalk-dim); font-size: 18px; }
+  .tally-marks { letter-spacing: 4px; color: var(--blue); }
+  .erased { color: var(--chalk-dim); opacity: .35; text-decoration: line-through; }
+  .list { padding: 0 24px 36px; }
+  .list-item { padding: 6px 0; font-size: 18px; }
+  .list-item::before { content: '✓ '; color: var(--yellow); }
+  .list-item.unchecked::before { content: '○ '; color: var(--chalk-dim); }
+  footer { text-align: center; padding: 20px 24px; font-size: 16px; color: var(--chalk-dim); border-top: 2px dashed var(--chalk-dim); }
+  .chalk-smudge { display: inline-block; background: rgba(240,237,229,.06); padding: 2px 8px; border-radius: 20px; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <nav>
+    <span class="logo">Chalk &amp; Talk</span>
+    <div><a href="#">Lessons</a><a href="#">Notes</a><a href="#">Board</a></div>
+  </nav>
+  <section class="hero">
+    <h1>Today's <span class="underline">Lesson</span></h1>
+    <p>Welcome back, class. Grab your chalk and let's explore the fundamentals of good design.</p>
+    <button class="chalk-btn">Start Learning</button>
+  </section>
+  <div class="section-title">Key Concepts</div>
+  <div class="cards">
+    <div class="card"><h3>Hierarchy</h3><p>Guide the eye through size, weight, and color. The most important thing should be the biggest thing.</p><div class="card-tag">Chapter 1</div></div>
+    <div class="card"><h3>Contrast</h3><p>Light against dark. Big against small. Without contrast, nothing stands out and everything is noise.</p><div class="card-tag">Chapter 2</div></div>
+    <div class="card"><h3>Alignment</h3><p>Every element should have a visual connection to something else on the page. Nothing should look arbitrary.</p><div class="card-tag">Chapter 3</div></div>
+    <div class="card"><h3>Repetition</h3><p>Consistency builds trust. Repeat colors, fonts, and spacing to create a unified, professional feel.</p><div class="card-tag">Chapter 4</div></div>
+  </div>
+  <div class="sketch"><div class="sketch-line"></div><div class="sketch-line"></div><div class="sketch-line"></div></div>
+  <div class="section-title">Attendance</div>
+  <div class="tally-section">
+    <div class="tally-row"><span>Monday</span><span class="tally-marks">|||| |||</span></div>
+    <div class="tally-row"><span>Tuesday</span><span class="tally-marks">|||| |||| ||</span></div>
+    <div class="tally-row"><span>Wednesday</span><span class="tally-marks">|||| ||||</span></div>
+    <div class="tally-row"><span>Thursday <span class="erased">(snow day)</span></span><span class="tally-marks">—</span></div>
+  </div>
+  <div class="section-title">To-Do</div>
+  <div class="list">
+    <div class="list-item">Review typography basics</div>
+    <div class="list-item">Practice color theory exercises</div>
+    <div class="list-item unchecked">Finish layout assignment</div>
+    <div class="list-item unchecked">Read chapters 5-7</div>
+  </div>
+  <footer>Room 204 ~ <span class="chalk-smudge">Prof. Whitmore</span> ~ Spring 2026</footer>
+</div>
+</body>
+</html>

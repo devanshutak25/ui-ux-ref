@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D & Hyperrealism - Sample</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Inter', sans-serif; background: #1A1D23; color: #E8E8E8; line-height: 1.5; }
+
+  .hero {
+    min-height: 70vh; display: flex; flex-direction: column; padding: 2rem; position: relative; overflow: hidden;
+    background: radial-gradient(ellipse at 30% 40%, #2C3E50 0%, #1A1D23 70%);
+  }
+  .hero::before {
+    content: ''; position: absolute; width: 400px; height: 400px; border-radius: 50%;
+    top: 20%; right: 10%; filter: blur(100px); opacity: 0.2;
+    background: radial-gradient(circle, #3498DB, #2C3E50);
+  }
+  nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem; position: relative; z-index: 1; }
+  .logo { font-weight: 800; font-size: 1.1rem; color: #FFF; letter-spacing: -0.02em; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: #888; font-size: 0.85rem; font-weight: 500; }
+  .nav-links a:hover { color: #FFF; }
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 520px; position: relative; z-index: 1; }
+  .hero-content h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
+  .hero-content p { font-size: 1rem; color: #888; margin-bottom: 2rem; max-width: 400px; }
+  .hero-content button {
+    align-self: flex-start; border: none; padding: 0.85rem 2.5rem; font-family: inherit; font-size: 0.85rem;
+    font-weight: 700; cursor: pointer; border-radius: 12px; transition: all 0.3s; color: #FFF;
+    background: linear-gradient(135deg, #3498DB, #2980B9);
+    box-shadow: 0 4px 15px rgba(52,152,219,0.4), 0 1px 3px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  .hero-content button:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(52,152,219,0.5), 0 2px 6px rgba(0,0,0,0.3); }
+
+  .components { padding: 3rem 2rem; }
+  .components > h2 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: #666; margin-bottom: 2rem; border-bottom: 1px solid #2A2D33; padding-bottom: 0.75rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+  .card {
+    padding: 2rem; border-radius: 20px; position: relative; overflow: hidden;
+    background: linear-gradient(145deg, #252830, #1E2025);
+    box-shadow: 8px 8px 24px rgba(0,0,0,0.4), -4px -4px 12px rgba(255,255,255,0.03),
+                inset 0 1px 0 rgba(255,255,255,0.05);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: perspective(800px) rotateY(0deg);
+  }
+  .card:hover { transform: perspective(800px) rotateY(-3deg) translateY(-4px); }
+  .card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  }
+  .card-orb {
+    width: 50px; height: 50px; border-radius: 50%; margin-bottom: 1.5rem;
+    box-shadow: inset -4px -4px 8px rgba(0,0,0,0.4), inset 4px 4px 8px rgba(255,255,255,0.1),
+                0 4px 12px rgba(0,0,0,0.3);
+  }
+  .card h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .card p { font-size: 0.8rem; color: #888; }
+
+  .depth-demo { display: flex; justify-content: center; gap: 1.5rem; margin: 3rem 0; perspective: 600px; }
+  .depth-layer {
+    width: 100px; height: 100px; border-radius: 16px; display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; font-weight: 700; color: #FFF; letter-spacing: 0.05em;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  .depth-layer:nth-child(1) { background: linear-gradient(135deg, #E74C3C, #C0392B); transform: rotateY(-15deg); }
+  .depth-layer:nth-child(2) { background: linear-gradient(135deg, #3498DB, #2980B9); transform: translateZ(20px) scale(1.1); }
+  .depth-layer:nth-child(3) { background: linear-gradient(135deg, #2ECC71, #27AE60); transform: rotateY(15deg); }
+
+  .palette { display: flex; gap: 0.5rem; margin-top: 2rem; }
+  .swatch {
+    width: 48px; height: 48px; border-radius: 10px;
+    box-shadow: inset -2px -2px 6px rgba(0,0,0,0.3), inset 2px 2px 6px rgba(255,255,255,0.05), 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  footer { border-top: 1px solid #2A2D33; padding: 2rem; text-align: center; font-size: 0.8rem; color: #666; }
+
+  @media (max-width: 600px) { .hero-content h1 { font-size: 2.2rem; } .depth-demo { flex-wrap: wrap; } }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <div class="logo">Dimension</div>
+      <ul class="nav-links">
+        <li><a href="#">Depth</a></li>
+        <li><a href="#">Light</a></li>
+        <li><a href="#">Render</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>Interfaces That Feel Real</h1>
+      <p>Dramatic lighting, deep shadows, and glossy reflections create tangible digital surfaces you want to touch.</p>
+      <button>Explore Dimension</button>
+    </div>
+  </section>
+
+  <section class="components">
+    <h2>Surfaces</h2>
+    <div class="grid">
+      <div class="card"><div class="card-orb" style="background:linear-gradient(135deg,#3498DB,#2980B9)"></div><h4>Glossy Surface</h4><p>Reflective gradients with specular highlights and deep shadows.</p></div>
+      <div class="card"><div class="card-orb" style="background:linear-gradient(135deg,#E74C3C,#C0392B)"></div><h4>Dramatic Light</h4><p>Directional lighting that sculpts form from flat pixels.</p></div>
+      <div class="card"><div class="card-orb" style="background:linear-gradient(135deg,#2ECC71,#27AE60)"></div><h4>Deep Perspective</h4><p>3D transforms that give cards physical presence in space.</p></div>
+    </div>
+
+    <h2>Depth Layers</h2>
+    <div class="depth-demo">
+      <div class="depth-layer">BACK</div>
+      <div class="depth-layer">FOCUS</div>
+      <div class="depth-layer">FRONT</div>
+    </div>
+
+    <div class="palette">
+      <div class="swatch" style="background:#2C3E50"></div>
+      <div class="swatch" style="background:#3498DB"></div>
+      <div class="swatch" style="background:#E74C3C"></div>
+      <div class="swatch" style="background:#2ECC71"></div>
+      <div class="swatch" style="background:#1A1D23"></div>
+    </div>
+  </section>
+
+  <footer>Dimension &mdash; 3D Hyperrealism &mdash; 2026</footer>
+</body>
+</html>

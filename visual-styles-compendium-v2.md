@@ -1,6 +1,6 @@
 # Visual & UI Style Compendium v2
 
-A curated catalog of 65 web-implementable design styles, organized into 9 categories. Trimmed from 149 raw entries — removed textures, art references, interaction paradigms, and micro-techniques that don't constitute standalone web design approaches.
+A curated catalog of 100 web-implementable design styles, organized into 9 categories. Expanded from the original 65-style compendium with 35 additional styles spanning retro revivals, thematic atmospheres, experimental techniques, and data-focused interfaces.
 
 ---
 
@@ -90,11 +90,53 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Tailwind 8/10, vanilla CSS 10/10
 - **A11y:** AA
 
+### 7. Bauhaus
+**Category:** Core Foundations | **Era:** 1919–1933 | **Complexity:** Medium
+
+> Primary colors (red, blue, yellow), geometric forms (circle, square, triangle), functional design, grid-based composition, DM Sans font.
+
+- Strict primary color palette: red (#E53935), blue (#1E88E5), yellow (#FDD835) on white/black
+- Geometric primitives as core design elements
+- Grid-based layouts with mathematical proportions
+- Form follows function — no superfluous decoration
+- **Best for:** Design education, museums, architecture firms, studios
+- **Don't use for:** Playful children's brands, organic/natural aesthetics
+- **Frameworks:** Vanilla CSS 9/10, Tailwind 8/10
+- **A11y:** AA
+
+### 8. Single-Color System
+**Category:** Core Foundations | **Era:** Timeless | **Complexity:** Low
+
+> Monochromatic design using tints and shades of one hue, hierarchy through shade variation.
+
+- One base hue with 8–10 tint/shade steps
+- Lightest tints for backgrounds, darkest shades for text
+- Visual hierarchy driven entirely by lightness values
+- Clean, cohesive, brand-focused palette
+- **Best for:** Brand-heavy landing pages, focused apps, onboarding flows
+- **Don't use for:** Data-dense dashboards, multi-category marketplaces
+- **Frameworks:** Tailwind 10/10, MUI 9/10
+- **A11y:** AA
+
+### 9. Mono Space
+**Category:** Core Foundations | **Era:** 2020s | **Complexity:** Low
+
+> Monospace typography-driven design, code-like aesthetic, grid alignment, technical feel.
+
+- Monospace font stack (JetBrains Mono, Fira Code, IBM Plex Mono)
+- Character-grid alignment across all content
+- Minimal decoration — type IS the design
+- Technical, developer-oriented atmosphere
+- **Best for:** Developer blogs, tech portfolios, documentation, CLI tools
+- **Don't use for:** Fashion, lifestyle brands, children's products
+- **Frameworks:** Vanilla CSS 10/10, Tailwind 9/10
+- **A11y:** AA
+
 ---
 
 ## Surface & Material
 
-### 7. Glassmorphism
+### 10. Glassmorphism
 **Category:** Surface & Material | **Era:** 2020s | **Complexity:** Medium
 
 > Frosted-glass translucent panels with background blur, subtle borders, and layered depth. Includes Apple's "Liquid Glass" evolution.
@@ -108,7 +150,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Tailwind 9/10, CSS Modules 8/10
 - **A11y:** AA
 
-### 8. Neumorphism
+### 11. Neumorphism
 **Category:** Surface & Material | **Era:** 2020s | **Complexity:** Medium
 
 > Soft extruded shapes using background-matching colors with paired light/dark shadows, creating a pressed-plastic effect.
@@ -122,7 +164,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 10/10, Tailwind 7/10
 - **A11y:** A (contrast issues common)
 
-### 9. Claymorphism
+### 12. Claymorphism
 **Category:** Surface & Material | **Era:** 2021–2023 | **Complexity:** Medium
 
 > 3D clay-like rendered elements with soft rounded forms, pastel palette, playful material simulation.
@@ -136,7 +178,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 9/10, Tailwind 8/10
 - **A11y:** AA
 
-### 10. Skeuomorphism
+### 13. Skeuomorphism
 **Category:** Surface & Material | **Era:** 2007–2013 | **Complexity:** High
 
 > UI elements mimicking real-world materials — leather, wood, metal, felt, paper. Physical metaphors everywhere.
@@ -150,7 +192,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 10/10, Tailwind 5/10
 - **A11y:** AA
 
-### 11. Candy UI / Confectionery
+### 14. Candy UI / Confectionery
 **Category:** Surface & Material | **Era:** 2020s | **Complexity:** Medium
 
 > Glossy sugar-coat surfaces, pastel drips, rounded bubblegum geometry, sweet-shop palette.
@@ -164,11 +206,81 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 8/10, Tailwind 7/10
 - **A11y:** A
 
+### 15. Paper Cut / Layered
+**Category:** Surface & Material | **Era:** 2020s | **Complexity:** Medium
+
+> Multi-layered paper shadows, stacked depth, soft pastels, cut-out aesthetic.
+
+- Stacked card layers with progressive box-shadow depth
+- Soft pastel fills (peach, lavender, mint, cream)
+- Visible edge offsets between layers (2–6px)
+- Paper-texture backgrounds, cut-out silhouette shapes
+- **Best for:** Creative portfolios, children's education, greeting card brands
+- **Don't use for:** Data dashboards, enterprise SaaS, dense UIs
+- **Frameworks:** Tailwind 8/10, vanilla CSS 9/10
+- **A11y:** AA
+
+### 16. 3D & Hyperrealism
+**Category:** Surface & Material | **Era:** 2020s | **Complexity:** High
+
+> Realistic shadows, deep perspective, glossy reflections, dramatic lighting.
+
+- Multi-stop gradients for realistic surface highlights
+- Deep `box-shadow` stacks (3–5 layers) for lifelike depth
+- CSS `perspective` and `transform: rotateY/X` for 3D presentation
+- Glossy reflection via pseudo-element gradient overlays
+- **Best for:** Product showcases, hero sections, premium landing pages
+- **Don't use for:** Text-heavy content, accessibility-first, low-end devices
+- **Frameworks:** Three.js 10/10, CSS 3D 8/10
+- **A11y:** AA
+
+### 17. Marble / Veined Stone
+**Category:** Surface & Material | **Era:** Timeless luxury | **Complexity:** Medium
+
+> Marble texture via CSS gradients, gold accents, luxury typography, elegant.
+
+- CSS `repeating-linear-gradient` with translucent overlays for vein effect
+- Gold (#C9A96E, #D4AF37) accent color for borders, text, icons
+- Serif typography (Playfair Display, Cormorant Garamond)
+- White/gray marble base (#F8F6F2) with subtle veining
+- **Best for:** Luxury brands, jewelry, real estate, wedding sites
+- **Don't use for:** Tech startups, casual apps, children's products
+- **Frameworks:** Vanilla CSS 9/10, Tailwind 7/10
+- **A11y:** AA
+
+### 18. Terrazzo
+**Category:** Surface & Material | **Era:** 2020s revival | **Complexity:** Medium
+
+> Speckled confetti pattern, playful yet sophisticated, warm neutrals with color pops.
+
+- SVG/CSS speckle pattern as background texture
+- Warm neutral base (cream, blush, sand)
+- Bright confetti pops (coral, teal, ochre, navy)
+- Rounded shapes, friendly geometric accents
+- **Best for:** Interior design, lifestyle brands, cafes, co-working spaces
+- **Don't use for:** Enterprise software, data-heavy dashboards
+- **Frameworks:** SVG 9/10, CSS 8/10
+- **A11y:** AA
+
+### 19. Origami / Paper Fold
+**Category:** Surface & Material | **Era:** Timeless | **Complexity:** Medium
+
+> Folded paper effects via CSS triangles and gradients, geometric folds, clean.
+
+- CSS `border` triangles and angled `clip-path` for fold edges
+- Light/shadow on fold faces via linear-gradient
+- Clean flat colors with fold-line highlights
+- Geometric, structured, precise layouts
+- **Best for:** Creative agencies, event invitations, infographic sites
+- **Don't use for:** Data tables, long-form content, form-heavy UIs
+- **Frameworks:** CSS 9/10, Tailwind 8/10
+- **A11y:** AA
+
 ---
 
 ## Color & Light
 
-### 12. Vibrant & Block-based
+### 20. Vibrant & Block-based
 **Category:** Color & Light | **Era:** 2020s | **Complexity:** Low
 
 > Bold saturated color blocks as layout containers, high-contrast pairings, energetic palette.
@@ -182,7 +294,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Tailwind 10/10, Bootstrap 9/10
 - **A11y:** AA
 
-### 13. Gradient Mesh / Aurora
+### 21. Gradient Mesh / Aurora
 **Category:** Color & Light | **Era:** 2020s | **Complexity:** Low
 
 > Complex multi-point gradient meshes creating painterly color fields, fluid organic color transitions, aurora borealis effect.
@@ -196,7 +308,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Tailwind 8/10, vanilla CSS 9/10
 - **A11y:** AA
 
-### 14. Holographic / Iridescent
+### 22. Holographic / Iridescent
 **Category:** Color & Light | **Era:** 2020s | **Complexity:** Medium
 
 > Rainbow-shift iridescence, angle-reactive gradients, metallic substrate, prismatic shimmer.
@@ -210,11 +322,53 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 9/10, Tailwind 7/10
 - **A11y:** A
 
+### 23. Neon Calligraphy
+**Category:** Color & Light | **Era:** 2020s | **Complexity:** Medium
+
+> Flowing neon script on dark, glow effects, cursive typography, elegant neon.
+
+- Dark background (#0A0A0A) with neon accent script
+- Cursive/script fonts (Great Vibes, Dancing Script) with `text-shadow` glow
+- Multi-layer glow: inner white, mid-color, outer diffuse
+- Elegant nightlife meets calligraphic art
+- **Best for:** Restaurants, nightlife venues, wedding invitations, creative portfolios
+- **Don't use for:** Corporate, government, data-dense interfaces
+- **Frameworks:** Vanilla CSS 9/10, Canvas 7/10
+- **A11y:** A
+
+### 24. Neon Sign
+**Category:** Color & Light | **Era:** Timeless | **Complexity:** Medium
+
+> Bright neon tubes on dark or brick backgrounds, flickering glow, tube-like borders, nightlife.
+
+- Dark/brick-texture background
+- Neon tube borders via `box-shadow` and `border-radius`
+- Flickering animation with CSS `@keyframes` opacity/glow variation
+- Tube-style rounded letterforms with multi-layer glow
+- **Best for:** Bars, restaurants, music venues, retro-themed campaigns
+- **Don't use for:** Corporate, healthcare, government, children's products
+- **Frameworks:** CSS 9/10, SVG 8/10
+- **A11y:** A
+
+### 25. Bioluminescent
+**Category:** Color & Light | **Era:** 2020s | **Complexity:** Medium
+
+> Deep ocean dark, glowing cyan and green, pulsing animations, organic flowing.
+
+- Deep dark base (#020B1A, #001219)
+- Bioluminescent accents: cyan (#00F5D4), green (#39FF14), teal (#00BBF9)
+- Pulsing `@keyframes` glow animations on interactive elements
+- Organic blob shapes with flowing movement
+- **Best for:** Science communication, ocean/nature brands, immersive experiences
+- **Don't use for:** Corporate SaaS, form-heavy apps, print-like layouts
+- **Frameworks:** CSS 9/10, Canvas 8/10
+- **A11y:** A
+
 ---
 
 ## Layout & Structure
 
-### 15. Bento Box Grid
+### 26. Bento Box Grid
 **Category:** Layout & Structure | **Era:** 2023–present | **Complexity:** Medium
 
 > Modular rectangular compartments of varying sizes, inspired by Apple-style marketing pages.
@@ -228,7 +382,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Tailwind 10/10, CSS Grid 10/10
 - **A11y:** AA
 
-### 16. Editorial Grid / Magazine
+### 27. Editorial Grid / Magazine
 **Category:** Layout & Structure | **Era:** Timeless | **Complexity:** Medium
 
 > Print-magazine layout ported to digital — pull quotes, column breaks, drop caps, asymmetric grids, strong type hierarchy.
@@ -242,7 +396,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Tailwind 9/10, CSS Grid 10/10
 - **A11y:** AAA
 
-### 17. Dimensional Layering
+### 28. Dimensional Layering
 **Category:** Layout & Structure | **Era:** 2020s | **Complexity:** Medium
 
 > Stacked z-axis planes creating explicit depth, parallax separation between content tiers.
@@ -256,7 +410,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** CSS Transforms 10/10, Framer Motion 9/10
 - **A11y:** AA
 
-### 18. Comic Panel Layout
+### 29. Comic Panel Layout
 **Category:** Layout & Structure | **Era:** Timeless | **Complexity:** Medium
 
 > Gutters, speech bubbles, Ben-Day dots, sequential frame navigation, panel-grid storytelling.
@@ -270,7 +424,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** CSS Grid 10/10, Tailwind 7/10
 - **A11y:** AA
 
-### 19. Trading Card
+### 30. Trading Card
 **Category:** Layout & Structure | **Era:** 2020s | **Complexity:** Medium
 
 > Bordered frames, stat blocks, rarity badges, foil variant accents, collectible structure.
@@ -284,7 +438,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Tailwind 8/10, vanilla CSS 9/10
 - **A11y:** AA
 
-### 20. Newspaper Classified / Dense Type
+### 31. Newspaper Classified / Dense Type
 **Category:** Layout & Structure | **Era:** Timeless | **Complexity:** Low
 
 > Dense column text, abbreviated shorthand, category headers, thin rule dividers, small type.
@@ -298,11 +452,39 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** CSS Multi-column 10/10, Tailwind 8/10
 - **A11y:** A (small type concern)
 
+### 32. Isometric UI
+**Category:** Layout & Structure | **Era:** 2020s | **Complexity:** Medium
+
+> 3D isometric perspective, CSS transforms, vibrant blocks, technical feel.
+
+- CSS `transform: rotateX(60deg) rotateZ(-45deg)` for isometric view
+- Vibrant color-coded blocks representing data/sections
+- Grid-aligned isometric tiles with consistent depth
+- Technical illustration meets interactive UI
+- **Best for:** Infographics, data visualization, tech product pages
+- **Don't use for:** Text-heavy content, form UIs, accessibility-first
+- **Frameworks:** CSS transforms 8/10, SVG 9/10
+- **A11y:** AA
+
+### 33. Whitespace Maximalism
+**Category:** Layout & Structure | **Era:** 2020s | **Complexity:** Low
+
+> Extreme whitespace, huge margins, tiny content, dramatic empty space.
+
+- Content occupies less than 30% of viewport
+- Massive padding/margins (clamp(4rem, 10vw, 12rem))
+- Small, precise typography floating in open space
+- Every element has room to breathe; intentional emptiness
+- **Best for:** Luxury brands, high-end portfolios, art galleries, architecture firms
+- **Don't use for:** Data dashboards, e-commerce listings, dense tools
+- **Frameworks:** Tailwind 9/10, vanilla CSS 10/10
+- **A11y:** AAA
+
 ---
 
 ## Motion & Interaction
 
-### 21. Motion-Driven Design
+### 34. Motion-Driven Design
 **Category:** Motion & Interaction | **Era:** 2020s | **Complexity:** High
 
 > Animation as primary design language — transitions, state changes, and motion convey hierarchy and meaning. Includes micro-interactions.
@@ -316,7 +498,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** GSAP 10/10, Framer Motion 10/10, CSS Transitions 9/10
 - **A11y:** AA (with reduced-motion support)
 
-### 22. Kinetic Typography
+### 35. Kinetic Typography
 **Category:** Motion & Interaction | **Era:** 2020s | **Complexity:** High
 
 > Text as animated, moving, transforming visual element — scale shifts, path animations, rhythm-driven type.
@@ -330,7 +512,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** GSAP 10/10, Framer Motion 9/10
 - **A11y:** A
 
-### 23. Parallax Storytelling
+### 36. Parallax Storytelling
 **Category:** Motion & Interaction | **Era:** 2015–present | **Complexity:** High
 
 > Scroll-driven depth layers moving at different speeds to create narrative progression.
@@ -344,7 +526,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** GSAP ScrollTrigger 10/10, Lenis 9/10
 - **A11y:** A (motion-sensitive users)
 
-### 24. Tactile / Deformable UI
+### 37. Tactile / Deformable UI
 **Category:** Motion & Interaction | **Era:** 2020s | **Complexity:** Medium
 
 > Elements that squish, stretch, bounce with physics simulation, rubber-like material response.
@@ -358,7 +540,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Framer Motion 10/10, React Spring 9/10
 - **A11y:** AA
 
-### 25. Split-Flap / Departure Board
+### 38. Split-Flap / Departure Board
 **Category:** Motion & Interaction | **Era:** Retro-modern | **Complexity:** High
 
 > Mechanical letter-tile flip animation, terminal-schedule grids, clacking transition rhythm.
@@ -372,7 +554,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 8/10, GSAP 9/10
 - **A11y:** AA
 
-### 26. Scratch Card / Gamified Reveal
+### 39. Scratch Card / Gamified Reveal
 **Category:** Motion & Interaction | **Era:** 2020s | **Complexity:** Medium
 
 > Masked reveal layers, metallic scratch surface, exposed prize zones, gamified discovery.
@@ -386,7 +568,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Canvas API 10/10, vanilla CSS 7/10
 - **A11y:** A
 
-### 27. Lenticular / Angle-Shift
+### 40. Lenticular / Angle-Shift
 **Category:** Motion & Interaction | **Era:** 2020s | **Complexity:** Medium
 
 > Content that changes on scroll or cursor position, stripe-interleaved image layers, tilt reveal.
@@ -404,7 +586,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 
 ## Retro & Nostalgic
 
-### 28. Retro-Futurism
+### 41. Retro-Futurism
 **Category:** Retro & Nostalgic | **Era:** 1960s aesthetic | **Complexity:** Medium
 
 > Mid-century space-age aesthetics — atomic motifs, googie architecture influence, chrome and starbursts.
@@ -418,7 +600,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 8/10, Tailwind 7/10
 - **A11y:** AA
 
-### 29. Cassette Futurism
+### 42. Cassette Futurism
 **Category:** Retro & Nostalgic | **Era:** 1970s–80s aesthetic | **Complexity:** Medium
 
 > Analog-tech interfaces — toggle switches, amber CRTs, chunky bezels, reel-to-reel, VU meters, oscilloscope traces.
@@ -432,7 +614,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 9/10, Tailwind 6/10
 - **A11y:** AA
 
-### 30. Y2K Aesthetic
+### 43. Y2K Aesthetic
 **Category:** Retro & Nostalgic | **Era:** 2000s aesthetic | **Complexity:** Medium
 
 > Early-2000s digital nostalgia — metallic gradients, bubble fonts, translucent plastic, techno-optimism.
@@ -446,7 +628,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 8/10, Tailwind 7/10
 - **A11y:** A
 
-### 31. Vaporwave
+### 44. Vaporwave
 **Category:** Retro & Nostalgic | **Era:** 1990s aesthetic | **Complexity:** Medium
 
 > Pastel pink/cyan/purple, retro grid perspective, 90s nostalgia, sunset palette, consumer irony.
@@ -460,7 +642,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 9/10, Tailwind 7/10
 - **A11y:** A
 
-### 32. Memphis Design
+### 45. Memphis Design
 **Category:** Retro & Nostalgic | **Era:** 1980s revival | **Complexity:** Medium
 
 > Bold geometric patterns, clashing colors, squiggles, terrazzo fills, Italian postmodernism.
@@ -474,7 +656,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 8/10, Tailwind 7/10
 - **A11y:** AA
 
-### 33. Pixel Art
+### 46. Pixel Art
 **Category:** Retro & Nostalgic | **Era:** 1980s aesthetic | **Complexity:** Medium
 
 > Deliberately low-resolution grid-locked artwork, limited palettes, retro game nostalgia.
@@ -488,7 +670,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 9/10, Canvas 8/10
 - **A11y:** AA
 
-### 34. Vintage Analog / Retro Film
+### 47. Vintage Analog / Retro Film
 **Category:** Retro & Nostalgic | **Era:** Timeless | **Complexity:** Medium
 
 > Film grain, light leaks, color fade, expired-stock color shifts, instant-photo borders.
@@ -502,7 +684,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 9/10, CSS Filters 8/10
 - **A11y:** AA
 
-### 35. Retrocomputing / DOS Shell
+### 48. Retrocomputing / DOS Shell
 **Category:** Retro & Nostalgic | **Era:** 1980s aesthetic | **Complexity:** Low
 
 > 80-column text, command prompt, system font, directory trees, C:\> nostalgia. Includes teletype/ticker aesthetics.
@@ -516,7 +698,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 10/10
 - **A11y:** AA
 
-### 36. Receipt / Thermal Print
+### 49. Receipt / Thermal Print
 **Category:** Retro & Nostalgic | **Era:** Modern retro | **Complexity:** Low
 
 > Narrow-column monospace, dashed dividers, faded-edge roll paper, transaction-log format.
@@ -530,11 +712,39 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 10/10
 - **A11y:** AA
 
+### 50. Polaroid / Instant Film
+**Category:** Retro & Nostalgic | **Era:** 1970s revival | **Complexity:** Low
+
+> White thick borders, slight rotation, warm vintage tones, handwriting font.
+
+- Thick white border-bottom (asymmetric padding: 8px top/sides, 40px bottom)
+- Slight `transform: rotate(-2deg to 3deg)` on each frame
+- Warm color filter via CSS `filter: sepia(0.2) saturate(1.1)`
+- Handwriting font for captions (Caveat, Patrick Hand)
+- **Best for:** Photo galleries, travel blogs, scrapbook-style layouts
+- **Don't use for:** Enterprise, data dashboards, formal interfaces
+- **Frameworks:** CSS 9/10, Tailwind 8/10
+- **A11y:** AA
+
+### 51. Chalkboard
+**Category:** Retro & Nostalgic | **Era:** Timeless | **Complexity:** Low
+
+> Dark green background, chalk-white text, sketchy borders, handwritten feel.
+
+- Dark green background (#2D4A22, #1B3A1B) with subtle noise texture
+- Chalk-white text (#E8E4D4) with slight opacity variation
+- Hand-drawn style borders (rough/sketchy via SVG or CSS)
+- Handwriting fonts (Indie Flower, Architects Daughter)
+- **Best for:** Education platforms, restaurants, tutorials, cafe menus
+- **Don't use for:** Corporate SaaS, finance, data-dense interfaces
+- **Frameworks:** Vanilla CSS 9/10, Canvas 7/10
+- **A11y:** AA
+
 ---
 
 ## Thematic & Atmospheric
 
-### 37. Cyberpunk UI
+### 52. Cyberpunk UI
 **Category:** Thematic & Atmospheric | **Era:** Futuristic | **Complexity:** High
 
 > Neon-on-dark, glitch effects, CJK typography accents, scan lines, high-tech-low-life atmosphere. Includes datamosh/glitch textile elements.
@@ -548,7 +758,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 9/10, Three.js 8/10
 - **A11y:** A
 
-### 38. Solarpunk
+### 53. Solarpunk
 **Category:** Thematic & Atmospheric | **Era:** 2020s | **Complexity:** Low
 
 > Lush greens, cooperative iconography, sun-drenched warmth, utopian sustainable-tech optimism.
@@ -562,7 +772,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Tailwind 9/10, vanilla CSS 8/10
 - **A11y:** AA
 
-### 39. Organic Biophilic
+### 54. Organic Biophilic
 **Category:** Thematic & Atmospheric | **Era:** Timeless | **Complexity:** Low
 
 > Nature-derived shapes, earth-tone palettes, leaf/root/water motifs, Voronoi cells, growth-simulation patterns.
@@ -576,7 +786,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Tailwind 8/10, vanilla CSS 9/10
 - **A11y:** AA
 
-### 40. HUD / Sci-Fi FUI
+### 55. HUD / Sci-Fi FUI
 **Category:** Thematic & Atmospheric | **Era:** Futuristic | **Complexity:** High
 
 > Fantasy user interfaces — targeting reticles, holographic panels, data-stream overlays. Includes air traffic control aesthetic.
@@ -590,7 +800,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 9/10, Canvas/Three.js 8/10
 - **A11y:** A
 
-### 41. Cinematic / Film Noir
+### 56. Cinematic / Film Noir
 **Category:** Thematic & Atmospheric | **Era:** Timeless | **Complexity:** Medium
 
 > Deep chiaroscuro, venetian-blind shadow bars, monochrome with single accent, dramatic contrast. Includes film-leader/countdown aesthetics.
@@ -604,7 +814,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 9/10, Tailwind 7/10
 - **A11y:** AA
 
-### 42. Pharmaceutical / Clinical
+### 57. Pharmaceutical / Clinical
 **Category:** Thematic & Atmospheric | **Era:** Modern | **Complexity:** Low
 
 > Sterile white fields, blister-pack grids, monograph typography, pill-shaped UI elements.
@@ -618,7 +828,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Tailwind 9/10, MUI 8/10
 - **A11y:** AAA
 
-### 43. Astrological / Celestial
+### 58. Astrological / Celestial
 **Category:** Thematic & Atmospheric | **Era:** Timeless | **Complexity:** Medium
 
 > Star-chart radials, constellation line-art, zodiac-wheel navigation, celestial patterns.
@@ -632,7 +842,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 8/10, SVG 9/10
 - **A11y:** AA
 
-### 44. Passport / Official Document
+### 59. Passport / Official Document
 **Category:** Thematic & Atmospheric | **Era:** Timeless | **Complexity:** Medium
 
 > Security guilloche patterns, stamped seals, machine-readable zones, official-credential layout. Includes ballot/civic form aesthetics.
@@ -646,7 +856,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** SVG 10/10, vanilla CSS 8/10
 - **A11y:** AA
 
-### 45. Whiteboard / Collaborative Canvas
+### 60. Whiteboard / Collaborative Canvas
 **Category:** Thematic & Atmospheric | **Era:** 2020s | **Complexity:** Medium
 
 > Marker strokes, magnet-pinned cards, hasty diagrams, sticky notes, ideation-in-progress feel.
@@ -660,7 +870,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Tailwind 8/10, vanilla CSS 9/10
 - **A11y:** AA
 
-### 46. Stage Lighting / Theatre
+### 61. Stage Lighting / Theatre
 **Category:** Thematic & Atmospheric | **Era:** Timeless | **Complexity:** Medium
 
 > Spotlight cones, color gel washes, curtain-reveal transitions, proscenium framing.
@@ -674,11 +884,137 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** GSAP 9/10, vanilla CSS 8/10
 - **A11y:** AA
 
+### 62. Art Deco
+**Category:** Thematic & Atmospheric | **Era:** 1920s–1930s revival | **Complexity:** Medium
+
+> Gold on dark, geometric patterns, symmetrical layouts, chevron and fan motifs, luxury.
+
+- Gold (#D4AF37, #C9A96E) on deep black or navy
+- Chevron, fan, and sunburst geometric patterns
+- Symmetrical, balanced layouts with strong center axis
+- Elegant serif/display fonts (Poiret One, Cinzel Decorative)
+- **Best for:** Luxury hotels, cocktail bars, jewelry, high-end events
+- **Don't use for:** Tech startups, casual apps, children's products
+- **Frameworks:** Vanilla CSS 9/10, SVG 8/10
+- **A11y:** AA
+
+### 63. Japanese Minimalism (Wabi-Sabi)
+**Category:** Thematic & Atmospheric | **Era:** Timeless | **Complexity:** Low
+
+> Muted earth tones, asymmetric layouts, generous whitespace, imperfect beauty.
+
+- Muted palette: stone (#A8A29E), moss (#6B7D5E), clay (#C4A882), ink (#2C2C2C)
+- Deliberate asymmetry in grid and element placement
+- Generous whitespace — more empty than filled
+- Subtle texture imperfections in borders and surfaces
+- **Best for:** Ceramics, tea brands, wellness, architecture, zen gardens
+- **Don't use for:** High-energy brands, gaming, dense dashboards
+- **Frameworks:** Vanilla CSS 10/10, Tailwind 9/10
+- **A11y:** AA
+
+### 64. Stained Glass
+**Category:** Thematic & Atmospheric | **Era:** Medieval revival | **Complexity:** Medium
+
+> Rich jewel tones with dark leading lines, translucent colored panels, gothic.
+
+- Jewel-tone fills: ruby (#9B111E), sapphire (#0F52BA), emerald (#046307), amber (#FFBF00)
+- Dark leading lines (3–4px black/dark gray borders between panels)
+- CSS `mix-blend-mode: multiply` for translucent color overlap
+- Gothic-inspired pointed arch shapes via `clip-path`
+- **Best for:** Churches, heritage sites, art galleries, medieval-themed media
+- **Don't use for:** Tech SaaS, minimal brands, mobile-first apps
+- **Frameworks:** CSS 8/10, SVG 9/10
+- **A11y:** A
+
+### 65. Mosaic / Tesserae
+**Category:** Thematic & Atmospheric | **Era:** Ancient revival | **Complexity:** Medium
+
+> Small colorful tiles in grid, jewel tones, grouted gaps, decorative patterns.
+
+- Small square/rectangular tile grid via CSS Grid (16–32px cells)
+- Jewel tones and earth colors for individual tiles
+- Consistent `gap` (2–3px) in grout color (cream, gray)
+- Decorative geometric patterns formed by tile color arrangement
+- **Best for:** Cultural institutions, Mediterranean brands, decorative portfolios
+- **Don't use for:** Text-heavy content, data dashboards, enterprise tools
+- **Frameworks:** CSS Grid 9/10, SVG 8/10
+- **A11y:** AA
+
+### 66. Blackletter / Gothic
+**Category:** Thematic & Atmospheric | **Era:** Medieval revival | **Complexity:** Medium
+
+> Old English typography, dark with burgundy and gold, ornate borders, medieval.
+
+- Blackletter display fonts (Fraktur, UnifrakturCook) for headings
+- Dark backgrounds (#1A1A1A) with burgundy (#800020) and gold (#C9A96E)
+- Ornate border frames via CSS/SVG decorative patterns
+- Dense, heavy typographic presence
+- **Best for:** Breweries, metal/rock brands, medieval games, gothic media
+- **Don't use for:** Corporate, healthcare, children's products, accessibility-first
+- **Frameworks:** CSS 8/10, SVG 7/10
+- **A11y:** A
+
+### 67. Ice / Crystalline
+**Category:** Thematic & Atmospheric | **Era:** 2020s | **Complexity:** Medium
+
+> Cool blues, frosted glass effects, crystalline geometric shapes, sharp angles.
+
+- Cool blue palette: ice (#D6EAF8), frost (#AED6F1), deep ice (#2E86C1)
+- Frosted glass via `backdrop-filter: blur()` with cool tint
+- Sharp angular `clip-path` polygons for crystalline shapes
+- Subtle shimmer animation on edges and highlights
+- **Best for:** Winter campaigns, beverage brands, tech with cool branding
+- **Don't use for:** Warm/cozy brands, earth-tone aesthetics
+- **Frameworks:** CSS 9/10, Tailwind 8/10
+- **A11y:** AA
+
+### 68. Ukiyo-e Digital
+**Category:** Thematic & Atmospheric | **Era:** Edo period revival | **Complexity:** Medium
+
+> Japanese woodblock palette, wave-like patterns, layered flat color areas.
+
+- Flat color areas with no gradients (woodblock aesthetic)
+- Palette: indigo (#264653), wave blue (#2A9D8F), warm red (#E76F51), cream (#FEFAE0)
+- Wave and cloud patterns via CSS/SVG curves
+- Layered foreground/background with clear separation
+- **Best for:** Japanese culture sites, art exhibitions, tea brands, travel
+- **Don't use for:** Corporate SaaS, data-dense tools, modern minimalism
+- **Frameworks:** SVG 9/10, CSS 8/10
+- **A11y:** AA
+
+### 69. Camouflage / DPM
+**Category:** Thematic & Atmospheric | **Era:** Timeless military | **Complexity:** Medium
+
+> Military camo colors via CSS blobs, tactical font, rugged military UI.
+
+- Camo palette: olive (#556B2F), khaki (#BDB76B), brown (#5C4033), dark green (#2E4A1E)
+- Irregular blob shapes via CSS `border-radius` or SVG backgrounds
+- Tactical/military fonts (Roboto Condensed, Oswald, stencil-style)
+- Rugged borders, stamped/stenciled text effects
+- **Best for:** Outdoor/adventure brands, military/tactical, survival games
+- **Don't use for:** Luxury, fashion, healthcare, children's products
+- **Frameworks:** CSS 8/10, SVG 7/10
+- **A11y:** AA
+
+### 70. Film Noir (standalone)
+**Category:** Thematic & Atmospheric | **Era:** 1940s revival | **Complexity:** Medium
+
+> High contrast black and white, dramatic shadows, venetian blind stripes, red accent.
+
+- Strictly monochrome with single red accent (#DC143C)
+- Venetian blind shadow stripes via `repeating-linear-gradient`
+- High contrast: pure black (#000) and near-white (#F0F0F0)
+- Dramatic `radial-gradient` spotlight effects
+- **Best for:** Detective/mystery media, noir fiction, cocktail bars, photography
+- **Don't use for:** Children's products, bright consumer brands, SaaS
+- **Frameworks:** CSS 9/10, Tailwind 8/10
+- **A11y:** AA
+
 ---
 
 ## Experimental & Avant-garde
 
-### 47. Brutalism
+### 71. Brutalism
 **Category:** Experimental & Avant-garde | **Era:** 2020s revival | **Complexity:** Low
 
 > Raw, unpolished layouts with exposed structure, harsh typography, minimal decoration. Includes anti-polish and text-only brutalist variants.
@@ -692,7 +1028,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 10/10
 - **A11y:** AAA (high contrast)
 
-### 48. Neubrutalism
+### 72. Neubrutalism
 **Category:** Experimental & Avant-garde | **Era:** 2020s | **Complexity:** Low
 
 > Brutalism refined — bold outlines, flat bright fills, offset shadows, visible borders, playful rawness.
@@ -706,7 +1042,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Tailwind 9/10, vanilla CSS 10/10
 - **A11y:** AAA
 
-### 49. Gen Z Chaos / Maximalism
+### 73. Gen Z Chaos / Maximalism
 **Category:** Experimental & Avant-garde | **Era:** 2020s | **Complexity:** Medium
 
 > Sensory overload — mixed fonts, sticker overlays, clashing neon colors, meme energy, anti-hierarchy.
@@ -720,7 +1056,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 9/10, Tailwind 7/10
 - **A11y:** A
 
-### 50. Collage Zine
+### 74. Collage Zine
 **Category:** Experimental & Avant-garde | **Era:** Timeless | **Complexity:** Medium
 
 > Torn-edge layering, mixed media fragments, ransom-note type, tape strips, photocopy decay. Includes xerox/photocopy aesthetic.
@@ -734,7 +1070,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 9/10
 - **A11y:** A
 
-### 51. Op Art
+### 75. Op Art
 **Category:** Experimental & Avant-garde | **Era:** 1960s revival | **Complexity:** Medium
 
 > High-contrast geometric patterns producing optical vibration, Bridget Riley influence, perceptual movement illusion.
@@ -748,7 +1084,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** CSS Patterns 10/10
 - **A11y:** Caution (motion/vestibular triggers)
 
-### 52. Spatial UI / VisionOS
+### 76. Spatial UI / VisionOS
 **Category:** Experimental & Avant-garde | **Era:** 2023–present | **Complexity:** High
 
 > Floating panels in 3D space, depth-aware window management, gaze/pinch interaction targets.
@@ -762,7 +1098,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Apple Design Resources 10/10, Tailwind 8/10
 - **A11y:** AA
 
-### 53. Wireframe Mesh
+### 77. Wireframe Mesh
 **Category:** Experimental & Avant-garde | **Era:** 2020s | **Complexity:** Medium
 
 > Bare 3D polygon edges, no fills, depth via line density and perspective, structural transparency.
@@ -776,7 +1112,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Three.js 10/10, CSS 3D Transforms 7/10
 - **A11y:** A
 
-### 54. Particle Cloud
+### 78. Particle Cloud
 **Category:** Experimental & Avant-garde | **Era:** 2020s | **Complexity:** High
 
 > UI elements composed of dot swarms, density encodes emphasis, emergent-form shapes.
@@ -790,7 +1126,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Three.js 10/10, Canvas 9/10
 - **A11y:** A
 
-### 55. Diorama / Tilt-Shift
+### 79. Diorama / Tilt-Shift
 **Category:** Experimental & Avant-garde | **Era:** 2020s | **Complexity:** Medium
 
 > Miniature-world depth blur, layered paper-cutout parallax planes, model-village scale.
@@ -804,11 +1140,81 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** CSS Filters 8/10, GSAP 9/10
 - **A11y:** AA
 
+### 80. Watercolor UI
+**Category:** Experimental & Avant-garde | **Era:** 2020s | **Complexity:** Medium
+
+> Soft washed colors, blurred edges, watercolor-like gradients, organic shapes.
+
+- Soft pastel washes via multi-stop radial gradients with low opacity
+- Blurred edges on containers (`filter: blur()` on pseudo-elements)
+- Organic, irregular shapes — no hard geometric lines
+- Color bleeds and overlaps using `mix-blend-mode`
+- **Best for:** Art portfolios, wedding sites, stationery brands, wellness
+- **Don't use for:** Data dashboards, enterprise SaaS, dense interfaces
+- **Frameworks:** CSS 8/10, SVG 9/10
+- **A11y:** A
+
+### 81. Psychedelic
+**Category:** Experimental & Avant-garde | **Era:** 1960s revival | **Complexity:** Medium
+
+> Vibrant neon, swirling patterns, trippy gradients, bold typography, warped shapes.
+
+- Saturated neon palette: magenta (#FF00FF), lime (#CCFF00), electric blue (#0066FF)
+- Swirling CSS `conic-gradient` and animated `hue-rotate` backgrounds
+- Warped/distorted text via CSS `transform: skew()` and SVG filters
+- Bold, heavy display typography with color fills
+- **Best for:** Music festivals, psychedelic art, counterculture, experimental brands
+- **Don't use for:** Corporate, healthcare, government, accessibility-sensitive
+- **Frameworks:** CSS 8/10, Canvas 7/10
+- **A11y:** A
+
+### 82. Woodcut / Linocut
+**Category:** Experimental & Avant-garde | **Era:** Timeless | **Complexity:** Medium
+
+> High contrast black on cream, hatching patterns, bold graphic lines, printmaking.
+
+- High contrast: black (#1A1A1A) on cream (#FFF8E7)
+- Hatching/cross-hatching patterns via `repeating-linear-gradient`
+- Bold graphic lines, woodblock-style illustration elements
+- No gradients — stark tonal separation
+- **Best for:** Indie publishers, craft brands, editorial illustration, literary sites
+- **Don't use for:** Modern SaaS, bright consumer brands, data tools
+- **Frameworks:** SVG 9/10, CSS 8/10
+- **A11y:** AA
+
+### 83. Embroidery / Cross-Stitch
+**Category:** Experimental & Avant-garde | **Era:** Timeless | **Complexity:** Medium
+
+> Grid-based pixel patterns, warm fabric colors, stitched borders, textile.
+
+- Grid-locked pixel patterns (similar to pixel art but textile-inspired)
+- Warm fabric palette: cream (#FDF5E6), thread reds, blues, greens
+- Stitched border effects via dashed/dotted borders with rounded caps
+- Textile texture backgrounds (linen, canvas)
+- **Best for:** Craft communities, knitting/sewing brands, folk art, heritage
+- **Don't use for:** Tech startups, modern minimalism, enterprise SaaS
+- **Frameworks:** CSS Grid 8/10, SVG 9/10
+- **A11y:** AA
+
+### 84. Chromatic Aberration
+**Category:** Experimental & Avant-garde | **Era:** 2020s | **Complexity:** Low
+
+> RGB split effect on text, glitch-adjacent, dark background, tech feel.
+
+- Dark background (#0A0A0A) with light text
+- RGB channel split via offset `text-shadow` (red left, cyan right)
+- Subtle glitch animation on hover/interaction
+- Technical, edgy, digital-artifact aesthetic
+- **Best for:** Tech portfolios, gaming, music production, experimental brands
+- **Don't use for:** Corporate, healthcare, readability-critical content
+- **Frameworks:** CSS 9/10, Canvas 7/10
+- **A11y:** A
+
 ---
 
 ## Data & Technical
 
-### 56. Cartographic / Wayfinding
+### 85. Cartographic / Wayfinding
 **Category:** Data & Technical | **Era:** Timeless | **Complexity:** Medium
 
 > Map-derived UI with contour lines, legend boxes, coordinate grids, route indicators.
@@ -822,7 +1228,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Mapbox GL 10/10, Leaflet 9/10
 - **A11y:** AA
 
-### 57. Diagrammatic
+### 86. Diagrammatic
 **Category:** Data & Technical | **Era:** Timeless | **Complexity:** Medium
 
 > Everything rendered as technical drawings — exploded views, annotation callouts, dimension lines.
@@ -836,7 +1242,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** SVG 10/10, D3.js 9/10
 - **A11y:** AA
 
-### 58. Subway / Transit Diagram
+### 87. Subway / Transit Diagram
 **Category:** Data & Technical | **Era:** Timeless | **Complexity:** Medium
 
 > Beck-style schematic abstraction, colored route lines, interchange nodes, simplified topology.
@@ -850,7 +1256,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** SVG 10/10, D3.js 9/10
 - **A11y:** AA
 
-### 59. Blueprint / Cyanotype
+### 88. Blueprint / Cyanotype
 **Category:** Data & Technical | **Era:** Timeless | **Complexity:** Low
 
 > White-on-blue technical drawing, dimension lines, annotation arrows, construction-document feel.
@@ -864,7 +1270,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 10/10, SVG 9/10
 - **A11y:** AA
 
-### 60. Assembly Instruction
+### 89. Assembly Instruction
 **Category:** Data & Technical | **Era:** Timeless | **Complexity:** Low
 
 > IKEA-style isometric diagrams, numbered callouts, wordless sequencing, minimal line art.
@@ -878,7 +1284,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** SVG 10/10, vanilla CSS 8/10
 - **A11y:** AA
 
-### 61. Switchboard / Node Editor
+### 90. Switchboard / Node Editor
 **Category:** Data & Technical | **Era:** 2020s | **Complexity:** High
 
 > Jack-socket nodes, patch-cable connections, rack-mount framing, modular routing.
@@ -892,7 +1298,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** React Flow 10/10, SVG 9/10
 - **A11y:** A
 
-### 62. Sports Scoreboard / Instrument Panel
+### 91. Sports Scoreboard / Instrument Panel
 **Category:** Data & Technical | **Era:** Modern | **Complexity:** Medium
 
 > LED dot-matrix numerals, stat tickers, dial gauges, amber-on-dark, dense instrument readouts.
@@ -906,7 +1312,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 9/10, Canvas 8/10
 - **A11y:** AA
 
-### 63. Risograph / Overprint
+### 92. Risograph / Overprint
 **Category:** Data & Technical | **Era:** 2020s revival | **Complexity:** Medium
 
 > Misregistered duotone layers, halftone dots, soy-ink grain, intentional overprint color mixing.
@@ -920,7 +1326,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** CSS mix-blend-mode 10/10, SVG Filters 8/10
 - **A11y:** AA
 
-### 64. Soviet Constructivism
+### 93. Soviet Constructivism
 **Category:** Data & Technical | **Era:** 1920s revival | **Complexity:** Medium
 
 > Diagonal compositions, red/black/cream, propaganda poster geometry, photomontage influence.
@@ -934,7 +1340,7 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** CSS Transforms 9/10, Tailwind 7/10
 - **A11y:** AA
 
-### 65. Folkloric / Vernacular
+### 94. Folkloric / Vernacular
 **Category:** Data & Technical | **Era:** Timeless | **Complexity:** Medium
 
 > Hand-painted sign aesthetics, regional craft motifs, imperfect geometry, local tradition.
@@ -948,6 +1354,90 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 - **Frameworks:** Vanilla CSS 9/10, SVG 8/10
 - **A11y:** AA
 
+### 95. Conversion-Optimized
+**Category:** Data & Technical | **Era:** 2010s–present | **Complexity:** Low
+
+> CTA-heavy, trust badges, urgency, clear value hierarchy, A/B tested.
+
+- High-contrast CTA buttons (orange, green, or brand-primary)
+- Trust badges, social proof, and urgency indicators
+- Clear F-pattern or Z-pattern reading flow
+- Benefit-focused headline hierarchy, minimal distraction
+- **Best for:** Landing pages, SaaS pricing, e-commerce, lead gen
+- **Don't use for:** Art portfolios, editorial, community platforms
+- **Frameworks:** Tailwind 9/10, Bootstrap 9/10
+- **A11y:** AA
+
+### 96. Data-Dense Dashboard
+**Category:** Data & Technical | **Era:** 2020s | **Complexity:** High
+
+> Compact tables, sparklines, mini charts, dark theme, dense grid.
+
+- Dark theme (#1A1A2E, #16213E) with high-contrast data colors
+- Compact table rows (28–32px height), minimal padding
+- Inline sparklines and mini bar charts
+- Dense 12+ column grid, sidebar navigation
+- **Best for:** Analytics platforms, admin panels, monitoring tools
+- **Don't use for:** Consumer apps, marketing sites, onboarding
+- **Frameworks:** D3.js 9/10, Tailwind 8/10
+- **A11y:** AA
+
+### 97. Financial Dashboard
+**Category:** Data & Technical | **Era:** 2020s | **Complexity:** High
+
+> Stock ticker, green/red indicators, candlestick elements, clean data.
+
+- Green (#00C853) for gains, red (#FF1744) for losses
+- Candlestick chart elements and ticker-tape scrolling
+- Dense numerical data with monospace alignment
+- Clean grid layout with card-based metric groups
+- **Best for:** Trading platforms, fintech apps, investment dashboards
+- **Don't use for:** Creative portfolios, children's products, casual apps
+- **Frameworks:** D3.js 9/10, Recharts 8/10
+- **A11y:** AA
+
+### 98. IDE Theme
+**Category:** Data & Technical | **Era:** 2020s | **Complexity:** Medium
+
+> Code editor aesthetic, syntax highlighting, line numbers, tab bar, file tree.
+
+- Dark background (#1E1E1E) with syntax-highlighted content
+- Line numbers in gutter, tab bar navigation
+- File tree sidebar, breadcrumb path indicators
+- Monospace font throughout (Fira Code, JetBrains Mono)
+- **Best for:** Developer tools, code documentation, technical blogs
+- **Don't use for:** Consumer brands, fashion, lifestyle
+- **Frameworks:** Monaco Editor 10/10, CSS 9/10
+- **A11y:** AA
+
+### 99. Terminal / CLI
+**Category:** Data & Technical | **Era:** 1970s revival | **Complexity:** Low
+
+> Green on black, monospace, command prompts, ASCII art, blinking cursor.
+
+- Black background (#000) with green (#00FF00) or amber (#FFB000) text
+- Monospace font, fixed-width character grid
+- Command prompt prefixes (`$`, `>`, `#`)
+- Blinking cursor animation, ASCII art decorations
+- **Best for:** Developer tools, hacker-themed sites, retro-tech, CLI docs
+- **Don't use for:** Consumer retail, luxury brands, children's products
+- **Frameworks:** xterm.js 10/10, CSS 9/10
+- **A11y:** AA
+
+### 100. PCB / Circuit Trace
+**Category:** Data & Technical | **Era:** Technical | **Complexity:** Medium
+
+> Dark green PCB, copper traces, solder points, component-like UI.
+
+- Dark green (#006400, #145214) PCB background
+- Copper (#B87333) trace lines connecting UI elements
+- Circular solder point nodes at connection intersections
+- Component-shaped UI blocks (resistor, chip, capacitor metaphors)
+- **Best for:** Electronics brands, hardware startups, IoT dashboards, maker communities
+- **Don't use for:** Fashion, luxury, healthcare, children's products
+- **Frameworks:** SVG 9/10, CSS 8/10
+- **A11y:** A
+
 ---
 
 ## Migration Notes
@@ -955,4 +1445,4 @@ A curated catalog of 65 web-implementable design styles, organized into 9 catego
 **Merged entries (old → new):**
 - #8 → #3, #10 → #13, #14 → #7, #16 → #21, #19 → #8, #29 → #1, #32 → #1, #35 → #15, #39 → #39, #40 → #47, #42 → #39, #45 → (trimmed into 3D), #51 → #37, #54 → #47, #66/#96 → #29, #74 → #50, #84 → #40, #99 → #35, #118 → #36, #127 → #62, #128 → #20, #132 → #36, #136 → #16, #142 → #41, #147 → #44
 
-**Total: 65 styles** (down from 149 — trimmed 54, merged 25, added 5 not in original styles.html)
+**Total: 100 styles** (expanded from 65 — added 35 new entries across all categories)

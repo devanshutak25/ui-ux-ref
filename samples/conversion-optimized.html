@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conversion-Optimized</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --orange: #FF6B35; --orange-dark: #E55A25; --dark: #1A1A2E; --gray: #6B7280; --light: #F9FAFB; --green: #10B981; }
+  body { font-family: 'Inter', sans-serif; background: #FFF; color: var(--dark); }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid #E5E7EB; position: sticky; top: 0; background: #FFF; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; color: var(--dark); }
+  nav a { color: var(--gray); text-decoration: none; font-size: 14px; font-weight: 600; margin-left: 24px; }
+  .nav-cta { background: var(--orange); color: #FFF !important; padding: 8px 20px; border-radius: 6px; }
+  .hero { text-align: center; padding: 60px 24px 48px; background: linear-gradient(180deg, #FFF5F0 0%, #FFF 100%); }
+  .badge { display: inline-block; background: #FEF3C7; color: #92400E; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; }
+  h1 { font-size: 40px; font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+  h1 span { color: var(--orange); }
+  .hero p { font-size: 16px; color: var(--gray); max-width: 520px; margin: 0 auto 24px; line-height: 1.6; }
+  .cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+  .cta { padding: 14px 32px; border-radius: 8px; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer; border: none; transition: transform .15s, box-shadow .15s; }
+  .cta-primary { background: var(--orange); color: #FFF; box-shadow: 0 4px 14px rgba(255,107,53,.35); }
+  .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,107,53,.45); }
+  .cta-secondary { background: #FFF; color: var(--dark); border: 2px solid #E5E7EB; }
+  .trust { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 12px; color: var(--gray); }
+  .trust span::before { content: "✓ "; color: var(--green); font-weight: 700; }
+  .urgency { background: #FEF2F2; border: 1px solid #FECACA; border-radius: 8px; padding: 12px 20px; margin: 24px auto 0; max-width: 400px; font-size: 13px; color: #991B1B; font-weight: 600; }
+  .section-title { text-align: center; padding: 48px 24px 8px; font-size: 28px; font-weight: 800; }
+  .section-sub { text-align: center; color: var(--gray); font-size: 14px; margin-bottom: 32px; }
+  .pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; padding: 0 24px 48px; max-width: 900px; margin: 0 auto; }
+  .plan { border: 2px solid #E5E7EB; border-radius: 12px; padding: 28px 24px; text-align: center; position: relative; }
+  .plan.featured { border-color: var(--orange); box-shadow: 0 8px 30px rgba(255,107,53,.15); }
+  .plan-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--orange); color: #FFF; font-size: 11px; font-weight: 700; padding: 3px 14px; border-radius: 20px; }
+  .plan h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .price { font-size: 40px; font-weight: 800; margin: 12px 0 4px; }
+  .price span { font-size: 14px; color: var(--gray); font-weight: 400; }
+  .plan ul { list-style: none; text-align: left; margin: 16px 0; font-size: 13px; }
+  .plan li { padding: 6px 0; border-bottom: 1px solid #F3F4F6; }
+  .plan li::before { content: "✓ "; color: var(--green); font-weight: 700; }
+  .plan .cta { width: 100%; }
+  .testimonials { background: var(--light); padding: 48px 24px; }
+  .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; max-width: 900px; margin: 24px auto 0; }
+  .test-card { background: #FFF; border-radius: 10px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .stars { color: #F59E0B; font-size: 14px; margin-bottom: 8px; }
+  .test-card p { font-size: 13px; color: #374151; line-height: 1.6; margin-bottom: 12px; }
+  .test-author { font-size: 12px; font-weight: 700; color: var(--dark); }
+  .test-role { font-size: 11px; color: var(--gray); }
+  footer { text-align: center; padding: 32px 24px; font-size: 12px; color: var(--gray); border-top: 1px solid #E5E7EB; }
+</style>
+</head>
+<body>
+  <nav>
+    <span class="logo">LaunchPad</span>
+    <div><a href="#">Features</a><a href="#">Pricing</a><a href="#" class="nav-cta">Start Free</a></div>
+  </nav>
+  <section class="hero">
+    <span class="badge">🔥 Limited — 40% off this week</span>
+    <h1>Grow Faster with<br><span>Smarter Tools</span></h1>
+    <p>Join 12,000+ teams already converting more visitors into customers with our proven platform.</p>
+    <div class="cta-group">
+      <button class="cta cta-primary">Start Free Trial →</button>
+      <button class="cta cta-secondary">Watch Demo</button>
+    </div>
+    <div class="trust"><span>No credit card</span><span>14-day trial</span><span>Cancel anytime</span></div>
+    <div class="urgency">⏰ Only 7 spots left at this price — offer ends Friday</div>
+  </section>
+  <h2 class="section-title">Simple, Transparent Pricing</h2>
+  <p class="section-sub">No hidden fees. Upgrade or cancel anytime.</p>
+  <div class="pricing">
+    <div class="plan">
+      <h3>Starter</h3>
+      <div class="price">$19<span>/mo</span></div>
+      <ul><li>5,000 visitors/mo</li><li>Basic analytics</li><li>Email support</li></ul>
+      <button class="cta cta-secondary" style="width:100%">Get Started</button>
+    </div>
+    <div class="plan featured">
+      <span class="plan-badge">Most Popular</span>
+      <h3>Growth</h3>
+      <div class="price">$49<span>/mo</span></div>
+      <ul><li>50,000 visitors/mo</li><li>Advanced analytics</li><li>A/B testing</li><li>Priority support</li></ul>
+      <button class="cta cta-primary" style="width:100%">Start Free Trial →</button>
+    </div>
+    <div class="plan">
+      <h3>Enterprise</h3>
+      <div class="price">$149<span>/mo</span></div>
+      <ul><li>Unlimited visitors</li><li>Custom integrations</li><li>Dedicated manager</li></ul>
+      <button class="cta cta-secondary" style="width:100%">Contact Sales</button>
+    </div>
+  </div>
+  <section class="testimonials">
+    <h2 class="section-title" style="padding-top:0">Loved by Teams Everywhere</h2>
+    <div class="test-grid">
+      <div class="test-card"><div class="stars">★★★★★</div><p>"Our conversion rate jumped 34% in the first month. Absolutely worth every penny."</p><div class="test-author">Sarah K.</div><div class="test-role">VP Marketing, Acme Co</div></div>
+      <div class="test-card"><div class="stars">★★★★★</div><p>"Setup took 10 minutes. Results were immediate. Best ROI tool we've ever used."</p><div class="test-author">James L.</div><div class="test-role">Founder, StartupHQ</div></div>
+      <div class="test-card"><div class="stars">★★★★★</div><p>"Finally a platform that delivers on its promises. Our team relies on it daily."</p><div class="test-author">Maria C.</div><div class="test-role">Growth Lead, Nextwave</div></div>
+    </div>
+  </section>
+  <footer>© 2026 LaunchPad Inc. All rights reserved. · Privacy · Terms</footer>
+</body>
+</html>

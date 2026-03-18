@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Woodcut / Linocut</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --black: #1A1A1A; --cream: #F5F0E8; --ink: #2A2A2A; --mid: #8A8478; }
+  body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--black); font-size: 14px; }
+  .hatch-bg { background-image: repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(26,26,26,.04) 3px, rgba(26,26,26,.04) 4px); }
+  .crosshatch { background-image: repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(26,26,26,.05) 3px, rgba(26,26,26,.05) 4px), repeating-linear-gradient(-45deg, transparent, transparent 3px, rgba(26,26,26,.05) 3px, rgba(26,26,26,.05) 4px); }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 3px solid var(--black); }
+  .logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; text-transform: uppercase; letter-spacing: 4px; }
+  nav a { color: var(--black); text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-left: 20px; font-weight: 500; }
+  nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .hero { text-align: center; padding: 56px 24px 44px; border-bottom: 3px solid var(--black); }
+  h1 { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 900; text-transform: uppercase; letter-spacing: 4px; line-height: 1; margin-bottom: 16px; }
+  .hero p { font-size: 15px; color: var(--mid); max-width: 500px; margin: 0 auto 28px; line-height: 1.7; }
+  .cut-btn { display: inline-block; padding: 12px 32px; background: var(--black); color: var(--cream); border: none; font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: all .2s; }
+  .cut-btn:hover { background: var(--cream); color: var(--black); outline: 3px solid var(--black); }
+  .thick-rule { height: 6px; background: var(--black); }
+  .thin-rule { height: 1px; background: var(--black); margin: 0 24px; }
+  .section-head { text-align: center; padding: 36px 24px 8px; font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; }
+  .section-sub { text-align: center; font-size: 12px; color: var(--mid); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0; border-top: 3px solid var(--black); }
+  .card { padding: 28px 24px; border-bottom: 3px solid var(--black); border-right: 3px solid var(--black); }
+  .card h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .card p { font-size: 13px; line-height: 1.7; color: var(--ink); }
+  .card-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; color: rgba(26,26,26,.08); line-height: 1; margin-bottom: 8px; }
+  .woodblock { display: flex; height: 80px; border-top: 3px solid var(--black); border-bottom: 3px solid var(--black); }
+  .wb-section { flex: 1; border-right: 3px solid var(--black); }
+  .wb-section:last-child { border-right: none; }
+  .wb-dark { background: var(--black); }
+  .wb-hatch { background-image: repeating-linear-gradient(45deg, var(--cream), var(--cream) 2px, var(--black) 2px, var(--black) 4px); }
+  .wb-cross { background-image: repeating-linear-gradient(45deg, var(--cream), var(--cream) 2px, var(--black) 2px, var(--black) 4px), repeating-linear-gradient(-45deg, var(--cream), var(--cream) 2px, rgba(26,26,26,.5) 2px, rgba(26,26,26,.5) 4px); }
+  .wb-dot { background: var(--black); background-image: radial-gradient(var(--cream) 2px, transparent 2px); background-size: 8px 8px; }
+  .wb-light { background: var(--cream); }
+  .quotes { max-width: 600px; margin: 0 auto; padding: 36px 24px; }
+  .quote { padding: 20px 0; border-bottom: 1px solid var(--black); }
+  .quote:last-child { border-bottom: none; }
+  .quote p { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; line-height: 1.4; }
+  .quote cite { display: block; font-size: 12px; color: var(--mid); margin-top: 6px; font-style: normal; text-transform: uppercase; letter-spacing: 1px; }
+  footer { text-align: center; padding: 20px 24px; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--mid); border-top: 3px solid var(--black); }
+</style>
+</head>
+<body>
+  <nav><span class="logo">Pressmark</span><div><a href="#">Prints</a><a href="#">Process</a><a href="#">Studio</a></div></nav>
+  <section class="hero crosshatch">
+    <h1>Carved<br>in Wood</h1>
+    <p>Bold lines cut into blocks. Ink pressed onto paper. The ancient art of relief printing — where every mark is deliberate and every surface tells a story.</p>
+    <button class="cut-btn">View Collection</button>
+  </section>
+  <div class="woodblock">
+    <div class="wb-section wb-dark"></div>
+    <div class="wb-section wb-hatch"></div>
+    <div class="wb-section wb-cross"></div>
+    <div class="wb-section wb-dot"></div>
+    <div class="wb-section wb-light"></div>
+    <div class="wb-section wb-hatch"></div>
+  </div>
+  <div class="section-head">The Process</div>
+  <div class="section-sub">From block to print</div>
+  <div class="cards">
+    <div class="card hatch-bg"><div class="card-num">01</div><h3>Carve</h3><p>The image is drawn in reverse on a smooth block of wood or linoleum. Gouges remove the non-printing areas, leaving raised surfaces.</p></div>
+    <div class="card"><div class="card-num">02</div><h3>Ink</h3><p>A brayer rolls oil-based ink across the surface. Only the raised areas receive pigment. The carved valleys remain untouched.</p></div>
+    <div class="card crosshatch"><div class="card-num">03</div><h3>Press</h3><p>Paper meets block under pressure. The ink transfers, creating a mirror of the carved image. Each print is unique — slightly imperfect, always alive.</p></div>
+  </div>
+  <div class="thin-rule"></div>
+  <div class="quotes">
+    <div class="quote"><p>"The woodcut is the most original graphic technique. It lives in the tension between what is carved away and what remains."</p><cite>Ernst Ludwig Kirchner</cite></div>
+    <div class="quote"><p>"Every gouge mark is a decision. There is no undo, only the next cut."</p><cite>On Printmaking, 2023</cite></div>
+  </div>
+  <footer>Pressmark Studio ~ Handprinted ~ 2026</footer>
+</body>
+</html>

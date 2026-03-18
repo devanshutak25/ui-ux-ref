@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mono Space - Sample</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'JetBrains Mono', monospace; background: #2D3436; color: #DFE6E9; line-height: 1.6; }
+
+  .hero {
+    min-height: 70vh; display: flex; flex-direction: column; padding: 2rem;
+    border-bottom: 1px solid #636E72;
+    background: repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(99,110,114,0.1) 23px, rgba(99,110,114,0.1) 24px);
+  }
+  nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem; }
+  .logo { font-weight: 700; font-size: 0.9rem; color: #00B894; }
+  .logo::before { content: '> '; color: #636E72; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: #636E72; font-size: 0.75rem; font-weight: 400; }
+  .nav-links a:hover { color: #00B894; }
+  .nav-links a::before { content: '/ '; color: #636E72; }
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 560px; }
+  .hero-content h1 { font-size: 2rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; color: #FFF; }
+  .hero-content h1 .cursor { display: inline-block; width: 2px; height: 1em; background: #00B894; animation: blink 1s step-end infinite; vertical-align: text-bottom; margin-left: 4px; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .hero-content p { font-size: 0.8rem; color: #636E72; margin-bottom: 2rem; max-width: 420px; }
+  .hero-content button {
+    align-self: flex-start; background: transparent; color: #00B894; border: 1px solid #00B894;
+    padding: 0.6rem 1.5rem; font-family: inherit; font-size: 0.75rem; cursor: pointer; transition: all 0.2s;
+  }
+  .hero-content button:hover { background: #00B894; color: #2D3436; }
+
+  .components { padding: 3rem 2rem; }
+  .components > h2 { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: #636E72; margin-bottom: 2rem; padding-bottom: 0.75rem; border-bottom: 1px dashed #636E72; }
+  .components > h2::before { content: '## '; color: #00B894; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+  .card {
+    padding: 1.5rem; border: 1px solid #636E72; background: rgba(45,52,54,0.8);
+    font-size: 0.8rem; position: relative;
+  }
+  .card::before { content: attr(data-file); display: block; font-size: 0.65rem; color: #636E72; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px dashed rgba(99,110,114,0.4); }
+  .card h4 { font-size: 0.85rem; font-weight: 500; margin-bottom: 0.5rem; color: #00B894; }
+  .card p { font-size: 0.75rem; color: #B2BEC3; }
+  .card .line-num { color: #636E72; user-select: none; margin-right: 1rem; }
+
+  .code-block {
+    margin: 2rem 0; padding: 1.5rem; background: #1E2425; border: 1px solid #636E72; font-size: 0.75rem; overflow-x: auto;
+  }
+  .code-block .kw { color: #00B894; }
+  .code-block .str { color: #FDCB6E; }
+  .code-block .cm { color: #636E72; }
+
+  .palette { display: flex; gap: 0.5rem; margin-top: 2rem; }
+  .swatch { width: 48px; height: 48px; border: 1px solid #636E72; font-size: 0.5rem; display: flex; align-items: flex-end; padding: 4px; color: #636E72; }
+
+  footer { border-top: 1px solid #636E72; padding: 2rem; font-size: 0.7rem; color: #636E72; }
+  footer::before { content: '// '; color: #00B894; }
+
+  @media (max-width: 600px) { .hero-content h1 { font-size: 1.5rem; } .nav-links { gap: 1rem; } }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <div class="logo">mono.space</div>
+      <ul class="nav-links">
+        <li><a href="#">src</a></li>
+        <li><a href="#">docs</a></li>
+        <li><a href="#">config</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>Code is the medium.<span class="cursor"></span></h1>
+      <p>A design language built on fixed-width characters, grid precision, and the aesthetic of the terminal.</p>
+      <button>$ init --start</button>
+    </div>
+  </section>
+
+  <section class="components">
+    <h2>Modules</h2>
+    <div class="grid">
+      <div class="card" data-file="grid.config"><h4>Grid Alignment</h4><p><span class="line-num">01</span>Every element snaps to the character grid.</p><p><span class="line-num">02</span>No fractional pixels, no ambiguity.</p></div>
+      <div class="card" data-file="type.config"><h4>Fixed Width</h4><p><span class="line-num">01</span>Monospace creates inherent structure.</p><p><span class="line-num">02</span>Columns align without intervention.</p></div>
+      <div class="card" data-file="color.config"><h4>Muted Palette</h4><p><span class="line-num">01</span>Subdued tones with accent highlights.</p><p><span class="line-num">02</span>Green signals action and focus.</p></div>
+    </div>
+
+    <div class="code-block">
+      <span class="cm">// design.system</span><br>
+      <span class="kw">const</span> palette = {<br>
+      &nbsp;&nbsp;bg: <span class="str">"#2D3436"</span>,<br>
+      &nbsp;&nbsp;muted: <span class="str">"#636E72"</span>,<br>
+      &nbsp;&nbsp;accent: <span class="str">"#00B894"</span>,<br>
+      };
+    </div>
+
+    <div class="palette">
+      <div class="swatch" style="background:#2D3436">#2D3</div>
+      <div class="swatch" style="background:#636E72">#636</div>
+      <div class="swatch" style="background:#B2BEC3">#B2B</div>
+      <div class="swatch" style="background:#00B894">#00B</div>
+      <div class="swatch" style="background:#DFE6E9">#DFE</div>
+    </div>
+  </section>
+
+  <footer>mono.space &mdash; terminal aesthetic &mdash; 2026</footer>
+</body>
+</html>

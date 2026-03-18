@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polaroid / Instant Film</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --cream: #F5E6D3; --warm: #E8D5C4; --brown: #8B6F47; --dark: #4A3728; --white: #FFFEF9; --shadow: rgba(74,55,40,.15); }
+  body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--dark); }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; }
+  .logo { font-family: 'Caveat', cursive; font-size: 28px; font-weight: 700; color: var(--dark); }
+  nav a { color: var(--brown); text-decoration: none; font-size: 14px; margin-left: 20px; }
+  nav a:hover { text-decoration: underline; }
+  .hero { text-align: center; padding: 48px 24px 40px; }
+  .hero h1 { font-family: 'Caveat', cursive; font-size: 52px; font-weight: 700; line-height: 1.1; margin-bottom: 12px; color: var(--dark); }
+  .hero p { font-size: 15px; color: var(--brown); max-width: 440px; margin: 0 auto 28px; line-height: 1.6; }
+  .hero-photo { display: inline-block; background: var(--white); padding: 12px 12px 48px; box-shadow: 2px 4px 16px var(--shadow); transform: rotate(-2deg); margin-bottom: 8px; }
+  .hero-photo .img-placeholder { width: 280px; height: 220px; background: linear-gradient(135deg, var(--warm) 0%, #D4BFA8 50%, var(--cream) 100%); }
+  .hero-photo .caption { font-family: 'Caveat', cursive; font-size: 20px; color: var(--brown); margin-top: 10px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; padding: 20px 32px 48px; max-width: 960px; margin: 0 auto; }
+  .polaroid { background: var(--white); padding: 10px 10px 44px; box-shadow: 1px 3px 12px var(--shadow); transition: transform .3s; cursor: pointer; }
+  .polaroid:nth-child(1) { transform: rotate(-3deg); }
+  .polaroid:nth-child(2) { transform: rotate(2deg); }
+  .polaroid:nth-child(3) { transform: rotate(-1deg); }
+  .polaroid:nth-child(4) { transform: rotate(3deg); }
+  .polaroid:nth-child(5) { transform: rotate(-2deg); }
+  .polaroid:nth-child(6) { transform: rotate(1.5deg); }
+  .polaroid:hover { transform: rotate(0deg) scale(1.04); z-index: 2; }
+  .polaroid .photo { width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, #DCC8B0, #C4A882, #E8D5C4); }
+  .polaroid:nth-child(2) .photo { background: linear-gradient(135deg, #B8C4A8, #96A87C, #D4DCCA); }
+  .polaroid:nth-child(3) .photo { background: linear-gradient(135deg, #A8B8C4, #7C96A8, #CADCD4); }
+  .polaroid:nth-child(4) .photo { background: linear-gradient(135deg, #C4A8B8, #A87C96, #DCC8D4); }
+  .polaroid:nth-child(5) .photo { background: linear-gradient(135deg, #C4B8A8, #A89678, #DCCAB0); }
+  .polaroid:nth-child(6) .photo { background: linear-gradient(135deg, #C8C0A8, #B0A478, #E0D8C0); }
+  .polaroid .label { font-family: 'Caveat', cursive; font-size: 18px; color: var(--brown); padding-top: 10px; text-align: center; }
+  .tape { display: inline-block; background: rgba(255,255,240,.6); padding: 2px 20px; font-family: 'Caveat', cursive; font-size: 14px; color: var(--brown); transform: rotate(-1deg); border: 1px solid rgba(200,180,150,.3); }
+  .section-head { text-align: center; padding: 20px 24px 4px; }
+  .section-head h2 { font-family: 'Caveat', cursive; font-size: 36px; color: var(--dark); }
+  .section-head p { color: var(--brown); font-size: 13px; margin-top: 4px; }
+  .stories { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; padding: 20px 32px 48px; max-width: 960px; margin: 0 auto; }
+  .story { background: var(--white); padding: 20px; border-radius: 2px; box-shadow: 1px 2px 8px var(--shadow); }
+  .story h3 { font-family: 'Caveat', cursive; font-size: 22px; margin-bottom: 6px; }
+  .story p { font-size: 13px; color: var(--brown); line-height: 1.6; }
+  .story-date { font-family: 'Caveat', cursive; font-size: 15px; color: #B8A088; margin-top: 8px; }
+  footer { text-align: center; padding: 28px 24px; font-family: 'Caveat', cursive; font-size: 18px; color: var(--brown); border-top: 1px dashed var(--warm); }
+</style>
+</head>
+<body>
+  <nav>
+    <span class="logo">Snapshots</span>
+    <div><a href="#">Gallery</a><a href="#">Stories</a><a href="#">About</a></div>
+  </nav>
+  <section class="hero">
+    <div class="hero-photo">
+      <div class="img-placeholder"></div>
+      <div class="caption">Summer '25 - the good old days</div>
+    </div>
+    <h1>Moments Worth Keeping</h1>
+    <p>A collection of memories captured on instant film. Each frame tells a story frozen in warm, golden light.</p>
+    <span class="tape">pinned with love</span>
+  </section>
+  <div class="section-head"><h2>The Gallery Wall</h2><p>hover to straighten</p></div>
+  <div class="grid">
+    <div class="polaroid"><div class="photo"></div><div class="label">Golden hour walk</div></div>
+    <div class="polaroid"><div class="photo"></div><div class="label">Sunday morning garden</div></div>
+    <div class="polaroid"><div class="photo"></div><div class="label">Seaside afternoon</div></div>
+    <div class="polaroid"><div class="photo"></div><div class="label">Kitchen window light</div></div>
+    <div class="polaroid"><div class="photo"></div><div class="label">Old bookshop find</div></div>
+    <div class="polaroid"><div class="photo"></div><div class="label">Rainy day cafe</div></div>
+  </div>
+  <div class="section-head"><h2>Little Stories</h2></div>
+  <div class="stories">
+    <div class="story"><h3>The Corner Cafe</h3><p>Found this tiny place on a back street in Lisbon. The espresso was perfect and the light through the window made everything feel like a painting.</p><div class="story-date">March 2025</div></div>
+    <div class="story"><h3>Flea Market Treasures</h3><p>A box of old postcards, a brass compass, and a camera that still had film in it. Some things are worth more than their price.</p><div class="story-date">January 2025</div></div>
+    <div class="story"><h3>The Long Way Home</h3><p>Took the coastal road instead. Added two hours to the drive but subtracted every bit of stress from the week.</p><div class="story-date">November 2024</div></div>
+  </div>
+  <footer>made with warmth and a bit of nostalgia ~ 2026</footer>
+</body>
+</html>

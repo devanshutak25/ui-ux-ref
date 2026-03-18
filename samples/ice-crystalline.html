@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ice / Crystalline</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --ice1: #E8F4FD; --ice2: #B8D4E3; --ice3: #7FB3D3; --ice4: #4A90B8; --dark: #1C3A4F; }
+  body { font-family: 'Raleway', sans-serif; background: linear-gradient(135deg, var(--ice1), var(--ice2)); color: var(--dark); min-height: 100vh; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 32px; }
+  nav .logo { font-weight: 700; font-size: 18px; color: var(--ice4); letter-spacing: 2px; }
+  nav .links { display: flex; gap: 24px; }
+  nav a { text-decoration: none; color: var(--dark); font-size: 13px; font-weight: 600; letter-spacing: 1px; transition: color .2s; }
+  nav a:hover { color: var(--ice4); }
+  .hero { padding: 56px 32px 72px; text-align: center; position: relative; }
+  .crystal { position: absolute; border: 2px solid rgba(74,144,184,.2); transform: rotate(45deg); }
+  .crystal.c1 { width: 120px; height: 120px; top: 20px; left: 8%; }
+  .crystal.c2 { width: 80px; height: 80px; top: 60px; right: 12%; }
+  .crystal.c3 { width: 60px; height: 60px; bottom: 30px; left: 20%; }
+  .hero h1 { font-size: clamp(36px, 6vw, 60px); font-weight: 200; line-height: 1.15; margin-bottom: 12px; letter-spacing: 2px; }
+  .hero h1 strong { font-weight: 700; color: var(--ice4); }
+  .hero p { font-size: 15px; font-weight: 400; max-width: 480px; margin: 0 auto 28px; line-height: 1.7; color: rgba(28,58,79,.7); }
+  .hero button { padding: 14px 36px; border: 2px solid var(--ice4); background: rgba(255,255,255,.4); backdrop-filter: blur(12px); color: var(--dark); font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 1px; cursor: pointer; clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%); transition: background .3s; }
+  .hero button:hover { background: var(--ice4); color: #fff; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; padding: 0 32px 48px; }
+  .card { background: rgba(255,255,255,.45); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.6); padding: 28px; clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px)); transition: transform .2s; }
+  .card:hover { transform: translateY(-4px); }
+  .card .icon { font-size: 28px; margin-bottom: 12px; }
+  .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--ice4); }
+  .card p { font-size: 13px; line-height: 1.7; color: rgba(28,58,79,.65); font-weight: 400; }
+  .palette { display: flex; gap: 12px; padding: 24px 32px 40px; }
+  .swatch { flex: 1; height: 40px; clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%); }
+  footer { text-align: center; padding: 24px; font-size: 12px; font-weight: 400; color: rgba(28,58,79,.5); border-top: 1px solid rgba(74,144,184,.2); letter-spacing: 1px; }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo">CRYSTALLINE</div>
+    <div class="links"><a href="#">Facets</a><a href="#">Form</a><a href="#">Light</a><a href="#">About</a></div>
+  </nav>
+  <section class="hero">
+    <div class="crystal c1"></div><div class="crystal c2"></div><div class="crystal c3"></div>
+    <h1>Frozen <strong>Geometry</strong></h1>
+    <p>Sharp angles and frosted surfaces create a world of crystalline precision. Light refracts through translucent layers of ice-blue elegance.</p>
+    <button>Explore Facets</button>
+  </section>
+  <section class="cards">
+    <div class="card">
+      <div class="icon">&#x2B21;</div>
+      <h3>Frost Layer</h3>
+      <p>Translucent surfaces with frosted glass effects, creating depth through layered transparency and soft blur.</p>
+    </div>
+    <div class="card">
+      <div class="icon">&#x25C7;</div>
+      <h3>Sharp Edges</h3>
+      <p>Crystalline geometry with angular clip-paths and faceted surfaces that catch and redirect visual light.</p>
+    </div>
+    <div class="card">
+      <div class="icon">&#x2744;</div>
+      <h3>Cool Spectrum</h3>
+      <p>A graduated palette of ice blues from pale frost to deep glacier, evoking winter stillness and clarity.</p>
+    </div>
+  </section>
+  <div class="palette">
+    <div class="swatch" style="background:var(--ice1)"></div>
+    <div class="swatch" style="background:var(--ice2)"></div>
+    <div class="swatch" style="background:var(--ice3)"></div>
+    <div class="swatch" style="background:var(--ice4)"></div>
+    <div class="swatch" style="background:var(--dark)"></div>
+  </div>
+  <footer>&copy; 2026 Crystalline Studio &mdash; Precision in every facet</footer>
+</body>
+</html>

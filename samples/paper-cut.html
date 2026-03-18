@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paper Cut / Layered - Sample</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Nunito', sans-serif; background: #F0EBE3; color: #3D3D3D; line-height: 1.6; }
+
+  .hero {
+    min-height: 70vh; display: flex; flex-direction: column; padding: 2rem; position: relative; overflow: hidden;
+  }
+  .layer { position: absolute; left: -5%; right: -5%; height: 120px; border-radius: 50%; }
+  .layer-1 { bottom: -40px; background: #F8E8D4; box-shadow: 0 -4px 15px rgba(0,0,0,0.06); z-index: 3; }
+  .layer-2 { bottom: -20px; background: #D4E8F0; box-shadow: 0 -4px 15px rgba(0,0,0,0.05); z-index: 2; }
+  .layer-3 { bottom: 0px; background: #E8D4E8; box-shadow: 0 -4px 15px rgba(0,0,0,0.04); z-index: 1; }
+  nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem; position: relative; z-index: 5; }
+  .logo { font-weight: 700; font-size: 1.2rem; color: #3D3D3D; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: #3D3D3D; font-size: 0.85rem; font-weight: 600; }
+  .nav-links a:hover { color: #7A5C8D; }
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 480px; position: relative; z-index: 5; }
+  .hero-content h1 { font-size: 3rem; font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; color: #2D2D2D; }
+  .hero-content p { font-size: 1rem; color: #6B6B6B; margin-bottom: 2rem; max-width: 380px; }
+  .hero-content button {
+    align-self: flex-start; background: #E8D4E8; color: #5A3E6B; border: none;
+    padding: 0.75rem 2rem; font-family: inherit; font-size: 0.9rem; font-weight: 600;
+    cursor: pointer; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.06); transition: all 0.3s;
+  }
+  .hero-content button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+
+  .components { padding: 3rem 2rem; position: relative; z-index: 4; background: #F0EBE3; }
+  .components > h2 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: #999; margin-bottom: 2rem; border-bottom: 1px solid #DDD; padding-bottom: 0.75rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+  .card {
+    padding: 2rem; border-radius: 16px; position: relative;
+    background: #FFF;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.04);
+  }
+  .card::before {
+    content: ''; position: absolute; inset: -4px; border-radius: 20px; z-index: -1;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  }
+  .card::after {
+    content: ''; position: absolute; inset: -8px; border-radius: 24px; z-index: -2;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+  }
+  .card-tag { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.7rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .card p { font-size: 0.85rem; color: #888; }
+
+  .palette { display: flex; gap: 0.5rem; margin-top: 2rem; }
+  .swatch { width: 48px; height: 48px; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); }
+
+  footer { padding: 2rem; text-align: center; font-size: 0.85rem; color: #999; border-top: 1px solid #DDD; }
+
+  @media (max-width: 600px) { .hero-content h1 { font-size: 2.2rem; } .nav-links { gap: 1rem; } }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="layer layer-3"></div>
+    <div class="layer layer-2"></div>
+    <div class="layer layer-1"></div>
+    <nav>
+      <div class="logo">Papier</div>
+      <ul class="nav-links">
+        <li><a href="#">Layers</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Craft</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>Depth Through Layered Simplicity</h1>
+      <p>Stacked paper, soft pastels, and subtle shadows create the illusion of handcrafted dimension.</p>
+      <button>Discover Layers</button>
+    </div>
+  </section>
+
+  <section class="components">
+    <h2>Elements</h2>
+    <div class="grid">
+      <div class="card"><span class="card-tag" style="background:#F8E8D4;color:#8B6F5A;">Warm</span><h4>Parchment Layer</h4><p>Soft cream tones with delicate shadow depth beneath.</p></div>
+      <div class="card"><span class="card-tag" style="background:#D4E8F0;color:#4A7A8B;">Cool</span><h4>Sky Sheet</h4><p>Airy blue layers floating above the surface with ease.</p></div>
+      <div class="card"><span class="card-tag" style="background:#E8D4E8;color:#7A5C8D;">Soft</span><h4>Lilac Fold</h4><p>Gentle purple planes stacked with paper-craft precision.</p></div>
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#F8E8D4"></div>
+      <div class="swatch" style="background:#D4E8F0"></div>
+      <div class="swatch" style="background:#E8D4E8"></div>
+      <div class="swatch" style="background:#F0EBE3"></div>
+      <div class="swatch" style="background:#FFFFFF"></div>
+    </div>
+  </section>
+
+  <footer>Papier &mdash; Paper Cut Collection &mdash; 2026</footer>
+</body>
+</html>

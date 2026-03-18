@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Embroidery / Cross-Stitch</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --fabric: #F5E6D3; --red: #CC4444; --blue: #4477AA; --green: #44AA44; --dark: #3D2B1F; --stitch: #BFA98A; }
+  body { font-family: 'Lora', serif; background: var(--fabric); color: var(--dark);
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 11px, var(--stitch) 11px, var(--stitch) 12px),
+    repeating-linear-gradient(90deg, transparent, transparent 11px, var(--stitch) 11px, var(--stitch) 12px);
+    background-size: 12px 12px; }
+  .stitch-border { border: 3px dashed var(--dark); border-image: repeating-linear-gradient(90deg, var(--dark) 0 6px, transparent 6px 10px) 3; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 3px dashed var(--red); background: rgba(245,230,211,.9); }
+  nav .logo { font-weight: 700; font-size: 18px; color: var(--red); }
+  nav .links { display: flex; gap: 20px; }
+  nav a { text-decoration: none; color: var(--dark); font-size: 13px; font-weight: 600; transition: color .2s; }
+  nav a:hover { color: var(--red); }
+  .hero { padding: 48px 24px 56px; text-align: center; background: rgba(245,230,211,.85); border-bottom: 3px dashed var(--blue); }
+  .hero .cross { font-size: 28px; color: var(--red); margin-bottom: 12px; letter-spacing: 8px; }
+  .hero h1 { font-size: clamp(32px, 6vw, 52px); font-weight: 700; line-height: 1.15; margin-bottom: 12px; }
+  .hero h1 span { color: var(--red); }
+  .hero p { font-size: 15px; max-width: 460px; margin: 0 auto 24px; line-height: 1.7; color: #5A4A3A; }
+  .hero button { padding: 12px 32px; border: 3px dashed var(--dark); background: var(--red); color: var(--fabric); font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; transition: background .2s; }
+  .hero button:hover { background: var(--blue); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; padding: 32px 24px; }
+  .card { background: rgba(245,230,211,.9); padding: 24px; border: 3px dashed var(--stitch); position: relative; }
+  .card::before { content: '\2716 \2716 \2716'; display: block; text-align: center; font-size: 10px; letter-spacing: 6px; margin-bottom: 12px; }
+  .card.c1::before { color: var(--red); }
+  .card.c2::before { color: var(--blue); }
+  .card.c3::before { color: var(--green); }
+  .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .card.c1 h3 { color: var(--red); }
+  .card.c2 h3 { color: var(--blue); }
+  .card.c3 h3 { color: var(--green); }
+  .card p { font-size: 13px; line-height: 1.7; color: #5A4A3A; }
+  .palette { display: flex; gap: 12px; padding: 24px; justify-content: center; flex-wrap: wrap; }
+  .swatch { width: 44px; height: 44px; border: 3px dashed var(--dark); }
+  footer { text-align: center; padding: 20px; font-size: 12px; color: #7A6A5A; border-top: 3px dashed var(--green); background: rgba(245,230,211,.9); }
+  footer span { letter-spacing: 4px; font-size: 10px; }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo">&cross; Stitch</div>
+    <div class="links"><a href="#">Patterns</a><a href="#">Gallery</a><a href="#">Threads</a><a href="#">About</a></div>
+  </nav>
+  <section class="hero">
+    <div class="cross">&times; &plus; &times; &plus; &times;</div>
+    <h1>Cross-Stitch <span>Craft</span></h1>
+    <p>Pixel-perfect patterns rendered in thread and fabric. Each stitch a deliberate act of creation on a woven grid.</p>
+    <button>Browse Patterns</button>
+  </section>
+  <section class="cards">
+    <div class="card c1">
+      <h3>Floral Sampler</h3>
+      <p>Traditional flower motifs rendered in warm reds and greens on natural linen, a timeless craft passed through generations.</p>
+    </div>
+    <div class="card c2">
+      <h3>Geometric Grid</h3>
+      <p>Precise repeating patterns that celebrate the grid-based nature of cross-stitch, creating mesmerizing visual rhythms.</p>
+    </div>
+    <div class="card c3">
+      <h3>Folk Borders</h3>
+      <p>Traditional border patterns from folk embroidery traditions, bringing cultural heritage into modern textile art.</p>
+    </div>
+  </section>
+  <div class="palette">
+    <div class="swatch" style="background:var(--fabric)"></div>
+    <div class="swatch" style="background:var(--red)"></div>
+    <div class="swatch" style="background:var(--blue)"></div>
+    <div class="swatch" style="background:var(--green)"></div>
+    <div class="swatch" style="background:var(--dark)"></div>
+  </div>
+  <footer><span>&times; &plus; &times; &plus; &times;</span><br>&copy; 2026 Embroidery Workshop</footer>
+</body>
+</html>

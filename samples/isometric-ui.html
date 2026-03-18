@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Isometric UI - Sample</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #1A1A2E; color: #E8E8E8; line-height: 1.5; }
+
+  .hero {
+    min-height: 70vh; display: flex; flex-direction: column; padding: 2rem; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+  }
+  nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem; position: relative; z-index: 1; }
+  .logo { font-weight: 700; font-size: 1.2rem; color: #4ECDC4; letter-spacing: 0.05em; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: #AAA; font-size: 0.85rem; font-weight: 500; }
+  .nav-links a:hover { color: #4ECDC4; }
+  .hero-content { flex: 1; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
+  .hero-text { max-width: 420px; }
+  .hero-text h1 { font-size: 3rem; font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; }
+  .hero-text h1 span { color: #4ECDC4; }
+  .hero-text p { font-size: 1rem; color: #888; margin-bottom: 2rem; }
+  .hero-text button {
+    background: #4ECDC4; color: #1A1A2E; border: none; padding: 0.8rem 2rem;
+    font-family: inherit; font-size: 0.85rem; font-weight: 700; cursor: pointer; border-radius: 6px; transition: all 0.3s;
+  }
+  .hero-text button:hover { background: #45B7D1; transform: translateY(-2px); }
+  .iso-scene { perspective: 600px; }
+  .iso-grid { display: grid; grid-template-columns: repeat(2,80px); gap: 12px; transform: rotateX(55deg) rotateZ(-45deg); transform-style: preserve-3d; }
+  .iso-block {
+    width: 80px; height: 80px; border-radius: 8px; position: relative;
+    transform-style: preserve-3d; transform: translateZ(0);
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.3);
+  }
+  .iso-block:nth-child(1) { background: #4ECDC4; transform: translateZ(20px); }
+  .iso-block:nth-child(2) { background: #FF6B6B; transform: translateZ(40px); }
+  .iso-block:nth-child(3) { background: #45B7D1; transform: translateZ(60px); }
+  .iso-block:nth-child(4) { background: #FFE66D; transform: translateZ(10px); }
+
+  .components { padding: 3rem 2rem; }
+  .components > h2 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: #4ECDC4; margin-bottom: 2rem; border-bottom: 1px solid #2A2A4E; padding-bottom: 0.75rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+  .card {
+    padding: 2rem; border-radius: 12px; background: #16213E; position: relative;
+    border: 1px solid #2A2A4E; transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card:hover { transform: translateY(-4px) translateX(-4px); box-shadow: 8px 8px 0 rgba(78,205,196,0.15); }
+  .card-icon { width: 40px; height: 40px; border-radius: 8px; margin-bottom: 1rem; transform: rotate(45deg); }
+  .card h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .card p { font-size: 0.85rem; color: #888; }
+
+  .palette { display: flex; gap: 0.5rem; margin-top: 2rem; }
+  .swatch { width: 48px; height: 48px; border-radius: 8px; border: 1px solid #2A2A4E; }
+
+  footer { border-top: 1px solid #2A2A4E; padding: 2rem; text-align: center; font-size: 0.8rem; color: #666; }
+
+  @media (max-width: 768px) {
+    .hero-content { flex-direction: column; text-align: center; }
+    .hero-text { margin-bottom: 2rem; }
+    .hero-text h1 { font-size: 2.2rem; }
+    .hero-text button { margin: 0 auto; }
+    .iso-scene { margin-top: 2rem; }
+  }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <div class="logo">IsoMetric</div>
+      <ul class="nav-links">
+        <li><a href="#">Blocks</a></li>
+        <li><a href="#">Scenes</a></li>
+        <li><a href="#">Build</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Build in <span>Three Dimensions</span></h1>
+        <p>Isometric perspective meets flat design. Clean 3D blocks that bring interface depth to life.</p>
+        <button>Start Building</button>
+      </div>
+      <div class="iso-scene">
+        <div class="iso-grid">
+          <div class="iso-block"></div>
+          <div class="iso-block"></div>
+          <div class="iso-block"></div>
+          <div class="iso-block"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="components">
+    <h2>Block Types</h2>
+    <div class="grid">
+      <div class="card"><div class="card-icon" style="background:#4ECDC4"></div><h4>Teal Platform</h4><p>Foundation blocks for building stable isometric structures.</p></div>
+      <div class="card"><div class="card-icon" style="background:#FF6B6B"></div><h4>Coral Tower</h4><p>Elevated elements adding vertical dimension to scenes.</p></div>
+      <div class="card"><div class="card-icon" style="background:#45B7D1"></div><h4>Sky Bridge</h4><p>Connecting blocks that span between isometric volumes.</p></div>
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#4ECDC4"></div>
+      <div class="swatch" style="background:#FF6B6B"></div>
+      <div class="swatch" style="background:#45B7D1"></div>
+      <div class="swatch" style="background:#FFE66D"></div>
+      <div class="swatch" style="background:#1A1A2E"></div>
+    </div>
+  </section>
+
+  <footer>IsoMetric &mdash; 3D Interface Design &mdash; 2026</footer>
+</body>
+</html>
