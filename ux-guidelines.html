@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UX Guidelines - UI/UX Pro Max</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Space Grotesk', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #818CF8, #06B6D4, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-blur {
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+        }
+        .card-glow:hover {
+            box-shadow: 0 0 40px rgba(129, 140, 248, 0.15), 0 0 80px rgba(6, 182, 212, 0.08);
+        }
+        .hero-gradient {
+            background: radial-gradient(ellipse at 20% 50%, rgba(129, 140, 248, 0.12) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 80%, rgba(167, 139, 250, 0.06) 0%, transparent 50%);
+        }
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(129, 140, 248, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(129, 140, 248, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        pre code { font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.8rem; }
+        .guideline-card { transition: all 0.3s ease; }
+        .guideline-card:hover { transform: translateY(-2px); }
+
+        /* Checklist Mode */
+        .checklist-mode .guideline-card { position: relative; }
+        .checklist-checkbox { display: none; }
+        .checklist-mode .checklist-checkbox {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            border: 2px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.03);
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s ease;
+        }
+        .checklist-mode .checklist-checkbox:hover { border-color: rgba(74,222,128,0.5); background: rgba(74,222,128,0.1); }
+        .checklist-mode .checklist-checkbox.checked {
+            border-color: rgba(74,222,128,0.6);
+            background: rgba(74,222,128,0.2);
+        }
+        .checklist-mode .checklist-checkbox.checked svg { opacity: 1; }
+        .checklist-mode .checklist-checkbox svg { opacity: 0; transition: opacity 0.15s; }
+        .checklist-mode .guideline-card .p-6-inner { padding-left: 48px; }
+        .guideline-card.checked-card {
+            border-color: rgba(74,222,128,0.2) !important;
+            background: rgba(74,222,128,0.03) !important;
+        }
+
+        /* Severity Dashboard */
+        .dashboard-bar-segment { transition: width 0.4s ease; min-width: 2px; }
+        .dashboard-collapse { overflow: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; }
+        .dashboard-collapse.collapsed { max-height: 0; opacity: 0; }
+        .dashboard-collapse.expanded { max-height: 400px; opacity: 1; }
+
+        /* Checklist progress bar */
+        .checklist-progress-bar { transition: width 0.3s ease; }
+
+        /* Copy toast */
+        .copy-toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(74,222,128,0.9);
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 9999;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.25s ease;
+            pointer-events: none;
+        }
+        .copy-toast.show { opacity: 1; transform: translateY(0); }
+
+        /* Related guidelines */
+        .related-link { color: #818CF8; cursor: pointer; transition: color 0.2s; }
+        .related-link:hover { color: #A5B4FC; text-decoration: underline; }
+    </style>
+</head>
+<body class="bg-[#08090E] text-gray-200 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-[#08090E]/70 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="font-heading font-bold text-xl tracking-tight">
+                <span class="text-white">UI/UX</span>
+                <span class="gradient-text"> Pro Max</span>
+            </a>
+            <div class="hidden md:flex items-center gap-1">
+                <a href="styles.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Styles</a>
+                <a href="colors.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Colors</a>
+                <a href="typography.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Typography</a>
+                <a href="charts.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Charts</a>
+                <a href="products.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Products</a>
+                <a href="icons.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Icons</a>
+                <div class="relative">
+                    <button onclick="document.getElementById('more-menu').classList.toggle('hidden')" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5 inline-flex items-center gap-1">More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                    <div id="more-menu" class="hidden absolute right-0 top-full mt-2 w-52 bg-[#12131A] border border-white/10 rounded-xl shadow-2xl py-2 z-50">
+                        <a href="stacks.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Stacks</a>
+                        <a href="ux-guidelines.html" class="block px-4 py-2 text-sm text-white bg-white/10 rounded-lg mx-2">UX Guidelines</a>
+                        <a href="patterns.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Patterns</a>
+                        <a href="reasoning.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Reasoning</a>
+                        <a href="react-performance.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">React Perf</a>
+                        <a href="web-interface.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Web Interface</a>
+                    </div>
+                </div>
+            </div>
+<button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 px-6 py-4 space-y-2">
+            <a href="styles.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Styles</a>
+            <a href="colors.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Colors</a>
+            <a href="typography.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Typography</a>
+            <a href="charts.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Charts</a>
+            <a href="products.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Products</a>
+            <a href="icons.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Icons</a>
+            <a href="stacks.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Stacks</a>
+            <a href="ux-guidelines.html" class="block px-3 py-2 text-sm text-white bg-white/10 rounded-lg">UX Guidelines</a>
+            <a href="patterns.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Patterns</a>
+            <a href="reasoning.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Reasoning</a>
+            <a href="react-performance.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">React Perf</a>
+            <a href="web-interface.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Web Interface</a>
+        </div>
+</nav>
+
+    <!-- Hero -->
+    <section class="relative hero-gradient grid-bg pt-28 pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-medium mb-6">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                125 UX Guidelines
+            </div>
+            <h1 class="font-heading text-4xl md:text-6xl font-bold tracking-tight mb-4">
+                <span class="text-white">UX </span><span class="gradient-text">Guidelines</span>
+            </h1>
+            <p class="text-gray-400 text-lg max-w-2xl mb-8">Every UX best practice, anti-pattern, and solution -- organized by category with actionable DO and DON'T code examples.</p>
+
+            <!-- Stats -->
+            <div class="flex flex-wrap gap-4 mb-8">
+                <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10">
+                    <span class="text-2xl font-bold text-white font-heading" id="total-count">125</span>
+                    <span class="text-gray-400 text-sm ml-2">Guidelines</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10">
+                    <span class="text-2xl font-bold text-white font-heading">12</span>
+                    <span class="text-gray-400 text-sm ml-2">Categories</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-red-500/10 border border-red-500/20">
+                    <span class="text-2xl font-bold text-red-400 font-heading" id="high-count">0</span>
+                    <span class="text-gray-400 text-sm ml-2">High Severity</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                    <span class="text-2xl font-bold text-amber-400 font-heading" id="med-count">0</span>
+                    <span class="text-gray-400 text-sm ml-2">Medium</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-green-500/10 border border-green-500/20">
+                    <span class="text-2xl font-bold text-green-400 font-heading" id="low-count">0</span>
+                    <span class="text-gray-400 text-sm ml-2">Low</span>
+                </div>
+                <button onclick="toggleChecklistMode()" id="checklist-toggle" class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-indigo-500/30 transition-all flex items-center gap-2 cursor-pointer">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                    <span class="text-sm font-medium text-gray-400" id="checklist-label">Checklist Mode</span>
+                </button>
+            </div>
+            <!-- Checklist Progress (hidden by default) -->
+            <div id="checklist-progress" class="hidden mb-4">
+                <div class="flex items-center gap-3">
+                    <div class="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
+                        <div id="checklist-progress-bar" class="checklist-progress-bar h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full" style="width:0%"></div>
+                    </div>
+                    <span id="checklist-progress-text" class="text-sm text-gray-400 font-medium whitespace-nowrap">0/0 completed</span>
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="relative max-w-xl mb-6">
+                <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" id="search-input" placeholder="Search guidelines..." class="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-all">
+            </div>
+
+            <!-- Severity Filter -->
+            <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-sm text-gray-500 mr-2 self-center">Severity:</span>
+                <button onclick="toggleSeverity('all')" data-sev="all" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/10 text-white border border-white/20 transition-all">All</button>
+                <button onclick="toggleSeverity('High')" data-sev="High" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-red-500/30 transition-all">High</button>
+                <button onclick="toggleSeverity('Medium')" data-sev="Medium" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-amber-500/30 transition-all">Medium</button>
+                <button onclick="toggleSeverity('Low')" data-sev="Low" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-green-500/30 transition-all">Low</button>
+            </div>
+
+            <!-- Platform Filter -->
+            <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-sm text-gray-500 mr-2 self-center">Platform:</span>
+                <button onclick="togglePlatform('all')" data-plat="all" class="plat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/10 text-white border border-white/20 transition-all">All</button>
+                <button onclick="togglePlatform('Web')" data-plat="Web" class="plat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-indigo-500/30 transition-all">Web</button>
+                <button onclick="togglePlatform('Mobile')" data-plat="Mobile" class="plat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-pink-500/30 transition-all">Mobile</button>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="flex flex-wrap gap-2">
+                <button onclick="filterCategory('all')" data-cat="all" id="cat-all-btn" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 transition-all">All</button>
+                <button onclick="filterCategory('Navigation')" data-cat="Navigation" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-blue-500/30 transition-all">Navigation</button>
+                <button onclick="filterCategory('Animation')" data-cat="Animation" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-purple-500/30 transition-all">Animation</button>
+                <button onclick="filterCategory('Layout')" data-cat="Layout" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-cyan-500/30 transition-all">Layout</button>
+                <button onclick="filterCategory('Touch')" data-cat="Touch" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-pink-500/30 transition-all">Touch</button>
+                <button onclick="filterCategory('Interaction')" data-cat="Interaction" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-orange-500/30 transition-all">Interaction</button>
+                <button onclick="filterCategory('Accessibility')" data-cat="Accessibility" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-emerald-500/30 transition-all">Accessibility</button>
+                <button onclick="filterCategory('Performance')" data-cat="Performance" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-yellow-500/30 transition-all">Performance</button>
+                <button onclick="filterCategory('Forms')" data-cat="Forms" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-rose-500/30 transition-all">Forms</button>
+                <button onclick="filterCategory('Responsive')" data-cat="Responsive" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-teal-500/30 transition-all">Responsive</button>
+                <button onclick="filterCategory('Typography')" data-cat="Typography" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-violet-500/30 transition-all">Typography</button>
+                <button onclick="filterCategory('Feedback')" data-cat="Feedback" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-sky-500/30 transition-all">Feedback</button>
+                <button onclick="filterCategory('Content')" data-cat="Content" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-lime-500/30 transition-all">Content</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guidelines Grid -->
+    <section class="max-w-7xl mx-auto px-6 py-12">
+        <!-- Severity Dashboard -->
+        <div class="mb-6">
+            <button onclick="toggleDashboard()" class="text-sm font-medium text-gray-400 hover:text-white transition-colors flex items-center gap-2 mb-3">
+                <svg class="w-4 h-4 transition-transform" id="dashboard-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                <span id="dashboard-toggle-text">Show Dashboard</span>
+            </button>
+            <div id="severity-dashboard" class="dashboard-collapse collapsed">
+                <div class="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5">
+                    <h4 class="font-heading text-sm font-semibold text-white mb-4">Severity Breakdown by Category</h4>
+                    <div id="dashboard-chart" class="space-y-2"></div>
+                    <div class="flex items-center gap-4 mt-4 pt-3 border-t border-white/[0.06]">
+                        <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm" style="background:#F87171"></span><span class="text-xs text-gray-400">High</span></div>
+                        <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm" style="background:#FBBF24"></span><span class="text-xs text-gray-400">Medium</span></div>
+                        <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm" style="background:#4ADE80"></span><span class="text-xs text-gray-400">Low</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-sm text-gray-500 mb-6"><span id="visible-count">--</span> guidelines shown</div>
+        <div id="guidelines-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Cards rendered by JS -->
+        </div>
+        <div id="no-results" class="hidden text-center py-20">
+            <svg class="w-16 h-16 mx-auto text-gray-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <p class="text-gray-500 text-lg">No guidelines match your filters.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="font-heading font-bold text-lg"><span class="text-white">UI/UX</span><span class="gradient-text"> Pro Max</span></div>
+                <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
+                    <a href="styles.html" class="hover:text-white transition-colors">Styles</a>
+                    <a href="colors.html" class="hover:text-white transition-colors">Colors</a>
+                    <a href="typography.html" class="hover:text-white transition-colors">Typography</a>
+                    <a href="charts.html" class="hover:text-white transition-colors">Charts</a>
+                    <a href="products.html" class="hover:text-white transition-colors">Products</a>
+                    <a href="icons.html" class="hover:text-white transition-colors">Icons</a>
+                    <a href="stacks.html" class="hover:text-white transition-colors">Stacks</a>
+                    <a href="ux-guidelines.html" class="hover:text-white transition-colors">UX Guidelines</a>
+                    <a href="patterns.html" class="hover:text-white transition-colors">Patterns</a>
+                    <a href="reasoning.html" class="hover:text-white transition-colors">Reasoning</a>
+                    <a href="react-performance.html" class="hover:text-white transition-colors">React Perf</a>
+                    <a href="web-interface.html" class="hover:text-white transition-colors">Web Interface</a>
+                </div>
+                <div class="text-sm text-gray-600">Design Intelligence System</div>
+            </div>
+        </div>
+    </footer>
+
+<!-- Copy Toast -->
+<div id="copy-toast" class="copy-toast">Copied!</div>
+
+<script>
+const CATEGORIES = {
+    Navigation: { color: 'blue', bg: 'rgba(59,130,246,0.15)', border: 'rgba(59,130,246,0.3)', text: '#60A5FA' },
+    Animation: { color: 'purple', bg: 'rgba(168,85,247,0.15)', border: 'rgba(168,85,247,0.3)', text: '#C084FC' },
+    Layout: { color: 'cyan', bg: 'rgba(6,182,212,0.15)', border: 'rgba(6,182,212,0.3)', text: '#22D3EE' },
+    Touch: { color: 'pink', bg: 'rgba(236,72,153,0.15)', border: 'rgba(236,72,153,0.3)', text: '#F472B6' },
+    Interaction: { color: 'orange', bg: 'rgba(249,115,22,0.15)', border: 'rgba(249,115,22,0.3)', text: '#FB923C' },
+    Accessibility: { color: 'emerald', bg: 'rgba(16,185,129,0.15)', border: 'rgba(16,185,129,0.3)', text: '#34D399' },
+    Performance: { color: 'yellow', bg: 'rgba(234,179,8,0.15)', border: 'rgba(234,179,8,0.3)', text: '#FACC15' },
+    Forms: { color: 'rose', bg: 'rgba(244,63,94,0.15)', border: 'rgba(244,63,94,0.3)', text: '#FB7185' },
+    Responsive: { color: 'teal', bg: 'rgba(20,184,166,0.15)', border: 'rgba(20,184,166,0.3)', text: '#2DD4BF' },
+    Typography: { color: 'violet', bg: 'rgba(139,92,246,0.15)', border: 'rgba(139,92,246,0.3)', text: '#A78BFA' },
+    Feedback: { color: 'sky', bg: 'rgba(14,165,233,0.15)', border: 'rgba(14,165,233,0.3)', text: '#38BDF8' },
+    Content: { color: 'lime', bg: 'rgba(132,204,22,0.15)', border: 'rgba(132,204,22,0.3)', text: '#A3E635' }
+};
+
+const SEVERITY = {
+    High: { bg: 'rgba(239,68,68,0.15)', border: 'rgba(239,68,68,0.3)', text: '#F87171' },
+    Medium: { bg: 'rgba(245,158,11,0.15)', border: 'rgba(245,158,11,0.3)', text: '#FBBF24' },
+    Low: { bg: 'rgba(34,197,94,0.15)', border: 'rgba(34,197,94,0.3)', text: '#4ADE80' }
+};
+
+const PLATFORM_COLORS = {
+    Web: { bg: 'rgba(99,102,241,0.15)', border: 'rgba(99,102,241,0.3)', text: '#818CF8' },
+    Mobile: { bg: 'rgba(236,72,153,0.15)', border: 'rgba(236,72,153,0.3)', text: '#F472B6' },
+    All: { bg: 'rgba(148,163,184,0.12)', border: 'rgba(148,163,184,0.25)', text: '#94A3B8' }
+};
+
+const guidelines = [
+// NAVIGATION (1-7)
+{id:1,cat:"Navigation",name:"Smooth Scroll",platform:"Web",severity:"High",desc:"Use scroll-behavior: smooth for anchor links to provide fluid navigation instead of jarring jumps.",
+tip:"Add scroll-padding-top to account for fixed headers when scrolling to anchors.",
+related:[2,38],
+doCode:`html {\n  scroll-behavior: smooth;\n}\n\n/* Or with JS for more control */\nelement.scrollIntoView({\n  behavior: 'smooth',\n  block: 'start'\n});`,
+dontCode:`/* Instant jump - disorienting */\nhtml {\n  /* no scroll-behavior */\n}\n\n/* Forcing jump */\nwindow.scrollTo(0, targetY);`},
+{id:2,cat:"Navigation",name:"Sticky Navigation",platform:"Web",severity:"Medium",desc:"When using sticky or fixed navigation, add padding-top to the body or main content equal to the nav height to prevent content from hiding behind the nav.",
+tip:"Use CSS custom properties for nav height so padding stays in sync automatically.",
+related:[1,18],
+doCode:`nav {\n  position: fixed;\n  top: 0;\n  height: 64px;\n  z-index: 50;\n}\nmain {\n  padding-top: 64px; /* matches nav */\n}`,
+dontCode:`nav {\n  position: fixed;\n  top: 0;\n}\nmain {\n  /* No padding - content hides\n     behind the nav bar */\n}`},
+{id:3,cat:"Navigation",name:"Active State",platform:"All",severity:"Medium",desc:"Highlight the currently active navigation item so users always know where they are in the application.",
+doCode:`<nav>\n  <a href="/" class="active">\n    Home\n  </a>\n  <a href="/about">About</a>\n</nav>\n\n.active {\n  color: white;\n  border-bottom: 2px solid #818CF8;\n}`,
+dontCode:`<nav>\n  <!-- All links look the same -->\n  <a href="/">Home</a>\n  <a href="/about">About</a>\n</nav>\n\n/* No active styles */`},
+{id:4,cat:"Navigation",name:"Back Button",platform:"Mobile",severity:"High",desc:"Preserve navigation history so the hardware/software back button works as expected. Never break the back button behavior.",
+tip:"Test back button behavior after every modal, drawer, and tab interaction.",
+related:[5,7],
+doCode:`// Use proper routing\nhistory.pushState(state, '', url);\n\n// Handle popstate\nwindow.addEventListener('popstate',\n  (e) => {\n    restoreState(e.state);\n  }\n);`,
+dontCode:`// Replacing history - breaks back\nhistory.replaceState(state, '', url);\n\n// Or using location.replace()\nwindow.location.replace(newUrl);\n// User can't go back!`},
+{id:5,cat:"Navigation",name:"Deep Linking",platform:"All",severity:"Medium",desc:"Update the URL when application state changes so users can bookmark, share, and navigate directly to specific views.",
+doCode:`// Update URL on tab change\nfunction switchTab(tabId) {\n  showTab(tabId);\n  history.pushState(\n    { tab: tabId },\n    '',\n    \`#\${tabId}\`\n  );\n}`,
+dontCode:`// State changes, URL stays same\nfunction switchTab(tabId) {\n  showTab(tabId);\n  // URL never updates\n  // Can't bookmark or share\n}`},
+{id:6,cat:"Navigation",name:"Breadcrumbs",platform:"Web",severity:"Low",desc:"Use breadcrumb navigation for sites with 3 or more depth levels to help users understand and navigate the hierarchy.",
+doCode:`<nav aria-label="Breadcrumb">\n  <ol class="flex gap-2">\n    <li><a href="/">Home</a></li>\n    <li aria-hidden>/</li>\n    <li><a href="/products">\n      Products\n    </a></li>\n    <li aria-current="page">\n      Widget\n    </li>\n  </ol>\n</nav>`,
+dontCode:`<!-- No breadcrumbs on deep pages -->\n<!-- User is lost in hierarchy -->\n<h1>Widget Details</h1>\n\n<!-- Or breadcrumbs without links -->\n<div>Home > Products > Widget</div>\n<!-- Can't navigate back! -->`},
+{id:7,cat:"Navigation",name:"Mobile Navigation",platform:"Mobile",severity:"High",desc:"Use bottom navigation for primary actions on mobile. Thumb-reachable placement is essential for one-handed use.",
+tip:"Limit bottom nav to 3-5 items maximum. Use 'More' for additional options.",
+related:[24,78],
+doCode:`<nav class="fixed bottom-0 w-full\n  bg-gray-900 border-t\n  safe-area-inset-bottom">\n  <div class="flex justify-around\n    py-2">\n    <a href="/" class="flex\n      flex-col items-center">\n      <Icon /><span>Home</span>\n    </a>\n  </div>\n</nav>`,
+dontCode:`<!-- Top-only nav on mobile -->\n<nav class="fixed top-0">\n  <div class="flex gap-4">\n    <a href="/">Home</a>\n    <a href="/search">Search</a>\n  </div>\n</nav>\n<!-- Hard to reach with thumb! -->`},
+
+// ANIMATION (8-14)
+{id:8,cat:"Animation",name:"Excessive Motion",platform:"All",severity:"High",desc:"Animate only 1-2 key elements per view. Too many simultaneous animations create visual chaos and hurt usability.",
+tip:"If you can't justify why an animation helps the user, remove it.",
+related:[10,13],
+doCode:`/* Animate the hero element only */\n.hero-title {\n  animation: fadeInUp 0.6s\n    ease-out;\n}\n\n/* Other elements are static\n   or have subtle transitions */\n.card {\n  transition: transform 0.2s;\n}`,
+dontCode:`/* Everything animates! */\n.header { animation: slideIn 1s; }\n.nav { animation: fadeIn 0.5s; }\n.hero { animation: bounce 2s; }\n.cards { animation: slideUp 0.8s; }\n.footer { animation: fadeIn 1.2s; }\n/* Visual chaos! */`},
+{id:9,cat:"Animation",name:"Duration Timing",platform:"All",severity:"Medium",desc:"Use 150-300ms for micro-interactions (hover, click feedback). Longer durations (300-500ms) for larger transitions like page changes.",
+doCode:`.button {\n  transition: all 200ms ease;\n}\n\n.modal {\n  transition: opacity 300ms ease,\n    transform 300ms ease;\n}\n\n.tooltip {\n  transition: opacity 150ms ease;\n}`,
+dontCode:`.button {\n  /* Too slow - feels laggy */\n  transition: all 800ms ease;\n}\n\n.tooltip {\n  /* Way too slow */\n  transition: opacity 2s ease;\n  /* User waits forever */\n}`},
+{id:10,cat:"Animation",name:"Reduced Motion",platform:"All",severity:"High",desc:"Respect the prefers-reduced-motion media query. Some users experience motion sickness or vestibular disorders.",
+tip:"Reduced motion doesn't mean no animation -- crossfades and opacity changes are usually fine.",
+related:[8,14],
+doCode:`@media (prefers-reduced-motion:\n  reduce) {\n  *,\n  *::before,\n  *::after {\n    animation-duration: 0.01ms\n      !important;\n    transition-duration: 0.01ms\n      !important;\n    scroll-behavior: auto\n      !important;\n  }\n}`,
+dontCode:`/* No reduced motion support */\n/* All animations always play */\n.hero {\n  animation: parallaxFloat 3s\n    infinite;\n}\n\n/* Users with vestibular\n   disorders get sick */`},
+{id:11,cat:"Animation",name:"Loading States",platform:"All",severity:"High",desc:"Always show loading states. Use skeleton screens for content areas and spinners for actions. Never leave users staring at a blank screen.",
+tip:"Show skeletons that match the actual layout shape -- generic gray boxes feel lazy.",
+related:[34,90],
+doCode:`/* Skeleton screen */\n.skeleton {\n  background: linear-gradient(\n    90deg,\n    #1a1a2e 25%,\n    #2a2a4e 50%,\n    #1a1a2e 75%\n  );\n  background-size: 200% 100%;\n  animation: shimmer 1.5s\n    infinite;\n}`,
+dontCode:`/* No loading state */\nfunction loadData() {\n  // Nothing shown while loading\n  const data = await fetch(url);\n  render(data);\n  // Blank screen for seconds!\n}`},
+{id:12,cat:"Animation",name:"Hover vs Tap",platform:"All",severity:"High",desc:"Use click/tap as the primary interaction, not hover. Hover states don't exist on touch devices. Hover should enhance, not gate functionality.",
+tip:"Use @media (hover: hover) to apply hover styles only on devices that support it.",
+related:[31,75],
+doCode:`/* Hover enhances, click acts */\n.card {\n  cursor: pointer;\n}\n.card:hover {\n  transform: translateY(-2px);\n  /* Visual enhancement only */\n}\n.card:active {\n  transform: translateY(0);\n}`,
+dontCode:`/* Content only visible on hover */\n.card .actions {\n  display: none;\n}\n.card:hover .actions {\n  display: flex;\n}\n/* Mobile users can NEVER\n   see these actions! */`},
+{id:13,cat:"Animation",name:"Continuous Animation",platform:"All",severity:"Medium",desc:"Only use continuous/infinite animations for loading indicators. Everything else should animate once or on interaction.",
+doCode:`/* Continuous only for loading */\n.spinner {\n  animation: spin 1s linear\n    infinite;\n}\n\n/* One-time entrance */\n.card {\n  animation: fadeIn 0.3s\n    ease-out forwards;\n}`,
+dontCode:`/* Constant pulsing background */\n.hero {\n  animation: pulse 2s infinite;\n}\n/* Constantly bouncing button */\n.cta {\n  animation: bounce 1s infinite;\n}\n/* Distracting and exhausting! */`},
+{id:14,cat:"Animation",name:"Transform Performance",platform:"Web",severity:"Medium",desc:"Animate transform and opacity for 60fps performance. Avoid animating width, height, top, left which trigger layout recalculation.",
+tip:"Use will-change sparingly -- it promotes elements to their own compositor layer, increasing memory use.",
+related:[10,56],
+doCode:`/* GPU-accelerated properties */\n.element {\n  transition: transform 0.3s,\n    opacity 0.3s;\n  will-change: transform;\n}\n.element:hover {\n  transform: scale(1.05);\n  opacity: 0.9;\n}`,
+dontCode:`/* Layout-triggering properties */\n.element {\n  transition: width 0.3s,\n    height 0.3s,\n    top 0.3s,\n    left 0.3s;\n}\n/* Causes jank and repaints! */`},
+{id:15,cat:"Animation",name:"Easing Functions",platform:"All",severity:"Low",desc:"Use ease-out for elements entering the screen, ease-in for exiting, and ease-in-out for state changes. Linear feels mechanical.",
+doCode:`/* Entering - ease-out */\n.modal-enter {\n  animation: slideIn 0.3s\n    ease-out;\n}\n/* Exiting - ease-in */\n.modal-exit {\n  animation: slideOut 0.2s\n    ease-in;\n}\n/* State change - ease-in-out */\n.toggle {\n  transition: all 0.2s\n    ease-in-out;\n}`,
+dontCode:`/* Linear feels robotic */\n.modal {\n  animation: slideIn 0.3s linear;\n}\n.element {\n  transition: all 0.3s linear;\n}\n/* No acceleration curve -\n   feels unnatural */`},
+
+// LAYOUT (16-22) - renumbered from the spec's 15-22 since animation took 8-15
+{id:16,cat:"Layout",name:"Z-Index Management",platform:"Web",severity:"High",desc:"Define a z-index scale system (10, 20, 30, 50) to avoid z-index wars. Document and centralize z-index values.",
+tip:"Put z-index values in CSS custom properties so the entire scale is visible in one place.",
+related:[19],
+doCode:`/* Z-index scale */\n:root {\n  --z-dropdown: 10;\n  --z-sticky: 20;\n  --z-overlay: 30;\n  --z-modal: 40;\n  --z-toast: 50;\n}\n.modal {\n  z-index: var(--z-modal);\n}`,
+dontCode:`/* Z-index wars */\n.dropdown { z-index: 999; }\n.modal { z-index: 9999; }\n.toast { z-index: 99999; }\n.tooltip { z-index: 999999; }\n/* Unmaintainable chaos! */`},
+{id:17,cat:"Layout",name:"Overflow Hidden",platform:"Web",severity:"Medium",desc:"Always test that content fits within containers before using overflow: hidden. Clipped content is invisible and inaccessible.",
+doCode:`/* Allow scroll when needed */\n.container {\n  overflow-y: auto;\n  max-height: 400px;\n}\n\n/* Only clip decorative overflow */\n.card-image {\n  overflow: hidden;\n  border-radius: 12px;\n}`,
+dontCode:`/* Blindly hiding overflow */\n.container {\n  overflow: hidden;\n  height: 200px;\n}\n/* Content is clipped!\n   Users can't see or access\n   the hidden content */`},
+{id:18,cat:"Layout",name:"Fixed Positioning",platform:"Web",severity:"Medium",desc:"Account for safe areas when using fixed positioning, especially on mobile devices with notches or home indicators.",
+doCode:`/* Account for safe areas */\n.bottom-bar {\n  position: fixed;\n  bottom: 0;\n  padding-bottom:\n    env(safe-area-inset-bottom);\n}\n.top-bar {\n  padding-top:\n    env(safe-area-inset-top);\n}`,
+dontCode:`/* Ignoring safe areas */\n.bottom-bar {\n  position: fixed;\n  bottom: 0;\n  /* Content hidden behind\n     home indicator on iPhone */\n}`},
+{id:19,cat:"Layout",name:"Stacking Context",platform:"Web",severity:"Medium",desc:"Understand what creates new stacking contexts (transform, opacity<1, filter, etc.) to avoid z-index confusion.",
+doCode:`/* Know what creates context */\n.parent {\n  /* Creates stacking context: */\n  position: relative;\n  z-index: 1;\n}\n/* Child z-index is scoped\n   to this context */\n.child {\n  position: absolute;\n  z-index: 10;\n}`,
+dontCode:`/* Unexpected stacking */\n.card {\n  transform: translateZ(0);\n  /* This creates a new stacking\n     context! */\n}\n.card .tooltip {\n  z-index: 9999;\n  /* Won't escape the card's\n     stacking context */\n}`},
+{id:20,cat:"Layout",name:"Content Jumping",platform:"Web",severity:"High",desc:"Reserve space for asynchronously loaded content (images, ads, embeds) to prevent layout shift (CLS).",
+tip:"Use the aspect-ratio property combined with a placeholder background for the best CLS prevention.",
+related:[50,107],
+doCode:`/* Reserve space with aspect */\n.image-wrapper {\n  aspect-ratio: 16 / 9;\n  background: #1a1a2e;\n}\n\nimg {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}`,
+dontCode:`/* No reserved space */\n<img src="photo.jpg" />\n\n/* Image loads and pushes\n   all content below it down.\n   User loses their place.\n   CLS score tanks! */`},
+{id:21,cat:"Layout",name:"Viewport Units",platform:"Web",severity:"Medium",desc:"Use dvh (dynamic viewport height) instead of vh on mobile to account for the browser toolbar that appears/disappears.",
+doCode:`/* Dynamic viewport height */\n.hero {\n  min-height: 100dvh;\n}\n\n/* Fallback for older browsers */\n@supports not (height: 100dvh) {\n  .hero {\n    min-height: 100vh;\n  }\n}`,
+dontCode:`/* Static vh on mobile */\n.hero {\n  height: 100vh;\n}\n/* On mobile, 100vh includes\n   the browser chrome area.\n   Content gets cut off by\n   the address bar! */`},
+{id:22,cat:"Layout",name:"Container Width",platform:"Web",severity:"Medium",desc:"Limit text content to 65-75 characters per line for optimal readability. Use max-width on text containers.",
+tip:"The ch unit is ideal -- max-width: 70ch adapts automatically to the current font size.",
+related:[81,80],
+doCode:`/* Optimal reading width */\n.article-content {\n  max-width: 65ch;\n  margin: 0 auto;\n  line-height: 1.7;\n}\n\n.prose p {\n  max-width: 70ch;\n}`,
+dontCode:`/* Full-width text */\n.article-content {\n  width: 100%;\n  /* On wide screens, lines are\n     150+ characters long.\n     Extremely hard to read! */\n}`},
+{id:23,cat:"Layout",name:"Grid Gap Consistency",platform:"Web",severity:"Low",desc:"Use a consistent spacing scale (4, 8, 12, 16, 24, 32, 48, 64) throughout the application for visual harmony.",
+doCode:`/* Consistent spacing scale */\n:root {\n  --space-xs: 4px;\n  --space-sm: 8px;\n  --space-md: 16px;\n  --space-lg: 24px;\n  --space-xl: 32px;\n  --space-2xl: 48px;\n}\n.grid { gap: var(--space-lg); }`,
+dontCode:`/* Random spacing values */\n.grid-1 { gap: 13px; }\n.grid-2 { gap: 17px; }\n.grid-3 { gap: 22px; }\n.section { padding: 37px; }\n/* Inconsistent, no rhythm */`},
+
+// TOUCH (24-29) - IDs 24-29
+{id:24,cat:"Touch",name:"Touch Target Size",platform:"Mobile",severity:"High",desc:"Minimum touch target size of 44x44px (Apple) or 48x48dp (Google). Small targets cause tap errors and frustration.",
+tip:"Use padding to expand tap area without changing the visual size of the element.",
+related:[25,121],
+doCode:`/* Minimum 44x44px target */\n.icon-button {\n  min-width: 44px;\n  min-height: 44px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n/* Padding expands tap area */\na.nav-link {\n  padding: 12px 16px;\n}`,
+dontCode:`/* Tiny touch targets */\n.icon-button {\n  width: 24px;\n  height: 24px;\n}\n\n.small-link {\n  font-size: 11px;\n  padding: 2px;\n}\n/* Nearly impossible to tap! */`},
+{id:25,cat:"Touch",name:"Touch Spacing",platform:"Mobile",severity:"Medium",desc:"Maintain minimum 8px gap between interactive elements to prevent accidental taps on adjacent targets.",
+doCode:`/* Adequate spacing */\n.button-group {\n  display: flex;\n  gap: 12px;\n}\n\n.list-item {\n  padding: 16px;\n  border-bottom: 1px solid\n    rgba(255,255,255,0.1);\n}`,
+dontCode:`/* Cramped touch targets */\n.button-group {\n  display: flex;\n  gap: 2px;\n}\n\n.list-item {\n  padding: 4px;\n}\n/* Constant mis-taps! */`},
+{id:26,cat:"Touch",name:"Gesture Conflicts",platform:"Mobile",severity:"Medium",desc:"Don't override system gestures (swipe back, pull down notification, edge swipes). Custom gestures should use distinct zones.",
+doCode:`/* Respect system gesture zones */\n.custom-swipe {\n  /* Only trigger in center,\n     not at screen edges */\n  touch-action: pan-y;\n}\n\n/* Use buttons as alternative */\n<button class="back-btn">\n  Back\n</button>`,
+dontCode:`/* Override edge swipe */\ndocument.addEventListener(\n  'touchmove',\n  (e) => e.preventDefault(),\n  { passive: false }\n);\n/* System back gesture broken!\n   User is trapped! */`},
+{id:27,cat:"Touch",name:"Tap Delay",platform:"Mobile",severity:"Medium",desc:"Use touch-action: manipulation to remove the 300ms tap delay on mobile browsers for instant response.",
+tip:"Modern browsers with a proper viewport meta tag already remove the 300ms delay.",
+related:[24,32],
+doCode:`/* Remove tap delay globally */\n* {\n  touch-action: manipulation;\n}\n\n/* Or on specific elements */\n.button, a, input, select {\n  touch-action: manipulation;\n}`,
+dontCode:`/* Default 300ms delay */\n/* Browser waits 300ms to see\n   if user will double-tap.\n   Every tap feels sluggish\n   and unresponsive! */`},
+{id:28,cat:"Touch",name:"Pull to Refresh",platform:"Mobile",severity:"Low",desc:"Disable the default pull-to-refresh on pages where it conflicts with custom scroll behavior or is not needed.",
+doCode:`/* Disable where not needed */\n.scrollable-panel {\n  overscroll-behavior-y: contain;\n}\n\n/* Custom pull-to-refresh */\nbody {\n  overscroll-behavior: none;\n}\n/* Implement your own PTR */`,
+dontCode:`/* Default PTR on form page */\n/* User scrolling up in a form\n   accidentally triggers page\n   refresh and loses all\n   their input data! */`},
+{id:29,cat:"Touch",name:"Haptic Feedback",platform:"Mobile",severity:"Low",desc:"Use haptic feedback sparingly -- only for confirmations, toggles, and important state changes. Overuse desensitizes users.",
+doCode:`// Haptic on important actions\nfunction confirmDelete() {\n  if (navigator.vibrate) {\n    navigator.vibrate(50);\n  }\n  showConfirmation();\n}\n\n// Toggle with subtle haptic\nfunction toggle() {\n  navigator.vibrate(10);\n}`,
+dontCode:`// Haptic on every single tap\nbutton.addEventListener(\n  'click', () => {\n    navigator.vibrate(200);\n  }\n);\n\n// Constant vibration\n// User disables all haptics\n// because it's annoying`},
+
+// INTERACTION (30-38) - IDs 30-38
+{id:30,cat:"Interaction",name:"Focus States",platform:"All",severity:"High",desc:"Always provide visible focus indicators for keyboard navigation. Never remove outline without providing an alternative.",
+tip:"Use :focus-visible to show focus rings only for keyboard users, not mouse clicks.",
+related:[44,113],
+doCode:`/* Visible focus ring */\n:focus-visible {\n  outline: 2px solid #818CF8;\n  outline-offset: 2px;\n  border-radius: 4px;\n}\n\n/* Remove only for mouse */\n:focus:not(:focus-visible) {\n  outline: none;\n}`,
+dontCode:`/* NEVER do this */\n* {\n  outline: none;\n}\n\na:focus, button:focus {\n  outline: 0;\n}\n/* Keyboard users can't see\n   where they are! */`},
+{id:31,cat:"Interaction",name:"Hover States",platform:"Web",severity:"Medium",desc:"Interactive elements need cursor: pointer and a visual change on hover to signal interactivity.",
+doCode:`button, a, [role="button"] {\n  cursor: pointer;\n}\n\n.card-link:hover {\n  background: rgba(255,255,255,\n    0.05);\n  transform: translateY(-1px);\n  transition: all 0.2s ease;\n}`,
+dontCode:`/* No hover feedback */\n.clickable-card {\n  cursor: default;\n  /* No visual change on hover */\n}\n/* Users don't know it's\n   interactive! */`},
+{id:32,cat:"Interaction",name:"Active States",platform:"All",severity:"Medium",desc:"Provide visual feedback when an element is pressed/active to confirm the user's action was registered.",
+doCode:`button:active {\n  transform: scale(0.97);\n  opacity: 0.9;\n}\n\n.card:active {\n  transform: scale(0.99);\n  box-shadow: inset 0 2px 4px\n    rgba(0,0,0,0.2);\n}`,
+dontCode:`/* No press feedback */\nbutton {\n  /* Looks the same when\n     clicked. User isn't sure\n     if they tapped it.\n     They tap again. And again.\n     Triple submission! */\n}`},
+{id:33,cat:"Interaction",name:"Disabled States",platform:"All",severity:"Medium",desc:"Use opacity: 0.5 and cursor: not-allowed for disabled elements. Optionally show a tooltip explaining why it's disabled.",
+doCode:`button:disabled,\n.btn-disabled {\n  opacity: 0.5;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n/* With explanatory tooltip */\n<div title="Complete form first">\n  <button disabled>Submit</button>\n</div>`,
+dontCode:`/* Disabled looks like enabled */\nbutton:disabled {\n  /* No visual difference */\n  color: inherit;\n}\n/* User clicks, nothing happens,\n   they're confused and\n   frustrated */`},
+{id:34,cat:"Interaction",name:"Loading Buttons",platform:"All",severity:"High",desc:"Disable buttons during async operations and show a loading spinner to prevent double submissions.",
+tip:"Keep the button width fixed during loading state to prevent layout shift.",
+related:[70,110],
+doCode:`<button onclick="submit(this)">\n  <span class="label">Save</span>\n  <svg class="spinner hidden">\n    ...\n  </svg>\n</button>\n\nfunction submit(btn) {\n  btn.disabled = true;\n  btn.querySelector('.spinner')\n    .classList.remove('hidden');\n}`,
+dontCode:`/* No loading state */\n<button onclick="submit()">\n  Save\n</button>\n\n/* Button stays active.\n   User clicks 5 times.\n   5 duplicate API calls.\n   5 duplicate records! */`},
+{id:35,cat:"Interaction",name:"Error Feedback",platform:"All",severity:"High",desc:"Show clear error messages positioned near the problem. Use specific, actionable language instead of generic errors.",
+tip:"Tell users what went wrong AND how to fix it in the same message.",
+related:[47,61],
+doCode:`<div class="input-group error">\n  <input type="email"\n    aria-invalid="true"\n    aria-describedby="email-err">\n  <p id="email-err"\n    class="text-red-400 text-sm">\n    Please enter a valid email\n    (e.g., name@example.com)\n  </p>\n</div>`,
+dontCode:`/* Generic error at page top */\n<div class="error-banner">\n  An error occurred.\n</div>\n\n/* User doesn't know:\n   - Which field has the error\n   - What's wrong with it\n   - How to fix it */`},
+{id:36,cat:"Interaction",name:"Success Feedback",platform:"All",severity:"Medium",desc:"Provide visual confirmation after successful actions. Use toast notifications or inline success messages.",
+doCode:`function onSaveSuccess() {\n  showToast({\n    type: 'success',\n    message: 'Changes saved!',\n    duration: 3000\n  });\n}\n\n/* Inline confirmation */\n<p class="text-green-400">\n  Profile updated\n</p>`,
+dontCode:`/* No success feedback */\nfunction onSaveSuccess() {\n  // Just silently succeeds\n  // User wonders: Did it work?\n  // Clicks save again...\n  // And again...\n}`},
+{id:37,cat:"Interaction",name:"Confirmation Dialogs",platform:"All",severity:"High",desc:"Always confirm destructive actions (delete, remove, discard changes). The confirm button should describe the action, not just say 'OK'.",
+tip:"Consider undo patterns instead of confirmation dialogs for faster, less disruptive workflows.",
+related:[91,111,94],
+doCode:`<dialog class="confirm-dialog">\n  <h3>Delete project?</h3>\n  <p>This cannot be undone.</p>\n  <div class="flex gap-3">\n    <button class="btn-secondary">\n      Cancel\n    </button>\n    <button class="btn-danger">\n      Delete Project\n    </button>\n  </div>\n</dialog>`,
+dontCode:`/* No confirmation */\nfunction deleteProject(id) {\n  api.delete(id);\n  // Immediately deleted!\n  // No way to undo!\n}\n\n/* Or vague confirmation */\n<button>OK</button>\n<!-- OK what?? -->`},
+{id:38,cat:"Interaction",name:"Scroll Position",platform:"Web",severity:"Medium",desc:"Maintain scroll position when navigating back or when content updates. Don't force users to re-scroll.",
+doCode:`// Save scroll position\nwindow.addEventListener(\n  'beforeunload', () => {\n  sessionStorage.setItem(\n    'scrollPos',\n    window.scrollY\n  );\n});\n\n// Restore on return\nwindow.scrollTo(0,\n  sessionStorage.getItem(\n    'scrollPos') || 0);`,
+dontCode:`/* Always scroll to top */\nwindow.scrollTo(0, 0);\n\n/* Or content update resets */\nfunction addItems(items) {\n  container.innerHTML = '';\n  // Re-render resets scroll!\n  // User was at item #50,\n  // now back at top. */\n}`},
+
+// ACCESSIBILITY (39-49) - IDs 39-49
+{id:39,cat:"Accessibility",name:"Color Contrast",platform:"All",severity:"High",desc:"Maintain minimum 4.5:1 contrast ratio for normal text and 3:1 for large text (18px+ bold or 24px+). WCAG AA requirement.",
+tip:"Use browser DevTools contrast checker or WebAIM's contrast checker to verify ratios quickly.",
+related:[40,114],
+doCode:`/* Good contrast */\n.text-primary {\n  color: #E2E8F0; /* on #08090E */\n  /* Ratio: 13.5:1 */\n}\n\n.text-secondary {\n  color: #94A3B8; /* on #08090E */\n  /* Ratio: 7.2:1 */\n}`,
+dontCode:`/* Poor contrast */\n.text-muted {\n  color: #374151; /* on #08090E */\n  /* Ratio: 1.8:1 */\n  /* Fails WCAG AA */\n  /* Many users can't read */\n}`},
+{id:40,cat:"Accessibility",name:"Color Only",platform:"All",severity:"High",desc:"Never convey information by color alone. Always pair color with text, icons, or patterns for colorblind users.",
+doCode:`/* Color + icon + text */\n<span class="text-red-400">\n  <svg><!-- X icon --></svg>\n  Error: Invalid email\n</span>\n\n<span class="text-green-400">\n  <svg><!-- Check icon --></svg>\n  Success: Saved\n</span>`,
+dontCode:`/* Color only status */\n<span class="dot-red"></span>\n<span class="dot-green"></span>\n<span class="dot-yellow"></span>\n\n/* Colorblind users see:\n   gray dot, gray dot, gray dot\n   No idea what they mean! */`},
+{id:41,cat:"Accessibility",name:"Alt Text",platform:"All",severity:"High",desc:"Provide descriptive alt text for all informational images. Use empty alt for decorative images.",
+tip:"Describe what the image conveys, not what it looks like. 'Sales up 25%' beats 'bar chart'.",
+related:[50,45],
+doCode:`/* Informational image */\n<img src="chart.png"\n  alt="Sales grew 25% in Q4,\n  reaching $1.2M revenue">\n\n/* Decorative image */\n<img src="divider.svg" alt=""\n  role="presentation">`,
+dontCode:`/* Missing alt text */\n<img src="chart.png">\n\n/* Useless alt text */\n<img src="chart.png"\n  alt="image">\n<img src="photo.jpg"\n  alt="photo1234.jpg">\n/* Screen reader: "image" */`},
+{id:42,cat:"Accessibility",name:"Heading Hierarchy",platform:"Web",severity:"Medium",desc:"Use sequential heading levels (h1 through h6) without skipping. Each page should have exactly one h1.",
+doCode:`<h1>Page Title</h1>\n  <h2>Section</h2>\n    <h3>Subsection</h3>\n    <h3>Subsection</h3>\n  <h2>Section</h2>\n    <h3>Subsection</h3>\n\n/* Sequential, no skips */`,
+dontCode:`<h1>Title</h1>\n<h4>Subtitle</h4>  <!-- skip! -->\n<h2>Section</h2>\n<h6>Detail</h6>    <!-- skip! -->\n<h1>Another</h1>  <!-- 2nd h1! -->\n\n/* Broken hierarchy confuses\n   screen readers */`},
+{id:43,cat:"Accessibility",name:"ARIA Labels",platform:"All",severity:"High",desc:"Use aria-label or aria-labelledby for elements that have no visible text label, especially icon-only buttons.",
+tip:"Prefer visible labels over aria-label when possible -- visible labels help all users.",
+related:[46,115],
+doCode:`/* Icon button with label */\n<button aria-label="Close menu">\n  <svg><!-- X icon --></svg>\n</button>\n\n<button aria-label="Search">\n  <svg><!-- search icon --></svg>\n</button>`,
+dontCode:`/* Icon button, no label */\n<button>\n  <svg><!-- X icon --></svg>\n</button>\n/* Screen reader: "button" */\n/* What does it do?? */\n\n<div onclick="close()">\n  X\n</div>`},
+{id:44,cat:"Accessibility",name:"Keyboard Navigation",platform:"Web",severity:"High",desc:"Ensure tab order matches visual layout. All interactive elements must be reachable and operable via keyboard.",
+tip:"Test by unplugging your mouse for 10 minutes and navigating your app with keyboard only.",
+related:[30,103,49],
+doCode:`/* Natural tab order */\n<header><!-- tab 1-3 --></header>\n<main><!-- tab 4-10 --></main>\n<footer><!-- tab 11-13 --></footer>\n\n/* Custom component */\n<div role="button" tabindex="0"\n  onkeydown="handleKey(e)">\n  Click Me\n</div>`,
+dontCode:`/* Broken tab order */\n<div tabindex="5">First?</div>\n<div tabindex="1">Second?</div>\n\n/* Not keyboard accessible */\n<div onclick="action()">\n  Click me\n</div>\n/* Can't tab to it! */`},
+{id:45,cat:"Accessibility",name:"Screen Reader",platform:"All",severity:"Medium",desc:"Use semantic HTML elements and supplement with ARIA roles and properties when needed. Semantic > ARIA > generic.",
+doCode:`/* Semantic HTML first */\n<nav aria-label="Main">\n  <ul>\n    <li><a href="/">Home</a></li>\n  </ul>\n</nav>\n<main>\n  <article>\n    <h2>Title</h2>\n  </article>\n</main>`,
+dontCode:`/* Generic div soup */\n<div class="nav">\n  <div class="nav-item">\n    <div onclick="go('/')"\n      class="link">Home</div>\n  </div>\n</div>\n<div class="main">\n  <div class="article">...</div>\n</div>`},
+{id:46,cat:"Accessibility",name:"Form Labels",platform:"All",severity:"High",desc:"Every form input must have an associated label element with a matching for/id attribute pair.",
+tip:"Clicking a properly associated label also focuses/toggles the input -- great for checkboxes.",
+related:[63,62],
+doCode:`<div class="field">\n  <label for="email">\n    Email Address\n  </label>\n  <input\n    type="email"\n    id="email"\n    name="email"\n  />\n</div>`,
+dontCode:`/* No label association */\n<div>\n  <span>Email</span>\n  <input type="email">\n</div>\n\n/* Or placeholder as label */\n<input placeholder="Email">\n/* Placeholder disappears\n   when user types! */`},
+{id:47,cat:"Accessibility",name:"Error Messages",platform:"All",severity:"High",desc:"Use aria-live regions or role='alert' so screen readers announce errors immediately when they appear.",
+doCode:`<div aria-live="polite"\n  role="alert"\n  class="error-msg">\n  <!-- Dynamically inserted -->\n  Password must be 8+\n  characters\n</div>\n\n/* Screen reader announces\n   the error automatically */`,
+dontCode:`/* Error not announced */\n<div class="error-msg">\n  Password must be 8+\n  characters\n</div>\n/* Screen reader users never\n   know an error appeared.\n   Form just won't submit\n   and they don't know why. */`},
+{id:48,cat:"Accessibility",name:"Skip Links",platform:"Web",severity:"Medium",desc:"Provide a 'Skip to main content' link as the first focusable element for keyboard and screen reader users.",
+doCode:`<body>\n  <a href="#main"\n    class="sr-only\n    focus:not-sr-only\n    focus:absolute\n    focus:top-4\n    focus:left-4\n    focus:z-50">\n    Skip to main content\n  </a>\n  <nav>...</nav>\n  <main id="main">...</main>\n</body>`,
+dontCode:`<body>\n  <nav>\n    <!-- 20 navigation links -->\n  </nav>\n  <main>...</main>\n</body>\n/* Keyboard user must tab\n   through ALL 20 nav links\n   on every single page! */`},
+{id:49,cat:"Accessibility",name:"Focus Trap",platform:"Web",severity:"High",desc:"Trap focus inside modals and dialogs so keyboard users can't tab to elements behind the overlay.",
+tip:"The native <dialog> element with showModal() handles focus trapping automatically.",
+related:[44,37],
+doCode:`/* Trap focus in modal */\nmodal.addEventListener(\n  'keydown', (e) => {\n  if (e.key === 'Tab') {\n    const focusable =\n      modal.querySelectorAll(\n        'button, input, a');\n    const first = focusable[0];\n    const last = focusable[\n      focusable.length - 1];\n    // Wrap focus around\n  }\n});`,
+dontCode:`/* No focus trap */\n<div class="modal-overlay">\n  <div class="modal">\n    <button>Close</button>\n  </div>\n</div>\n/* Tab goes behind modal\n   to invisible page content.\n   User is completely lost! */`},
+
+// PERFORMANCE (50-58) - IDs 50-58
+{id:50,cat:"Performance",name:"Image Optimization",platform:"All",severity:"High",desc:"Use modern formats (WebP/AVIF), responsive srcset, lazy loading for below-fold images, and proper sizing.",
+tip:"AVIF offers ~20% better compression than WebP but has slower encoding -- use both in <picture>.",
+related:[51,117],
+doCode:`<picture>\n  <source srcset="img.avif"\n    type="image/avif">\n  <source srcset="img.webp"\n    type="image/webp">\n  <img src="img.jpg"\n    srcset="img-400.jpg 400w,\n           img-800.jpg 800w"\n    sizes="(max-width: 600px)\n      100vw, 50vw"\n    loading="lazy"\n    alt="Product photo">\n</picture>`,
+dontCode:`/* Unoptimized images */\n<img src="photo-original.png">\n<!-- 4MB PNG, 4000x3000px -->\n<!-- No lazy loading -->\n<!-- No responsive sizes -->\n<!-- Kills load time! -->`},
+{id:51,cat:"Performance",name:"Lazy Loading",platform:"All",severity:"Medium",desc:"Lazy load below-the-fold content: images, videos, heavy components. Keep above-fold content eager-loaded.",
+doCode:`/* Native lazy loading */\n<img loading="lazy"\n  src="below-fold.jpg"\n  alt="...">\n\n/* Above fold: eager */\n<img loading="eager"\n  src="hero.jpg"\n  alt="Hero image"\n  fetchpriority="high">`,
+dontCode:`/* Everything loads upfront */\n<img src="img1.jpg">\n<img src="img2.jpg">\n<!-- 50 more images... -->\n<img src="img50.jpg">\n/* 100MB loaded on page load\n   on a 3G connection. RIP. */`},
+{id:52,cat:"Performance",name:"Code Splitting",platform:"Web",severity:"Medium",desc:"Split JavaScript bundles by route or feature. Only load the code needed for the current view.",
+tip:"Use dynamic import() at route boundaries for automatic code splitting with most bundlers.",
+related:[55,57],
+doCode:`/* Dynamic import by route */\nconst routes = {\n  '/dashboard': () =>\n    import('./Dashboard.js'),\n  '/settings': () =>\n    import('./Settings.js'),\n};\n\n/* Load on demand */\nconst module = await\n  routes[path]();`,
+dontCode:`/* Single massive bundle */\nimport Dashboard from './Dash';\nimport Settings from './Set';\nimport Admin from './Admin';\nimport Reports from './Rpts';\n// 2MB bundle loaded for\n// every single page view!`},
+{id:53,cat:"Performance",name:"Caching",platform:"Web",severity:"Medium",desc:"Set appropriate cache headers. Immutable assets get long cache. HTML and API responses get shorter cache or revalidation.",
+doCode:`/* Static assets: long cache */\nCache-Control:\n  public, max-age=31536000,\n  immutable\n\n/* HTML: revalidate */\nCache-Control:\n  no-cache, must-revalidate\n\n/* API: short cache */\nCache-Control:\n  private, max-age=60`,
+dontCode:`/* No caching at all */\nCache-Control: no-store\n\n/* Every resource re-downloaded\n   on every page load.\n   Wasted bandwidth.\n   Slow repeat visits. */`},
+{id:54,cat:"Performance",name:"Font Loading",platform:"Web",severity:"Medium",desc:"Use font-display: swap to show fallback text immediately while custom fonts load. Prevent invisible text (FOIT).",
+tip:"Use font-display: optional for non-critical fonts -- it prevents layout shift entirely.",
+related:[84,116],
+doCode:`@font-face {\n  font-family: 'Inter';\n  src: url('inter.woff2')\n    format('woff2');\n  font-display: swap;\n}\n\n/* Preload critical fonts */\n<link rel="preload"\n  href="inter.woff2"\n  as="font" crossorigin>`,
+dontCode:`@font-face {\n  font-family: 'Inter';\n  src: url('inter.woff2');\n  /* Default: font-display: auto\n     Text invisible for up to\n     3 seconds while font loads!\n     FOIT = Flash of Invisible\n     Text */\n}`},
+{id:55,cat:"Performance",name:"Bundle Size",platform:"Web",severity:"Medium",desc:"Enable tree shaking, remove unused code and dependencies. Audit bundle size regularly.",
+doCode:`/* Import only what you need */\nimport { debounce } from\n  'lodash-es/debounce';\n\n/* Or use smaller alternatives */\nimport dayjs from 'dayjs';\n// 2KB vs moment.js 72KB\n\n/* Analyze bundle */\n// npx webpack-bundle-analyzer`,
+dontCode:`/* Import entire libraries */\nimport _ from 'lodash';\n// 72KB for one function!\n\nimport moment from 'moment';\n// 72KB + locales!\n\n/* Never audit bundle size */`},
+{id:56,cat:"Performance",name:"Critical CSS",platform:"Web",severity:"Low",desc:"Inline critical above-the-fold CSS in the HTML head. Load remaining CSS asynchronously.",
+doCode:`<head>\n  <style>\n    /* Inlined critical CSS */\n    .hero { ... }\n    .nav { ... }\n  </style>\n  <link rel="preload"\n    href="full.css" as="style"\n    onload="this.rel='stylesheet'">\n</head>`,
+dontCode:`<head>\n  <link rel="stylesheet"\n    href="styles.css">\n  <!-- 200KB CSS file blocks\n       rendering. User sees\n       blank white page until\n       entire CSS downloads. -->\n</head>`},
+{id:57,cat:"Performance",name:"Preload/Prefetch",platform:"Web",severity:"Low",desc:"Preload critical resources for current page. Prefetch resources likely needed for next navigation.",
+doCode:`/* Preload: current page */\n<link rel="preload"\n  href="hero.webp" as="image">\n<link rel="preload"\n  href="critical.js" as="script">\n\n/* Prefetch: next page */\n<link rel="prefetch"\n  href="/dashboard.js">`,
+dontCode:`/* Preload everything */\n<link rel="preload"\n  href="page1.js" as="script">\n<link rel="preload"\n  href="page2.js" as="script">\n<!-- Preloading non-critical\n     resources wastes bandwidth\n     and delays critical ones -->`},
+{id:58,cat:"Performance",name:"Service Workers",platform:"Web",severity:"Low",desc:"Implement service workers for offline support, caching strategies, and background sync.",
+doCode:`/* Register service worker */\nif ('serviceWorker' in navigator) {\n  navigator.serviceWorker\n    .register('/sw.js');\n}\n\n/* Cache-first strategy */\nself.addEventListener('fetch',\n  (e) => {\n  e.respondWith(\n    caches.match(e.request)\n    .then(r => r || fetch(\n      e.request))\n  );\n});`,
+dontCode:`/* No offline support */\n/* User opens app on subway.\n   No internet.\n   Blank white page.\n   "Unable to connect."\n   App is completely useless\n   offline. */`},
+
+// FORMS (59-71) - IDs 59-71
+{id:59,cat:"Forms",name:"Input Types",platform:"All",severity:"High",desc:"Use the correct HTML input type to trigger the right mobile keyboard and enable browser validation.",
+tip:"Use inputmode attribute for finer control -- inputmode='numeric' shows number pad without arrows.",
+related:[64,82],
+doCode:`<input type="email"\n  inputmode="email">\n<input type="tel"\n  inputmode="tel">\n<input type="url"\n  inputmode="url">\n<input type="number"\n  inputmode="numeric"\n  pattern="[0-9]*">`,
+dontCode:`/* All inputs are text */\n<input type="text"\n  name="email">\n<input type="text"\n  name="phone">\n<input type="text"\n  name="quantity">\n/* Wrong keyboard on mobile!\n   No browser validation! */`},
+{id:60,cat:"Forms",name:"Validation Timing",platform:"All",severity:"Medium",desc:"Validate on blur (when user leaves field), not on every keystroke. Show inline feedback immediately after validation.",
+tip:"Exception: for password strength meters, real-time keystroke feedback is expected and helpful.",
+related:[61,119],
+doCode:`input.addEventListener('blur',\n  () => {\n  if (!isValid(input.value)) {\n    showError(input,\n      'Invalid email');\n  }\n});\n\n/* Clear error on valid input */\ninput.addEventListener('input',\n  () => {\n  if (hasError && isValid(val))\n    clearError(input);\n});`,
+dontCode:`/* Validate every keystroke */\ninput.addEventListener('input',\n  () => {\n  if (!isValid(input.value)) {\n    showError('Invalid!');\n  }\n});\n/* "Invalid!" shown after\n   typing just "j" in email.\n   Annoying and distracting! */`},
+{id:61,cat:"Forms",name:"Error Placement",platform:"All",severity:"High",desc:"Show error messages directly below or beside the input they relate to, not in a banner at the top of the form.",
+doCode:`<div class="field">\n  <label for="pw">Password</label>\n  <input id="pw" type="password"\n    aria-invalid="true"\n    aria-describedby="pw-err">\n  <p id="pw-err"\n    class="text-red-400 text-sm\n    mt-1">\n    Must be 8+ characters\n  </p>\n</div>`,
+dontCode:`<!-- All errors at top -->\n<div class="errors">\n  <p>Password invalid</p>\n  <p>Email required</p>\n  <p>Name too short</p>\n</div>\n<!-- 15 fields below... -->\n<!-- Which field is which\n     error for?? -->`},
+{id:62,cat:"Forms",name:"Required Fields",platform:"All",severity:"Medium",desc:"Clearly mark required fields with an asterisk and/or text. If most fields are required, mark optional ones instead.",
+doCode:`<label for="name">\n  Full Name\n  <span class="text-red-400"\n    aria-hidden="true">*</span>\n  <span class="sr-only">\n    (required)\n  </span>\n</label>\n<input id="name" required\n  aria-required="true">`,
+dontCode:`<!-- No required indicators -->\n<label>Name</label>\n<input type="text">\n<label>Email</label>\n<input type="email">\n\n<!-- User fills some, submits,\n     gets error. Which were\n     required?? -->`},
+{id:63,cat:"Forms",name:"Placeholder Text",platform:"All",severity:"High",desc:"Don't use placeholder as a label replacement. Placeholders disappear when typing, have poor contrast, and confuse users.",
+tip:"Use placeholder for example values only (e.g., 'john@example.com') never for labels or instructions.",
+related:[46,62],
+doCode:`/* Label + optional placeholder */\n<label for="email">Email</label>\n<input id="email"\n  type="email"\n  placeholder="you@example.com">\n\n/* Placeholder = example only,\n   not the label */`,
+dontCode:`/* Placeholder as label */\n<input placeholder="Email">\n<input placeholder="Password">\n<input placeholder="Phone">\n\n/* User starts typing:\n   label disappears.\n   "Wait, what field was this?"\n   Poor contrast too. */`},
+{id:64,cat:"Forms",name:"Auto-complete",platform:"Web",severity:"Medium",desc:"Enable browser autocomplete with proper attribute values. Helps users fill forms faster and more accurately.",
+doCode:`<input name="name"\n  autocomplete="name">\n<input name="email"\n  autocomplete="email">\n<input name="address"\n  autocomplete="street-address">\n<input name="cc"\n  autocomplete="cc-number">`,
+dontCode:`/* Disable autocomplete */\n<input autocomplete="off">\n\n/* Or wrong attribute */\n<input name="field_x7b2"\n  autocomplete="off">\n/* User must type everything\n   manually. Slow and error-\n   prone. */`},
+{id:65,cat:"Forms",name:"Multi-step Forms",platform:"All",severity:"Medium",desc:"Break long forms into steps with a progress indicator. Show step count and current position.",
+tip:"Save progress between steps so users don't lose data if they navigate away.",
+related:[90,70],
+doCode:`<div class="progress">\n  <span class="step active">\n    1. Details\n  </span>\n  <span class="step">\n    2. Address\n  </span>\n  <span class="step">\n    3. Payment\n  </span>\n</div>\n<p>Step 1 of 3</p>`,
+dontCode:`<!-- 30-field single page -->\n<form>\n  <input> <input> <input>\n  <input> <input> <input>\n  <!-- 24 more inputs... -->\n  <button>Submit</button>\n</form>\n<!-- Overwhelming! Users\n     abandon the form. -->`},
+{id:66,cat:"Forms",name:"File Upload",platform:"All",severity:"Medium",desc:"Show upload progress, accepted file types, and size limits. Allow drag and drop where possible.",
+doCode:`<div class="upload-zone"\n  ondrop="handleDrop(e)">\n  <p>Drag files or click</p>\n  <p class="text-sm">\n    PNG, JPG up to 5MB\n  </p>\n  <input type="file"\n    accept=".png,.jpg,.webp"\n    multiple>\n  <div class="progress-bar">\n    <div style="width: 45%">\n    </div>\n  </div>\n</div>`,
+dontCode:`<input type="file">\n<!-- No accepted types shown -->\n<!-- No size limit warning -->\n<!-- No upload progress -->\n<!-- User uploads 500MB file,\n     waits 10 mins, then gets\n     "file too large" error -->`},
+{id:67,cat:"Forms",name:"Password Fields",platform:"All",severity:"Medium",desc:"Include a show/hide toggle for password fields so users can verify their input without retyping.",
+doCode:`<div class="relative">\n  <input type="password"\n    id="pw">\n  <button type="button"\n    onclick="togglePw()"\n    aria-label="Show password">\n    <svg><!-- eye icon --></svg>\n  </button>\n</div>\n\nfunction togglePw() {\n  const pw = getById('pw');\n  pw.type = pw.type ===\n    'password' ? 'text' :\n    'password';\n}`,
+dontCode:`<input type="password">\n<!-- No show/hide toggle -->\n<!-- User makes typo in\n     20-char password.\n     Can't see what went wrong.\n     Types it 5 times. -->`},
+{id:68,cat:"Forms",name:"Select vs Radio",platform:"All",severity:"Low",desc:"Use radio buttons for fewer than 5 options (all visible). Use a select dropdown for 5 or more options.",
+doCode:`/* < 5 options: radio */\n<fieldset>\n  <legend>Size</legend>\n  <label>\n    <input type="radio"\n      name="size" value="S"> S\n  </label>\n  <label>\n    <input type="radio"\n      name="size" value="M"> M\n  </label>\n  <label>\n    <input type="radio"\n      name="size" value="L"> L\n  </label>\n</fieldset>`,
+dontCode:`/* 3 options in a dropdown */\n<select name="size">\n  <option>S</option>\n  <option>M</option>\n  <option>L</option>\n</select>\n/* Requires 2 clicks to see\n   just 3 options. Radio would\n   show all at once! */`},
+{id:69,cat:"Forms",name:"Date Inputs",platform:"All",severity:"Medium",desc:"Use native date inputs or accessible date pickers. Allow manual text entry as an alternative.",
+doCode:`/* Native date input */\n<label for="dob">Birth Date</label>\n<input type="date" id="dob"\n  min="1900-01-01"\n  max="2010-12-31">\n\n/* Or accessible picker with\n   text fallback */\n<input type="text"\n  placeholder="MM/DD/YYYY"\n  pattern="\\d{2}/\\d{2}/\\d{4}">`,
+dontCode:`/* Three separate selects */\n<select><!-- 12 months --></select>\n<select><!-- 31 days --></select>\n<select><!-- 100 years --></select>\n\n/* 143 interactions to pick\n   a single date!\n   Awful UX. */`},
+{id:70,cat:"Forms",name:"Form Submission",platform:"All",severity:"High",desc:"Disable the submit button during processing and show loading state. Prevent duplicate submissions.",
+tip:"Use a form-level flag to prevent double submission even if the button disable fails.",
+related:[34,71],
+doCode:`async function handleSubmit(e) {\n  e.preventDefault();\n  const btn = e.target\n    .querySelector('[type=submit]');\n  btn.disabled = true;\n  btn.textContent = 'Saving...';\n  try {\n    await submitForm(data);\n    showSuccess();\n  } finally {\n    btn.disabled = false;\n    btn.textContent = 'Save';\n  }\n}`,
+dontCode:`<form action="/api/submit"\n  method="POST">\n  <button type="submit">\n    Submit\n  </button>\n</form>\n<!-- No JS protection -->\n<!-- User clicks 5 times -->\n<!-- 5 submissions sent! -->`},
+{id:71,cat:"Forms",name:"Success State",platform:"All",severity:"Medium",desc:"After successful form submission, show a clear confirmation with next steps or a summary of what was submitted.",
+doCode:`function onSubmitSuccess() {\n  form.innerHTML = \`\n    <div class="text-center">\n      <svg><!-- check --></svg>\n      <h3>Order Confirmed!</h3>\n      <p>Order #12345</p>\n      <p>Confirmation email\n        sent to you@mail.com</p>\n      <a href="/orders">\n        View Orders\n      </a>\n    </div>\n  \`;\n}`,
+dontCode:`function onSubmitSuccess() {\n  alert('Success');\n  // That's it? What succeeded?\n  // What's my order number?\n  // What happens next?\n  // Where's my confirmation?\n}`},
+
+// RESPONSIVE (72-79) - IDs 72-79
+{id:72,cat:"Responsive",name:"Mobile-First",platform:"Web",severity:"High",desc:"Design and code mobile-first, then enhance for larger screens with min-width media queries.",
+tip:"Mobile-first CSS tends to be smaller because you add complexity rather than override it.",
+related:[73,78],
+doCode:`/* Base: mobile styles */\n.grid {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 16px;\n}\n\n/* Enhance for larger screens */\n@media (min-width: 768px) {\n  .grid {\n    grid-template-columns:\n      repeat(2, 1fr);\n  }\n}`,
+dontCode:`/* Desktop-first: broken */\n.grid {\n  display: grid;\n  grid-template-columns:\n    repeat(4, 1fr);\n}\n@media (max-width: 768px) {\n  .grid {\n    grid-template-columns: 1fr;\n  }\n}\n/* Overriding is harder */`},
+{id:73,cat:"Responsive",name:"Breakpoint System",platform:"Web",severity:"Medium",desc:"Use a consistent set of breakpoints throughout the project. Don't create arbitrary breakpoints per component.",
+doCode:`/* Consistent breakpoint system */\n:root {\n  --bp-sm: 640px;\n  --bp-md: 768px;\n  --bp-lg: 1024px;\n  --bp-xl: 1280px;\n  --bp-2xl: 1536px;\n}\n\n/* All components use same BPs */`,
+dontCode:`/* Random breakpoints */\n.nav { }\n@media (max-width: 823px) {...}\n.card { }\n@media (max-width: 795px) {...}\n.hero { }\n@media (max-width: 850px) {...}\n/* Inconsistent, untestable */`},
+{id:74,cat:"Responsive",name:"Flexible Images",platform:"Web",severity:"High",desc:"Images should never overflow their container. Use max-width: 100% and height: auto as a base rule.",
+tip:"Add 'display: block' to images to remove the default inline baseline gap.",
+related:[50,107],
+doCode:`/* Global image reset */\nimg, video, svg {\n  max-width: 100%;\n  height: auto;\n  display: block;\n}\n\n/* Object-fit for fixed dims */\n.avatar {\n  width: 48px;\n  height: 48px;\n  object-fit: cover;\n}`,
+dontCode:`/* No image constraints */\nimg {\n  /* No max-width set */\n}\n\n/* Fixed px width */\n.hero-img {\n  width: 1200px;\n}\n/* Overflows on mobile!\n   Horizontal scroll bar! */`},
+{id:75,cat:"Responsive",name:"Touch vs Click",platform:"All",severity:"Medium",desc:"Different interaction models for touch and pointer devices. Hover-dependent features need touch alternatives.",
+doCode:`/* Touch alternative for hover */\n.tooltip-trigger {\n  position: relative;\n}\n\n/* Pointer: hover */\n@media (hover: hover) {\n  .tooltip-trigger:hover\n    .tooltip { display: block; }\n}\n\n/* Touch: tap to toggle */\n@media (hover: none) {\n  /* Show on focus/click */\n}`,
+dontCode:`/* Hover-only interactions */\n.dropdown:hover .menu {\n  display: block;\n}\n/* Touch users can't trigger\n   hover. Menu is permanently\n   inaccessible on mobile! */`},
+{id:76,cat:"Responsive",name:"Orientation Changes",platform:"Mobile",severity:"Low",desc:"Handle orientation changes gracefully. Don't lock orientation unless necessary. Test layout in both orientations.",
+doCode:`/* Responsive to orientation */\n@media (orientation: landscape)\n  and (max-height: 500px) {\n  .hero {\n    min-height: auto;\n    padding: 2rem;\n  }\n  .nav {\n    flex-direction: row;\n  }\n}`,
+dontCode:`/* Locked to portrait */\n<meta name="viewport"\n  content="width=device-width,\n  initial-scale=1,\n  maximum-scale=1">\n\n/* Or layout breaks */\n/* Landscape shows half the\n   UI off-screen */`},
+{id:77,cat:"Responsive",name:"Font Scaling",platform:"All",severity:"Medium",desc:"Use rem/em units for font sizes to respect user browser settings. Never use px for body text.",
+tip:"Set html { font-size: 100% } and use rem everywhere. Never set a fixed px font-size on html.",
+related:[82,120],
+doCode:`/* Respect user preferences */\nhtml {\n  font-size: 100%; /* 16px */\n}\n\nbody {\n  font-size: 1rem;\n  line-height: 1.6;\n}\n\nh1 { font-size: 2.5rem; }\nh2 { font-size: 2rem; }\np  { font-size: 1rem; }`,
+dontCode:`/* Fixed px sizes */\nbody { font-size: 14px; }\nh1 { font-size: 36px; }\np { font-size: 14px; }\n\n/* User sets browser to 24px\n   for poor vision.\n   Your site ignores it.\n   They can't read anything. */`},
+{id:78,cat:"Responsive",name:"Navigation Collapse",platform:"Web",severity:"Medium",desc:"Collapse navigation into a hamburger menu on mobile. Show full nav on desktop.",
+doCode:`/* Full nav on desktop */\n.nav-links {\n  display: none;\n}\n@media (min-width: 768px) {\n  .nav-links {\n    display: flex;\n    gap: 1rem;\n  }\n  .hamburger {\n    display: none;\n  }\n}`,
+dontCode:`/* Same nav on all sizes */\n.nav-links {\n  display: flex;\n  gap: 1rem;\n}\n/* On 320px screen with\n   8 nav links:\n   Links wrap to 3 rows.\n   Half the screen is nav.\n   No room for content! */`},
+{id:79,cat:"Responsive",name:"Table Responsiveness",platform:"Web",severity:"Medium",desc:"Make tables responsive with horizontal scroll wrapper or transform to card/list view on small screens.",
+doCode:`/* Horizontal scroll wrapper */\n.table-wrapper {\n  overflow-x: auto;\n  -webkit-overflow-scrolling:\n    touch;\n}\n\n/* Or card view on mobile */\n@media (max-width: 640px) {\n  table, tr, td {\n    display: block;\n  }\n  td::before {\n    content: attr(data-label);\n  }\n}`,
+dontCode:`/* Fixed-width table */\ntable {\n  width: 1000px;\n}\n/* Table overflows screen.\n   Horizontal scroll on page.\n   Content cut off.\n   Users can't read data! */`},
+
+// TYPOGRAPHY (80-85) - IDs 80-85
+{id:80,cat:"Typography",name:"Line Height",platform:"All",severity:"Medium",desc:"Use 1.5-1.75 line-height for body text for comfortable reading. Headings can use tighter line-height (1.1-1.3).",
+tip:"Use unitless line-height values (1.6 not 1.6em) so they inherit proportionally to child elements.",
+related:[81,122],
+doCode:`body {\n  line-height: 1.6;\n}\n\np {\n  line-height: 1.7;\n}\n\nh1, h2, h3 {\n  line-height: 1.2;\n}`,
+dontCode:`body {\n  line-height: 1.0;\n}\n/* Text is cramped and\n   hard to read.\n   Lines merge together.\n   Eye strain after 30 seconds.\n*/`},
+{id:81,cat:"Typography",name:"Line Length",platform:"Web",severity:"Medium",desc:"Limit lines to 65-75 characters for optimal readability. Use the ch unit for character-based widths.",
+doCode:`.article-body {\n  max-width: 70ch;\n  margin: 0 auto;\n}\n\n.card-text {\n  max-width: 55ch;\n}`,
+dontCode:`.article-body {\n  width: 100%;\n  max-width: none;\n}\n/* On a 1920px screen:\n   200+ characters per line.\n   Eyes can't track back to\n   the start of the next line.\n   Users lose their place. */`},
+{id:82,cat:"Typography",name:"Font Size Min",platform:"Mobile",severity:"High",desc:"Minimum 16px body text on mobile. Smaller text causes eye strain and triggers unwanted zoom on iOS inputs.",
+tip:"Setting inputs to 16px specifically prevents iOS Safari auto-zoom on focus.",
+related:[77,59],
+doCode:`/* Mobile-friendly sizes */\nbody {\n  font-size: 16px;\n  font-size: 1rem;\n}\n\n/* iOS input zoom prevention */\ninput, select, textarea {\n  font-size: 16px;\n}`,
+dontCode:`body {\n  font-size: 12px;\n}\ninput {\n  font-size: 14px;\n}\n/* Text too small on mobile.\n   iOS auto-zooms on input\n   focus with < 16px.\n   Layout breaks! */`},
+{id:83,cat:"Typography",name:"Heading Scale",platform:"All",severity:"Medium",desc:"Use a consistent typographic scale (e.g., 1.25 or 1.333 ratio) for heading sizes to create visual hierarchy.",
+doCode:`/* 1.25 scale (Major Third) */\n:root {\n  --text-sm: 0.875rem;\n  --text-base: 1rem;\n  --text-lg: 1.25rem;\n  --text-xl: 1.563rem;\n  --text-2xl: 1.953rem;\n  --text-3xl: 2.441rem;\n  --text-4xl: 3.052rem;\n}`,
+dontCode:`/* Random heading sizes */\nh1 { font-size: 38px; }\nh2 { font-size: 29px; }\nh3 { font-size: 23px; }\nh4 { font-size: 19px; }\n/* No mathematical relationship.\n   Hierarchy feels arbitrary\n   and inconsistent. */`},
+{id:84,cat:"Typography",name:"Font Loading Flash",platform:"Web",severity:"Medium",desc:"Prevent FOUT (flash of unstyled text) or FOIT (flash of invisible text) with font-display and preloading.",
+doCode:`/* Preload + swap strategy */\n<link rel="preload"\n  href="font.woff2" as="font"\n  type="font/woff2"\n  crossorigin>\n\n@font-face {\n  font-family: 'Custom';\n  src: url('font.woff2');\n  font-display: swap;\n  /* Shows fallback, then swaps */\n}`,
+dontCode:`@font-face {\n  font-family: 'Custom';\n  src: url('font.woff2');\n  /* No font-display set */\n}\n/* Default behavior:\n   Text invisible for 3 seconds\n   while font downloads.\n   User sees blank page. FOIT! */`},
+{id:85,cat:"Typography",name:"Text Truncation",platform:"All",severity:"Low",desc:"When truncating text with ellipsis, ensure the full text is accessible via tooltip, expansion, or aria-label.",
+tip:"Use -webkit-line-clamp for multi-line truncation with ellipsis.",
+related:[93,22],
+doCode:`/* Truncate with tooltip */\n.truncate {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n<p class="truncate"\n  title="Full text shown\n  on hover here...">\n  Full text shown on hover...\n</p>`,
+dontCode:`/* Truncate, no full text */\n.truncate {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n<p class="truncate">\n  Important information...\n</p>\n/* Full text is lost forever!\n   No way to read it. */`},
+
+// FEEDBACK (86-92) - IDs 86-92
+{id:86,cat:"Feedback",name:"Toast Notifications",platform:"All",severity:"Medium",desc:"Auto-dismiss toast notifications after 3-5 seconds. Include an action button and dismiss option. Stack multiple toasts.",
+tip:"Position toasts at bottom-right on desktop and bottom-center on mobile for least disruption.",
+related:[91,36],
+doCode:`function showToast(msg, type) {\n  const toast = createEl('div');\n  toast.className =\n    \`toast toast-\${type}\`;\n  toast.innerHTML = \`\n    <p>\${msg}</p>\n    <button onclick="undo()">\n      Undo\n    </button>\n    <button onclick="dismiss()">\n      X\n    </button>\n  \`;\n  setTimeout(() =>\n    dismiss(), 4000);\n}`,
+dontCode:`/* Blocking alert */\nalert('Item deleted!');\n/* Blocks entire UI! */\n\n/* Or toast that never goes */\nfunction showToast(msg) {\n  div.textContent = msg;\n  div.style.display = 'block';\n  // Never dismissed!\n  // Screen fills with toasts\n}`},
+{id:87,cat:"Feedback",name:"Empty States",platform:"All",severity:"Medium",desc:"Show helpful messages with a call to action when content areas are empty, not just blank space.",
+tip:"Empty states are a great onboarding opportunity -- guide users toward their first action.",
+related:[96,88],
+doCode:`<div class="empty-state\n  text-center py-16">\n  <svg><!-- illustration --></svg>\n  <h3>No projects yet</h3>\n  <p class="text-gray-400">\n    Create your first project\n    to get started.\n  </p>\n  <button class="btn-primary">\n    + New Project\n  </button>\n</div>`,
+dontCode:`<!-- Empty container -->\n<div class="projects-list">\n  <!-- Nothing here -->\n</div>\n\n/* User sees blank white space.\n   Is it loading? Is it broken?\n   Where do I start?\n   Confused and lost. */`},
+{id:88,cat:"Feedback",name:"Error Pages",platform:"Web",severity:"Low",desc:"Design helpful 404 and 500 error pages with navigation options, search, or links back to the homepage.",
+doCode:`<div class="error-page">\n  <h1>404</h1>\n  <h2>Page not found</h2>\n  <p>The page you're looking\n    for doesn't exist.</p>\n  <div class="flex gap-4">\n    <a href="/">Go Home</a>\n    <a href="/search">Search</a>\n  </div>\n</div>`,
+dontCode:`<!-- Default server 404 -->\n<h1>404 Not Found</h1>\n<p>The requested URL was\n  not found.</p>\n\n<!-- Dead end! No navigation.\n     User has to manually\n     edit the URL bar. -->`},
+{id:89,cat:"Feedback",name:"Offline State",platform:"All",severity:"Medium",desc:"Detect and communicate offline status clearly. Show what features are available offline.",
+doCode:`window.addEventListener(\n  'offline', () => {\n  showBanner(\n    'You are offline. ' +\n    'Changes will sync when ' +\n    'you reconnect.',\n    'warning'\n  );\n});\n\nwindow.addEventListener(\n  'online', () => {\n  hideBanner();\n  syncPendingChanges();\n});`,
+dontCode:`/* No offline detection */\n/* User goes offline mid-form.\n   Clicks submit.\n   Spinner forever.\n   No error message.\n   Data lost. */`},
+{id:90,cat:"Feedback",name:"Progress Indicators",platform:"All",severity:"Medium",desc:"Use determinate progress bars when you can calculate progress. Use indeterminate only when progress is unknown.",
+tip:"Show estimated time remaining when possible -- it dramatically reduces perceived wait time.",
+related:[11,65],
+doCode:`/* Determinate: known % */\n<div class="progress-bar">\n  <div style="width: 65%">\n  </div>\n  <span>65% complete</span>\n</div>\n\n/* With time estimate */\n<p>Uploading... 2 min left</p>`,
+dontCode:`/* Indeterminate for known */\n<!-- Upload is 65% done but -->\n<div class="spinner"></div>\n<p>Uploading...</p>\n<!-- No idea how long!\n     Is it 5% or 95% done?\n     User doesn't know whether\n     to wait or give up. -->`},
+{id:91,cat:"Feedback",name:"Undo Actions",platform:"All",severity:"High",desc:"Allow undo for destructive actions (delete, archive, move). Show an undo toast instead of a confirmation dialog when possible.",
+tip:"Soft-delete first, then hard-delete after the undo window expires (5-8 seconds).",
+related:[37,111,86],
+doCode:`function deleteItem(id) {\n  // Soft delete first\n  hideItem(id);\n  showToast(\n    'Item deleted',\n    {\n      action: {\n        label: 'Undo',\n        onClick: () =>\n          restoreItem(id)\n      },\n      duration: 5000\n    }\n  );\n  // Hard delete after timeout\n  setTimeout(() =>\n    permanentDelete(id), 5000);\n}`,
+dontCode:`function deleteItem(id) {\n  // Immediately permanent\n  api.delete(id);\n  // Gone forever!\n  // User accidentally deleted\n  // their most important item.\n  // No undo. No recovery.\n}`},
+{id:92,cat:"Feedback",name:"Status Indicators",platform:"All",severity:"Medium",desc:"Use clear, multi-signal status indicators (color + icon + text) so users immediately understand system state.",
+doCode:`<div class="status">\n  <span class="w-2 h-2\n    rounded-full bg-green-400\n    animate-pulse"></span>\n  <svg><!-- check icon --></svg>\n  <span>System Operational</span>\n</div>\n\n<div class="status">\n  <span class="w-2 h-2\n    rounded-full bg-red-400">\n  </span>\n  <svg><!-- alert icon --></svg>\n  <span>Outage Detected</span>\n</div>`,
+dontCode:`<!-- Color-only status -->\n<span class="dot green"></span>\n<span class="dot red"></span>\n<span class="dot yellow"></span>\n\n<!-- What do these colors mean?\n     No text labels.\n     Colorblind users see\n     identical gray dots. -->`},
+
+// CONTENT (93-99) - IDs 93-99
+{id:93,cat:"Content",name:"Copy Clarity",platform:"All",severity:"Medium",desc:"Use clear, concise microcopy. Avoid jargon, be specific about what happens, and write at an 8th-grade reading level.",
+tip:"Read your UI copy out loud -- if it sounds unnatural, rewrite it.",
+related:[94,123],
+doCode:`/* Clear microcopy */\n<button>Save Changes</button>\n<p>Your file is ready to\n  download (2.4 MB)</p>\n<p>We'll email you when your\n  order ships.</p>`,
+dontCode:`/* Jargon and vague copy */\n<button>Execute</button>\n<p>Operation completed\n  successfully.</p>\n<p>Your request has been\n  processed and queued\n  for fulfillment.</p>\n/* What does that MEAN? */`},
+{id:94,cat:"Content",name:"Action Labels",platform:"All",severity:"Medium",desc:"Use verb-first button labels that describe the action. 'Delete Project' is better than 'OK' or 'Submit'.",
+doCode:`<button>Save Changes</button>\n<button>Delete Account</button>\n<button>Send Invitation</button>\n<button>Download Report</button>\n<button>Add to Cart</button>\n\n/* Action is clear from label */`,
+dontCode:`<button>Submit</button>\n<button>OK</button>\n<button>Yes</button>\n<button>Continue</button>\n<button>Click Here</button>\n\n/* Submit what? OK to what?\n   Yes to what? Vague! */`},
+{id:95,cat:"Content",name:"Help Text",platform:"All",severity:"Low",desc:"Provide contextual help text near complex actions or unfamiliar features. Use tooltips, info icons, or inline text.",
+doCode:`<label for="slug">URL Slug</label>\n<p class="text-sm text-gray-400">\n  The URL-friendly version of\n  the name. Auto-generated\n  from the title.\n</p>\n<input id="slug"\n  value="my-post-title">`,
+dontCode:`<label>Slug</label>\n<input name="slug">\n\n<!-- What is a slug?\n     Where is it used?\n     Can I change it?\n     What format should it be?\n     User has no idea. -->`},
+{id:96,cat:"Content",name:"Onboarding",platform:"All",severity:"Medium",desc:"Use progressive disclosure for onboarding. Show features gradually as users need them, not all at once.",
+doCode:`/* Step-by-step onboarding */\nfunction showNextTip() {\n  const tips = [\n    { target: '.compose-btn',\n      text: 'Create your first\n        document' },\n    { target: '.share-btn',\n      text: 'Share with your\n        team' },\n  ];\n  highlightElement(\n    tips[currentStep]);\n}`,
+dontCode:`/* Info dump on first visit */\n<div class="modal">\n  <h2>Welcome! Here's\n    everything:</h2>\n  <p>Feature 1...</p>\n  <p>Feature 2...</p>\n  <!-- 15 more features -->\n  <p>Feature 17...</p>\n</div>\n/* Overwhelming! User skips */`},
+{id:97,cat:"Content",name:"Search",platform:"All",severity:"Medium",desc:"Provide instant search results as the user types. Show suggestions, recent searches, and handle empty results gracefully.",
+tip:"Debounce search input (200-300ms) to avoid excessive API calls while still feeling instant.",
+related:[101,87],
+doCode:`<div class="search">\n  <input type="search"\n    oninput="search(this.value)">\n  <div class="results">\n    <p class="text-sm">\n      Recent searches:\n    </p>\n    <ul><!-- suggestions --></ul>\n  </div>\n</div>\n\n/* Debounced instant results */\nconst search = debounce(\n  (q) => showResults(q), 300);`,
+dontCode:`<form action="/search">\n  <input name="q">\n  <button>Search</button>\n</form>\n\n<!-- Full page reload per search.\n     No suggestions.\n     No recent searches.\n     Empty results: just blank\n     page. Frustrating! -->`},
+{id:98,cat:"Content",name:"Data Entry",platform:"All",severity:"Medium",desc:"Use smart defaults and pre-fill when possible. Reduce the amount of data users must manually enter.",
+doCode:`/* Pre-fill from context */\n<select name="country">\n  <!-- Auto-detect from IP -->\n  <option selected>Canada</option>\n</select>\n\n/* Smart defaults */\n<input type="date"\n  value="2026-03-07">\n<!-- Today's date pre-filled -->`,
+dontCode:`/* No defaults, no pre-fill */\n<select name="country">\n  <option>Select country</option>\n  <!-- 240 countries to scroll -->\n</select>\n\n<input type="date"\n  placeholder="Date">\n<!-- User must enter everything\n     from scratch. Tedious. -->`},
+{id:99,cat:"Content",name:"AI Interaction",platform:"All",severity:"High",desc:"When showing AI-generated content, indicate AI confidence levels and always allow users to edit or override the output.",
+tip:"Always show the source or reasoning behind AI-generated content to build user trust.",
+related:[92,96],
+doCode:`<div class="ai-result">\n  <div class="flex gap-2">\n    <span class="badge">\n      AI Generated\n    </span>\n    <span class="text-sm">\n      92% confidence\n    </span>\n  </div>\n  <p contenteditable="true">\n    AI output here...\n  </p>\n  <button>Edit</button>\n  <button>Regenerate</button>\n</div>`,
+dontCode:`<!-- AI output, no indicators -->\n<p>The answer is 42.</p>\n<!-- Is this AI or human?\n     How confident is it?\n     Can I change it?\n     No edit option.\n     No regenerate.\n     Just trust it blindly. -->`},
+{id:100,cat:"Content",name:"Spatial UI",platform:"All",severity:"Medium",desc:"Use depth and proximity cues (shadows, layers, spacing) to communicate hierarchy and relationships between elements.",
+doCode:`/* Depth through elevation */\n.card {\n  background: rgba(255,255,255,\n    0.03);\n  border: 1px solid\n    rgba(255,255,255,0.06);\n}\n.card-elevated {\n  box-shadow:\n    0 4px 6px rgba(0,0,0,0.3),\n    0 10px 15px rgba(0,0,0,0.2);\n}\n\n/* Proximity = relationship */\n.label { margin-bottom: 4px; }\n.field-group {\n  margin-bottom: 24px;\n}`,
+dontCode:`/* Flat, no depth cues */\n.card {\n  background: #1a1a1a;\n  /* No border, no shadow */\n}\n.modal {\n  /* Same visual layer as page */\n  /* No overlay, no shadow */\n}\n/* Everything looks the same\n   depth. No visual hierarchy.\n   Nothing stands out. */`},
+
+// NAVIGATION (additional)
+{id:101,cat:"Navigation",name:"Command Palette",platform:"Web",severity:"Medium",desc:"Provide a Cmd+K / Ctrl+K command palette for power users to quickly access any page, action, or setting without navigating through menus.",
+tip:"Index all routes, actions, and settings at build time so the palette loads instantly.",
+related:[5,3],
+doCode:`/* Command palette trigger */\ndocument.addEventListener(\n  'keydown', (e) => {\n  if ((e.metaKey || e.ctrlKey)\n    && e.key === 'k') {\n    e.preventDefault();\n    openCommandPalette();\n  }\n});\n\n/* Fuzzy search results */\n<dialog id="cmd-palette">\n  <input placeholder="Search...">\n  <ul role="listbox">\n    <li role="option">Dashboard</li>\n    <li role="option">Settings</li>\n  </ul>\n</dialog>`,
+dontCode:`/* No keyboard shortcut nav */\n/* Power users must click\n   through 4 levels of menus\n   to reach common actions.\n   No search, no shortcuts.\n   Slower workflow. */`},
+{id:102,cat:"Navigation",name:"Infinite Scroll vs Pagination",platform:"Web",severity:"Medium",desc:"Use pagination for goal-oriented browsing (e-commerce, search). Use infinite scroll for discovery feeds. Always provide a way to reach the footer.",
+tip:"With infinite scroll, use a 'Load More' button as fallback and place footer content in a sidebar instead.",
+related:[38],
+doCode:`/* Pagination for search */\n<nav aria-label="Pagination">\n  <button aria-label="Previous">\n    Prev\n  </button>\n  <span>Page 3 of 12</span>\n  <button aria-label="Next">\n    Next\n  </button>\n</nav>\n\n/* Show total result count */\n<p>Showing 21-30 of 118</p>`,
+dontCode:`/* Infinite scroll on search */\n/* User finds item at position\n   #847 but can't bookmark it.\n   Back button scrolls to top.\n   Footer is unreachable.\n   Can't tell total results. */`},
+{id:103,cat:"Navigation",name:"Tab Order Logic",platform:"Web",severity:"High",desc:"Never use positive tabindex values. Use tabindex='0' to add elements to natural flow and tabindex='-1' for programmatic focus only.",
+tip:"Run 'Tab' through your entire page quarterly to catch broken tab order regressions.",
+related:[44,30],
+doCode:`/* Natural DOM order */\n<header><!-- tabs 1-3 --></header>\n<main><!-- tabs 4-15 --></main>\n<footer><!-- tabs 16-18 --></footer>\n\n/* Add to tab flow */\n<div role="button" tabindex="0">\n  Custom Button\n</div>\n\n/* Programmatic focus only */\n<div tabindex="-1" id="alert">\n  Error message\n</div>`,
+dontCode:`/* Positive tabindex chaos */\n<input tabindex="3">\n<button tabindex="1">\n  Submit\n</button>\n<a tabindex="2">Link</a>\n\n/* Tab order: button > link >\n   input. Completely illogical.\n   Overrides natural DOM flow.\n   Maintenance nightmare! */`},
+
+// ANIMATION (additional)
+{id:104,cat:"Animation",name:"Stagger Animations",platform:"Web",severity:"Low",desc:"Stagger entrance animations for lists or grids with a small delay per item (30-80ms). Creates a pleasing cascade effect without overwhelming.",
+tip:"Cap the max delay (e.g., 10 items max stagger) so late items don't wait too long.",
+related:[8,9,15],
+doCode:`/* CSS stagger with custom prop */\n.list-item {\n  opacity: 0;\n  transform: translateY(12px);\n  animation: fadeUp 0.4s ease-out\n    forwards;\n  animation-delay:\n    calc(var(--i) * 50ms);\n}\n\n/* Set index in HTML */\n<li style="--i:0">First</li>\n<li style="--i:1">Second</li>\n<li style="--i:2">Third</li>`,
+dontCode:`/* All items animate at once */\n.list-item {\n  animation: fadeUp 0.4s;\n}\n/* 20 items pop in at once -\n   looks chaotic, not polished.\n   Or one long delay: */\n.list-item:nth-child(20) {\n  animation-delay: 2s;\n}\n/* User waits 2 seconds! */`},
+{id:105,cat:"Animation",name:"Scroll-Triggered Animations",platform:"Web",severity:"Low",desc:"Use Intersection Observer to trigger animations when elements scroll into view. Avoid scroll-jacking that overrides native scroll behavior.",
+tip:"Use animation: forwards to keep end state and threshold: 0.2 so elements animate before fully visible.",
+related:[10,14],
+doCode:`/* Intersection Observer */\nconst observer = new\n  IntersectionObserver(\n  (entries) => {\n    entries.forEach(e => {\n      if (e.isIntersecting) {\n        e.target.classList\n          .add('visible');\n        observer.unobserve(\n          e.target);\n      }\n    });\n  },\n  { threshold: 0.2 }\n);\n\n.visible {\n  animation: fadeIn 0.5s\n    ease-out forwards;\n}`,
+dontCode:`/* Scroll-jacking */\nwindow.addEventListener(\n  'scroll', (e) => {\n  e.preventDefault();\n  // Override scroll behavior\n  // Custom scroll animation\n});\n/* User loses control of\n   scrolling. Feels broken.\n   Inaccessible. */`},
+{id:106,cat:"Animation",name:"Exit Animations",platform:"All",severity:"Medium",desc:"Animate elements out before removing them from the DOM. Abrupt disappearance is jarring and confusing.",
+tip:"Use animationend event to remove DOM nodes after the exit animation completes.",
+related:[9,15],
+doCode:`/* Animate out before remove */\nfunction removeCard(el) {\n  el.classList.add('exiting');\n  el.addEventListener(\n    'animationend', () => {\n      el.remove();\n    }, { once: true });\n}\n\n.exiting {\n  animation: fadeOut 0.2s\n    ease-in forwards;\n}`,
+dontCode:`/* Abrupt removal */\nfunction removeCard(el) {\n  el.remove();\n}\n/* Element vanishes instantly.\n   User is disoriented.\n   "Where did that go?"\n   No visual closure. */`},
+
+// LAYOUT (additional)
+{id:107,cat:"Layout",name:"Aspect Ratio",platform:"Web",severity:"Medium",desc:"Use the CSS aspect-ratio property to maintain consistent proportions for images, videos, and cards. Prevents layout shifts during loading.",
+tip:"Combine with object-fit: cover for images that need to fill an aspect-ratio container without distortion.",
+related:[20,74],
+doCode:`/* Modern aspect ratio */\n.video-wrapper {\n  aspect-ratio: 16 / 9;\n  width: 100%;\n}\n\n.square-card {\n  aspect-ratio: 1;\n}\n\n.thumbnail {\n  aspect-ratio: 4 / 3;\n  object-fit: cover;\n}`,
+dontCode:`/* Padding hack (old way) */\n.video-wrapper {\n  position: relative;\n  padding-bottom: 56.25%;\n  height: 0;\n}\n.video-wrapper iframe {\n  position: absolute;\n  top: 0; left: 0;\n  width: 100%; height: 100%;\n}\n/* Confusing, hard to maintain */`},
+{id:108,cat:"Layout",name:"Container Queries",platform:"Web",severity:"Low",desc:"Use CSS container queries for component-level responsive design. Components adapt based on their container size, not viewport size.",
+tip:"Name containers with container-name for clarity when nesting multiple query contexts.",
+related:[72,73],
+doCode:`/* Container query */\n.card-container {\n  container-type: inline-size;\n  container-name: card;\n}\n\n@container card\n  (min-width: 400px) {\n  .card-content {\n    display: grid;\n    grid-template-columns:\n      200px 1fr;\n  }\n}`,
+dontCode:`/* Viewport-only responsive */\n@media (min-width: 768px) {\n  .card-content {\n    display: grid;\n  }\n}\n/* Card in a narrow sidebar\n   still gets wide layout.\n   Broken at component level.\n   Can't reuse in different\n   container sizes. */`},
+
+// TOUCH (additional)
+{id:109,cat:"Touch",name:"Swipe Gestures",platform:"Mobile",severity:"Medium",desc:"Implement swipe gestures for natural mobile interactions (swipe-to-delete, swipe between views) with visual affordances showing the action underneath.",
+tip:"Always provide a button alternative for the same action -- not all users discover swipe gestures.",
+related:[26,29],
+doCode:`/* Swipe to reveal actions */\n.swipe-container {\n  overflow: hidden;\n}\n.swipe-item {\n  transform: translateX(0);\n  transition: transform 0.2s;\n}\n.swipe-action {\n  position: absolute;\n  right: 0;\n  background: #EF4444;\n  color: white;\n  padding: 16px;\n}\n/* Reveal on swipe left */`,
+dontCode:`/* Hidden swipe with no hint */\n.item {\n  /* Swipe to delete exists\n     but no visual indicator.\n     No animation feedback.\n     User accidentally swipes\n     and deletes without\n     knowing what happened. */\n}`},
+
+// INTERACTION (additional)
+{id:110,cat:"Interaction",name:"Optimistic Updates",platform:"Web",severity:"Medium",desc:"Update the UI immediately before the server responds, then reconcile. Makes the app feel instant. Always handle rollback on failure.",
+tip:"Keep a copy of the previous state so you can cleanly revert on error.",
+related:[34,36],
+doCode:`/* Optimistic update */\nasync function toggleLike(id) {\n  // Update UI immediately\n  setLiked(prev => !prev);\n  setCount(prev => prev + 1);\n  \n  try {\n    await api.like(id);\n  } catch (err) {\n    // Rollback on failure\n    setLiked(prev => !prev);\n    setCount(prev => prev - 1);\n    showError('Failed to save');\n  }\n}`,
+dontCode:`/* Wait for server */\nasync function toggleLike(id) {\n  showSpinner();\n  const res = await api.like(id);\n  hideSpinner();\n  setLiked(res.liked);\n}\n/* User clicks, waits 500ms+\n   for response. Feels laggy.\n   On slow networks, feels\n   completely broken. */`},
+{id:111,cat:"Interaction",name:"Undo Pattern",platform:"All",severity:"High",desc:"Prefer undo over confirmation dialogs. Undo is faster and less disruptive while still being safe. Show a timed undo toast after destructive actions.",
+tip:"Use 5-8 second undo windows. Shorter is frustrating, longer blocks server-side processing.",
+related:[37,91],
+doCode:`/* Undo toast pattern */\nfunction archiveEmail(id) {\n  // Hide immediately\n  hideEmail(id);\n  const toast = showToast(\n    'Email archived', {\n    action: {\n      label: 'Undo',\n      onClick: () => {\n        restoreEmail(id);\n      }\n    },\n    duration: 6000\n  });\n  // Commit after timeout\n  toast.onClose = () =>\n    api.archive(id);\n}`,
+dontCode:`/* Confirmation dialog */\nfunction archiveEmail(id) {\n  if (confirm(\n    'Archive this email?')) {\n    api.archive(id);\n  }\n}\n/* Every action needs a click\n   on a modal. Processing 50\n   emails? 50 confirmation\n   dialogs. Exhausting! */`},
+{id:112,cat:"Interaction",name:"Drag and Drop",platform:"Web",severity:"Low",desc:"Provide clear visual cues during drag-and-drop: a dragging ghost, valid drop zone highlights, and cursor changes. Always offer a non-drag alternative.",
+tip:"Use pointer events instead of mouse events for unified mouse and touch support.",
+related:[75,109],
+doCode:`/* Clear drag-drop cues */\n.draggable {\n  cursor: grab;\n}\n.draggable:active {\n  cursor: grabbing;\n  opacity: 0.5;\n}\n.drop-zone.drag-over {\n  border: 2px dashed #818CF8;\n  background: rgba(129,140,\n    248,0.1);\n}\n\n/* Non-drag alternative */\n<button onclick="moveUp()">\n  Move Up\n</button>`,
+dontCode:`/* No visual cues */\n.draggable {\n  /* No cursor change */\n  /* No opacity change */\n}\n.drop-zone {\n  /* No highlight on hover */\n}\n/* User drags element, no\n   feedback where to drop.\n   No keyboard alternative.\n   Inaccessible. */`},
+
+// ACCESSIBILITY (additional)
+{id:113,cat:"Accessibility",name:"Focus Visible Only",platform:"Web",severity:"Medium",desc:"Use :focus-visible instead of :focus to show focus rings only for keyboard navigation, not mouse clicks. Best of both worlds.",
+tip:"Safari added :focus-visible in v15.4 -- for older support, use the focus-visible polyfill.",
+related:[30,44],
+doCode:`/* Focus ring for keyboard */\nbutton:focus-visible {\n  outline: 2px solid #818CF8;\n  outline-offset: 2px;\n}\n\n/* No ring for mouse click */\nbutton:focus:not(\n  :focus-visible) {\n  outline: none;\n}`,
+dontCode:`/* Focus ring on every click */\nbutton:focus {\n  outline: 2px solid #818CF8;\n}\n/* Mouse users see ugly focus\n   ring every time they click.\n   So developer removes ALL\n   focus styles. Now keyboard\n   users can't navigate! */`},
+{id:114,cat:"Accessibility",name:"Color-Blind Safe Palette",platform:"All",severity:"Medium",desc:"Use patterns, shapes, or labels alongside color to convey meaning. Test designs with color blindness simulators.",
+tip:"Avoid red/green as the only differentiator. Use blue/orange which works for most types of color vision deficiency.",
+related:[39,40,92],
+doCode:`/* Color + shape + text */\n.status-success {\n  color: #4ADE80;\n  /* Also has check icon + text */\n}\n.status-error {\n  color: #F87171;\n  /* Also has X icon + text */\n}\n\n/* Charts: pattern fills */\n<pattern id="stripe">\n  <line x1="0" y1="0"\n    x2="4" y2="4"\n    stroke="#F87171"/>\n</pattern>`,
+dontCode:`/* Red/green only */\n.success { color: green; }\n.error { color: red; }\n\n/* Chart with similar hues */\nvar colors = [\n  '#FF0000', '#00FF00',\n  '#FF6600', '#66FF00'\n];\n/* 8% of men can't tell\n   these apart at all! */`},
+{id:115,cat:"Accessibility",name:"Screen Reader Testing",platform:"All",severity:"High",desc:"Test with actual screen readers (VoiceOver, NVDA, JAWS). Automated tools catch only ~30% of accessibility issues.",
+tip:"Record a screen reader walkthrough video of key user flows quarterly for the team to review.",
+related:[43,45,47],
+doCode:`/* Proper semantic markup */\n<nav aria-label="Main">\n  <ul role="menubar">\n    <li role="menuitem">\n      <a href="/" \n         aria-current="page">\n        Home\n      </a>\n    </li>\n  </ul>\n</nav>\n\n/* Test announcement order:\n   "Main navigation, menubar,\n    Home, current page, link" */`,
+dontCode:`/* Only automated testing */\n// axe-core says "0 violations"\n// But screen reader says:\n// "button" (no label)\n// "link link link" (no context)\n// "region" (no name)\n/* Technically passes but\n   unusable with assistive\n   technology! */`},
+
+// PERFORMANCE (additional)
+{id:116,cat:"Performance",name:"Font Loading Strategy",platform:"Web",severity:"Medium",desc:"Subset fonts to only needed characters. Use woff2 format. Preload the primary font and self-host for reliability.",
+tip:"Use unicode-range in @font-face to load character subsets on demand for multilingual sites.",
+related:[54,84],
+doCode:`/* Subset + preload + woff2 */\n<link rel="preload"\n  href="inter-latin.woff2"\n  as="font" type="font/woff2"\n  crossorigin>\n\n@font-face {\n  font-family: 'Inter';\n  src: url('inter-latin.woff2')\n    format('woff2');\n  font-display: swap;\n  unicode-range: U+0000-00FF;\n}`,
+dontCode:`/* Full Google Fonts import */\n<link href="https://fonts.\n  googleapis.com/css2?\n  family=Inter:wght@100..900"\n  rel="stylesheet">\n/* 100KB+ download.\n   All weights, all characters.\n   Render-blocking request.\n   Third-party dependency. */`},
+{id:117,cat:"Performance",name:"Image Lazy Loading",platform:"Web",severity:"High",desc:"Use native loading='lazy' for below-fold images. Mark above-fold hero images with loading='eager' and fetchpriority='high'.",
+tip:"Combine with decoding='async' to prevent image decoding from blocking the main thread.",
+related:[50,51],
+doCode:`/* Above fold: eager + high */\n<img src="hero.webp"\n  loading="eager"\n  fetchpriority="high"\n  decoding="async"\n  alt="Hero banner">\n\n/* Below fold: lazy */\n<img src="card-photo.webp"\n  loading="lazy"\n  decoding="async"\n  alt="Product photo">`,
+dontCode:`/* All images eager-loaded */\n<img src="photo1.jpg">\n<img src="photo2.jpg">\n<!-- 50 more full-size images -->\n\n/* OR all images lazy-loaded */\n<img src="hero.jpg"\n  loading="lazy">\n<!-- Hero appears blank then\n     pops in! LCP tanks. */`},
+
+// FORMS (additional)
+{id:118,cat:"Forms",name:"Autofill Styling",platform:"Web",severity:"Low",desc:"Style browser autofill backgrounds to match your design. Chrome applies a bright yellow/blue background by default that clashes with dark themes.",
+tip:"Use transition with a very long duration to effectively override autofill background color.",
+related:[64,59],
+doCode:`/* Override autofill styles */\ninput:-webkit-autofill {\n  -webkit-box-shadow:\n    0 0 0 1000px #1a1a2e inset;\n  -webkit-text-fill-color:\n    #E2E8F0;\n  transition: background-color\n    5000s ease-in-out 0s;\n}\n\ninput:-webkit-autofill:focus {\n  -webkit-box-shadow:\n    0 0 0 1000px #1a1a2e inset;\n}`,
+dontCode:`/* Default autofill styles */\n/* Chrome shows bright yellow\n   background on autofilled\n   inputs. On your dark theme,\n   it looks completely broken.\n   Jarring contrast.\n   Users think it's a bug. */`},
+{id:119,cat:"Forms",name:"Password Strength Meter",platform:"Web",severity:"Medium",desc:"Show real-time password strength feedback with specific criteria. Tell users exactly what to add to make the password stronger.",
+tip:"Check against common password databases (Have I Been Pwned API) in addition to complexity rules.",
+related:[67,70],
+doCode:`<div class="pw-strength">\n  <div class="flex gap-1">\n    <div class="h-1 flex-1\n      bg-red-500 rounded"></div>\n    <div class="h-1 flex-1\n      bg-red-500 rounded"></div>\n    <div class="h-1 flex-1\n      bg-gray-700 rounded"></div>\n    <div class="h-1 flex-1\n      bg-gray-700 rounded"></div>\n  </div>\n  <ul class="text-xs mt-2">\n    <li class="text-green-400">\n      8+ characters</li>\n    <li class="text-red-400">\n      Add a number</li>\n  </ul>\n</div>`,
+dontCode:`/* No strength indicator */\n<input type="password"\n  placeholder="Password">\n<button>Create Account</button>\n\n/* User picks "password123"\n   and submits. Error:\n   "Password too weak."\n   No hint what to fix.\n   Retry. Retry. Retry. */`},
+
+// RESPONSIVE (additional)
+{id:120,cat:"Responsive",name:"Fluid Typography",platform:"Web",severity:"Medium",desc:"Use CSS clamp() for fluid font sizes that scale smoothly between breakpoints. No jumpy media query transitions.",
+tip:"Use the formula: clamp(minSize, preferred, maxSize) where preferred uses viewport units.",
+related:[77,82,83],
+doCode:`/* Fluid type scale */\nh1 {\n  font-size: clamp(\n    1.75rem,\n    1rem + 3vw,\n    3.5rem\n  );\n}\n\np {\n  font-size: clamp(\n    1rem,\n    0.9rem + 0.5vw,\n    1.25rem\n  );\n}\n/* Smooth scaling, no jumps */`,
+dontCode:`/* Jump between breakpoints */\nh1 { font-size: 24px; }\n@media (min-width: 768px) {\n  h1 { font-size: 36px; }\n}\n@media (min-width: 1200px) {\n  h1 { font-size: 48px; }\n}\n/* Font jumps abruptly at\n   each breakpoint. Not fluid.\n   Looks wrong at 767px. */`},
+{id:121,cat:"Responsive",name:"Touch Target Sizing",platform:"Mobile",severity:"High",desc:"Use min-height and min-width of 48px for all interactive elements on mobile. Add padding rather than scaling up the visual element.",
+tip:"Use the @media (pointer: coarse) query to apply larger targets only for touch devices.",
+related:[24,25],
+doCode:`/* Touch-friendly targets */\n@media (pointer: coarse) {\n  button, a, input,\n  select {\n    min-height: 48px;\n    min-width: 48px;\n  }\n}\n\n/* Padding expands target */\n.compact-link {\n  padding: 12px;\n  margin: -12px;\n  /* Visual size unchanged,\n     tap area much bigger */\n}`,
+dontCode:`/* Tiny targets everywhere */\n.icon-btn {\n  width: 20px;\n  height: 20px;\n  padding: 0;\n}\n.text-link {\n  font-size: 12px;\n  /* Tap target is maybe 16px.\n     Fat-finger nightmare.\n     Users tap wrong button\n     constantly. */\n}`},
+
+// TYPOGRAPHY (additional)
+{id:122,cat:"Typography",name:"Vertical Rhythm",platform:"Web",severity:"Low",desc:"Maintain consistent vertical spacing by using a baseline grid. All spacing should be multiples of a base unit (e.g., 4px or 8px).",
+tip:"Set line-height as a multiple of your base unit to keep text on the rhythm grid.",
+related:[80,23],
+doCode:`/* 8px baseline rhythm */\n:root {\n  --rhythm: 8px;\n}\n\nbody {\n  font-size: 16px;\n  line-height: 24px; /* 3x8 */\n}\n\nh2 {\n  font-size: 24px;\n  line-height: 32px; /* 4x8 */\n  margin-bottom: 16px; /* 2x8 */\n}\n\np {\n  margin-bottom: 24px; /* 3x8 */\n}`,
+dontCode:`/* Random spacing */\nh2 {\n  line-height: 1.3;\n  margin-bottom: 13px;\n}\np {\n  line-height: 1.45;\n  margin-bottom: 17px;\n}\n/* Spacing feels 'off' but\n   you can't pin down why.\n   No visual rhythm. */`},
+
+// FEEDBACK (additional)
+{id:123,cat:"Feedback",name:"Micro-Copy Feedback",platform:"All",severity:"Medium",desc:"Use micro-copy (small helper text) to guide users before they make mistakes, not just after. Anticipate confusion and provide preemptive context.",
+tip:"A/B test micro-copy -- small text changes can have outsized impact on conversion rates.",
+related:[93,95],
+doCode:`/* Preemptive guidance */\n<label for="username">\n  Username\n</label>\n<p class="text-xs text-gray-400\n  mb-1">\n  3-20 characters, letters\n  and numbers only\n</p>\n<input id="username"\n  aria-describedby="user-hint">\n\n<button>Delete Account</button>\n<p class="text-xs">\n  This will delete all your\n  data permanently.\n</p>`,
+dontCode:`/* No preemptive guidance */\n<label>Username</label>\n<input name="username">\n\n/* User types "hi!@#$" */\n/* Error: "Invalid characters"\n   What characters are valid?\n   How long should it be?\n   User guesses and retries\n   3 more times. */`},
+{id:124,cat:"Feedback",name:"Success States",platform:"All",severity:"Medium",desc:"Design success states as carefully as error states. Celebrate completed tasks with clear confirmation, next-step guidance, and optional sharing/continuation actions.",
+tip:"Use subtle animation (checkmark, confetti for major milestones) to make success feel rewarding.",
+related:[36,71],
+doCode:`/* Rich success state */\n<div class="text-center py-8">\n  <div class="animate-check">\n    <svg><!-- animated check -->\n    </svg>\n  </div>\n  <h2>Payment Successful!</h2>\n  <p>Order #12345 confirmed</p>\n  <p class="text-sm">\n    Email receipt sent to\n    you@mail.com\n  </p>\n  <div class="flex gap-3 mt-4">\n    <a href="/orders">\n      Track Order\n    </a>\n    <button>Continue Shopping\n    </button>\n  </div>\n</div>`,
+dontCode:`/* Minimal success state */\nalert('Success!');\nwindow.location = '/dashboard';\n\n/* User wonders:\n   - What succeeded?\n   - What's the order number?\n   - Was the email sent?\n   - What should I do next?\n   No closure. No delight. */`},
+
+// CONTENT (additional)
+{id:125,cat:"Content",name:"Content Hierarchy",platform:"All",severity:"Medium",desc:"Use visual weight (size, color, position) to establish clear content hierarchy. The most important information should be the most visually prominent.",
+tip:"Squint test: blur your eyes and check if the most important elements still stand out.",
+related:[83,42],
+doCode:`/* Clear visual hierarchy */\n<article>\n  <span class="text-sm\n    text-indigo-400 font-medium">\n    Category\n  </span>\n  <h1 class="text-4xl font-bold\n    text-white mt-2">\n    Main Headline\n  </h1>\n  <p class="text-lg text-gray-400\n    mt-3">\n    Supporting subtext\n  </p>\n  <p class="text-base\n    text-gray-300 mt-4">\n    Body content here...\n  </p>\n</article>`,
+dontCode:`/* Flat hierarchy */\n<article>\n  <p class="text-base">\n    Category\n  </p>\n  <p class="text-base">\n    Main Headline\n  </p>\n  <p class="text-base">\n    Supporting text\n  </p>\n  <p class="text-base">\n    Body content\n  </p>\n</article>\n/* Everything same size/weight.\n   Nothing stands out. */`}
+];
+
+// Renumber sequentially 1-99
+guidelines.forEach((g, i) => g.id = i + 1);
+
+// State
+let activeCategory = 'all';
+let activeSeverity = 'all';
+let activePlatform = 'all';
+let searchQuery = '';
+let checklistMode = false;
+let checkedItems = JSON.parse(localStorage.getItem('ux-guidelines-checklist') || '{}');
+
+// Render
+function getRelatedGuidelines(g) {
+    // Use explicit related IDs if available, otherwise fall back to same-category
+    if (g.related && g.related.length > 0) {
+        return g.related
+            .map(rid => guidelines.find(other => other.id === rid))
+            .filter(Boolean)
+            .slice(0, 4);
+    }
+    return guidelines
+        .filter(other => other.id !== g.id && other.cat === g.cat)
+        .slice(0, 3);
+}
+
+function renderGuidelines() {
+    const grid = document.getElementById('guidelines-grid');
+    const noResults = document.getElementById('no-results');
+    const filtered = guidelines.filter(g => {
+        const catMatch = activeCategory === 'all' || g.cat === activeCategory;
+        const sevMatch = activeSeverity === 'all' || g.severity === activeSeverity;
+        const platMatch = activePlatform === 'all' || g.platform === activePlatform || g.platform === 'All';
+        const searchMatch = !searchQuery ||
+            g.name.toLowerCase().includes(searchQuery) ||
+            g.desc.toLowerCase().includes(searchQuery) ||
+            g.cat.toLowerCase().includes(searchQuery) ||
+            (g.tip && g.tip.toLowerCase().includes(searchQuery));
+        return catMatch && sevMatch && platMatch && searchMatch;
+    });
+
+    document.getElementById('visible-count').textContent = filtered.length;
+
+    if (filtered.length === 0) {
+        grid.classList.add('hidden');
+        noResults.classList.remove('hidden');
+        updateChecklistProgress(filtered);
+        return;
+    }
+    grid.classList.remove('hidden');
+    noResults.classList.add('hidden');
+
+    grid.innerHTML = filtered.map(g => {
+        const cat = CATEGORIES[g.cat];
+        const sev = SEVERITY[g.severity];
+        const plat = PLATFORM_COLORS[g.platform];
+        const isChecked = checkedItems[g.id];
+        const related = getRelatedGuidelines(g);
+        const relatedHtml = related.length > 0 ? `
+            <div class="border-t border-white/[0.06] px-4 py-3">
+                <span class="text-xs text-gray-500 uppercase tracking-wider font-semibold">See also:</span>
+                <span class="ml-2">${related.map(r => `<span class="related-link text-xs" onclick="scrollToGuideline(${r.id})">#${r.id} ${r.name}</span>`).join('<span class="text-gray-600 mx-1">·</span>')}</span>
+            </div>` : '';
+        return `
+        <div class="guideline-card rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden ${isChecked ? 'checked-card' : ''}" data-id="${g.id}" id="guideline-${g.id}">
+            <div class="checklist-checkbox ${isChecked ? 'checked' : ''}" onclick="toggleChecked(${g.id})">
+                <svg class="w-3.5 h-3.5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div class="p-6 ${checklistMode ? 'p-6-inner' : ''}">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class="px-2.5 py-1 rounded-md text-xs font-semibold" style="background:${cat.bg};border:1px solid ${cat.border};color:${cat.text}">${g.cat}</span>
+                    <span class="px-2.5 py-1 rounded-md text-xs font-medium" style="background:${plat.bg};border:1px solid ${plat.border};color:${plat.text}">${g.platform}</span>
+                    <span class="px-2.5 py-1 rounded-md text-xs font-semibold" style="background:${sev.bg};border:1px solid ${sev.border};color:${sev.text}">${g.severity}</span>
+                    <span class="ml-auto text-xs text-gray-600 font-mono">#${g.id}</span>
+                </div>
+                <h3 class="font-heading text-lg font-bold text-white mb-2">${g.name}</h3>
+                <p class="text-sm text-gray-400 leading-relaxed mb-4">${g.desc}</p>${g.tip ? `
+                <div class="flex items-start gap-2 mb-4 px-3 py-2 rounded-lg bg-indigo-500/[0.06] border border-indigo-500/[0.1]">
+                    <svg class="w-4 h-4 text-indigo-400 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                    <p class="text-xs text-indigo-300/80 leading-relaxed"><span class="font-semibold text-indigo-300">Pro tip:</span> ${g.tip}</p>
+                </div>` : ''}
+                <button onclick="toggleCode(${g.id})" class="text-xs font-medium text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-1">
+                    <svg class="w-4 h-4 transition-transform" id="chevron-${g.id}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    <span id="toggle-text-${g.id}">Show Examples</span>
+                </button>
+            </div>
+            <div id="code-${g.id}" class="hidden border-t border-white/[0.06]">
+                <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/[0.06]">
+                    <div class="p-4">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center">
+                                <svg class="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            </span>
+                            <span class="text-xs font-bold text-green-400 uppercase tracking-wider">Do</span>
+                            <button onclick="copyDoCode(${g.id})" class="ml-auto px-2.5 py-1 rounded-md text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20 hover:bg-green-500/20 transition-all flex items-center gap-1">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                                Copy Fix
+                            </button>
+                        </div>
+                        <pre class="bg-green-500/[0.04] border border-green-500/10 rounded-lg p-3 overflow-x-auto text-sm leading-relaxed"><code class="text-green-300/90">${escapeHtml(g.doCode)}</code></pre>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center">
+                                <svg class="w-3 h-3 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/></svg>
+                            </span>
+                            <span class="text-xs font-bold text-red-400 uppercase tracking-wider">Don't</span>
+                        </div>
+                        <pre class="bg-red-500/[0.04] border border-red-500/10 rounded-lg p-3 overflow-x-auto text-sm leading-relaxed"><code class="text-red-300/90">${escapeHtml(g.dontCode)}</code></pre>
+                    </div>
+                </div>${relatedHtml}
+            </div>
+        </div>`;
+    }).join('');
+
+    updateChecklistProgress(filtered);
+}
+
+function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function toggleCode(id) {
+    const codeEl = document.getElementById('code-' + id);
+    const chevron = document.getElementById('chevron-' + id);
+    const text = document.getElementById('toggle-text-' + id);
+    const isHidden = codeEl.classList.contains('hidden');
+    codeEl.classList.toggle('hidden');
+    chevron.style.transform = isHidden ? 'rotate(180deg)' : '';
+    text.textContent = isHidden ? 'Hide Examples' : 'Show Examples';
+}
+
+function filterCategory(cat) {
+    activeCategory = cat;
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+        const isActive = btn.dataset.cat === cat;
+        const label = btn.textContent;
+        btn.className = `cat-btn px-3 py-1.5 text-xs font-medium rounded-lg border transition-all ${isActive ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30' : 'bg-white/5 text-gray-400 border-white/10'}`;
+        btn.textContent = label;
+    });
+    renderGuidelines();
+}
+
+function toggleSeverity(sev) {
+    activeSeverity = sev;
+    document.querySelectorAll('.sev-btn').forEach(btn => {
+        const isActive = btn.dataset.sev === sev;
+        btn.className = `sev-btn px-3 py-1.5 text-xs font-medium rounded-lg border transition-all ${isActive ? 'bg-white/10 text-white border-white/20' : 'bg-white/5 text-gray-400 border-white/10'}`;
+    });
+    renderGuidelines();
+}
+
+// Platform filter
+function togglePlatform(plat) {
+    activePlatform = plat;
+    document.querySelectorAll('.plat-btn').forEach(btn => {
+        const isActive = btn.dataset.plat === plat;
+        btn.className = `plat-btn px-3 py-1.5 text-xs font-medium rounded-lg border transition-all ${isActive ? 'bg-white/10 text-white border-white/20' : 'bg-white/5 text-gray-400 border-white/10'}`;
+    });
+    renderGuidelines();
+}
+
+// Checklist mode
+function toggleChecklistMode() {
+    checklistMode = !checklistMode;
+    const grid = document.getElementById('guidelines-grid');
+    const toggle = document.getElementById('checklist-toggle');
+    const label = document.getElementById('checklist-label');
+    const progress = document.getElementById('checklist-progress');
+    if (checklistMode) {
+        grid.classList.add('checklist-mode');
+        toggle.classList.remove('border-white/10');
+        toggle.classList.add('border-indigo-500/30', 'bg-indigo-500/10');
+        label.classList.remove('text-gray-400');
+        label.classList.add('text-indigo-300');
+        progress.classList.remove('hidden');
+    } else {
+        grid.classList.remove('checklist-mode');
+        toggle.classList.add('border-white/10');
+        toggle.classList.remove('border-indigo-500/30', 'bg-indigo-500/10');
+        label.classList.add('text-gray-400');
+        label.classList.remove('text-indigo-300');
+        progress.classList.add('hidden');
+    }
+    renderGuidelines();
+}
+
+function toggleChecked(id) {
+    if (checkedItems[id]) {
+        delete checkedItems[id];
+    } else {
+        checkedItems[id] = true;
+    }
+    localStorage.setItem('ux-guidelines-checklist', JSON.stringify(checkedItems));
+    const card = document.querySelector(`.guideline-card[data-id="${id}"]`);
+    const checkbox = card.querySelector('.checklist-checkbox');
+    if (checkedItems[id]) {
+        card.classList.add('checked-card');
+        checkbox.classList.add('checked');
+    } else {
+        card.classList.remove('checked-card');
+        checkbox.classList.remove('checked');
+    }
+    updateChecklistProgress();
+}
+
+function updateChecklistProgress(filtered) {
+    if (!filtered) {
+        filtered = guidelines.filter(g => {
+            const catMatch = activeCategory === 'all' || g.cat === activeCategory;
+            const sevMatch = activeSeverity === 'all' || g.severity === activeSeverity;
+            const platMatch = activePlatform === 'all' || g.platform === activePlatform || g.platform === 'All';
+            const searchMatch = !searchQuery ||
+                g.name.toLowerCase().includes(searchQuery) ||
+                g.desc.toLowerCase().includes(searchQuery) ||
+                g.cat.toLowerCase().includes(searchQuery) ||
+                (g.tip && g.tip.toLowerCase().includes(searchQuery));
+            return catMatch && sevMatch && platMatch && searchMatch;
+        });
+    }
+    const total = filtered.length;
+    const done = filtered.filter(g => checkedItems[g.id]).length;
+    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+    document.getElementById('checklist-progress-bar').style.width = pct + '%';
+    document.getElementById('checklist-progress-text').textContent = `${done}/${total} completed`;
+}
+
+// Copy Do code
+function copyDoCode(id) {
+    const g = guidelines.find(g => g.id === id);
+    if (!g) return;
+    navigator.clipboard.writeText(g.doCode).then(() => {
+        const toast = document.getElementById('copy-toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1500);
+    }).catch(() => {
+        // Fallback for older browsers
+        const ta = document.createElement('textarea');
+        ta.value = g.doCode;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        const toast = document.getElementById('copy-toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1500);
+    });
+}
+
+// Scroll to guideline
+function scrollToGuideline(id) {
+    const el = document.getElementById('guideline-' + id);
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Flash highlight
+        el.style.boxShadow = '0 0 0 2px rgba(129,140,248,0.5)';
+        el.style.transition = 'box-shadow 0.3s ease';
+        setTimeout(() => {
+            el.style.boxShadow = '';
+            setTimeout(() => { el.style.transition = ''; }, 300);
+        }, 2000);
+    }
+}
+
+// Severity Dashboard
+function toggleDashboard() {
+    const dashboard = document.getElementById('severity-dashboard');
+    const chevron = document.getElementById('dashboard-chevron');
+    const text = document.getElementById('dashboard-toggle-text');
+    const isCollapsed = dashboard.classList.contains('collapsed');
+    if (isCollapsed) {
+        dashboard.classList.remove('collapsed');
+        dashboard.classList.add('expanded');
+        chevron.style.transform = 'rotate(180deg)';
+        text.textContent = 'Hide Dashboard';
+        renderDashboard();
+    } else {
+        dashboard.classList.add('collapsed');
+        dashboard.classList.remove('expanded');
+        chevron.style.transform = '';
+        text.textContent = 'Show Dashboard';
+    }
+}
+
+function renderDashboard() {
+    const chart = document.getElementById('dashboard-chart');
+    const maxCount = Math.max(...Object.keys(CATEGORIES).map(cat => guidelines.filter(g => g.cat === cat).length));
+    chart.innerHTML = Object.keys(CATEGORIES).map(cat => {
+        const catData = CATEGORIES[cat];
+        const catGuidelines = guidelines.filter(g => g.cat === cat);
+        const high = catGuidelines.filter(g => g.severity === 'High').length;
+        const medium = catGuidelines.filter(g => g.severity === 'Medium').length;
+        const low = catGuidelines.filter(g => g.severity === 'Low').length;
+        const total = catGuidelines.length;
+        const barWidth = maxCount > 0 ? (total / maxCount) * 100 : 0;
+        const highPct = total > 0 ? (high / total) * 100 : 0;
+        const medPct = total > 0 ? (medium / total) * 100 : 0;
+        const lowPct = total > 0 ? (low / total) * 100 : 0;
+        return `
+        <div class="flex items-center gap-3">
+            <span class="text-xs text-gray-400 w-24 text-right truncate" style="color:${catData.text}">${cat}</span>
+            <div class="flex-1 flex h-5 rounded-md overflow-hidden bg-white/[0.03]" style="width:${barWidth}%">
+                ${high > 0 ? `<div class="dashboard-bar-segment bg-red-500/80 flex items-center justify-center" style="width:${highPct}%" title="${cat}: ${high} High"><span class="text-[10px] font-bold text-white/80">${high}</span></div>` : ''}
+                ${medium > 0 ? `<div class="dashboard-bar-segment bg-amber-500/80 flex items-center justify-center" style="width:${medPct}%" title="${cat}: ${medium} Medium"><span class="text-[10px] font-bold text-white/80">${medium}</span></div>` : ''}
+                ${low > 0 ? `<div class="dashboard-bar-segment bg-green-500/80 flex items-center justify-center" style="width:${lowPct}%" title="${cat}: ${low} Low"><span class="text-[10px] font-bold text-white/80">${low}</span></div>` : ''}
+            </div>
+            <span class="text-xs text-gray-500 w-6 text-right">${total}</span>
+        </div>`;
+    }).join('');
+}
+
+// Search
+document.getElementById('search-input').addEventListener('input', (e) => {
+    searchQuery = e.target.value.toLowerCase().trim();
+    renderGuidelines();
+});
+
+// Update counts
+function updateCounts() {
+    document.getElementById('total-count').textContent = guidelines.length;
+    document.getElementById('high-count').textContent = guidelines.filter(g => g.severity === 'High').length;
+    document.getElementById('med-count').textContent = guidelines.filter(g => g.severity === 'Medium').length;
+    document.getElementById('low-count').textContent = guidelines.filter(g => g.severity === 'Low').length;
+}
+
+// Update category button labels with counts
+function updateCategoryLabels() {
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+        const cat = btn.dataset.cat;
+        const count = cat === 'all' ? guidelines.length : guidelines.filter(g => g.cat === cat).length;
+        const baseName = cat === 'all' ? 'All' : cat;
+        btn.textContent = `${baseName} (${count})`;
+    });
+}
+
+// Init
+updateCounts();
+updateCategoryLabels();
+renderGuidelines();
+
+// URL param support
+const urlParams = new URLSearchParams(window.location.search);
+const qParam = urlParams.get('q');
+if (qParam) {
+    document.getElementById('search-input').value = qParam;
+    searchQuery = qParam.toLowerCase();
+    renderGuidelines()
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Tech Stacks - UI/UX Pro Max</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Space Grotesk', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #818CF8, #06B6D4, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-blur {
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+        }
+        .card-glow:hover {
+            box-shadow: 0 0 40px rgba(129, 140, 248, 0.15), 0 0 80px rgba(6, 182, 212, 0.08);
+        }
+        .hero-gradient {
+            background: radial-gradient(ellipse at 20% 50%, rgba(129, 140, 248, 0.12) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 80%, rgba(167, 139, 250, 0.06) 0%, transparent 50%);
+        }
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(129, 140, 248, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(129, 140, 248, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        pre code { font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.8rem; }
+        .guideline-card { transition: all 0.3s ease; }
+        .guideline-card:hover { transform: translateY(-2px); }
+        .stack-tabs::-webkit-scrollbar { height: 4px; }
+        .stack-tabs::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); }
+        .stack-tabs::-webkit-scrollbar-thumb { background: rgba(129,140,248,0.3); border-radius: 4px; }
+        .stack-tab { white-space: nowrap; }
+        .stack-tab.active {
+            background: rgba(129, 140, 248, 0.2);
+            color: #A5B4FC;
+            border-color: rgba(129, 140, 248, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-[#08090E] text-gray-200 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-[#08090E]/70 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="font-heading font-bold text-xl tracking-tight">
+                <span class="text-white">UI/UX</span>
+                <span class="gradient-text"> Pro Max</span>
+            </a>
+            <div class="hidden md:flex items-center gap-1">
+                <a href="styles.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Styles</a>
+                <a href="colors.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Colors</a>
+                <a href="typography.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Typography</a>
+                <a href="charts.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Charts</a>
+                <a href="products.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Products</a>
+                <a href="icons.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Icons</a>
+                <div class="relative">
+                    <button onclick="document.getElementById('more-menu').classList.toggle('hidden')" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5 inline-flex items-center gap-1">More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                    <div id="more-menu" class="hidden absolute right-0 top-full mt-2 w-52 bg-[#12131A] border border-white/10 rounded-xl shadow-2xl py-2 z-50">
+                        <a href="stacks.html" class="block px-4 py-2 text-sm text-white bg-white/10 rounded-lg mx-2">Stacks</a>
+                        <a href="ux-guidelines.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">UX Guidelines</a>
+                        <a href="patterns.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Patterns</a>
+                        <a href="reasoning.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Reasoning</a>
+                        <a href="react-performance.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">React Perf</a>
+                        <a href="web-interface.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Web Interface</a>
+                    </div>
+                </div>
+            </div>
+<button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 px-6 py-4 space-y-2">
+            <a href="styles.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Styles</a>
+            <a href="colors.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Colors</a>
+            <a href="typography.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Typography</a>
+            <a href="charts.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Charts</a>
+            <a href="products.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Products</a>
+            <a href="icons.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Icons</a>
+            <a href="stacks.html" class="block px-3 py-2 text-sm text-white bg-white/10 rounded-lg">Stacks</a>
+            <a href="ux-guidelines.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">UX Guidelines</a>
+            <a href="patterns.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Patterns</a>
+            <a href="reasoning.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Reasoning</a>
+            <a href="react-performance.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">React Perf</a>
+            <a href="web-interface.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Web Interface</a>
+        </div>
+</nav>
+
+    <!-- Hero -->
+    <section class="relative hero-gradient grid-bg pt-28 pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-medium mb-6">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"/></svg>
+                <span id="badge-text">13 Tech Stacks</span>
+            </div>
+            <h1 class="font-heading text-4xl md:text-6xl font-bold tracking-tight mb-4">
+                <span class="text-white">Tech </span><span class="gradient-text">Stacks</span>
+            </h1>
+            <p class="text-gray-400 text-lg max-w-2xl mb-8">Framework-specific UI/UX guidelines for 13 tech stacks -- with actionable DO and DON'T code examples for each.</p>
+
+            <!-- Stack Tabs -->
+            <div class="stack-tabs flex gap-2 overflow-x-auto pb-3 mb-6" id="stack-tabs">
+                <!-- Rendered by JS -->
+            </div>
+
+            <!-- Stats -->
+            <div class="flex flex-wrap gap-4 mb-8">
+                <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10">
+                    <span class="text-2xl font-bold text-white font-heading" id="total-stacks">13</span>
+                    <span class="text-gray-400 text-sm ml-2">Stacks</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10">
+                    <span class="text-2xl font-bold text-white font-heading" id="total-count">0</span>
+                    <span class="text-gray-400 text-sm ml-2">Guidelines</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-red-500/10 border border-red-500/20">
+                    <span class="text-2xl font-bold text-red-400 font-heading" id="high-count">0</span>
+                    <span class="text-gray-400 text-sm ml-2">High Severity</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                    <span class="text-2xl font-bold text-amber-400 font-heading" id="med-count">0</span>
+                    <span class="text-gray-400 text-sm ml-2">Medium</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-green-500/10 border border-green-500/20">
+                    <span class="text-2xl font-bold text-green-400 font-heading" id="low-count">0</span>
+                    <span class="text-gray-400 text-sm ml-2">Low</span>
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="relative max-w-xl mb-6">
+                <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" id="search-input" placeholder="Search guidelines..." class="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-all">
+            </div>
+
+            <!-- Severity Filter -->
+            <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-sm text-gray-500 mr-2 self-center">Severity:</span>
+                <button onclick="toggleSeverity('all')" data-sev="all" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/10 text-white border border-white/20 transition-all">All</button>
+                <button onclick="toggleSeverity('High')" data-sev="High" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-red-500/30 transition-all">High</button>
+                <button onclick="toggleSeverity('Medium')" data-sev="Medium" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-amber-500/30 transition-all">Medium</button>
+                <button onclick="toggleSeverity('Low')" data-sev="Low" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-green-500/30 transition-all">Low</button>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="flex flex-wrap gap-2" id="category-buttons">
+                <!-- Rendered by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Guidelines Grid -->
+    <section class="max-w-7xl mx-auto px-6 py-12">
+        <div class="text-sm text-gray-500 mb-6"><span id="visible-count">--</span> guidelines shown</div>
+        <div id="guidelines-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Cards rendered by JS -->
+        </div>
+        <div id="no-results" class="hidden text-center py-20">
+            <svg class="w-16 h-16 mx-auto text-gray-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <p class="text-gray-500 text-lg">No guidelines match your filters.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="font-heading font-bold text-lg"><span class="text-white">UI/UX</span><span class="gradient-text"> Pro Max</span></div>
+                <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
+                    <a href="styles.html" class="hover:text-white transition-colors">Styles</a>
+                    <a href="colors.html" class="hover:text-white transition-colors">Colors</a>
+                    <a href="typography.html" class="hover:text-white transition-colors">Typography</a>
+                    <a href="charts.html" class="hover:text-white transition-colors">Charts</a>
+                    <a href="products.html" class="hover:text-white transition-colors">Products</a>
+                    <a href="icons.html" class="hover:text-white transition-colors">Icons</a>
+                    <a href="stacks.html" class="hover:text-white transition-colors">Stacks</a>
+                    <a href="ux-guidelines.html" class="hover:text-white transition-colors">UX Guidelines</a>
+                    <a href="patterns.html" class="hover:text-white transition-colors">Patterns</a>
+                    <a href="reasoning.html" class="hover:text-white transition-colors">Reasoning</a>
+                    <a href="react-performance.html" class="hover:text-white transition-colors">React Perf</a>
+                    <a href="web-interface.html" class="hover:text-white transition-colors">Web Interface</a>
+                </div>
+                <div class="text-sm text-gray-600">Design Intelligence System</div>
+            </div>
+        </div>
+    </footer>
+
+<div id="copy-toast" style="position:fixed;bottom:24px;right:24px;background:rgba(74,222,128,0.9);color:#000;padding:10px 20px;border-radius:10px;font-size:14px;font-weight:600;z-index:9999;opacity:0;transform:translateY(10px);transition:all 0.25s;pointer-events:none">Copied!</div>
+
+<script>
+const CATEGORY_COLORS = [
+    { bg: 'rgba(59,130,246,0.15)', border: 'rgba(59,130,246,0.3)', text: '#60A5FA' },
+    { bg: 'rgba(168,85,247,0.15)', border: 'rgba(168,85,247,0.3)', text: '#C084FC' },
+    { bg: 'rgba(6,182,212,0.15)', border: 'rgba(6,182,212,0.3)', text: '#22D3EE' },
+    { bg: 'rgba(236,72,153,0.15)', border: 'rgba(236,72,153,0.3)', text: '#F472B6' },
+    { bg: 'rgba(249,115,22,0.15)', border: 'rgba(249,115,22,0.3)', text: '#FB923C' },
+    { bg: 'rgba(16,185,129,0.15)', border: 'rgba(16,185,129,0.3)', text: '#34D399' },
+    { bg: 'rgba(234,179,8,0.15)', border: 'rgba(234,179,8,0.3)', text: '#FACC15' },
+    { bg: 'rgba(244,63,94,0.15)', border: 'rgba(244,63,94,0.3)', text: '#FB7185' },
+    { bg: 'rgba(20,184,166,0.15)', border: 'rgba(20,184,166,0.3)', text: '#2DD4BF' },
+    { bg: 'rgba(139,92,246,0.15)', border: 'rgba(139,92,246,0.3)', text: '#A78BFA' },
+    { bg: 'rgba(14,165,233,0.15)', border: 'rgba(14,165,233,0.3)', text: '#38BDF8' },
+    { bg: 'rgba(132,204,22,0.15)', border: 'rgba(132,204,22,0.3)', text: '#A3E635' },
+    { bg: 'rgba(251,146,60,0.15)', border: 'rgba(251,146,60,0.3)', text: '#FB923C' },
+    { bg: 'rgba(56,189,248,0.15)', border: 'rgba(56,189,248,0.3)', text: '#38BDF8' },
+    { bg: 'rgba(74,222,128,0.15)', border: 'rgba(74,222,128,0.3)', text: '#4ADE80' },
+    { bg: 'rgba(248,113,113,0.15)', border: 'rgba(248,113,113,0.3)', text: '#F87171' },
+    { bg: 'rgba(167,139,250,0.15)', border: 'rgba(167,139,250,0.3)', text: '#A78BFA' },
+    { bg: 'rgba(253,186,116,0.15)', border: 'rgba(253,186,116,0.3)', text: '#FDBA74' },
+    { bg: 'rgba(34,211,238,0.15)', border: 'rgba(34,211,238,0.3)', text: '#22D3EE' },
+    { bg: 'rgba(192,132,252,0.15)', border: 'rgba(192,132,252,0.3)', text: '#C084FC' },
+];
+
+const SEVERITY = {
+    High: { bg: 'rgba(239,68,68,0.15)', border: 'rgba(239,68,68,0.3)', text: '#F87171' },
+    Medium: { bg: 'rgba(245,158,11,0.15)', border: 'rgba(245,158,11,0.3)', text: '#FBBF24' },
+    Low: { bg: 'rgba(34,197,94,0.15)', border: 'rgba(34,197,94,0.3)', text: '#4ADE80' }
+};
+
+const STACK_TABS = [
+    { key: 'react', label: 'React' },
+    { key: 'nextjs', label: 'Next.js' },
+    { key: 'vue', label: 'Vue' },
+    { key: 'svelte', label: 'Svelte' },
+    { key: 'htmlTailwind', label: 'HTML/Tailwind' },
+    { key: 'nuxtjs', label: 'Nuxt.js' },
+    { key: 'nuxtUi', label: 'Nuxt UI' },
+    { key: 'flutter', label: 'Flutter' },
+    { key: 'swiftui', label: 'SwiftUI' },
+    { key: 'astro', label: 'Astro' },
+    { key: 'reactNative', label: 'React Native' },
+    { key: 'shadcn', label: 'shadcn/ui' },
+    { key: 'jetpackCompose', label: 'Jetpack Compose' },
+];
+
+const STACKS = {
+react: [
+{id:1,cat:'State',name:'Use useState for local state',desc:'Simple component state should use useState hook',doCode:'useState for form inputs toggles counters',dontCode:'Class components this.state',codeGood:'const [count, setCount] = useState(0)',codeBad:'this.state = { count: 0 }',severity:'Medium',docsUrl:'https://react.dev/reference/react/useState'},
+{id:2,cat:'State',name:'Lift state up when needed',desc:'Share state between siblings by lifting to parent',doCode:'Lift shared state to common ancestor',dontCode:'Prop drilling through many levels',codeGood:'Parent holds state passes down',codeBad:'Deep prop chains',severity:'Medium',docsUrl:'https://react.dev/learn/sharing-state-between-components'},
+{id:3,cat:'State',name:'Use useReducer for complex state',desc:'Complex state logic benefits from reducer pattern',doCode:'useReducer for state with multiple sub-values',dontCode:'Multiple useState for related values',codeGood:'useReducer with action types',codeBad:'5+ useState calls that update together',severity:'Medium',docsUrl:'https://react.dev/reference/react/useReducer'},
+{id:4,cat:'State',name:'Avoid unnecessary state',desc:'Derive values from existing state when possible',doCode:'Compute derived values in render',dontCode:'Store derivable values in state',codeGood:'const total = items.reduce(...)',codeBad:'const [total, setTotal] = useState(0)',severity:'High',docsUrl:'https://react.dev/learn/choosing-the-state-structure'},
+{id:5,cat:'State',name:'Initialize state lazily',desc:'Use function form for expensive initial state',doCode:'useState(() => computeExpensive())',dontCode:'useState(computeExpensive())',codeGood:'useState(() => JSON.parse(data))',codeBad:'useState(JSON.parse(data))',severity:'Medium',docsUrl:'https://react.dev/reference/react/useState#avoiding-recreating-the-initial-state'},
+{id:6,cat:'Effects',name:'Clean up effects',desc:'Return cleanup function for subscriptions timers',doCode:'Return cleanup function in useEffect',dontCode:'No cleanup for subscriptions',codeGood:'useEffect(() => { sub(); return unsub; })',codeBad:'useEffect(() => { subscribe(); })',severity:'High',docsUrl:'https://react.dev/reference/react/useEffect#connecting-to-an-external-system'},
+{id:7,cat:'Effects',name:'Specify dependencies correctly',desc:'Include all values used inside effect in deps array',doCode:'All referenced values in dependency array',dontCode:'Empty deps with external references',codeGood:'[value] when using value in effect',codeBad:'[] when using props/state in effect',severity:'High',docsUrl:'https://react.dev/reference/react/useEffect#specifying-reactive-dependencies'},
+{id:8,cat:'Effects',name:'Avoid unnecessary effects',desc:'Don\'t use effects for transforming data or events',doCode:'Transform data during render handle events directly',dontCode:'useEffect for derived state or event handling',codeGood:'const filtered = items.filter(...)',codeBad:'useEffect(() => setFiltered(items.filter(...)))',severity:'High',docsUrl:'https://react.dev/learn/you-might-not-need-an-effect'},
+{id:9,cat:'Effects',name:'Use refs for non-reactive values',desc:'Store values that don\'t trigger re-renders in refs',doCode:'useRef for interval IDs DOM elements',dontCode:'useState for values that don\'t need render',codeGood:'const intervalRef = useRef(null)',codeBad:'const [intervalId, setIntervalId] = useState()',severity:'Medium',docsUrl:'https://react.dev/reference/react/useRef'},
+{id:10,cat:'Rendering',name:'Use keys properly',desc:'Stable unique keys for list items',doCode:'Use stable IDs as keys',dontCode:'Array index as key for dynamic lists',codeGood:'key={item.id}',codeBad:'key={index}',severity:'High',docsUrl:'https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key'},
+{id:11,cat:'Rendering',name:'Memoize expensive calculations',desc:'Use useMemo for costly computations',doCode:'useMemo for expensive filtering/sorting',dontCode:'Recalculate every render',codeGood:'useMemo(() => expensive(), [deps])',codeBad:'const result = expensiveCalc()',severity:'Medium',docsUrl:'https://react.dev/reference/react/useMemo'},
+{id:12,cat:'Rendering',name:'Memoize callbacks passed to children',desc:'Use useCallback for functions passed as props',doCode:'useCallback for handlers passed to memoized children',dontCode:'New function reference every render',codeGood:'useCallback(() => {}, [deps])',codeBad:'const handler = () => {}',severity:'Medium',docsUrl:'https://react.dev/reference/react/useCallback'},
+{id:13,cat:'Rendering',name:'Use React.memo wisely',desc:'Wrap components that render often with same props',doCode:'memo for pure components with stable props',dontCode:'memo everything or nothing',codeGood:'memo(ExpensiveList)',codeBad:'memo(SimpleButton)',severity:'Low',docsUrl:'https://react.dev/reference/react/memo'},
+{id:14,cat:'Rendering',name:'Avoid inline object/array creation in JSX',desc:'Create objects outside render or memoize',doCode:'Define style objects outside component',dontCode:'Inline objects in props',codeGood:'<div style={styles.container}>',codeBad:'<div style={{ margin: 10 }}>',severity:'Medium',docsUrl:''},
+{id:15,cat:'Components',name:'Keep components small and focused',desc:'Single responsibility for each component',doCode:'One concern per component',dontCode:'Large multi-purpose components',codeGood:'<UserAvatar /><UserName />',codeBad:'<UserCard /> with 500 lines',severity:'Medium',docsUrl:''},
+{id:16,cat:'Components',name:'Use composition over inheritance',desc:'Compose components using children and props',doCode:'Use children prop for flexibility',dontCode:'Inheritance hierarchies',codeGood:'<Card>{content}</Card>',codeBad:'class SpecialCard extends Card',severity:'Medium',docsUrl:'https://react.dev/learn/thinking-in-react'},
+{id:17,cat:'Components',name:'Colocate related code',desc:'Keep related components and hooks together',doCode:'Related files in same directory',dontCode:'Flat structure with many files',codeGood:'components/User/UserCard.tsx',codeBad:'components/UserCard.tsx + hooks/useUser.ts',severity:'Low',docsUrl:''},
+{id:18,cat:'Components',name:'Use fragments to avoid extra DOM',desc:'Fragment or <> for multiple elements without wrapper',doCode:'<> for grouping without DOM node',dontCode:'Extra div wrappers',codeGood:'<>{items.map(...)}</>',codeBad:'<div>{items.map(...)}</div>',severity:'Low',docsUrl:'https://react.dev/reference/react/Fragment'},
+{id:19,cat:'Props',name:'Destructure props',desc:'Destructure props for cleaner component code',doCode:'Destructure in function signature',dontCode:'props.name props.value throughout',codeGood:'function User({ name, age })',codeBad:'function User(props)',severity:'Low',docsUrl:''},
+{id:20,cat:'Props',name:'Provide default props values',desc:'Use default parameters or defaultProps',doCode:'Default values in destructuring',dontCode:'Undefined checks throughout',codeGood:'function Button({ size = \'md\' })',codeBad:'if (size === undefined) size = \'md\'',severity:'Low',docsUrl:''},
+{id:21,cat:'Props',name:'Avoid prop drilling',desc:'Use context or composition for deeply nested data',doCode:'Context for global data composition for UI',dontCode:'Passing props through 5+ levels',codeGood:'<UserContext.Provider>',codeBad:'<A user={u}><B user={u}><C user={u}>',severity:'Medium',docsUrl:'https://react.dev/learn/passing-data-deeply-with-context'},
+{id:22,cat:'Props',name:'Validate props with TypeScript',desc:'Use TypeScript interfaces for prop types',doCode:'interface Props with all prop types',dontCode:'any or missing types',codeGood:'interface ButtonProps { onClick: () => void }',codeBad:'Button.propTypes = {}',severity:'Medium',docsUrl:''},
+{id:23,cat:'Events',name:'Use synthetic events correctly',desc:'React normalizes events across browsers',doCode:'e.preventDefault() e.stopPropagation()',dontCode:'Access native event unnecessarily',codeGood:'onClick={(e) => e.preventDefault()}',codeBad:'onClick={(e) => e.nativeEvent.preventDefault()}',severity:'Low',docsUrl:'https://react.dev/reference/react-dom/components/common#react-event-object'},
+{id:24,cat:'Events',name:'Avoid binding in render',desc:'Use arrow functions in class or hooks',doCode:'Arrow functions in functional components',dontCode:'bind in render or constructor',codeGood:'const handleClick = () => {}',codeBad:'this.handleClick.bind(this)',severity:'Medium',docsUrl:''},
+{id:25,cat:'Events',name:'Pass event handlers not call results',desc:'Pass function reference not invocation',doCode:'onClick={handleClick}',dontCode:'onClick={handleClick()} causing immediate call',codeGood:'onClick={handleClick}',codeBad:'onClick={handleClick()}',severity:'High',docsUrl:''},
+{id:26,cat:'Forms',name:'Controlled components for forms',desc:'Use state to control form inputs',doCode:'value + onChange for inputs',dontCode:'Uncontrolled inputs with refs',codeGood:'<input value={val} onChange={setVal}>',codeBad:'<input ref={inputRef}>',severity:'Medium',docsUrl:'https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable'},
+{id:27,cat:'Forms',name:'Handle form submission properly',desc:'Prevent default and handle in submit handler',doCode:'onSubmit with preventDefault',dontCode:'onClick on submit button only',codeGood:'<form onSubmit={handleSubmit}>',codeBad:'<button onClick={handleSubmit}>',severity:'Medium',docsUrl:''},
+{id:28,cat:'Forms',name:'Debounce rapid input changes',desc:'Debounce search/filter inputs',doCode:'useDeferredValue or debounce for search',dontCode:'Filter on every keystroke',codeGood:'useDeferredValue(searchTerm)',codeBad:'useEffect filtering on every change',severity:'Medium',docsUrl:'https://react.dev/reference/react/useDeferredValue'},
+{id:29,cat:'Hooks',name:'Follow rules of hooks',desc:'Only call hooks at top level and in React functions',doCode:'Hooks at component top level',dontCode:'Hooks in conditions loops or callbacks',codeGood:'const [x, setX] = useState()',codeBad:'if (cond) { const [x, setX] = useState() }',severity:'High',docsUrl:'https://react.dev/reference/rules/rules-of-hooks'},
+{id:30,cat:'Hooks',name:'Custom hooks for reusable logic',desc:'Extract shared stateful logic to custom hooks',doCode:'useCustomHook for reusable patterns',dontCode:'Duplicate hook logic across components',codeGood:'const { data } = useFetch(url)',codeBad:'Duplicate useEffect/useState in components',severity:'Medium',docsUrl:'https://react.dev/learn/reusing-logic-with-custom-hooks'},
+{id:31,cat:'Hooks',name:'Name custom hooks with use prefix',desc:'Custom hooks must start with use',doCode:'useFetch useForm useAuth',dontCode:'fetchData or getData for hook',codeGood:'function useFetch(url)',codeBad:'function fetchData(url)',severity:'High',docsUrl:''},
+{id:32,cat:'Context',name:'Use context for global data',desc:'Context for theme auth locale',doCode:'Context for app-wide state',dontCode:'Context for frequently changing data',codeGood:'<ThemeContext.Provider>',codeBad:'Context for form field values',severity:'Medium',docsUrl:'https://react.dev/learn/passing-data-deeply-with-context'},
+{id:33,cat:'Context',name:'Split contexts by concern',desc:'Separate contexts for different domains',doCode:'ThemeContext + AuthContext',dontCode:'One giant AppContext',codeGood:'<ThemeProvider><AuthProvider>',codeBad:'<AppProvider value={{theme user...}}>',severity:'Medium',docsUrl:''},
+{id:34,cat:'Context',name:'Memoize context values',desc:'Prevent unnecessary re-renders with useMemo',doCode:'useMemo for context value object',dontCode:'New object reference every render',codeGood:'value={useMemo(() => ({...}), [])}',codeBad:'value={{ user, theme }}',severity:'High',docsUrl:''},
+{id:35,cat:'Performance',name:'Use React DevTools Profiler',desc:'Profile to identify performance bottlenecks',doCode:'Profile before optimizing',dontCode:'Optimize without measuring',codeGood:'React DevTools Profiler',codeBad:'Guessing at bottlenecks',severity:'Medium',docsUrl:'https://react.dev/learn/react-developer-tools'},
+{id:36,cat:'Performance',name:'Lazy load components',desc:'Use React.lazy for code splitting',doCode:'lazy() for routes and heavy components',dontCode:'Import everything upfront',codeGood:'const Page = lazy(() => import(\'./Page\'))',codeBad:'import Page from \'./Page\'',severity:'Medium',docsUrl:'https://react.dev/reference/react/lazy'},
+{id:37,cat:'Performance',name:'Virtualize long lists',desc:'Use windowing for lists over 100 items',doCode:'react-window or react-virtual',dontCode:'Render thousands of DOM nodes',codeGood:'<VirtualizedList items={items}/>',codeBad:'{items.map(i => <Item />)}',severity:'High',docsUrl:''},
+{id:38,cat:'Performance',name:'Batch state updates',desc:'React 18 auto-batches but be aware',doCode:'Let React batch related updates',dontCode:'Manual batching with flushSync',codeGood:'setA(1); setB(2); // batched',codeBad:'flushSync(() => setA(1))',severity:'Low',docsUrl:'https://react.dev/learn/queueing-a-series-of-state-updates'},
+{id:39,cat:'ErrorHandling',name:'Use error boundaries',desc:'Catch JavaScript errors in component tree',doCode:'ErrorBoundary wrapping sections',dontCode:'Let errors crash entire app',codeGood:'<ErrorBoundary><App/></ErrorBoundary>',codeBad:'No error handling',severity:'High',docsUrl:'https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary'},
+{id:40,cat:'ErrorHandling',name:'Handle async errors',desc:'Catch errors in async operations',doCode:'try/catch in async handlers',dontCode:'Unhandled promise rejections',codeGood:'try { await fetch() } catch(e) {}',codeBad:'await fetch() // no catch',severity:'High',docsUrl:''},
+{id:41,cat:'Testing',name:'Test behavior not implementation',desc:'Test what user sees and does',doCode:'Test renders and interactions',dontCode:'Test internal state or methods',codeGood:'expect(screen.getByText(\'Hello\'))',codeBad:'expect(component.state.name)',severity:'Medium',docsUrl:'https://testing-library.com/docs/react-testing-library/intro/'},
+{id:42,cat:'Testing',name:'Use testing-library queries',desc:'Use accessible queries',doCode:'getByRole getByLabelText',dontCode:'getByTestId for everything',codeGood:'getByRole(\'button\')',codeBad:'getByTestId(\'submit-btn\')',severity:'Medium',docsUrl:'https://testing-library.com/docs/queries/about#priority'},
+{id:43,cat:'Accessibility',name:'Use semantic HTML',desc:'Proper HTML elements for their purpose',doCode:'button for clicks nav for navigation',dontCode:'div with onClick for buttons',codeGood:'<button onClick={...}>',codeBad:'<div onClick={...}>',severity:'High',docsUrl:'https://react.dev/reference/react-dom/components#all-html-components'},
+{id:44,cat:'Accessibility',name:'Manage focus properly',desc:'Handle focus for modals dialogs',doCode:'Focus trap in modals return focus on close',dontCode:'No focus management',codeGood:'useEffect to focus input',codeBad:'Modal without focus trap',severity:'High',docsUrl:''},
+{id:45,cat:'Accessibility',name:'Announce dynamic content',desc:'Use ARIA live regions for updates',doCode:'aria-live for dynamic updates',dontCode:'Silent updates to screen readers',codeGood:'<div aria-live="polite">{msg}</div>',codeBad:'<div>{msg}</div>',severity:'Medium',docsUrl:''},
+{id:46,cat:'Accessibility',name:'Label form controls',desc:'Associate labels with inputs',doCode:'htmlFor matching input id',dontCode:'Placeholder as only label',codeGood:'<label htmlFor="email">Email</label>',codeBad:'<input placeholder="Email"/>',severity:'High',docsUrl:''},
+{id:47,cat:'TypeScript',name:'Type component props',desc:'Define interfaces for all props',doCode:'interface Props with all prop types',dontCode:'any or missing types',codeGood:'interface Props { name: string }',codeBad:'function Component(props: any)',severity:'High',docsUrl:''},
+{id:48,cat:'TypeScript',name:'Type state properly',desc:'Provide types for useState',doCode:'useState<Type>() for complex state',dontCode:'Inferred any types',codeGood:'useState<User | null>(null)',codeBad:'useState(null)',severity:'Medium',docsUrl:''},
+{id:49,cat:'TypeScript',name:'Type event handlers',desc:'Use React event types',doCode:'React.ChangeEvent<HTMLInputElement>',dontCode:'Generic Event type',codeGood:'onChange: React.ChangeEvent<HTMLInputElement>',codeBad:'onChange: Event',severity:'Medium',docsUrl:''},
+{id:50,cat:'TypeScript',name:'Use generics for reusable components',desc:'Generic components for flexible typing',doCode:'Generic props for list components',dontCode:'Union types for flexibility',codeGood:'<List<T> items={T[]}>',codeBad:'<List items={any[]}>',severity:'Medium',docsUrl:''},
+{id:51,cat:'Patterns',name:'Container/Presentational split',desc:'Separate data logic from UI',doCode:'Container fetches presentational renders',dontCode:'Mixed data and UI in one',codeGood:'<UserContainer><UserView/></UserContainer>',codeBad:'<User /> with fetch and render',severity:'Low',docsUrl:''},
+{id:52,cat:'Patterns',name:'Render props for flexibility',desc:'Share code via render prop pattern',doCode:'Render prop for customizable rendering',dontCode:'Duplicate logic across components',codeGood:'<DataFetcher render={data => ...}/>',codeBad:'Copy paste fetch logic',severity:'Low',docsUrl:'https://react.dev/reference/react/cloneElement#passing-data-with-a-render-prop'},
+{id:53,cat:'Patterns',name:'Compound components',desc:'Related components sharing state',doCode:'Tab + TabPanel sharing context',dontCode:'Prop drilling between related',codeGood:'<Tabs><Tab/><TabPanel/></Tabs>',codeBad:'<Tabs tabs={[]} panels={[...]}/>',severity:'Low',docsUrl:''},
+],
+nextjs: [
+{id:1,cat:'Routing',name:'Use App Router for new projects',desc:'App Router is the recommended approach in Next.js 14+',doCode:'app/ directory with page.tsx',dontCode:'pages/ for new projects',codeGood:'app/dashboard/page.tsx',codeBad:'pages/dashboard.tsx',severity:'Medium',docsUrl:'https://nextjs.org/docs/app'},
+{id:2,cat:'Routing',name:'Use file-based routing',desc:'Create routes by adding files in app directory',doCode:'page.tsx for routes layout.tsx for layouts',dontCode:'Manual route configuration',codeGood:'app/blog/[slug]/page.tsx',codeBad:'Custom router setup',severity:'Medium',docsUrl:'https://nextjs.org/docs/app/building-your-application/routing'},
+{id:3,cat:'Routing',name:'Colocate related files',desc:'Keep components styles tests with their routes',doCode:'Component files alongside page.tsx',dontCode:'Separate components folder',codeGood:'app/dashboard/_components/',codeBad:'components/dashboard/',severity:'Low',docsUrl:''},
+{id:4,cat:'Routing',name:'Use route groups for organization',desc:'Group routes without affecting URL',doCode:'Parentheses for route groups',dontCode:'Nested folders affecting URL',codeGood:'(marketing)/about/page.tsx',codeBad:'marketing/about/page.tsx',severity:'Low',docsUrl:'https://nextjs.org/docs/app/building-your-application/routing/route-groups'},
+{id:5,cat:'Routing',name:'Handle loading states',desc:'Use loading.tsx for route loading UI',doCode:'loading.tsx alongside page.tsx',dontCode:'Manual loading state management',codeGood:'app/dashboard/loading.tsx',codeBad:'useState for loading in page',severity:'Medium',docsUrl:'https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming'},
+{id:6,cat:'Routing',name:'Handle errors with error.tsx',desc:'Catch errors at route level',doCode:'error.tsx with reset function',dontCode:'try/catch in every component',codeGood:'app/dashboard/error.tsx',codeBad:'try/catch in page component',severity:'High',docsUrl:'https://nextjs.org/docs/app/building-your-application/routing/error-handling'},
+{id:7,cat:'Rendering',name:'Use Server Components by default',desc:'Server Components reduce client JS bundle',doCode:'Keep components server by default',dontCode:'Add \'use client\' unnecessarily',codeGood:'export default function Page()',codeBad:'(\'use client\') for static content',severity:'High',docsUrl:'https://nextjs.org/docs/app/building-your-application/rendering/server-components'},
+{id:8,cat:'Rendering',name:'Mark Client Components explicitly',desc:'\'use client\' for interactive components',doCode:'Add \'use client\' only when needed',dontCode:'Server Component with hooks/events',codeGood:'(\'use client\') for onClick useState',codeBad:'No directive with useState',severity:'High',docsUrl:'https://nextjs.org/docs/app/building-your-application/rendering/client-components'},
+{id:9,cat:'Rendering',name:'Push Client Components down',desc:'Keep Client Components as leaf nodes',doCode:'Client wrapper for interactive parts only',dontCode:'Mark page as Client Component',codeGood:'<InteractiveButton/> in Server Page',codeBad:'(\'use client\') on page.tsx',severity:'High',docsUrl:''},
+{id:10,cat:'Rendering',name:'Use streaming for better UX',desc:'Stream content with Suspense boundaries',doCode:'Suspense for slow data fetches',dontCode:'Wait for all data before render',codeGood:'<Suspense><SlowComponent/></Suspense>',codeBad:'await allData then render',severity:'Medium',docsUrl:'https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming'},
+{id:11,cat:'Rendering',name:'Choose correct rendering strategy',desc:'SSG for static SSR for dynamic ISR for semi-static',doCode:'generateStaticParams for known paths',dontCode:'SSR for static content',codeGood:'export const revalidate = 3600',codeBad:'fetch without cache config',severity:'Medium',docsUrl:''},
+{id:12,cat:'DataFetching',name:'Fetch data in Server Components',desc:'Fetch directly in async Server Components',doCode:'async function Page() { const data = await fetch() }',dontCode:'useEffect for initial data',codeGood:'const data = await fetch(url)',codeBad:'useEffect(() => fetch(url))',severity:'High',docsUrl:'https://nextjs.org/docs/app/building-your-application/data-fetching'},
+{id:13,cat:'DataFetching',name:'Configure caching explicitly (Next.js 15+)',desc:'Next.js 15 changed defaults to uncached for fetch',doCode:'Explicitly set cache: \'force-cache\' for static data',dontCode:'Assume default is cached (it\'s not in Next.js 15)',codeGood:'fetch(url { cache: \'force-cache\' })',codeBad:'fetch(url) // Uncached in v15',severity:'High',docsUrl:'https://nextjs.org/docs/app/building-your-application/upgrading/version-15'},
+{id:14,cat:'DataFetching',name:'Deduplicate fetch requests',desc:'React and Next.js dedupe same requests',doCode:'Same fetch call in multiple components',dontCode:'Manual request deduplication',codeGood:'Multiple components fetch same URL',codeBad:'Custom cache layer',severity:'Low',docsUrl:''},
+{id:15,cat:'DataFetching',name:'Use Server Actions for mutations',desc:'Server Actions for form submissions',doCode:'action={serverAction} in forms',dontCode:'API route for every mutation',codeGood:'<form action={createPost}>',codeBad:'<form onSubmit={callApiRoute}>',severity:'Medium',docsUrl:'https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations'},
+{id:16,cat:'DataFetching',name:'Revalidate data appropriately',desc:'Use revalidatePath/revalidateTag after mutations',doCode:'Revalidate after Server Action',dontCode:'\'use client\' with manual refetch',codeGood:'revalidatePath(\'/posts\')',codeBad:'router.refresh() everywhere',severity:'Medium',docsUrl:'https://nextjs.org/docs/app/building-your-application/caching#revalidating'},
+{id:17,cat:'Images',name:'Use next/image for optimization',desc:'Automatic image optimization and lazy loading',doCode:'<Image> component for all images',dontCode:'<img> tags directly',codeGood:'<Image src={} alt={} width={} height={}>',codeBad:'<img src={}/>',severity:'High',docsUrl:'https://nextjs.org/docs/app/building-your-application/optimizing/images'},
+{id:18,cat:'Images',name:'Provide width and height',desc:'Prevent layout shift with dimensions',doCode:'width and height props or fill',dontCode:'Missing dimensions',codeGood:'<Image width={400} height={300}/>',codeBad:'<Image src={url}/>',severity:'High',docsUrl:''},
+{id:19,cat:'Images',name:'Use fill for responsive images',desc:'Fill container with object-fit',doCode:'fill prop with relative parent',dontCode:'Fixed dimensions for responsive',codeGood:'<Image fill className="object-cover"/>',codeBad:'<Image width={window.width}/>',severity:'Medium',docsUrl:''},
+{id:20,cat:'Images',name:'Configure remote image domains',desc:'Whitelist external image sources',doCode:'remotePatterns in next.config.js',dontCode:'Allow all domains',codeGood:'remotePatterns: [{ hostname: \'cdn.example.com\' }]',codeBad:'domains: [\'*\']',severity:'High',docsUrl:'https://nextjs.org/docs/app/api-reference/components/image#remotepatterns'},
+{id:21,cat:'Images',name:'Use priority for LCP images',desc:'Mark above-fold images as priority',doCode:'priority prop on hero images',dontCode:'All images with priority',codeGood:'<Image priority src={hero}/>',codeBad:'<Image priority/> on every image',severity:'Medium',docsUrl:''},
+{id:22,cat:'Fonts',name:'Use next/font for fonts',desc:'Self-hosted fonts with zero layout shift',doCode:'next/font/google or next/font/local',dontCode:'External font links',codeGood:'import { Inter } from \'next/font/google\'',codeBad:'<link href="fonts.googleapis.com"/>',severity:'Medium',docsUrl:'https://nextjs.org/docs/app/building-your-application/optimizing/fonts'},
+{id:23,cat:'Fonts',name:'Apply font to layout',desc:'Set font in root layout for consistency',doCode:'className on body in layout.tsx',dontCode:'Font in individual pages',codeGood:'<body className={inter.className}>',codeBad:'Each page imports font',severity:'Low',docsUrl:''},
+{id:24,cat:'Fonts',name:'Use variable fonts',desc:'Variable fonts reduce bundle size',doCode:'Single variable font file',dontCode:'Multiple font weights as files',codeGood:'Inter({ subsets: [\'latin\'] })',codeBad:'Inter_400 Inter_500 Inter_700',severity:'Low',docsUrl:''},
+{id:25,cat:'Metadata',name:'Use generateMetadata for dynamic',desc:'Generate metadata based on params',doCode:'export async function generateMetadata()',dontCode:'Hardcoded metadata everywhere',codeGood:'generateMetadata({ params })',codeBad:'export const metadata = {}',severity:'Medium',docsUrl:'https://nextjs.org/docs/app/building-your-application/optimizing/metadata'},
+{id:26,cat:'Metadata',name:'Include OpenGraph images',desc:'Add OG images for social sharing',doCode:'opengraph-image.tsx or og property',dontCode:'Missing social preview images',codeGood:'opengraph: { images: [\'/og.png\'] }',codeBad:'No OG configuration',severity:'Medium',docsUrl:''},
+{id:27,cat:'Metadata',name:'Use metadata API',desc:'Export metadata object for static metadata',doCode:'export const metadata = {}',dontCode:'Manual head tags',codeGood:'export const metadata = { title: \'Page\' }',codeBad:'<head><title>Page</title></head>',severity:'Medium',docsUrl:''},
+{id:28,cat:'API',name:'Use Route Handlers for APIs',desc:'app/api routes for API endpoints',doCode:'app/api/users/route.ts',dontCode:'pages/api for new projects',codeGood:'export async function GET(request)',codeBad:'export default function handler',severity:'Medium',docsUrl:'https://nextjs.org/docs/app/building-your-application/routing/route-handlers'},
+{id:29,cat:'API',name:'Return proper Response objects',desc:'Use NextResponse for API responses',doCode:'NextResponse.json() for JSON',dontCode:'Plain objects or res.json()',codeGood:'return NextResponse.json({ data })',codeBad:'return { data }',severity:'Medium',docsUrl:''},
+{id:30,cat:'API',name:'Handle HTTP methods explicitly',desc:'Export named functions for methods',doCode:'Export GET POST PUT DELETE',dontCode:'Single handler for all methods',codeGood:'export async function POST()',codeBad:'switch(req.method)',severity:'Low',docsUrl:''},
+{id:31,cat:'API',name:'Validate request body',desc:'Validate input before processing',doCode:'Zod or similar for validation',dontCode:'Trust client input',codeGood:'const body = schema.parse(await req.json())',codeBad:'const body = await req.json()',severity:'High',docsUrl:''},
+{id:32,cat:'Middleware',name:'Use middleware for auth',desc:'Protect routes with middleware.ts',doCode:'middleware.ts at root',dontCode:'Auth check in every page',codeGood:'export function middleware(request)',codeBad:'if (!session) redirect in page',severity:'Medium',docsUrl:'https://nextjs.org/docs/app/building-your-application/routing/middleware'},
+{id:33,cat:'Middleware',name:'Match specific paths',desc:'Configure middleware matcher',doCode:'config.matcher for specific routes',dontCode:'Run middleware on all routes',codeGood:'matcher: [\'/dashboard/:path*\']',codeBad:'No matcher config',severity:'Medium',docsUrl:''},
+{id:34,cat:'Middleware',name:'Keep middleware edge-compatible',desc:'Middleware runs on Edge runtime',doCode:'Edge-compatible code only',dontCode:'Node.js APIs in middleware',codeGood:'Edge-compatible auth check',codeBad:'fs.readFile in middleware',severity:'High',docsUrl:''},
+{id:35,cat:'Environment',name:'Use NEXT_PUBLIC prefix',desc:'Client-accessible env vars need prefix',doCode:'NEXT_PUBLIC_ for client vars',dontCode:'Server vars exposed to client',codeGood:'NEXT_PUBLIC_API_URL',codeBad:'API_SECRET in client code',severity:'High',docsUrl:'https://nextjs.org/docs/app/building-your-application/configuring/environment-variables'},
+{id:36,cat:'Environment',name:'Validate env vars',desc:'Check required env vars exist',doCode:'Validate on startup',dontCode:'Undefined env at runtime',codeGood:'if (!process.env.DATABASE_URL) throw',codeBad:'process.env.DATABASE_URL (might be undefined)',severity:'High',docsUrl:''},
+{id:37,cat:'Environment',name:'Use .env.local for secrets',desc:'Local env file for development secrets',doCode:'.env.local gitignored',dontCode:'Secrets in .env committed',codeGood:'.env.local with secrets',codeBad:'.env with DATABASE_PASSWORD',severity:'High',docsUrl:''},
+{id:38,cat:'Performance',name:'Analyze bundle size',desc:'Use @next/bundle-analyzer',doCode:'Bundle analyzer in dev',dontCode:'Ship large bundles blindly',codeGood:'ANALYZE=true npm run build',codeBad:'No bundle analysis',severity:'Medium',docsUrl:'https://nextjs.org/docs/app/building-your-application/optimizing/bundle-analyzer'},
+{id:39,cat:'Performance',name:'Use dynamic imports',desc:'Code split with next/dynamic',doCode:'dynamic() for heavy components',dontCode:'Import everything statically',codeGood:'const Chart = dynamic(() => import(\'./Chart\'))',codeBad:'import Chart from \'./Chart\'',severity:'Medium',docsUrl:'https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading'},
+{id:40,cat:'Performance',name:'Avoid layout shifts',desc:'Reserve space for dynamic content',doCode:'Skeleton loaders aspect ratios',dontCode:'Content popping in',codeGood:'<Skeleton className="h-48"/>',codeBad:'No placeholder for async content',severity:'High',docsUrl:''},
+{id:41,cat:'Performance',name:'Use Partial Prerendering',desc:'Combine static and dynamic in one route',doCode:'Static shell with Suspense holes',dontCode:'Full dynamic or static pages',codeGood:'Static header + dynamic content',codeBad:'Entire page SSR',severity:'Low',docsUrl:'https://nextjs.org/docs/app/building-your-application/rendering/partial-prerendering'},
+{id:42,cat:'Link',name:'Use next/link for navigation',desc:'Client-side navigation with prefetching',doCode:'<Link href=""> for internal links',dontCode:'<a> for internal navigation',codeGood:'<Link href="/about">About</Link>',codeBad:'<a href="/about">About</a>',severity:'High',docsUrl:'https://nextjs.org/docs/app/api-reference/components/link'},
+{id:43,cat:'Link',name:'Prefetch strategically',desc:'Control prefetching behavior',doCode:'prefetch={false} for low-priority',dontCode:'Prefetch all links',codeGood:'<Link prefetch={false}>',codeBad:'Default prefetch on every link',severity:'Low',docsUrl:''},
+{id:44,cat:'Link',name:'Use scroll option appropriately',desc:'Control scroll behavior on navigation',doCode:'scroll={false} for tabs pagination',dontCode:'Always scroll to top',codeGood:'<Link scroll={false}>',codeBad:'Manual scroll management',severity:'Low',docsUrl:''},
+{id:45,cat:'Config',name:'Use next.config.js correctly',desc:'Configure Next.js behavior',doCode:'Proper config options',dontCode:'Deprecated or wrong options',codeGood:'images: { remotePatterns: [] }',codeBad:'images: { domains: [] }',severity:'Medium',docsUrl:'https://nextjs.org/docs/app/api-reference/next-config-js'},
+{id:46,cat:'Config',name:'Enable strict mode',desc:'Catch potential issues early',doCode:'reactStrictMode: true',dontCode:'Strict mode disabled',codeGood:'reactStrictMode: true',codeBad:'reactStrictMode: false',severity:'Medium',docsUrl:''},
+{id:47,cat:'Config',name:'Configure redirects and rewrites',desc:'Use config for URL management',doCode:'redirects() rewrites() in config',dontCode:'Manual redirect handling',codeGood:'redirects: async () => [...]',codeBad:'res.redirect in pages',severity:'Medium',docsUrl:'https://nextjs.org/docs/app/api-reference/next-config-js/redirects'},
+{id:48,cat:'Deployment',name:'Use Vercel for easiest deploy',desc:'Vercel optimized for Next.js',doCode:'Deploy to Vercel',dontCode:'Self-host without knowledge',codeGood:'vercel deploy',codeBad:'Complex Docker setup for simple app',severity:'Low',docsUrl:'https://nextjs.org/docs/app/building-your-application/deploying'},
+{id:49,cat:'Deployment',name:'Configure output for self-hosting',desc:'Set output option for deployment target',doCode:'output: \'standalone\' for Docker',dontCode:'Default output for containers',codeGood:'output: \'standalone\'',codeBad:'No output config for Docker',severity:'Medium',docsUrl:'https://nextjs.org/docs/app/building-your-application/deploying#self-hosting'},
+{id:50,cat:'Security',name:'Sanitize user input',desc:'Never trust user input',doCode:'Escape sanitize validate all input',dontCode:'Direct interpolation of user data',codeGood:'DOMPurify.sanitize(userInput)',codeBad:'dangerouslySetInnerHTML={{ __html: userInput }}',severity:'High',docsUrl:''},
+{id:51,cat:'Security',name:'Use CSP headers',desc:'Content Security Policy for XSS protection',doCode:'Configure CSP in next.config.js',dontCode:'No security headers',codeGood:'headers() with CSP',codeBad:'No CSP configuration',severity:'High',docsUrl:'https://nextjs.org/docs/app/building-your-application/configuring/content-security-policy'},
+{id:52,cat:'Security',name:'Validate Server Action input',desc:'Server Actions are public endpoints',doCode:'Validate and authorize in Server Action',dontCode:'Trust Server Action input',codeGood:'Auth check + validation in action',codeBad:'Direct database call without check',severity:'High',docsUrl:''},
+],
+vue: [
+{id:1,cat:'Composition',name:'Use Composition API for new projects',desc:'Composition API offers better TypeScript support and logic reuse',doCode:'\\x3Cscript setup> for components',dontCode:'Options API for new projects',codeGood:'\\x3Cscript setup>',codeBad:'export default { data() }',severity:'Medium',docsUrl:'https://vuejs.org/guide/extras/composition-api-faq.html'},
+{id:2,cat:'Composition',name:'Use script setup syntax',desc:'Cleaner syntax with automatic exports',doCode:'\\x3Cscript setup> with defineProps',dontCode:'setup() function manually',codeGood:'\\x3Cscript setup>',codeBad:'\\x3Cscript> setup() { return {} }',severity:'Low',docsUrl:'https://vuejs.org/api/sfc-script-setup.html'},
+{id:3,cat:'Reactivity',name:'Use ref for primitives',desc:'ref() for primitive values that need reactivity',doCode:'ref() for strings numbers booleans',dontCode:'reactive() for primitives',codeGood:'const count = ref(0)',codeBad:'const count = reactive(0)',severity:'Medium',docsUrl:'https://vuejs.org/guide/essentials/reactivity-fundamentals.html'},
+{id:4,cat:'Reactivity',name:'Use reactive for objects',desc:'reactive() for complex objects and arrays',doCode:'reactive() for objects with multiple properties',dontCode:'ref() for complex objects',codeGood:'const state = reactive({ user: null })',codeBad:'const state = ref({ user: null })',severity:'Medium',docsUrl:''},
+{id:5,cat:'Reactivity',name:'Access ref values with .value',desc:'Remember .value in script unwrap in template',doCode:'Use .value in script',dontCode:'Forget .value in script',codeGood:'count.value++',codeBad:'count++ (in script)',severity:'High',docsUrl:''},
+{id:6,cat:'Reactivity',name:'Use computed for derived state',desc:'Computed properties cache and update automatically',doCode:'computed() for derived values',dontCode:'Methods for derived values',codeGood:'const doubled = computed(() => count.value * 2)',codeBad:'const doubled = () => count.value * 2',severity:'Medium',docsUrl:'https://vuejs.org/guide/essentials/computed.html'},
+{id:7,cat:'Reactivity',name:'Use shallowRef for large objects',desc:'Avoid deep reactivity for performance',doCode:'shallowRef for large data structures',dontCode:'ref for large nested objects',codeGood:'const bigData = shallowRef(largeObject)',codeBad:'const bigData = ref(largeObject)',severity:'Medium',docsUrl:'https://vuejs.org/api/reactivity-advanced.html#shallowref'},
+{id:8,cat:'Watchers',name:'Use watchEffect for simple cases',desc:'Auto-tracks dependencies',doCode:'watchEffect for simple reactive effects',dontCode:'watch with explicit deps when not needed',codeGood:'watchEffect(() => console.log(count.value))',codeBad:'watch(count, (val) => console.log(val))',severity:'Low',docsUrl:'https://vuejs.org/guide/essentials/watchers.html'},
+{id:9,cat:'Watchers',name:'Use watch for specific sources',desc:'Explicit control over what to watch',doCode:'watch with specific refs',dontCode:'watchEffect for complex conditional logic',codeGood:'watch(userId, fetchUser)',codeBad:'watchEffect with conditionals',severity:'Medium',docsUrl:''},
+{id:10,cat:'Watchers',name:'Clean up side effects',desc:'Return cleanup function in watchers',doCode:'Return cleanup in watchEffect',dontCode:'Leave subscriptions open',codeGood:'watchEffect((onCleanup) => { onCleanup(unsub) })',codeBad:'watchEffect without cleanup',severity:'High',docsUrl:''},
+{id:11,cat:'Props',name:'Define props with defineProps',desc:'Type-safe prop definitions',doCode:'defineProps with TypeScript',dontCode:'Props without types',codeGood:'defineProps<{ msg: string }>()',codeBad:'defineProps([\'msg\'])',severity:'Medium',docsUrl:'https://vuejs.org/guide/typescript/composition-api.html#typing-component-props'},
+{id:12,cat:'Props',name:'Use withDefaults for default values',desc:'Provide defaults for optional props',doCode:'withDefaults with defineProps',dontCode:'Defaults in destructuring',codeGood:'withDefaults(defineProps<Props>(), { count: 0 })',codeBad:'const { count = 0 } = defineProps()',severity:'Medium',docsUrl:''},
+{id:13,cat:'Props',name:'Avoid mutating props',desc:'Props should be read-only',doCode:'Emit events to parent for changes',dontCode:'Direct prop mutation',codeGood:'emit(\'update:modelValue\', newVal)',codeBad:'props.modelValue = newVal',severity:'High',docsUrl:''},
+{id:14,cat:'Emits',name:'Define emits with defineEmits',desc:'Type-safe event emissions',doCode:'defineEmits with types',dontCode:'Emit without definition',codeGood:'defineEmits<{ change: [id: number] }>()',codeBad:'emit(\'change\', id) without define',severity:'Medium',docsUrl:'https://vuejs.org/guide/typescript/composition-api.html#typing-component-emits'},
+{id:15,cat:'Emits',name:'Use v-model for two-way binding',desc:'Simplified parent-child data flow',doCode:'v-model with modelValue prop',dontCode:':value + @input manually',codeGood:'<Child v-model="value"/>',codeBad:'<Child :value="value" @input="value = $event"/>',severity:'Low',docsUrl:'https://vuejs.org/guide/components/v-model.html'},
+{id:16,cat:'Lifecycle',name:'Use onMounted for DOM access',desc:'DOM is ready in onMounted',doCode:'onMounted for DOM operations',dontCode:'Access DOM in setup directly',codeGood:'onMounted(() => el.value.focus())',codeBad:'el.value.focus() in setup',severity:'High',docsUrl:'https://vuejs.org/api/composition-api-lifecycle.html'},
+{id:17,cat:'Lifecycle',name:'Clean up in onUnmounted',desc:'Remove listeners and subscriptions',doCode:'onUnmounted for cleanup',dontCode:'Leave listeners attached',codeGood:'onUnmounted(() => window.removeEventListener())',codeBad:'No cleanup on unmount',severity:'High',docsUrl:''},
+{id:18,cat:'Lifecycle',name:'Avoid onBeforeMount for data',desc:'Use onMounted or setup for data fetching',doCode:'Fetch in onMounted or setup',dontCode:'Fetch in onBeforeMount',codeGood:'onMounted(async () => await fetchData())',codeBad:'onBeforeMount(async () => await fetchData())',severity:'Low',docsUrl:''},
+{id:19,cat:'Components',name:'Use single-file components',desc:'Keep template script style together',doCode:'.vue files for components',dontCode:'Separate template/script files',codeGood:'Component.vue with all parts',codeBad:'Component.js + Component.html',severity:'Low',docsUrl:''},
+{id:20,cat:'Components',name:'Use PascalCase for components',desc:'Consistent component naming',doCode:'PascalCase in imports and templates',dontCode:'kebab-case in script',codeGood:'<MyComponent/>',codeBad:'<my-component/>',severity:'Low',docsUrl:'https://vuejs.org/style-guide/rules-strongly-recommended.html'},
+{id:21,cat:'Components',name:'Prefer composition over mixins',desc:'Composables replace mixins',doCode:'Composables for shared logic',dontCode:'Mixins for code reuse',codeGood:'const { data } = useApi()',codeBad:'mixins: [apiMixin]',severity:'Medium',docsUrl:''},
+{id:22,cat:'Composables',name:'Name composables with use prefix',desc:'Convention for composable functions',doCode:'useFetch useAuth useForm',dontCode:'getData or fetchApi',codeGood:'export function useFetch()',codeBad:'export function fetchData()',severity:'Medium',docsUrl:'https://vuejs.org/guide/reusability/composables.html'},
+{id:23,cat:'Composables',name:'Return refs from composables',desc:'Maintain reactivity when destructuring',doCode:'Return ref values',dontCode:'Return reactive objects that lose reactivity',codeGood:'return { data: ref(null) }',codeBad:'return reactive({ data: null })',severity:'Medium',docsUrl:''},
+{id:24,cat:'Composables',name:'Accept ref or value params',desc:'Use toValue for flexible inputs',doCode:'toValue() or unref() for params',dontCode:'Only accept ref or only value',codeGood:'const val = toValue(maybeRef)',codeBad:'const val = maybeRef.value',severity:'Low',docsUrl:'https://vuejs.org/api/reactivity-utilities.html#tovalue'},
+{id:25,cat:'Templates',name:'Use v-bind shorthand',desc:'Cleaner template syntax',doCode:':prop instead of v-bind:prop',dontCode:'Full v-bind syntax',codeGood:'<div :class="cls">',codeBad:'<div v-bind:class="cls">',severity:'Low',docsUrl:''},
+{id:26,cat:'Templates',name:'Use v-on shorthand',desc:'Cleaner event binding',doCode:'@event instead of v-on:event',dontCode:'Full v-on syntax',codeGood:'<button @click="handler">',codeBad:'<button v-on:click="handler">',severity:'Low',docsUrl:''},
+{id:27,cat:'Templates',name:'Avoid v-if with v-for',desc:'v-if has higher priority causes issues',doCode:'Wrap in template or computed filter',dontCode:'v-if on same element as v-for',codeGood:'<template v-for><div v-if>',codeBad:'<div v-for v-if>',severity:'High',docsUrl:'https://vuejs.org/style-guide/rules-essential.html#avoid-v-if-with-v-for'},
+{id:28,cat:'Templates',name:'Use key with v-for',desc:'Proper list rendering and updates',doCode:'Unique key for each item',dontCode:'Index as key for dynamic lists',codeGood:'v-for="item in items" :key="item.id"',codeBad:'v-for="(item, i) in items" :key="i"',severity:'High',docsUrl:''},
+{id:29,cat:'State',name:'Use Pinia for global state',desc:'Official state management for Vue 3',doCode:'Pinia stores for shared state',dontCode:'Vuex for new projects',codeGood:'const store = useCounterStore()',codeBad:'Vuex with mutations',severity:'Medium',docsUrl:'https://pinia.vuejs.org/'},
+{id:30,cat:'State',name:'Define stores with defineStore',desc:'Composition API style stores',doCode:'Setup stores with defineStore',dontCode:'Options stores for complex state',codeGood:'defineStore(\'counter\', () => {})',codeBad:'defineStore(\'counter\', { state })',severity:'Low',docsUrl:''},
+{id:31,cat:'State',name:'Use storeToRefs for destructuring',desc:'Maintain reactivity when destructuring',doCode:'storeToRefs(store)',dontCode:'Direct destructuring',codeGood:'const { count } = storeToRefs(store)',codeBad:'const { count } = store',severity:'High',docsUrl:'https://pinia.vuejs.org/core-concepts/#destructuring-from-a-store'},
+{id:32,cat:'Routing',name:'Use useRouter and useRoute',desc:'Composition API router access',doCode:'useRouter() useRoute() in setup',dontCode:'this.$router this.$route',codeGood:'const router = useRouter()',codeBad:'this.$router.push()',severity:'Medium',docsUrl:'https://router.vuejs.org/guide/advanced/composition-api.html'},
+{id:33,cat:'Routing',name:'Lazy load route components',desc:'Code splitting for routes',doCode:'() => import() for components',dontCode:'Static imports for all routes',codeGood:'component: () => import(\'./Page.vue\')',codeBad:'component: Page',severity:'Medium',docsUrl:'https://router.vuejs.org/guide/advanced/lazy-loading.html'},
+{id:34,cat:'Routing',name:'Use navigation guards',desc:'Protect routes and handle redirects',doCode:'beforeEach for auth checks',dontCode:'Check auth in each component',codeGood:'router.beforeEach((to) => {})',codeBad:'Check auth in onMounted',severity:'Medium',docsUrl:''},
+{id:35,cat:'Performance',name:'Use v-once for static content',desc:'Skip re-renders for static elements',doCode:'v-once on never-changing content',dontCode:'v-once on dynamic content',codeGood:'<div v-once>{{ staticText }}</div>',codeBad:'<div v-once>{{ dynamicText }}</div>',severity:'Low',docsUrl:'https://vuejs.org/api/built-in-directives.html#v-once'},
+{id:36,cat:'Performance',name:'Use v-memo for expensive lists',desc:'Memoize list items',doCode:'v-memo with dependency array',dontCode:'Re-render entire list always',codeGood:'<div v-for v-memo="[item.id]">',codeBad:'<div v-for> without memo',severity:'Medium',docsUrl:'https://vuejs.org/api/built-in-directives.html#v-memo'},
+{id:37,cat:'Performance',name:'Use shallowReactive for flat objects',desc:'Avoid deep reactivity overhead',doCode:'shallowReactive for flat state',dontCode:'reactive for simple objects',codeGood:'shallowReactive({ count: 0 })',codeBad:'reactive({ count: 0 })',severity:'Low',docsUrl:''},
+{id:38,cat:'Performance',name:'Use defineAsyncComponent',desc:'Lazy load heavy components',doCode:'defineAsyncComponent for modals dialogs',dontCode:'Import all components eagerly',codeGood:'defineAsyncComponent(() => import())',codeBad:'import HeavyComponent from',severity:'Medium',docsUrl:'https://vuejs.org/guide/components/async.html'},
+{id:39,cat:'TypeScript',name:'Use generic components',desc:'Type-safe reusable components',doCode:'Generic with defineComponent',dontCode:'Any types in components',codeGood:'\\x3Cscript setup lang="ts" generic="T">',codeBad:'\\x3Cscript setup> without types',severity:'Medium',docsUrl:'https://vuejs.org/guide/typescript/composition-api.html'},
+{id:40,cat:'TypeScript',name:'Type template refs',desc:'Proper typing for DOM refs',doCode:'ref<HTMLInputElement>(null)',dontCode:'ref(null) without type',codeGood:'const input = ref<HTMLInputElement>(null)',codeBad:'const input = ref(null)',severity:'Medium',docsUrl:''},
+{id:41,cat:'TypeScript',name:'Use PropType for complex props',desc:'Type complex prop types',doCode:'PropType<User> for object props',dontCode:'Object without type',codeGood:'type: Object as PropType<User>',codeBad:'type: Object',severity:'Medium',docsUrl:''},
+{id:42,cat:'Testing',name:'Use Vue Test Utils',desc:'Official testing library',doCode:'mount shallowMount for components',dontCode:'Manual DOM testing',codeGood:'import { mount } from \'@vue/test-utils\'',codeBad:'document.createElement',severity:'Medium',docsUrl:'https://test-utils.vuejs.org/'},
+{id:43,cat:'Testing',name:'Test component behavior',desc:'Focus on inputs and outputs',doCode:'Test props emit and rendered output',dontCode:'Test internal implementation',codeGood:'expect(wrapper.text()).toContain()',codeBad:'expect(wrapper.vm.internalState)',severity:'Medium',docsUrl:''},
+{id:44,cat:'Forms',name:'Use v-model modifiers',desc:'Built-in input handling',doCode:'.lazy .number .trim modifiers',dontCode:'Manual input parsing',codeGood:'<input v-model.number="age">',codeBad:'<input v-model="age"> then parse',severity:'Low',docsUrl:'https://vuejs.org/guide/essentials/forms.html#modifiers'},
+{id:45,cat:'Forms',name:'Use VeeValidate or FormKit',desc:'Form validation libraries',doCode:'VeeValidate for complex forms',dontCode:'Manual validation logic',codeGood:'useField useForm from vee-validate',codeBad:'Custom validation in each input',severity:'Medium',docsUrl:''},
+{id:46,cat:'Accessibility',name:'Use semantic elements',desc:'Proper HTML elements in templates',doCode:'button nav main for purpose',dontCode:'div for everything',codeGood:'<button @click>',codeBad:'<div @click>',severity:'High',docsUrl:''},
+{id:47,cat:'Accessibility',name:'Bind aria attributes dynamically',desc:'Keep ARIA in sync with state',doCode:':aria-expanded="isOpen"',dontCode:'Static ARIA values',codeGood:':aria-expanded="menuOpen"',codeBad:'aria-expanded="true"',severity:'Medium',docsUrl:''},
+{id:48,cat:'SSR',name:'Use Nuxt for SSR',desc:'Full-featured SSR framework',doCode:'Nuxt 3 for SSR apps',dontCode:'Manual SSR setup',codeGood:'npx nuxi init my-app',codeBad:'Custom SSR configuration',severity:'Medium',docsUrl:'https://nuxt.com/'},
+{id:49,cat:'SSR',name:'Handle hydration mismatches',desc:'Client/server content must match',doCode:'ClientOnly for browser-only content',dontCode:'Different content server/client',codeGood:'<ClientOnly><BrowserWidget/></ClientOnly>',codeBad:'<div>{{ Date.now() }}</div>',severity:'High',docsUrl:''},
+],
+svelte: [
+{id:1,cat:'Reactivity',name:'Use $: for reactive statements',desc:'Automatic dependency tracking',doCode:'$: for derived values',dontCode:'Manual recalculation',codeGood:'$: doubled = count * 2',codeBad:'let doubled; count && (doubled = count * 2)',severity:'Medium',docsUrl:'https://svelte.dev/docs/svelte-components#script-3-$-marks-a-statement-as-reactive'},
+{id:2,cat:'Reactivity',name:'Trigger reactivity with assignment',desc:'Svelte tracks assignments not mutations',doCode:'Reassign arrays/objects to trigger update',dontCode:'Mutate without reassignment',codeGood:'items = [...items, newItem]',codeBad:'items.push(newItem)',severity:'High',docsUrl:'https://svelte.dev/docs/svelte-components#script-2-assignments-are-reactive'},
+{id:3,cat:'Reactivity',name:'Use $state in Svelte 5',desc:'Runes for explicit reactivity',doCode:'let count = $state(0)',dontCode:'Implicit reactivity in Svelte 5',codeGood:'let count = $state(0)',codeBad:'let count = 0 (Svelte 5)',severity:'Medium',docsUrl:'https://svelte.dev/blog/runes'},
+{id:4,cat:'Reactivity',name:'Use $derived for computed values',desc:'$derived replaces $: in Svelte 5',doCode:'let doubled = $derived(count * 2)',dontCode:'$: in Svelte 5',codeGood:'let doubled = $derived(count * 2)',codeBad:'$: doubled = count * 2 (Svelte 5)',severity:'Medium',docsUrl:''},
+{id:5,cat:'Reactivity',name:'Use $effect for side effects',desc:'$effect replaces $: side effects',doCode:'Use $effect for subscriptions',dontCode:'$: for side effects in Svelte 5',codeGood:'$effect(() => console.log(count))',codeBad:'$: console.log(count) (Svelte 5)',severity:'Medium',docsUrl:''},
+{id:6,cat:'Props',name:'Export let for props',desc:'Declare props with export let',doCode:'export let propName',dontCode:'Props without export',codeGood:'export let count = 0',codeBad:'let count = 0',severity:'High',docsUrl:'https://svelte.dev/docs/svelte-components#script-1-export-creates-a-component-prop'},
+{id:7,cat:'Props',name:'Use $props in Svelte 5',desc:'$props rune for prop access',doCode:'let { name } = $props()',dontCode:'export let in Svelte 5',codeGood:'let { name, age = 0 } = $props()',codeBad:'export let name; export let age = 0',severity:'Medium',docsUrl:''},
+{id:8,cat:'Props',name:'Provide default values',desc:'Default props with assignment',doCode:'export let count = 0',dontCode:'Required props without defaults',codeGood:'export let count = 0',codeBad:'export let count',severity:'Low',docsUrl:''},
+{id:9,cat:'Props',name:'Use spread props',desc:'Pass through unknown props',doCode:'{...$$restProps} on elements',dontCode:'Manual prop forwarding',codeGood:'<button {...$$restProps}>',codeBad:'<button class={$$props.class}>',severity:'Low',docsUrl:'https://svelte.dev/docs/basic-markup#attributes-and-props'},
+{id:10,cat:'Bindings',name:'Use bind: for two-way binding',desc:'Simplified input handling',doCode:'bind:value for inputs',dontCode:'on:input with manual update',codeGood:'<input bind:value={name}>',codeBad:'<input value={name} on:input={e => name = e.target.value}>',severity:'Low',docsUrl:'https://svelte.dev/docs/element-directives#bind-property'},
+{id:11,cat:'Bindings',name:'Bind to DOM elements',desc:'Reference DOM nodes',doCode:'bind:this for element reference',dontCode:'querySelector in onMount',codeGood:'<div bind:this={el}>',codeBad:'onMount(() => el = document.querySelector())',severity:'Medium',docsUrl:''},
+{id:12,cat:'Bindings',name:'Use bind:group for radios/checkboxes',desc:'Simplified group handling',doCode:'bind:group for radio/checkbox groups',dontCode:'Manual checked handling',codeGood:'<input type="radio" bind:group={selected}>',codeBad:'<input type="radio" checked={selected === value}>',severity:'Low',docsUrl:''},
+{id:13,cat:'Events',name:'Use on: for event handlers',desc:'Event directive syntax',doCode:'on:click={handler}',dontCode:'addEventListener in onMount',codeGood:'<button on:click={handleClick}>',codeBad:'onMount(() => btn.addEventListener())',severity:'Medium',docsUrl:'https://svelte.dev/docs/element-directives#on-eventname'},
+{id:14,cat:'Events',name:'Forward events with on:event',desc:'Pass events to parent',doCode:'on:click without handler',dontCode:'createEventDispatcher for DOM events',codeGood:'<button on:click>',codeBad:'dispatch(\'click\', event)',severity:'Low',docsUrl:''},
+{id:15,cat:'Events',name:'Use createEventDispatcher',desc:'Custom component events',doCode:'dispatch for custom events',dontCode:'on:event for custom events',codeGood:'dispatch(\'save\', { data })',codeBad:'on:save without dispatch',severity:'Medium',docsUrl:'https://svelte.dev/docs/svelte#createeventdispatcher'},
+{id:16,cat:'Lifecycle',name:'Use onMount for initialization',desc:'Run code after component mounts',doCode:'onMount for setup and data fetching',dontCode:'Code in script body for side effects',codeGood:'onMount(() => fetchData())',codeBad:'fetchData() in script body',severity:'High',docsUrl:'https://svelte.dev/docs/svelte#onmount'},
+{id:17,cat:'Lifecycle',name:'Return cleanup from onMount',desc:'Automatic cleanup on destroy',doCode:'Return function from onMount',dontCode:'Separate onDestroy for paired cleanup',codeGood:'onMount(() => { sub(); return unsub })',codeBad:'onMount(sub); onDestroy(unsub)',severity:'Medium',docsUrl:''},
+{id:18,cat:'Lifecycle',name:'Use onDestroy sparingly',desc:'Only when onMount cleanup not possible',doCode:'onDestroy for non-mount cleanup',dontCode:'onDestroy for mount-related cleanup',codeGood:'onDestroy for store unsubscribe',codeBad:'onDestroy(() => clearInterval(id))',severity:'Low',docsUrl:''},
+{id:19,cat:'Lifecycle',name:'Avoid beforeUpdate/afterUpdate',desc:'Usually not needed',doCode:'Reactive statements instead',dontCode:'beforeUpdate for derived state',codeGood:'$: if (x) doSomething()',codeBad:'beforeUpdate(() => doSomething())',severity:'Low',docsUrl:''},
+{id:20,cat:'Stores',name:'Use writable for mutable state',desc:'Basic reactive store',doCode:'writable for shared mutable state',dontCode:'Local variables for shared state',codeGood:'const count = writable(0)',codeBad:'let count = 0 in module',severity:'Medium',docsUrl:'https://svelte.dev/docs/svelte-store#writable'},
+{id:21,cat:'Stores',name:'Use readable for read-only state',desc:'External data sources',doCode:'readable for derived/external data',dontCode:'writable for read-only data',codeGood:'readable(0, set => interval(set))',codeBad:'writable(0) for timer',severity:'Low',docsUrl:'https://svelte.dev/docs/svelte-store#readable'},
+{id:22,cat:'Stores',name:'Use derived for computed stores',desc:'Combine or transform stores',doCode:'derived for computed values',dontCode:'Manual subscription for derived',codeGood:'derived(count, $c => $c * 2)',codeBad:'count.subscribe(c => doubled = c * 2)',severity:'Medium',docsUrl:'https://svelte.dev/docs/svelte-store#derived'},
+{id:23,cat:'Stores',name:'Use $ prefix for auto-subscription',desc:'Automatic subscribe/unsubscribe',doCode:'$storeName in components',dontCode:'Manual subscription',codeGood:'{$count}',codeBad:'count.subscribe(c => value = c)',severity:'High',docsUrl:''},
+{id:24,cat:'Stores',name:'Clean up custom subscriptions',desc:'Unsubscribe when component destroys',doCode:'Return unsubscribe from onMount',dontCode:'Leave subscriptions open',codeGood:'onMount(() => store.subscribe(fn))',codeBad:'store.subscribe(fn) in script',severity:'High',docsUrl:''},
+{id:25,cat:'Slots',name:'Use slots for composition',desc:'Content projection',doCode:'<slot> for flexible content',dontCode:'Props for all content',codeGood:'<slot>Default</slot>',codeBad:'<Component content="text"/>',severity:'Medium',docsUrl:'https://svelte.dev/docs/special-elements#slot'},
+{id:26,cat:'Slots',name:'Name slots for multiple areas',desc:'Multiple content areas',doCode:'<slot name="header">',dontCode:'Single slot for complex layouts',codeGood:'<slot name="header"><slot name="footer">',codeBad:'<slot> with complex conditionals',severity:'Low',docsUrl:''},
+{id:27,cat:'Slots',name:'Check slot content with $$slots',desc:'Conditional slot rendering',doCode:'$$slots.name for conditional rendering',dontCode:'Always render slot wrapper',codeGood:'{#if $$slots.footer}<slot name="footer"/>{/if}',codeBad:'<div><slot name="footer"/></div>',severity:'Low',docsUrl:''},
+{id:28,cat:'Styling',name:'Use scoped styles by default',desc:'Styles scoped to component',doCode:'<style> for component styles',dontCode:'Global styles for component',codeGood:':global() only when needed',codeBad:'<style> all global',severity:'Medium',docsUrl:'https://svelte.dev/docs/svelte-components#style'},
+{id:29,cat:'Styling',name:'Use :global() sparingly',desc:'Escape scoping when needed',doCode:':global for third-party styling',dontCode:'Global for all styles',codeGood:':global(.external-lib)',codeBad:'<style> without scoping',severity:'Medium',docsUrl:''},
+{id:30,cat:'Styling',name:'Use CSS variables for theming',desc:'Dynamic styling',doCode:'CSS custom properties',dontCode:'Inline styles for themes',codeGood:'style="--color: {color}"',codeBad:'style="color: {color}"',severity:'Low',docsUrl:''},
+{id:31,cat:'Transitions',name:'Use built-in transitions',desc:'Svelte transition directives',doCode:'transition:fade for simple effects',dontCode:'Manual CSS transitions',codeGood:'<div transition:fade>',codeBad:'<div class:fade={visible}>',severity:'Low',docsUrl:'https://svelte.dev/docs/element-directives#transition-fn'},
+{id:32,cat:'Transitions',name:'Use in: and out: separately',desc:'Different enter/exit animations',doCode:'in:fly out:fade for asymmetric',dontCode:'Same transition for both',codeGood:'<div in:fly out:fade>',codeBad:'<div transition:fly>',severity:'Low',docsUrl:''},
+{id:33,cat:'Transitions',name:'Add local modifier',desc:'Prevent ancestor trigger',doCode:'transition:fade|local',dontCode:'Global transitions for lists',codeGood:'<div transition:slide|local>',codeBad:'<div transition:slide>',severity:'Medium',docsUrl:''},
+{id:34,cat:'Actions',name:'Use actions for DOM behavior',desc:'Reusable DOM logic',doCode:'use:action for DOM enhancements',dontCode:'onMount for each usage',codeGood:'<div use:clickOutside>',codeBad:'onMount(() => setupClickOutside(el))',severity:'Medium',docsUrl:'https://svelte.dev/docs/element-directives#use-action'},
+{id:35,cat:'Actions',name:'Return update and destroy',desc:'Lifecycle methods for actions',doCode:'Return { update, destroy }',dontCode:'Only initial setup',codeGood:'return { update(params) {}, destroy() {} }',codeBad:'return destroy only',severity:'Medium',docsUrl:''},
+{id:36,cat:'Actions',name:'Pass parameters to actions',desc:'Configure action behavior',doCode:'use:action={params}',dontCode:'Hardcoded action behavior',codeGood:'<div use:tooltip={options}>',codeBad:'<div use:tooltip>',severity:'Low',docsUrl:''},
+{id:37,cat:'Logic',name:'Use {#if} for conditionals',desc:'Template conditionals',doCode:'{#if} {:else if} {:else}',dontCode:'Ternary in expressions',codeGood:'{#if cond}...{:else}...{/if}',codeBad:'{cond ? a : b} for complex',severity:'Low',docsUrl:'https://svelte.dev/docs/logic-blocks#if'},
+{id:38,cat:'Logic',name:'Use {#each} for lists',desc:'List rendering',doCode:'{#each} with key',dontCode:'Map in expression',codeGood:'{#each items as item (item.id)}',codeBad:'{items.map(i => `<div>${i}</div>`)}',severity:'Medium',docsUrl:''},
+{id:39,cat:'Logic',name:'Always use keys in {#each}',desc:'Proper list reconciliation',doCode:'(item.id) for unique key',dontCode:'Index as key or no key',codeGood:'{#each items as item (item.id)}',codeBad:'{#each items as item, i (i)}',severity:'High',docsUrl:''},
+{id:40,cat:'Logic',name:'Use {#await} for promises',desc:'Handle async states',doCode:'{#await} for loading/error states',dontCode:'Manual promise handling',codeGood:'{#await promise}...{:then}...{:catch}',codeBad:'{#if loading}...{#if error}',severity:'Medium',docsUrl:'https://svelte.dev/docs/logic-blocks#await'},
+{id:41,cat:'SvelteKit',name:'Use +page.svelte for routes',desc:'File-based routing',doCode:'+page.svelte for route components',dontCode:'Custom routing setup',codeGood:'routes/about/+page.svelte',codeBad:'routes/About.svelte',severity:'Medium',docsUrl:'https://kit.svelte.dev/docs/routing'},
+{id:42,cat:'SvelteKit',name:'Use +page.js for data loading',desc:'Load data before render',doCode:'load function in +page.js',dontCode:'onMount for data fetching',codeGood:'export function load() {}',codeBad:'onMount(() => fetchData())',severity:'High',docsUrl:'https://kit.svelte.dev/docs/load'},
+{id:43,cat:'SvelteKit',name:'Use +page.server.js for server-only',desc:'Server-side data loading',doCode:'+page.server.js for sensitive data',dontCode:'+page.js for API keys',codeGood:'+page.server.js with DB access',codeBad:'+page.js with DB access',severity:'High',docsUrl:''},
+{id:44,cat:'SvelteKit',name:'Use form actions',desc:'Server-side form handling',doCode:'+page.server.js actions',dontCode:'API routes for forms',codeGood:'export const actions = { default }',codeBad:'fetch(\'/api/submit\')',severity:'Medium',docsUrl:'https://kit.svelte.dev/docs/form-actions'},
+{id:45,cat:'SvelteKit',name:'Use $app/stores for app state',desc:'$page $navigating $updated',doCode:'$page for current page data',dontCode:'Manual URL parsing',codeGood:'import { page } from \'$app/stores\'',codeBad:'window.location.pathname',severity:'Medium',docsUrl:'https://kit.svelte.dev/docs/modules#$app-stores'},
+{id:46,cat:'Performance',name:'Use {#key} for forced re-render',desc:'Reset component state',doCode:'{#key id} for fresh instance',dontCode:'Manual destroy/create',codeGood:'{#key item.id}<Component/>{/key}',codeBad:'on:change={() => component = null}',severity:'Low',docsUrl:'https://svelte.dev/docs/logic-blocks#key'},
+{id:47,cat:'Performance',name:'Avoid unnecessary reactivity',desc:'Not everything needs $:',doCode:'$: only for side effects',dontCode:'$: for simple assignments',codeGood:'$: if (x) console.log(x)',codeBad:'$: y = x (when y = x works)',severity:'Low',docsUrl:''},
+{id:48,cat:'Performance',name:'Use immutable compiler option',desc:'Skip equality checks',doCode:'immutable: true for large lists',dontCode:'Default for all components',codeGood:'<svelte:options immutable/>',codeBad:'Default without immutable',severity:'Low',docsUrl:''},
+{id:49,cat:'TypeScript',name:'Use lang="ts" in script',desc:'TypeScript support',doCode:'\\x3Cscript lang="ts">',dontCode:'JavaScript for typed projects',codeGood:'\\x3Cscript lang="ts">',codeBad:'\\x3Cscript> with JSDoc',severity:'Medium',docsUrl:'https://svelte.dev/docs/typescript'},
+{id:50,cat:'TypeScript',name:'Type props with interface',desc:'Explicit prop types',doCode:'interface $$Props for types',dontCode:'Untyped props',codeGood:'interface $$Props { name: string }',codeBad:'export let name',severity:'Medium',docsUrl:''},
+{id:51,cat:'TypeScript',name:'Type events with createEventDispatcher',desc:'Type-safe events',doCode:'createEventDispatcher<Events>()',dontCode:'Untyped dispatch',codeGood:'createEventDispatcher<{ save: Data }>()',codeBad:'createEventDispatcher()',severity:'Medium',docsUrl:''},
+{id:52,cat:'Accessibility',name:'Use semantic elements',desc:'Proper HTML in templates',doCode:'button nav main appropriately',dontCode:'div for everything',codeGood:'<button on:click>',codeBad:'<div on:click>',severity:'High',docsUrl:''},
+{id:53,cat:'Accessibility',name:'Add aria to dynamic content',desc:'Accessible state changes',doCode:'aria-live for updates',dontCode:'Silent dynamic updates',codeGood:'<div aria-live="polite">{message}</div>',codeBad:'<div>{message}</div>',severity:'Medium',docsUrl:''},
+],
+htmlTailwind: [
+{id:1,cat:'Utility',name:'Use utility-first approach',desc:'Compose designs with utility classes instead of custom CSS',doCode:'Combine utility classes directly in HTML',dontCode:'Write custom CSS for every element',codeGood:'<div class="flex items-center gap-4 p-6 bg-white rounded-xl shadow-md">',codeBad:'.card { display:flex; align-items:center; gap:1rem; padding:1.5rem; }',severity:'High',docsUrl:'https://tailwindcss.com/docs/utility-first'},
+{id:2,cat:'Responsive',name:'Use responsive prefixes',desc:'Apply styles at specific breakpoints with mobile-first design',doCode:'Mobile-first with sm: md: lg: xl: prefixes',dontCode:'Desktop-first or media queries in custom CSS',codeGood:'<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">',codeBad:'<div class="grid grid-cols-3"> with @media override',severity:'High',docsUrl:'https://tailwindcss.com/docs/responsive-design'},
+{id:3,cat:'Utility',name:'Configure content paths for purging',desc:'Ensure Tailwind scans all template files to remove unused CSS',doCode:'Set content paths in tailwind.config.js',dontCode:'Leave default config or miss template paths',codeGood:'content: ["./src/**/*.{html,js,jsx,tsx}"]',codeBad:'content: [] // produces empty CSS',severity:'High',docsUrl:'https://tailwindcss.com/docs/content-configuration'},
+{id:4,cat:'Components',name:'Extract components instead of @apply',desc:'Use component abstractions (partials, JSX) over @apply for reuse',doCode:'Create reusable HTML/JSX components',dontCode:'Overuse @apply to recreate CSS classes',codeGood:'<Button variant="primary">Save</Button>',codeBad:'.btn-primary { @apply px-4 py-2 bg-blue-500 text-white rounded; }',severity:'Medium',docsUrl:'https://tailwindcss.com/docs/reusing-styles'},
+{id:5,cat:'Utility',name:'Use arbitrary values sparingly',desc:'Bracket notation for one-off values not in the design system',doCode:'Arbitrary values only when scale does not fit',dontCode:'Arbitrary values for everything bypassing the scale',codeGood:'<div class="top-[117px]"> /* one-off alignment */',codeBad:'<div class="p-[13px] m-[7px] text-[15px]"> /* random values */',severity:'Medium',docsUrl:'https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values'},
+{id:6,cat:'Layout',name:'Use Flexbox and Grid utilities',desc:'Leverage flex and grid utilities for layout instead of floats',doCode:'flex, grid, gap, justify, items utilities',dontCode:'Float-based layouts or manual spacing',codeGood:'<div class="flex justify-between items-center gap-4">',codeBad:'<div style="float:left; margin-right:16px;">',severity:'High',docsUrl:'https://tailwindcss.com/docs/flex'},
+{id:7,cat:'Responsive',name:'Use container queries',desc:'Style based on parent container size with @container',doCode:'@container for component-level responsiveness',dontCode:'Only viewport breakpoints for nested components',codeGood:'<div class="@container"><div class="@md:flex @md:gap-4">',codeBad:'<div class="md:flex"> inside a sidebar',severity:'Low',docsUrl:'https://tailwindcss.com/docs/container-queries'},
+{id:8,cat:'Performance',name:'Avoid redundant classes',desc:'Remove conflicting or overridden utilities',doCode:'Single source of truth for each property',dontCode:'Multiple conflicting utilities on same element',codeGood:'<div class="mt-4">',codeBad:'<div class="mt-2 mt-4"> /* mt-2 is overridden */',severity:'Medium',docsUrl:''},
+{id:9,cat:'Utility',name:'Use the spacing scale consistently',desc:'Stick to Tailwind spacing scale for visual consistency',doCode:'Use scale values: 1,2,3,4,5,6,8,10,12,16,20...',dontCode:'Arbitrary pixel values that break rhythm',codeGood:'<div class="p-4 mb-6 gap-3">',codeBad:'<div class="p-[13px] mb-[22px] gap-[7px]">',severity:'Medium',docsUrl:'https://tailwindcss.com/docs/customizing-spacing'},
+{id:10,cat:'Accessibility',name:'Use sr-only for screen reader text',desc:'Hide text visually but keep accessible to screen readers',doCode:'sr-only class for descriptive hidden text',dontCode:'display:none which hides from everyone',codeGood:'<span class="sr-only">Close menu</span>',codeBad:'<span style="display:none">Close menu</span>',severity:'Medium',docsUrl:'https://tailwindcss.com/docs/screen-readers'},
+{id:11,cat:'Components',name:'Use dark mode with class strategy',desc:'Toggle dark mode with a class on html/body element',doCode:'darkMode: "class" in config with dark: prefix',dontCode:'Only media strategy or inline dark styles',codeGood:'<div class="bg-white dark:bg-gray-900 text-black dark:text-white">',codeBad:'@media (prefers-color-scheme: dark) { .card { ... } }',severity:'Medium',docsUrl:'https://tailwindcss.com/docs/dark-mode'},
+{id:12,cat:'Performance',name:'Use @tailwind directives correctly',desc:'Import base, components, and utilities layers properly',doCode:'All three directives in main CSS file',dontCode:'Missing layers or importing full Tailwind CSS',codeGood:'@tailwind base;\\n@tailwind components;\\n@tailwind utilities;',codeBad:'@import "tailwindcss/dist/tailwind.css";',severity:'High',docsUrl:'https://tailwindcss.com/docs/functions-and-directives'},
+],
+nuxtjs: [
+{id:1,cat:'Routing',name:'Use file-based routing',desc:'Nuxt auto-generates routes from the pages/ directory structure',doCode:'Create files in pages/ for routes',dontCode:'Manual vue-router configuration',codeGood:'pages/users/[id].vue -> /users/:id',codeBad:'router.addRoute({ path: "/users/:id" })',severity:'High',docsUrl:'https://nuxt.com/docs/getting-started/routing'},
+{id:2,cat:'Data',name:'Use useAsyncData for data fetching',desc:'Fetch data with SSR support and deduplication',doCode:'useAsyncData with a unique key',dontCode:'onMounted fetch calls',codeGood:'const { data } = await useAsyncData("users", () => $fetch("/api/users"))',codeBad:'onMounted(async () => { data.value = await fetch("/api/users") })',severity:'High',docsUrl:'https://nuxt.com/docs/api/composables/use-async-data'},
+{id:3,cat:'Data',name:'Use useFetch for simple requests',desc:'Convenience wrapper around useAsyncData + $fetch',doCode:'useFetch for straightforward API calls',dontCode:'Raw fetch or axios in components',codeGood:'const { data, error } = await useFetch("/api/posts")',codeBad:'const res = await fetch("/api/posts")',severity:'High',docsUrl:'https://nuxt.com/docs/api/composables/use-fetch'},
+{id:4,cat:'Components',name:'Leverage auto-imports',desc:'Nuxt auto-imports components composables and utils',doCode:'Use components and composables without imports',dontCode:'Manual import statements for Nuxt built-ins',codeGood:'<template><MyComponent /></template> <!-- auto-imported -->',codeBad:'import MyComponent from "~/components/MyComponent.vue"',severity:'Medium',docsUrl:'https://nuxt.com/docs/guide/concepts/auto-imports'},
+{id:5,cat:'State',name:'Use Pinia stores for global state',desc:'Pinia is the recommended state manager for Nuxt 3',doCode:'defineStore with Composition API style',dontCode:'useState for complex shared state or Vuex',codeGood:'export const useUserStore = defineStore("user", () => { ... })',codeBad:'export default { state: () => ({ ... }), mutations: { ... } }',severity:'Medium',docsUrl:'https://nuxt.com/docs/getting-started/state-management'},
+{id:6,cat:'Server',name:'Create server API routes',desc:'Define backend endpoints in server/api/ directory',doCode:'server/api/ files with defineEventHandler',dontCode:'External API server for simple endpoints',codeGood:'// server/api/hello.ts\\nexport default defineEventHandler(() => "Hello")',codeBad:'Express server alongside Nuxt',severity:'Medium',docsUrl:'https://nuxt.com/docs/guide/directory-structure/server'},
+{id:7,cat:'Routing',name:'Use middleware for route guards',desc:'Protect routes with middleware/ directory files',doCode:'Named or global middleware in middleware/',dontCode:'Auth checks inside each page component',codeGood:'// middleware/auth.ts\\nexport default defineNuxtRouteMiddleware((to) => { ... })',codeBad:'onMounted(() => { if (!user) navigateTo("/login") })',severity:'High',docsUrl:'https://nuxt.com/docs/guide/directory-structure/middleware'},
+{id:8,cat:'Components',name:'Use layouts for shared UI',desc:'Define page layouts in layouts/ directory',doCode:'layouts/default.vue with <slot /> for page content',dontCode:'Repeated header/footer in every page',codeGood:'<!-- layouts/default.vue -->\\n<nav>...</nav><slot /><footer>...</footer>',codeBad:'Every page.vue contains full nav and footer markup',severity:'Medium',docsUrl:'https://nuxt.com/docs/guide/directory-structure/layouts'},
+{id:9,cat:'Server',name:'Handle errors with createError',desc:'Throw structured errors from server routes and pages',doCode:'createError with statusCode and message',dontCode:'throw new Error without status codes',codeGood:'throw createError({ statusCode: 404, statusMessage: "Not Found" })',codeBad:'throw new Error("Not found")',severity:'Medium',docsUrl:'https://nuxt.com/docs/api/utils/create-error'},
+{id:10,cat:'Performance',name:'Use useHead for SEO metadata',desc:'Set page title, meta tags, and OG data reactively',doCode:'useHead or useSeoMeta in each page',dontCode:'Static head config or manual document.title',codeGood:'useHead({ title: "My Page", meta: [{ name: "description", content: "..." }] })',codeBad:'document.title = "My Page"',severity:'High',docsUrl:'https://nuxt.com/docs/api/composables/use-head'},
+],
+nuxtUi: [
+{id:1,cat:'Components',name:'Use UButton with variant props',desc:'Leverage built-in variants instead of custom button styles',doCode:'UButton with color, variant, and size props',dontCode:'Custom button CSS or Tailwind button classes',codeGood:'<UButton color="primary" variant="soft" size="lg">Save</UButton>',codeBad:'<button class="bg-blue-500 px-4 py-2 rounded text-white">Save</button>',severity:'Medium',docsUrl:'https://ui.nuxt.com/components/button'},
+{id:2,cat:'Theming',name:'Use the color prop system',desc:'Nuxt UI components accept a color prop tied to your theme palette',doCode:'color="primary" or color="red" on components',dontCode:'Hardcoded Tailwind color classes on UI components',codeGood:'<UBadge color="green">Active</UBadge>',codeBad:'<UBadge class="bg-green-500 text-white">Active</UBadge>',severity:'High',docsUrl:'https://ui.nuxt.com/getting-started/theming'},
+{id:3,cat:'Forms',name:'Use UForm with validation schema',desc:'Integrate Yup or Zod schemas for form validation',doCode:'UForm with :schema and :state props',dontCode:'Manual validation logic in submit handler',codeGood:'<UForm :schema="schema" :state="state" @submit="onSubmit">',codeBad:'<form @submit.prevent="validate() && submit()">',severity:'High',docsUrl:'https://ui.nuxt.com/components/form'},
+{id:4,cat:'Theming',name:'Customize with app.config.ts',desc:'Override component defaults via app.config.ts ui key',doCode:'app.config.ts for global component theming',dontCode:'Override styles per-instance with class props',codeGood:'// app.config.ts\\nexport default defineAppConfig({ ui: { button: { default: { size: "lg" } } } })',codeBad:'Every <UButton size="lg"> repeated across app',severity:'Medium',docsUrl:'https://ui.nuxt.com/getting-started/theming#appconfigts'},
+{id:5,cat:'Components',name:'Use UModal for dialogs',desc:'Accessible modal with built-in overlay and transitions',doCode:'UModal with v-model for open state',dontCode:'Custom modal with manual backdrop and focus trap',codeGood:'<UModal v-model="isOpen"><template #default>Content</template></UModal>',codeBad:'<div v-if="isOpen" class="fixed inset-0 z-50">...',severity:'Medium',docsUrl:'https://ui.nuxt.com/components/modal'},
+{id:6,cat:'Components',name:'Use UTable for data display',desc:'Feature-rich table with sorting, selection, and slots',doCode:'UTable with columns definition and row data',dontCode:'Manual HTML table with v-for',codeGood:'<UTable :columns="columns" :rows="data" />',codeBad:'<table><tr v-for="row in data"><td>{{ row.name }}</td></tr></table>',severity:'Medium',docsUrl:'https://ui.nuxt.com/components/table'},
+{id:7,cat:'Layout',name:'Use icon prop for integrated icons',desc:'Components accept icon prop using Iconify names',doCode:'icon="i-heroicons-check" on UButton, UInput etc.',dontCode:'Manual SVG or icon components inside slots',codeGood:'<UButton icon="i-heroicons-plus" label="Add" />',codeBad:'<UButton><svg>...</svg> Add</UButton>',severity:'Low',docsUrl:'https://ui.nuxt.com/getting-started/theming#icons'},
+{id:8,cat:'Forms',name:'Use UInput with UFormGroup',desc:'Wrap inputs in UFormGroup for labels, help text, and errors',doCode:'UFormGroup with label and error props around UInput',dontCode:'Standalone inputs without labels or error display',codeGood:'<UFormGroup label="Email" :error="errors.email"><UInput v-model="email" /></UFormGroup>',codeBad:'<UInput v-model="email" placeholder="Email" />',severity:'Medium',docsUrl:'https://ui.nuxt.com/components/form-group'},
+],
+flutter: [
+{id:1,cat:'Widgets',name:'Prefer StatelessWidget when possible',desc:'Use StatelessWidget for UI that does not depend on mutable state',doCode:'StatelessWidget for pure display widgets',dontCode:'StatefulWidget when there is no mutable state',codeGood:'class Greeting extends StatelessWidget { ... }',codeBad:'class Greeting extends StatefulWidget { ... } // no setState used',severity:'Medium',docsUrl:'https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html'},
+{id:2,cat:'State',name:'Use setState correctly in StatefulWidget',desc:'Call setState only with the minimal state change needed',doCode:'setState(() { _counter++; }) with targeted update',dontCode:'Rebuild entire widget tree unnecessarily',codeGood:'setState(() { _counter++; });',codeBad:'setState(() { _counter++; _rebuildEverything(); });',severity:'High',docsUrl:'https://api.flutter.dev/flutter/widgets/State/setState.html'},
+{id:3,cat:'State',name:'Use Provider or Riverpod for shared state',desc:'Dependency injection pattern for state across widget tree',doCode:'Provider/Riverpod for cross-widget state',dontCode:'Passing state through constructor chains',codeGood:'context.watch<CartModel>().items',codeBad:'Widget(state: parent.parent.state)',severity:'High',docsUrl:'https://pub.dev/packages/provider'},
+{id:4,cat:'Layout',name:'Use Row and Column for linear layouts',desc:'Row for horizontal, Column for vertical arrangement',doCode:'Row/Column with MainAxisAlignment',dontCode:'Nested Stacks for simple linear layout',codeGood:'Column(children: [Text("A"), Text("B")])',codeBad:'Stack(children: [Positioned(top:0, child: Text("A")), Positioned(top:20, child: Text("B"))])',severity:'Medium',docsUrl:'https://api.flutter.dev/flutter/widgets/Column-class.html'},
+{id:5,cat:'Performance',name:'Use const constructors',desc:'Mark constructors and widgets as const to enable compile-time constants',doCode:'const MyWidget() and const Text("hello")',dontCode:'Non-const constructors for immutable widgets',codeGood:'return const Text("Hello");',codeBad:'return Text("Hello"); // rebuild every time',severity:'High',docsUrl:'https://dart.dev/effective-dart/usage#do-use-const-for-canonical-instances'},
+{id:6,cat:'Widgets',name:'Use keys for list items',desc:'Provide keys to preserve widget state in dynamic lists',doCode:'Key on list item widgets',dontCode:'No keys on reorderable or dynamic lists',codeGood:'ListView(children: items.map((i) => ListTile(key: ValueKey(i.id))))',codeBad:'ListView(children: items.map((i) => ListTile(title: Text(i.name))))',severity:'High',docsUrl:'https://api.flutter.dev/flutter/foundation/Key-class.html'},
+{id:7,cat:'Navigation',name:'Use GoRouter or Navigator 2.0',desc:'Declarative routing for complex navigation flows',doCode:'GoRouter for declarative URL-based routing',dontCode:'Navigator.push for everything',codeGood:'GoRouter(routes: [GoRoute(path: "/user/:id", builder: ...)])',codeBad:'Navigator.push(context, MaterialPageRoute(builder: ...))',severity:'Medium',docsUrl:'https://pub.dev/packages/go_router'},
+{id:8,cat:'Layout',name:'Avoid unbounded constraints',desc:'Ensure widgets inside Columns/Rows have bounded dimensions',doCode:'Wrap with Expanded, Flexible, or SizedBox',dontCode:'ListView inside Column without constraints',codeGood:'Expanded(child: ListView(...))',codeBad:'Column(children: [ListView(...)]) // unbounded height',severity:'High',docsUrl:'https://docs.flutter.dev/ui/layout/constraints'},
+{id:9,cat:'Platform',name:'Use platform-adaptive widgets',desc:'Material on Android, Cupertino on iOS, or adaptive widgets',doCode:'Platform.isIOS checks or .adaptive constructors',dontCode:'Material-only design on iOS',codeGood:'Switch.adaptive(value: v, onChanged: onChanged)',codeBad:'Switch(value: v, onChanged: onChanged) // Material everywhere',severity:'Medium',docsUrl:'https://docs.flutter.dev/platform-integration/platform-adaptations'},
+{id:10,cat:'Performance',name:'Use ListView.builder for long lists',desc:'Build items lazily for large or infinite lists',doCode:'ListView.builder with itemBuilder',dontCode:'ListView with all children in memory',codeGood:'ListView.builder(itemCount: 1000, itemBuilder: (ctx, i) => ...)',codeBad:'ListView(children: List.generate(1000, (i) => ...))',severity:'High',docsUrl:'https://api.flutter.dev/flutter/widgets/ListView/ListView.builder.html'},
+],
+swiftui: [
+{id:1,cat:'State',name:'Use @State for view-local state',desc:'@State for simple value types owned by the view',doCode:'@State private var for view-owned values',dontCode:'@ObservedObject for local-only state',codeGood:'@State private var isOn = false',codeBad:'@ObservedObject var viewModel = ViewModel() // recreated on init',severity:'High',docsUrl:'https://developer.apple.com/documentation/swiftui/state'},
+{id:2,cat:'State',name:'Use @Binding for child views',desc:'Pass mutable state down to child views with @Binding',doCode:'@Binding var in child, $state in parent',dontCode:'Callbacks for every state change',codeGood:'ToggleView(isOn: $isOn)',codeBad:'ToggleView(isOn: isOn, onChange: { isOn = $0 })',severity:'Medium',docsUrl:'https://developer.apple.com/documentation/swiftui/binding'},
+{id:3,cat:'State',name:'Use @StateObject for owned ObservableObject',desc:'@StateObject for objects the view creates and owns',doCode:'@StateObject for view-created view models',dontCode:'@ObservedObject for view-owned objects (gets recreated)',codeGood:'@StateObject private var vm = ViewModel()',codeBad:'@ObservedObject var vm = ViewModel() // reset on re-render',severity:'High',docsUrl:'https://developer.apple.com/documentation/swiftui/stateobject'},
+{id:4,cat:'State',name:'Use @ObservedObject for injected objects',desc:'@ObservedObject for objects passed from a parent',doCode:'@ObservedObject for objects owned elsewhere',dontCode:'@StateObject for injected objects',codeGood:'@ObservedObject var vm: ViewModel // passed via init',codeBad:'@StateObject var vm: ViewModel // should not own injected',severity:'Medium',docsUrl:'https://developer.apple.com/documentation/swiftui/observedobject'},
+{id:5,cat:'Layout',name:'Use VStack HStack ZStack',desc:'Stack views for vertical horizontal and overlay layouts',doCode:'VStack/HStack with alignment and spacing',dontCode:'GeometryReader for simple layouts',codeGood:'VStack(alignment: .leading, spacing: 12) { ... }',codeBad:'GeometryReader { geo in ... } // for simple list',severity:'Medium',docsUrl:'https://developer.apple.com/documentation/swiftui/vstack'},
+{id:6,cat:'Navigation',name:'Use NavigationStack',desc:'NavigationStack replaces NavigationView in iOS 16+',doCode:'NavigationStack with NavigationLink and .navigationDestination',dontCode:'NavigationView (deprecated)',codeGood:'NavigationStack { List { NavigationLink("Detail", value: item) } .navigationDestination(for: Item.self) { DetailView(item: $0) } }',codeBad:'NavigationView { NavigationLink(destination: DetailView()) }',severity:'High',docsUrl:'https://developer.apple.com/documentation/swiftui/navigationstack'},
+{id:7,cat:'Data',name:'Use @Environment for shared data',desc:'Read environment values and injected dependencies',doCode:'@Environment for system values and DI',dontCode:'Pass system values through init',codeGood:'@Environment(\\.colorScheme) var colorScheme',codeBad:'init(colorScheme: ColorScheme) { ... }',severity:'Medium',docsUrl:'https://developer.apple.com/documentation/swiftui/environment'},
+{id:8,cat:'Performance',name:'Keep view body simple',desc:'Extract complex subviews to reduce body computation',doCode:'Small focused views, extracted subviews',dontCode:'Massive body with deeply nested conditionals',codeGood:'var body: some View { HeaderView(); ContentView(); FooterView() }',codeBad:'var body: some View { /* 200 lines of nested views */ }',severity:'Medium',docsUrl:''},
+{id:9,cat:'Views',name:'Apply modifiers in correct order',desc:'Modifier order affects rendering (padding before background etc.)',doCode:'padding then background for padded colored area',dontCode:'background then padding (color does not extend)',codeGood:'Text("Hi").padding().background(.blue)',codeBad:'Text("Hi").background(.blue).padding()',severity:'High',docsUrl:''},
+{id:10,cat:'Performance',name:'Use task and async/await',desc:'Use .task modifier for async work tied to view lifecycle',doCode:'.task { await loadData() } on views',dontCode:'.onAppear with Task { } blocks',codeGood:'List { ... }.task { data = await fetchItems() }',codeBad:'.onAppear { Task { data = await fetchItems() } }',severity:'Medium',docsUrl:'https://developer.apple.com/documentation/swiftui/view/task(priority:_:)'},
+],
+astro: [
+{id:1,cat:'Components',name:'Use .astro components for static content',desc:'Astro components render to HTML with zero client JS by default',doCode:'.astro files for static pages and layouts',dontCode:'React/Vue components for non-interactive content',codeGood:'<!-- Card.astro -->\\n---\\nconst { title } = Astro.props;\\n---\\n<div>{title}</div>',codeBad:'// Card.jsx -- ships JS for static content\\nexport default ({ title }) => <div>{title}</div>',severity:'High',docsUrl:'https://docs.astro.build/en/basics/astro-components/'},
+{id:2,cat:'Routing',name:'Use file-based routing',desc:'Pages in src/pages/ automatically become routes',doCode:'src/pages/about.astro -> /about',dontCode:'Manual route configuration',codeGood:'src/pages/blog/[slug].astro',codeBad:'Custom router setup in config',severity:'Medium',docsUrl:'https://docs.astro.build/en/guides/routing/'},
+{id:3,cat:'Content',name:'Use content collections',desc:'Type-safe Markdown/MDX management with schemas',doCode:'Define collections in src/content/config.ts',dontCode:'Manual file reading with import.meta.glob',codeGood:'const posts = await getCollection("blog");',codeBad:'const posts = import.meta.glob("./posts/*.md");',severity:'High',docsUrl:'https://docs.astro.build/en/guides/content-collections/'},
+{id:4,cat:'Islands',name:'Use client: directives for interactivity',desc:'Hydrate framework components only when needed',doCode:'client:load, client:idle, client:visible strategically',dontCode:'client:load on every component',codeGood:'<Counter client:visible /> <!-- hydrates when scrolled into view -->',codeBad:'<Counter client:load /> <!-- hydrates immediately even below fold -->',severity:'High',docsUrl:'https://docs.astro.build/en/reference/directives-reference/#client-directives'},
+{id:5,cat:'Performance',name:'Ship zero JS by default',desc:'Astro renders HTML with no client JS unless you opt in',doCode:'Keep pages as .astro for zero JS',dontCode:'Use framework components for static content',codeGood:'<!-- Static page, 0kb JS -->\\n<Layout><h1>About</h1></Layout>',codeBad:'<ReactAboutPage client:load /> <!-- unnecessary JS -->',severity:'High',docsUrl:'https://docs.astro.build/en/concepts/why-astro/'},
+{id:6,cat:'Islands',name:'Use framework islands for interactivity',desc:'Mix React Vue Svelte components within Astro pages',doCode:'Framework component only for interactive sections',dontCode:'Full page in a framework',codeGood:'<header>Static Nav</header>\\n<SearchWidget client:idle />',codeBad:'<ReactPage client:load /> <!-- entire page is React -->',severity:'Medium',docsUrl:'https://docs.astro.build/en/concepts/islands/'},
+{id:7,cat:'Content',name:'Use Markdown and MDX',desc:'Write content in Markdown with optional JSX via MDX',doCode:'.md for simple content, .mdx when components needed',dontCode:'.astro files for blog post content',codeGood:'src/content/blog/my-post.mdx with components',codeBad:'src/pages/blog/my-post.astro with hardcoded text',severity:'Medium',docsUrl:'https://docs.astro.build/en/guides/markdown-content/'},
+{id:8,cat:'Performance',name:'Use the Image component',desc:'Automatic image optimization with astro:assets',doCode:'import { Image } from "astro:assets"',dontCode:'Raw <img> tags without optimization',codeGood:'import { Image } from "astro:assets";\\n<Image src={hero} alt="Hero" />',codeBad:'<img src="/hero.jpg" alt="Hero" />',severity:'Medium',docsUrl:'https://docs.astro.build/en/guides/images/'},
+{id:9,cat:'Integration',name:'Choose SSG vs SSR appropriately',desc:'Static by default, SSR for dynamic content',doCode:'output: "static" for blogs, "server" for dynamic apps',dontCode:'SSR for fully static sites',codeGood:'// astro.config.mjs\\nexport default defineConfig({ output: "static" })',codeBad:'output: "server" for a static marketing site',severity:'Medium',docsUrl:'https://docs.astro.build/en/guides/server-side-rendering/'},
+{id:10,cat:'Performance',name:'Use View Transitions',desc:'Smooth page transitions with the View Transitions API',doCode:'<ViewTransitions /> in head for SPA-like navigation',dontCode:'Full page reloads between routes',codeGood:'---\\nimport { ViewTransitions } from "astro:transitions";\\n---\\n<head><ViewTransitions /></head>',codeBad:'<a href="/about"> <!-- full reload -->',severity:'Low',docsUrl:'https://docs.astro.build/en/guides/view-transitions/'},
+],
+reactNative: [
+{id:1,cat:'Components',name:'Use View and Text primitives',desc:'React Native uses View/Text instead of div/span',doCode:'View for containers, Text for all text',dontCode:'Bare strings or div-like thinking',codeGood:'<View><Text>Hello</Text></View>',codeBad:'<View>Hello</View> // text must be in <Text>',severity:'High',docsUrl:'https://reactnative.dev/docs/view'},
+{id:2,cat:'Styling',name:'Use StyleSheet.create',desc:'StyleSheet.create validates and optimizes styles',doCode:'StyleSheet.create for all style objects',dontCode:'Inline style objects on every render',codeGood:'const styles = StyleSheet.create({ container: { flex: 1, padding: 16 } });',codeBad:'<View style={{ flex: 1, padding: 16 }}> // new object each render',severity:'High',docsUrl:'https://reactnative.dev/docs/stylesheet'},
+{id:3,cat:'Navigation',name:'Use React Navigation',desc:'Standard navigation library for React Native apps',doCode:'Stack, Tab, Drawer navigators from React Navigation',dontCode:'Custom navigation or react-router-native',codeGood:'<Stack.Navigator><Stack.Screen name="Home" component={Home} /></Stack.Navigator>',codeBad:'Custom navigation state with conditional rendering',severity:'High',docsUrl:'https://reactnavigation.org/docs/getting-started'},
+{id:4,cat:'Performance',name:'Use FlatList for long lists',desc:'FlatList virtualizes items, ScrollView renders all',doCode:'FlatList with renderItem and keyExtractor',dontCode:'ScrollView for lists of unknown or large size',codeGood:'<FlatList data={items} renderItem={({item}) => <Item data={item} />} keyExtractor={i => i.id} />',codeBad:'<ScrollView>{items.map(i => <Item key={i.id} data={i} />)}</ScrollView>',severity:'High',docsUrl:'https://reactnative.dev/docs/flatlist'},
+{id:5,cat:'Performance',name:'Enable Hermes engine',desc:'Hermes improves startup time and memory usage',doCode:'Hermes enabled in app config (default in RN 0.70+)',dontCode:'Disable Hermes without reason',codeGood:'// Hermes enabled by default in new projects',codeBad:'hermes_enabled: false // slower startup',severity:'Medium',docsUrl:'https://reactnative.dev/docs/hermes'},
+{id:6,cat:'Platform',name:'Use Platform for platform-specific code',desc:'Platform.OS and Platform.select for OS differences',doCode:'Platform.OS or Platform.select for targeted styling',dontCode:'Single style for both platforms ignoring differences',codeGood:'const padding = Platform.select({ ios: 20, android: 16 });',codeBad:'const padding = 20; // wrong on Android',severity:'Medium',docsUrl:'https://reactnative.dev/docs/platform'},
+{id:7,cat:'Components',name:'Use SafeAreaView for notches',desc:'SafeAreaView handles notches and status bars',doCode:'SafeAreaView or react-native-safe-area-context',dontCode:'Fixed padding for safe areas',codeGood:'import { SafeAreaView } from "react-native-safe-area-context";',codeBad:'<View style={{ paddingTop: 44 }}> // wrong on some devices',severity:'High',docsUrl:'https://reactnative.dev/docs/safeareaview'},
+{id:8,cat:'State',name:'Use AsyncStorage for persistence',desc:'Key-value storage for simple persistent data',doCode:'AsyncStorage for tokens, preferences, small data',dontCode:'AsyncStorage for large datasets or complex queries',codeGood:'await AsyncStorage.setItem("@token", token);',codeBad:'await AsyncStorage.setItem("@data", JSON.stringify(hugeArray));',severity:'Medium',docsUrl:'https://react-native-async-storage.github.io/async-storage/'},
+{id:9,cat:'Performance',name:'Use Reanimated for animations',desc:'React Native Reanimated runs animations on UI thread',doCode:'useSharedValue and useAnimatedStyle',dontCode:'Animated API for complex animations',codeGood:'const offset = useSharedValue(0);\\nconst style = useAnimatedStyle(() => ({ transform: [{ translateX: offset.value }] }));',codeBad:'Animated.timing(animValue, { toValue: 1, useNativeDriver: false })',severity:'Medium',docsUrl:'https://docs.swmansion.com/react-native-reanimated/'},
+{id:10,cat:'Platform',name:'Use platform-specific file extensions',desc:'Create .ios.js and .android.js for platform code',doCode:'.ios.tsx and .android.tsx for divergent implementations',dontCode:'Large Platform.OS if/else blocks in one file',codeGood:'Button.ios.tsx / Button.android.tsx',codeBad:'if (Platform.OS === "ios") { /* 50 lines */ } else { /* 50 lines */ }',severity:'Low',docsUrl:'https://reactnative.dev/docs/platform-specific-code'},
+],
+shadcn: [
+{id:1,cat:'Components',name:'Install components individually',desc:'shadcn/ui components are copied into your project, not imported from a package',doCode:'npx shadcn-ui add button -- install one at a time',dontCode:'Install all components at once unnecessarily',codeGood:'npx shadcn-ui@latest add button dialog',codeBad:'npx shadcn-ui@latest add // all components, bloats project',severity:'Medium',docsUrl:'https://ui.shadcn.com/docs/cli'},
+{id:2,cat:'Theming',name:'Use CSS variables for theming',desc:'Theme with CSS variables defined in globals.css',doCode:'Override CSS variables for custom themes',dontCode:'Hardcode colors in component files',codeGood:':root { --primary: 222.2 84% 4.9%; }\\n.dark { --primary: 210 40% 98%; }',codeBad:'className="bg-blue-500" // bypasses theme system',severity:'High',docsUrl:'https://ui.shadcn.com/docs/theming'},
+{id:3,cat:'Forms',name:'Use react-hook-form with Form component',desc:'shadcn Form wraps react-hook-form with accessible field components',doCode:'Form, FormField, FormItem, FormLabel, FormMessage',dontCode:'Manual form state and validation',codeGood:'<Form {...form}><FormField control={form.control} name="email" render={({field}) => <FormItem><FormLabel>Email</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>} /></Form>',codeBad:'<input value={email} onChange={e => setEmail(e.target.value)} />',severity:'High',docsUrl:'https://ui.shadcn.com/docs/components/form'},
+{id:4,cat:'Patterns',name:'Use composition with Radix primitives',desc:'Components are built on Radix UI primitives -- extend them, do not wrap',doCode:'Compose Radix primitives with className and variants',dontCode:'Wrap shadcn components in another component layer',codeGood:'<DialogContent className="sm:max-w-lg">Custom Content</DialogContent>',codeBad:'<MyDialog><DialogContent>...</DialogContent></MyDialog> // unnecessary wrapper',severity:'Medium',docsUrl:'https://ui.shadcn.com/docs'},
+{id:5,cat:'Patterns',name:'Use the cn() utility for class merging',desc:'cn() merges Tailwind classes with proper conflict resolution',doCode:'cn() from lib/utils for conditional classes',dontCode:'Template literals or manual class concatenation',codeGood:'className={cn("rounded-lg p-4", isActive && "bg-primary text-white", className)}',codeBad:'className={`rounded-lg p-4 ${isActive ? "bg-primary" : ""}`}',severity:'High',docsUrl:'https://ui.shadcn.com/docs/installation'},
+{id:6,cat:'Theming',name:'Support dark mode',desc:'Dark mode is built-in via CSS variables and next-themes',doCode:'next-themes ThemeProvider with dark class strategy',dontCode:'Manual dark mode toggle without next-themes',codeGood:'<ThemeProvider attribute="class" defaultTheme="system">',codeBad:'document.documentElement.classList.toggle("dark")',severity:'Medium',docsUrl:'https://ui.shadcn.com/docs/dark-mode'},
+{id:7,cat:'Components',name:'Use variant props from cva',desc:'class-variance-authority defines component variants',doCode:'buttonVariants({ variant: "outline", size: "sm" })',dontCode:'Override styles with className for variant changes',codeGood:'<Button variant="destructive" size="sm">Delete</Button>',codeBad:'<Button className="bg-red-500 text-white text-sm px-2">Delete</Button>',severity:'High',docsUrl:'https://ui.shadcn.com/docs/components/button'},
+{id:8,cat:'Accessibility',name:'Components are accessible by default',desc:'Radix primitives handle ARIA, focus, keyboard navigation',doCode:'Use default component behavior, add aria-label when needed',dontCode:'Override or remove ARIA attributes',codeGood:'<Dialog><DialogTrigger>Open</DialogTrigger>...</Dialog> // handles aria',codeBad:'<div onClick={open} role="button"> // missing keyboard/focus support',severity:'High',docsUrl:'https://www.radix-ui.com/primitives/docs/overview/accessibility'},
+{id:9,cat:'Patterns',name:'Create custom variants',desc:'Extend cva variants for project-specific styles',doCode:'Add new variants to existing component cva config',dontCode:'Create entirely new component for a style variation',codeGood:'const buttonVariants = cva("...", { variants: { variant: { brand: "bg-brand-500" } } })',codeBad:'const BrandButton = ({ ...props }) => <button className="bg-brand-500" {...props} />',severity:'Low',docsUrl:'https://cva.style/docs'},
+{id:10,cat:'Components',name:'Use DataTable for complex tables',desc:'Combine Table component with @tanstack/react-table',doCode:'DataTable pattern with column definitions and tanstack',dontCode:'Manual table markup with map',codeGood:'<DataTable columns={columns} data={data} />',codeBad:'<table>{data.map(row => <tr>{Object.values(row).map(v => <td>{v}</td>)}</tr>)}</table>',severity:'Medium',docsUrl:'https://ui.shadcn.com/docs/components/data-table'},
+],
+jetpackCompose: [
+{id:1,cat:'Composables',name:'Use @Composable functions',desc:'Build UI with composable functions, not XML layouts',doCode:'@Composable fun Greeting() { Text("Hello") }',dontCode:'XML layout files for new features',codeGood:'@Composable fun Greeting(name: String) { Text("Hello $name") }',codeBad:'<TextView android:text="Hello" /> in XML layout',severity:'High',docsUrl:'https://developer.android.com/develop/ui/compose'},
+{id:2,cat:'State',name:'Use remember with mutableStateOf',desc:'remember preserves state across recompositions',doCode:'remember { mutableStateOf(initial) }',dontCode:'mutableStateOf without remember (reset on recomposition)',codeGood:'var count by remember { mutableStateOf(0) }',codeBad:'var count by mutableStateOf(0) // resets every recomposition',severity:'High',docsUrl:'https://developer.android.com/develop/ui/compose/state'},
+{id:3,cat:'State',name:'Hoist state for reusable composables',desc:'Move state up and pass it down for testable, reusable composables',doCode:'Stateless composable + state hoisting',dontCode:'Internal state in reusable components',codeGood:'@Composable fun Counter(count: Int, onIncrement: () -> Unit)',codeBad:'@Composable fun Counter() { var count by remember { mutableStateOf(0) } }',severity:'High',docsUrl:'https://developer.android.com/develop/ui/compose/state-hoisting'},
+{id:4,cat:'Layout',name:'Use Column Row and Box',desc:'Column for vertical, Row for horizontal, Box for overlap',doCode:'Column/Row with Arrangement and Alignment',dontCode:'ConstraintLayout for simple linear layouts',codeGood:'Column(verticalArrangement = Arrangement.spacedBy(8.dp)) { ... }',codeBad:'ConstraintLayout { /* for simple vertical list */ }',severity:'Medium',docsUrl:'https://developer.android.com/develop/ui/compose/layouts/basics'},
+{id:5,cat:'Navigation',name:'Use NavHost for navigation',desc:'Compose Navigation with NavHost and composable destinations',doCode:'NavHost with composable() routes',dontCode:'Manual composable swapping with if/when',codeGood:'NavHost(navController, startDestination = "home") { composable("home") { HomeScreen() } }',codeBad:'if (currentScreen == "home") HomeScreen() else DetailScreen()',severity:'High',docsUrl:'https://developer.android.com/develop/ui/compose/navigation'},
+{id:6,cat:'Theming',name:'Use MaterialTheme for theming',desc:'MaterialTheme provides colors, typography, and shapes',doCode:'MaterialTheme wrapping app content',dontCode:'Hardcoded colors and text styles',codeGood:'Text("Hello", color = MaterialTheme.colorScheme.primary)',codeBad:'Text("Hello", color = Color(0xFF6200EE))',severity:'High',docsUrl:'https://developer.android.com/develop/ui/compose/designsystems/material3'},
+{id:7,cat:'Performance',name:'Use LazyColumn for lists',desc:'LazyColumn only composes visible items',doCode:'LazyColumn with items() for large lists',dontCode:'Column with forEach for large datasets',codeGood:'LazyColumn { items(users) { user -> UserCard(user) } }',codeBad:'Column { users.forEach { user -> UserCard(user) } }',severity:'High',docsUrl:'https://developer.android.com/develop/ui/compose/lists'},
+{id:8,cat:'Performance',name:'Minimize recomposition scope',desc:'Structure composables so only changed parts recompose',doCode:'Small composables, lambda for dynamic content',dontCode:'Large composables that recompose entirely',codeGood:'@Composable fun Title() { Text(viewModel.title) } // only this recomposes',codeBad:'@Composable fun Screen() { /* everything recomposes when title changes */ }',severity:'Medium',docsUrl:'https://developer.android.com/develop/ui/compose/performance'},
+{id:9,cat:'Composables',name:'Use Modifier chain correctly',desc:'Modifiers are applied in order -- order matters',doCode:'Logical modifier order (clip before background etc.)',dontCode:'Random modifier ordering',codeGood:'Modifier.padding(16.dp).clip(RoundedCornerShape(8.dp)).background(Color.Blue)',codeBad:'Modifier.background(Color.Blue).padding(16.dp) // padding outside color',severity:'High',docsUrl:'https://developer.android.com/develop/ui/compose/modifiers'},
+{id:10,cat:'Composables',name:'Use @Preview for development',desc:'Preview composables in Android Studio without running app',doCode:'@Preview annotation on composable preview functions',dontCode:'Run full app to check every UI change',codeGood:'@Preview(showBackground = true)\\n@Composable fun GreetingPreview() { Greeting("World") }',codeBad:'// No previews, must build and run to see changes',severity:'Medium',docsUrl:'https://developer.android.com/develop/ui/compose/tooling/previews'},
+],
+};
+
+/* =================== RENDERING JS =================== */
+
+let currentStack = 'react';
+let currentSearch = '';
+let currentSeverity = 'all';
+let currentCategory = 'all';
+
+function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderTabs() {
+    const container = document.getElementById('stack-tabs');
+    container.innerHTML = STACK_TABS.map(t => {
+        const active = t.key === currentStack;
+        return `<button onclick="switchStack('${t.key}')" class="stack-tab px-4 py-2 text-sm font-medium rounded-lg border transition-all ${active ? 'active border-indigo-500/40 bg-indigo-500/20 text-indigo-300' : 'border-white/10 bg-white/5 text-gray-400 hover:text-white hover:border-white/20'}">${t.label}</button>`;
+    }).join('');
+}
+
+function switchStack(key) {
+    currentStack = key;
+    currentCategory = 'all';
+    currentSearch = '';
+    currentSeverity = 'all';
+    document.getElementById('search-input').value = '';
+    renderTabs();
+    renderCategoryButtons();
+    updateSeverityButtons();
+    renderGuidelines();
+    updateStats();
+}
+
+function getFilteredData() {
+    let data = STACKS[currentStack] || [];
+    if (currentSearch) {
+        const q = currentSearch.toLowerCase();
+        data = data.filter(g => g.name.toLowerCase().includes(q) || g.desc.toLowerCase().includes(q) || g.cat.toLowerCase().includes(q));
+    }
+    if (currentSeverity !== 'all') {
+        data = data.filter(g => g.severity === currentSeverity);
+    }
+    if (currentCategory !== 'all') {
+        data = data.filter(g => g.cat === currentCategory);
+    }
+    return data;
+}
+
+function getCategoryColor(cat) {
+    const cats = [...new Set((STACKS[currentStack] || []).map(g => g.cat))];
+    const idx = cats.indexOf(cat);
+    return CATEGORY_COLORS[idx % CATEGORY_COLORS.length];
+}
+
+function renderGuidelines() {
+    const data = getFilteredData();
+    const grid = document.getElementById('guidelines-grid');
+    const noResults = document.getElementById('no-results');
+    document.getElementById('visible-count').textContent = data.length;
+
+    if (data.length === 0) {
+        grid.innerHTML = '';
+        noResults.classList.remove('hidden');
+        return;
+    }
+    noResults.classList.add('hidden');
+
+    // Group by category
+    const groups = {};
+    data.forEach(g => {
+        if (!groups[g.cat]) groups[g.cat] = [];
+        groups[g.cat].push(g);
+    });
+
+    let html = '';
+    for (const [cat, items] of Object.entries(groups)) {
+        html += `<div class="col-span-1 lg:col-span-2 mt-6 mb-2 first:mt-0"><h2 class="font-heading text-xl font-semibold text-white/80 border-b border-white/10 pb-2">${escapeHtml(cat)}</h2></div>`;
+        items.forEach(g => {
+            const cc = getCategoryColor(g.cat);
+            const sc = SEVERITY[g.severity];
+            const docsLink = g.docsUrl ? `<a href="${escapeHtml(g.docsUrl)}" target="_blank" rel="noopener" class="text-xs text-indigo-400 hover:text-indigo-300 mt-3 inline-flex items-center gap-1">Docs <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a>` : '';
+            html += `<div class="guideline-card rounded-xl border border-white/[0.06] bg-white/[0.02] p-6 hover:border-white/[0.12] transition-all">
+  <div class="flex items-start justify-between mb-3">
+    <div class="flex items-center gap-2 flex-wrap">
+      <span class="px-2 py-0.5 text-xs font-medium rounded-md" style="background:${cc.bg};border:1px solid ${cc.border};color:${cc.text}">${escapeHtml(g.cat)}</span>
+      <span class="px-2 py-0.5 text-xs font-medium rounded-md" style="background:${sc.bg};border:1px solid ${sc.border};color:${sc.text}">${g.severity}</span>
+    </div>
+    <span class="text-xs text-gray-600">#${g.id}</span>
+  </div>
+  <h3 class="font-heading font-semibold text-white text-lg mb-2">${escapeHtml(g.name)}</h3>
+  <p class="text-gray-400 text-sm mb-4">${escapeHtml(g.desc)}</p>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div>
+      <div class="text-xs font-medium text-green-400 mb-1.5 flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> DO</div>
+      <div class="relative bg-green-500/5 border border-green-500/10 rounded-lg p-3">
+        <pre class="text-xs text-green-300/80 whitespace-pre-wrap"><code>${escapeHtml(g.codeGood)}</code></pre>
+        <button onclick="copyCode(this)" class="absolute top-2 right-2 p-1 rounded bg-white/5 hover:bg-white/10 text-gray-500 hover:text-white transition-all"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></button>
+      </div>
+    </div>
+    <div>
+      <div class="text-xs font-medium text-red-400 mb-1.5 flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg> DON'T</div>
+      <div class="relative bg-red-500/5 border border-red-500/10 rounded-lg p-3">
+        <pre class="text-xs text-red-300/80 whitespace-pre-wrap"><code>${escapeHtml(g.codeBad)}</code></pre>
+        <button onclick="copyCode(this)" class="absolute top-2 right-2 p-1 rounded bg-white/5 hover:bg-white/10 text-gray-500 hover:text-white transition-all"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></button>
+      </div>
+    </div>
+  </div>
+  ${docsLink}
+</div>`;
+        });
+    }
+    grid.innerHTML = html;
+}
+
+function renderCategoryButtons() {
+    const data = STACKS[currentStack] || [];
+    const cats = [...new Set(data.map(g => g.cat))];
+    const container = document.getElementById('category-buttons');
+    let html = `<button onclick="filterCategory('all')" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg transition-all ${currentCategory === 'all' ? 'bg-white/10 text-white border border-white/20' : 'bg-white/5 text-gray-400 border border-white/10 hover:border-white/20'}">All</button>`;
+    cats.forEach(cat => {
+        const active = currentCategory === cat;
+        const cc = getCategoryColor(cat);
+        html += `<button onclick="filterCategory('${cat}')" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg transition-all ${active ? 'border' : 'bg-white/5 text-gray-400 border border-white/10 hover:border-white/20'}" ${active ? `style="background:${cc.bg};border:1px solid ${cc.border};color:${cc.text}"` : ''}>${escapeHtml(cat)}</button>`;
+    });
+    container.innerHTML = html;
+}
+
+function toggleSeverity(sev) {
+    currentSeverity = sev;
+    updateSeverityButtons();
+    renderGuidelines();
+}
+
+function updateSeverityButtons() {
+    document.querySelectorAll('.sev-btn').forEach(btn => {
+        const s = btn.getAttribute('data-sev');
+        if (s === currentSeverity) {
+            btn.className = 'sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/10 text-white border border-white/20 transition-all';
+        } else {
+            btn.className = 'sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-white/20 transition-all';
+        }
+    });
+}
+
+function filterCategory(cat) {
+    currentCategory = cat;
+    renderCategoryButtons();
+    renderGuidelines();
+}
+
+function updateStats() {
+    const data = STACKS[currentStack] || [];
+    document.getElementById('total-count').textContent = data.length;
+    document.getElementById('high-count').textContent = data.filter(g => g.severity === 'High').length;
+    document.getElementById('med-count').textContent = data.filter(g => g.severity === 'Medium').length;
+    document.getElementById('low-count').textContent = data.filter(g => g.severity === 'Low').length;
+}
+
+function copyCode(btn) {
+    const code = btn.closest('.relative').querySelector('code').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+        const toast = document.getElementById('copy-toast');
+        toast.style.opacity = '1';
+        toast.style.transform = 'translateY(0)';
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(10px)';
+        }, 1500);
+    });
+}
+
+// Search listener
+document.getElementById('search-input').addEventListener('input', function(e) {
+    currentSearch = e.target.value;
+    renderGuidelines();
+});
+
+// Init
+renderTabs();
+switchStack('react');
+</script>
+
+</body>
+</html>

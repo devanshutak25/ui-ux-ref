@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>96 Product Types | UI/UX Pro Max</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],heading:['Space Grotesk'],mono:['Space Mono']}}}}</script>
+<style>
+body{font-family:'Inter',sans-serif;background:#08090E;color:#fff;-webkit-font-smoothing:antialiased}
+.font-heading{font-family:'Space Grotesk',sans-serif}
+.font-mono{font-family:'Space Mono',monospace}
+.gradient-text{background:linear-gradient(135deg,#F97316,#FB923C,#FDBA74);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% 200%;animation:gradShift 3s ease infinite}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.nav-blur{backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.hero-gradient{position:relative;overflow:hidden}
+.hero-gradient::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 40%,rgba(249,115,22,0.08) 0%,transparent 50%),radial-gradient(circle at 70% 60%,rgba(251,146,60,0.06) 0%,transparent 50%);pointer-events:none}
+.grid-bg{background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px}
+.card-glow:hover{box-shadow:0 0 30px rgba(249,115,22,0.08)}
+.product-card{transition:all 0.3s ease}
+.product-card:hover{transform:translateY(-2px)}
+.product-card.hidden-card{display:none!important}
+.filter-btn{transition:all 0.2s ease}
+.filter-btn.active{background:rgba(249,115,22,0.2)!important;border-color:rgba(249,115,22,0.5)!important;color:#F97316!important}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(249,115,22,0.3);border-radius:3px}
+</style>
+</head>
+<body class="min-h-screen grid-bg">
+
+<!-- Nav -->
+<nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-[#08090E]/70 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="font-heading font-bold text-xl tracking-tight"><span class="text-white">UI/UX</span><span class="gradient-text"> Pro Max</span></a>
+        <div class="hidden md:flex items-center gap-1">
+            <a href="styles.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Styles</a>
+            <a href="colors.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Colors</a>
+            <a href="typography.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Typography</a>
+            <a href="charts.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Charts</a>
+            <a href="products.html" class="px-3 py-2 text-sm text-white bg-white/10 transition-colors rounded-lg">Products</a>
+            <a href="icons.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Icons</a>
+            <div class="relative">
+                <button onclick="document.getElementById('more-menu').classList.toggle('hidden')" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5 inline-flex items-center gap-1">More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                <div id="more-menu" class="hidden absolute right-0 top-full mt-2 w-52 bg-[#12131A] border border-white/10 rounded-xl shadow-2xl py-2 z-50">
+                    <a href="stacks.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Stacks</a>
+                    <a href="ux-guidelines.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">UX Guidelines</a>
+                    <a href="patterns.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Patterns</a>
+                    <a href="reasoning.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Reasoning</a>
+                    <a href="react-performance.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">React Perf</a>
+                    <a href="web-interface.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Web Interface</a>
+                </div>
+            </div>
+        </div>
+        <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 text-gray-400 hover:text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 px-6 py-4 space-y-2">
+        <a href="styles.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Styles</a>
+        <a href="colors.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Colors</a>
+        <a href="typography.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Typography</a>
+        <a href="charts.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Charts</a>
+        <a href="products.html" class="block px-3 py-2 text-sm text-white bg-white/10 rounded-lg">Products</a>
+        <a href="icons.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Icons</a>
+        <a href="stacks.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Stacks</a>
+        <a href="ux-guidelines.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">UX Guidelines</a>
+        <a href="patterns.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Patterns</a>
+        <a href="reasoning.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Reasoning</a>
+        <a href="react-performance.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">React Perf</a>
+        <a href="web-interface.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Web Interface</a>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="pt-28 pb-12 hero-gradient">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-sm font-medium mb-6">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"/></svg>
+            96 Product Types
+        </div>
+        <h1 class="font-heading text-4xl md:text-6xl font-bold tracking-tight leading-[0.95] mb-6">
+            <span class="text-white">Product </span><span class="gradient-text">Types</span>
+        </h1>
+        <p class="text-lg text-gray-400 leading-relaxed max-w-2xl mb-8">Complete design system recommendations for 96 product categories. Primary &amp; secondary styles, landing page patterns, dashboard types, color palettes, and key considerations.</p>
+        <div class="flex gap-6 text-sm">
+            <div class="flex items-center gap-2"><span class="text-2xl font-heading font-bold text-white">96</span><span class="text-gray-500">Products</span></div>
+            <div class="flex items-center gap-2"><span class="text-2xl font-heading font-bold text-white">10</span><span class="text-gray-500">Industry Groups</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- Sticky Search & Filters -->
+<section class="sticky top-[73px] z-40 bg-[#08090E]/95 nav-blur border-b border-white/5 py-4">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="relative mb-3">
+            <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input id="search" type="text" placeholder="Search products, styles, patterns..." class="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 text-sm focus:outline-none focus:border-orange-500/50 transition-all">
+            <span id="count" class="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-500"></span>
+        </div>
+        <div class="flex flex-wrap gap-2" id="filters"></div>
+    </div>
+</section>
+
+<!-- Product Grid -->
+<section class="py-12">
+    <div class="max-w-7xl mx-auto px-6">
+        <div id="grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
+        <div id="empty" class="hidden text-center py-20"><p class="text-gray-500 text-lg font-heading">No products match your search</p></div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-white/5 py-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="font-heading font-bold text-lg"><span class="text-white">UI/UX</span><span class="gradient-text"> Pro Max</span></div>
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+            <a href="styles.html" class="hover:text-white transition-colors">Styles</a>
+            <a href="colors.html" class="hover:text-white transition-colors">Colors</a>
+            <a href="typography.html" class="hover:text-white transition-colors">Typography</a>
+            <a href="charts.html" class="hover:text-white transition-colors">Charts</a>
+            <a href="products.html" class="hover:text-white transition-colors">Products</a>
+            <a href="icons.html" class="hover:text-white transition-colors">Icons</a>
+            <a href="stacks.html" class="hover:text-white transition-colors">Stacks</a>
+            <a href="ux-guidelines.html" class="hover:text-white transition-colors">UX Guidelines</a>
+            <a href="patterns.html" class="hover:text-white transition-colors">Patterns</a>
+            <a href="reasoning.html" class="hover:text-white transition-colors">Reasoning</a>
+            <a href="react-performance.html" class="hover:text-white transition-colors">React Perf</a>
+            <a href="web-interface.html" class="hover:text-white transition-colors">Web Interface</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Close dropdown on outside click -->
+<script>document.addEventListener('click',e=>{if(!e.target.closest('#more-menu')&&!e.target.closest('[onclick*="more-menu"]')){document.getElementById('more-menu')?.classList.add('hidden')}})</script>
+
+<script>
+const GROUPS = {
+    'SaaS/Tech': ['SaaS (General)','Micro SaaS','AI/Chatbot Platform','Developer Tool / IDE','Cybersecurity Platform','Design System/Component Library','Productivity Tool','Remote Work/Collaboration Tool'],
+    'E-Commerce': ['E-commerce','E-commerce Luxury','Marketplace (P2P)','Subscription Box Service','Digital Products/Downloads'],
+    'Health/Wellness': ['Healthcare App','Mental Health App','Medical Clinic','Dental Practice','Pharmacy/Drug Store','Veterinary Clinic','Fitness/Gym App','Beauty/Spa/Wellness Service','Senior Care/Elderly','Biohacking / Longevity App'],
+    'Finance': ['Fintech/Crypto','Financial Dashboard','Analytics Dashboard','Banking/Traditional Finance','Insurance Platform','NFT/Web3 Platform'],
+    'Creative/Agency': ['Creative Agency','Portfolio/Personal','Photography Studio','Marketing Agency','Consulting Firm'],
+    'Education': ['Educational App','Online Course/E-learning','Coding Bootcamp','Language Learning App','Knowledge Base/Documentation','Micro-Credentials/Badges Platform'],
+    'Entertainment': ['Gaming','Music Streaming','Video Streaming/OTT','Podcast Platform','Dating App','Sports Team/Club','Theater/Cinema','Museum/Gallery'],
+    'Services': ['Service Landing Page','B2B Service','Legal Services','Home Services (Plumber/Electrician)','Cleaning Service','Childcare/Daycare','Florist/Plant Shop','Restaurant/Food Service','Bakery/Cafe','Coffee Shop','Brewery/Winery','Coworking Space','Logistics/Delivery','Freelancer Platform','Hyperlocal Services'],
+    'Lifestyle': ['Real Estate/Property','Travel/Tourism Agency','Hotel/Hospitality','Wedding/Event Planning','Pet Tech App','Social Media App','Creator Economy Platform','Membership/Community','Newsletter Platform','News/Media Platform','Magazine/Blog','Church/Religious Organization','Non-profit/Charity','Event Management','Conference/Webinar Platform'],
+    'Frontier Tech': ['Quantum Computing Interface','Space Tech / Aerospace','Biotech / Life Sciences','Autonomous Drone Fleet Manager','Generative Art Platform','Spatial Computing OS / App','Sustainable Energy / Climate Tech','Smart Home/IoT Dashboard','EV/Charging Ecosystem','Agriculture/Farm Tech','Construction/Architecture','Automotive/Car Dealership','Airline','Architecture / Interior','Sustainability/ESG Platform','Government/Public Service']
+};
+
+const products = [
+{id:1,name:"SaaS (General)",keywords:["app","b2b","cloud","general","saas","software","subscription"],primaryStyle:"Glassmorphism + Flat Design",secondaryStyles:["Soft UI Evolution","Minimalism"],landingPattern:"Hero + Features + CTA",dashboardStyle:"Data-Dense + Real-Time Monitoring",colorFocus:"Trust blue + accent contrast",considerations:"Balance modern feel with clarity. Focus on CTAs."},
+{id:2,name:"Micro SaaS",keywords:["app","b2b","cloud","indie","micro","niche","saas","solo","software","subscription"],primaryStyle:"Flat Design + Vibrant & Block",secondaryStyles:["Motion-Driven","Micro-interactions"],landingPattern:"Minimal & Direct + Demo",dashboardStyle:"Executive Dashboard",colorFocus:"Vibrant primary + white space",considerations:"Keep simple, show product quickly. Speed is key."},
+{id:3,name:"E-commerce",keywords:["buy","commerce","ecommerce","products","retail","shop","store"],primaryStyle:"Vibrant & Block-based",secondaryStyles:["Aurora UI","Motion-Driven"],landingPattern:"Feature-Rich Showcase",dashboardStyle:"Sales Intelligence Dashboard",colorFocus:"Brand primary + success green",considerations:"Engagement & conversions. High visual hierarchy."},
+{id:4,name:"E-commerce Luxury",keywords:["buy","commerce","elegant","exclusive","high-end","luxury","premium","shop"],primaryStyle:"Liquid Glass + Glassmorphism",secondaryStyles:["3D & Hyperrealism","Aurora UI"],landingPattern:"Feature-Rich Showcase",dashboardStyle:"Sales Intelligence Dashboard",colorFocus:"Premium colors + minimal accent",considerations:"Elegance & sophistication. Premium materials."},
+{id:5,name:"Service Landing Page",keywords:["appointment","booking","consultation","conversion","landing","service"],primaryStyle:"Hero-Centric + Trust & Authority",secondaryStyles:["Social Proof-Focused","Storytelling"],landingPattern:"Hero-Centric Design",dashboardStyle:"N/A",colorFocus:"Brand primary + trust colors",considerations:"Social proof essential. Show expertise."},
+{id:6,name:"B2B Service",keywords:["b2b","business","corporate","enterprise","service"],primaryStyle:"Trust & Authority + Minimal",secondaryStyles:["Feature-Rich","Conversion-Optimized"],landingPattern:"Feature-Rich Showcase",dashboardStyle:"Sales Intelligence Dashboard",colorFocus:"Professional blue + neutral grey",considerations:"Credibility essential. Clear ROI messaging."},
+{id:7,name:"Financial Dashboard",keywords:["admin","analytics","dashboard","data","financial"],primaryStyle:"Dark Mode (OLED) + Data-Dense",secondaryStyles:["Minimalism","Accessible & Ethical"],landingPattern:"N/A - Dashboard focused",dashboardStyle:"Financial Dashboard",colorFocus:"Dark bg + red/green alerts + trust blue",considerations:"High contrast, real-time updates, accuracy paramount."},
+{id:8,name:"Analytics Dashboard",keywords:["admin","analytics","dashboard","data"],primaryStyle:"Data-Dense + Heat Map & Heatmap",secondaryStyles:["Minimalism","Dark Mode (OLED)"],landingPattern:"N/A - Analytics focused",dashboardStyle:"Drill-Down Analytics + Comparative",colorFocus:"Cool\u2192Hot gradients + neutral grey",considerations:"Clarity > aesthetics. Color-coded data priority."},
+{id:9,name:"Healthcare App",keywords:["app","clinic","health","healthcare","medical","patient"],primaryStyle:"Neumorphism + Accessible & Ethical",secondaryStyles:["Soft UI Evolution","Claymorphism"],landingPattern:"Social Proof-Focused",dashboardStyle:"User Behavior Analytics",colorFocus:"Calm blue + health green + trust",considerations:"Accessibility mandatory. Calming aesthetic."},
+{id:10,name:"Educational App",keywords:["app","course","education","learning","school","training"],primaryStyle:"Claymorphism + Micro-interactions",secondaryStyles:["Vibrant & Block-based","Flat Design"],landingPattern:"Storytelling-Driven",dashboardStyle:"User Behavior Analytics",colorFocus:"Playful colors + clear hierarchy",considerations:"Engagement & ease of use. Age-appropriate design."},
+{id:11,name:"Creative Agency",keywords:["agency","creative","design","marketing","studio"],primaryStyle:"Brutalism + Motion-Driven",secondaryStyles:["Retro-Futurism","Storytelling-Driven"],landingPattern:"Storytelling-Driven",dashboardStyle:"N/A",colorFocus:"Bold primaries + artistic freedom",considerations:"Differentiation key. Wow-factor necessary."},
+{id:12,name:"Portfolio/Personal",keywords:["creative","personal","portfolio","projects","showcase"],primaryStyle:"Motion-Driven + Minimalism",secondaryStyles:["Brutalism","Aurora UI"],landingPattern:"Storytelling-Driven",dashboardStyle:"N/A",colorFocus:"Brand primary + artistic interpretation",considerations:"Showcase work. Personality shine through."},
+{id:13,name:"Gaming",keywords:["entertainment","esports","game","gaming","play"],primaryStyle:"3D & Hyperrealism + Retro-Futurism",secondaryStyles:["Motion-Driven","Vibrant & Block"],landingPattern:"Feature-Rich Showcase",dashboardStyle:"N/A",colorFocus:"Vibrant + neon + immersive colors",considerations:"Immersion priority. Performance critical."},
+{id:14,name:"Government/Public Service",keywords:["government","public","service"],primaryStyle:"Accessible & Ethical + Minimalism",secondaryStyles:["Flat Design","Inclusive Design"],landingPattern:"Minimal & Direct",dashboardStyle:"Executive Dashboard",colorFocus:"Professional blue + high contrast",considerations:"WCAG AAA mandatory. Trust paramount."},
+{id:15,name:"Fintech/Crypto",keywords:["banking","blockchain","crypto","defi","finance","fintech","web3"],primaryStyle:"Glassmorphism + Dark Mode (OLED)",secondaryStyles:["Retro-Futurism","Motion-Driven"],landingPattern:"Conversion-Optimized",dashboardStyle:"Real-Time Monitoring + Predictive",colorFocus:"Dark tech colors + trust + vibrant accents",considerations:"Security perception. Real-time data critical."},
+{id:16,name:"Social Media App",keywords:["app","community","content","media","network","social","video"],primaryStyle:"Vibrant & Block-based + Motion-Driven",secondaryStyles:["Aurora UI","Micro-interactions"],landingPattern:"Feature-Rich Showcase",dashboardStyle:"User Behavior Analytics",colorFocus:"Vibrant + engagement colors",considerations:"Engagement & retention. Addictive design ethics."},
+{id:17,name:"Productivity Tool",keywords:["collaboration","productivity","project","task","tool","workflow"],primaryStyle:"Flat Design + Micro-interactions",secondaryStyles:["Minimalism","Soft UI Evolution"],landingPattern:"Interactive Product Demo",dashboardStyle:"Drill-Down Analytics",colorFocus:"Clear hierarchy + functional colors",considerations:"Ease of use. Speed & efficiency focus."},
+{id:18,name:"Design System/Component Library",keywords:["component","design","library","system"],primaryStyle:"Minimalism + Accessible & Ethical",secondaryStyles:["Flat Design","Zero Interface"],landingPattern:"Feature-Rich Showcase",dashboardStyle:"N/A",colorFocus:"Clear hierarchy + code-like structure",considerations:"Consistency. Developer-first approach."},
+{id:19,name:"AI/Chatbot Platform",keywords:["ai","artificial-intelligence","automation","chatbot","ml"],primaryStyle:"AI-Native UI + Minimalism",secondaryStyles:["Zero Interface","Glassmorphism"],landingPattern:"Interactive Product Demo",dashboardStyle:"AI/ML Analytics Dashboard",colorFocus:"Neutral + AI Purple (#6366F1)",considerations:"Conversational UI. Streaming text. Context awareness."},
+{id:20,name:"NFT/Web3 Platform",keywords:["nft","platform","web3"],primaryStyle:"Cyberpunk UI + Glassmorphism",secondaryStyles:["Aurora UI","3D & Hyperrealism"],landingPattern:"Feature-Rich Showcase",dashboardStyle:"Crypto/Blockchain Dashboard",colorFocus:"Dark + Neon + Gold (#FFD700)",considerations:"Wallet integration. Transaction feedback. Dark mode essential."},
+{id:21,name:"Creator Economy Platform",keywords:["creator","economy","platform"],primaryStyle:"Vibrant & Block-based + Bento Box Grid",secondaryStyles:["Motion-Driven","Aurora UI"],landingPattern:"Social Proof-Focused",dashboardStyle:"User Behavior Analytics",colorFocus:"Vibrant + Brand colors",considerations:"Creator profiles. Monetization display. Engagement metrics."},
+{id:22,name:"Sustainability/ESG Platform",keywords:["esg","platform","sustainability"],primaryStyle:"Organic Biophilic + Minimalism",secondaryStyles:["Accessible & Ethical","Flat Design"],landingPattern:"Trust & Authority",dashboardStyle:"Energy/Utilities Dashboard",colorFocus:"Green (#228B22) + Earth tones",considerations:"Carbon footprint visuals. Progress indicators."},
+{id:23,name:"Remote Work/Collaboration Tool",keywords:["collaboration","remote","tool","work"],primaryStyle:"Soft UI Evolution + Minimalism",secondaryStyles:["Glassmorphism","Micro-interactions"],landingPattern:"Feature-Rich Showcase",dashboardStyle:"Drill-Down Analytics",colorFocus:"Calm Blue + Neutral grey",considerations:"Real-time collaboration. Status indicators."},
+{id:24,name:"Mental Health App",keywords:["app","health","mental"],primaryStyle:"Neumorphism + Accessible & Ethical",secondaryStyles:["Claymorphism","Soft UI Evolution"],landingPattern:"Social Proof-Focused",dashboardStyle:"Healthcare Analytics",colorFocus:"Calm Pastels + Trust colors",considerations:"Calming aesthetics. Privacy-first. Crisis resources."},
+{id:25,name:"Pet Tech App",keywords:["app","pet","tech"],primaryStyle:"Claymorphism + Vibrant & Block-based",secondaryStyles:["Micro-interactions","Flat Design"],landingPattern:"Storytelling-Driven",dashboardStyle:"User Behavior Analytics",colorFocus:"Playful + Warm colors",considerations:"Pet profiles. Health tracking. Playful UI."},
+{id:26,name:"Smart Home/IoT Dashboard",keywords:["dashboard","home","iot","smart"],primaryStyle:"Glassmorphism + Dark Mode (OLED)",secondaryStyles:["Minimalism","AI-Native UI"],landingPattern:"Interactive Product Demo",dashboardStyle:"Real-Time Monitoring",colorFocus:"Dark + Status indicator colors",considerations:"Device status. Real-time controls. Energy monitoring."},
+{id:27,name:"EV/Charging Ecosystem",keywords:["charging","ecosystem","ev"],primaryStyle:"Minimalism + Aurora UI",secondaryStyles:["Glassmorphism","Organic Biophilic"],landingPattern:"Hero-Centric Design",dashboardStyle:"Energy/Utilities Dashboard",colorFocus:"Electric Blue (#009CD1) + Green",considerations:"Charging station maps. Range estimation. Cost calculation."},
+{id:28,name:"Subscription Box Service",keywords:["box","membership","recurring","subscription"],primaryStyle:"Vibrant & Block-based + Motion-Driven",secondaryStyles:["Claymorphism","Aurora UI"],landingPattern:"Feature-Rich Showcase",dashboardStyle:"E-commerce Analytics",colorFocus:"Brand + Excitement colors",considerations:"Unboxing experience. Personalization quiz."},
+{id:29,name:"Podcast Platform",keywords:["platform","podcast"],primaryStyle:"Dark Mode (OLED) + Minimalism",secondaryStyles:["Motion-Driven","Vibrant & Block-based"],landingPattern:"Storytelling-Driven",dashboardStyle:"Media/Entertainment Dashboard",colorFocus:"Dark + Audio waveform accents",considerations:"Audio player UX. Episode discovery."},
+{id:30,name:"Dating App",keywords:["app","dating"],primaryStyle:"Vibrant & Block-based + Motion-Driven",secondaryStyles:["Aurora UI","Glassmorphism"],landingPattern:"Social Proof-Focused",dashboardStyle:"User Behavior Analytics",colorFocus:"Warm + Romantic (Pink/Red gradients)",considerations:"Profile cards. Swipe interactions. Safety features."},
+{id:31,name:"Micro-Credentials/Badges Platform",keywords:["badges","credentials","micro","platform"],primaryStyle:"Minimalism + Flat Design",secondaryStyles:["Accessible & Ethical","Swiss Modernism 2.0"],landingPattern:"Trust & Authority",dashboardStyle:"Education Dashboard",colorFocus:"Trust Blue + Gold (#FFD700)",considerations:"Credential verification. Badge display. Progress tracking."},
+{id:32,name:"Knowledge Base/Documentation",keywords:["base","documentation","knowledge"],primaryStyle:"Minimalism + Accessible & Ethical",secondaryStyles:["Swiss Modernism 2.0","Flat Design"],landingPattern:"FAQ/Documentation",dashboardStyle:"N/A",colorFocus:"Clean hierarchy + minimal color",considerations:"Search-first. Clear navigation. Code highlighting."},
+{id:33,name:"Hyperlocal Services",keywords:["hyperlocal","service","services"],primaryStyle:"Minimalism + Vibrant & Block-based",secondaryStyles:["Micro-interactions","Flat Design"],landingPattern:"Conversion-Optimized",dashboardStyle:"Drill-Down Analytics + Map",colorFocus:"Location markers + Trust colors",considerations:"Map integration. Service categories."},
+{id:34,name:"Beauty/Spa/Wellness Service",keywords:["beauty","booking","spa","wellness"],primaryStyle:"Soft UI Evolution + Neumorphism",secondaryStyles:["Glassmorphism","Minimalism"],landingPattern:"Hero-Centric Design + Social Proof",dashboardStyle:"User Behavior Analytics",colorFocus:"Soft pastels (Pink/Sage) + Gold",considerations:"Calming aesthetic. Booking system. Before/after gallery."},
+{id:35,name:"Luxury/Premium Brand",keywords:["brand","elegant","exclusive","luxury","premium"],primaryStyle:"Liquid Glass + Glassmorphism",secondaryStyles:["Minimalism","3D & Hyperrealism"],landingPattern:"Storytelling-Driven + Feature-Rich",dashboardStyle:"Sales Intelligence Dashboard",colorFocus:"Black + Gold (#FFD700) + White",considerations:"Elegance paramount. Premium imagery. Storytelling."},
+{id:36,name:"Restaurant/Food Service",keywords:["delivery","food","menu","order","restaurant"],primaryStyle:"Vibrant & Block-based + Motion-Driven",secondaryStyles:["Claymorphism","Flat Design"],landingPattern:"Hero-Centric Design + Conversion",dashboardStyle:"N/A",colorFocus:"Warm colors (Orange Red Brown)",considerations:"Menu display. Online ordering. Food photography."},
+{id:37,name:"Fitness/Gym App",keywords:["exercise","fitness","gym","health","workout"],primaryStyle:"Vibrant & Block-based + Dark Mode (OLED)",secondaryStyles:["Motion-Driven","Neumorphism"],landingPattern:"Feature-Rich Showcase",dashboardStyle:"User Behavior Analytics",colorFocus:"Energetic (Orange + Electric Blue) + Dark",considerations:"Progress tracking. Workout plans. Community features."},
+{id:38,name:"Real Estate/Property",keywords:["buy","estate","housing","property","real","rent"],primaryStyle:"Glassmorphism + Minimalism",secondaryStyles:["Motion-Driven","3D & Hyperrealism"],landingPattern:"Hero-Centric Design + Feature-Rich",dashboardStyle:"Sales Intelligence Dashboard",colorFocus:"Trust Blue (#0077B6) + Gold + White",considerations:"Property listings. Virtual tours. Map integration."},
+{id:39,name:"Travel/Tourism Agency",keywords:["booking","flight","hotel","tourism","travel","vacation"],primaryStyle:"Aurora UI + Motion-Driven",secondaryStyles:["Vibrant & Block-based","Glassmorphism"],landingPattern:"Storytelling-Driven + Hero-Centric",dashboardStyle:"Booking Analytics",colorFocus:"Vibrant destination + Sky Blue + Warm",considerations:"Destination showcase. Booking system. Mobile-first."},
+{id:40,name:"Hotel/Hospitality",keywords:["hospitality","hotel"],primaryStyle:"Liquid Glass + Minimalism",secondaryStyles:["Glassmorphism","Soft UI Evolution"],landingPattern:"Hero-Centric Design + Social Proof",dashboardStyle:"Revenue Management Dashboard",colorFocus:"Warm neutrals + Gold (#D4AF37)",considerations:"Room booking. Amenities showcase. Luxury imagery."},
+{id:41,name:"Wedding/Event Planning",keywords:["event","planning","wedding"],primaryStyle:"Soft UI Evolution + Aurora UI",secondaryStyles:["Glassmorphism","Motion-Driven"],landingPattern:"Storytelling-Driven + Social Proof",dashboardStyle:"N/A",colorFocus:"Soft Pink (#FFD6E0) + Gold + Cream",considerations:"Portfolio gallery. Planning tools. Romantic aesthetic."},
+{id:42,name:"Legal Services",keywords:["attorney","compliance","law","legal"],primaryStyle:"Trust & Authority + Minimalism",secondaryStyles:["Accessible & Ethical","Swiss Modernism 2.0"],landingPattern:"Trust & Authority + Minimal",dashboardStyle:"Case Management Dashboard",colorFocus:"Navy Blue (#1E3A5F) + Gold + White",considerations:"Credibility paramount. Practice areas. Attorney profiles."},
+{id:43,name:"Insurance Platform",keywords:["insurance","platform"],primaryStyle:"Trust & Authority + Flat Design",secondaryStyles:["Accessible & Ethical","Minimalism"],landingPattern:"Conversion-Optimized + Trust",dashboardStyle:"Claims Analytics Dashboard",colorFocus:"Trust Blue (#0066CC) + Green + Neutral",considerations:"Quote calculator. Policy comparison. Security badges."},
+{id:44,name:"Banking/Traditional Finance",keywords:["banking","finance","traditional"],primaryStyle:"Minimalism + Accessible & Ethical",secondaryStyles:["Trust & Authority","Dark Mode (OLED)"],landingPattern:"Trust & Authority + Feature-Rich",dashboardStyle:"Financial Dashboard",colorFocus:"Navy (#0A1628) + Trust Blue + Gold",considerations:"Security-first. Account overview. Trust paramount."},
+{id:45,name:"Online Course/E-learning",keywords:["course","e-learning","online"],primaryStyle:"Claymorphism + Vibrant & Block-based",secondaryStyles:["Motion-Driven","Flat Design"],landingPattern:"Feature-Rich Showcase + Social Proof",dashboardStyle:"Education Dashboard",colorFocus:"Vibrant learning colors + Progress green",considerations:"Course catalog. Progress tracking. Gamification."},
+{id:46,name:"Non-profit/Charity",keywords:["charity","non-profit"],primaryStyle:"Accessible & Ethical + Organic Biophilic",secondaryStyles:["Minimalism","Storytelling-Driven"],landingPattern:"Storytelling-Driven + Trust",dashboardStyle:"Donation Analytics Dashboard",colorFocus:"Cause-related colors + Trust + Warm",considerations:"Impact stories. Donation flow. Emotional connection."},
+{id:47,name:"Music Streaming",keywords:["music","streaming"],primaryStyle:"Dark Mode (OLED) + Vibrant & Block-based",secondaryStyles:["Motion-Driven","Aurora UI"],landingPattern:"Feature-Rich Showcase",dashboardStyle:"Media/Entertainment Dashboard",colorFocus:"Dark (#121212) + Vibrant accents",considerations:"Audio player. Playlist management. Social features."},
+{id:48,name:"Video Streaming/OTT",keywords:["ott","streaming","video"],primaryStyle:"Dark Mode (OLED) + Motion-Driven",secondaryStyles:["Glassmorphism","Vibrant & Block-based"],landingPattern:"Hero-Centric Design + Feature-Rich",dashboardStyle:"Media/Entertainment Dashboard",colorFocus:"Dark bg + Content poster colors",considerations:"Video player. Content discovery. Recommendations."},
+{id:49,name:"Job Board/Recruitment",keywords:["board","job","recruitment"],primaryStyle:"Flat Design + Minimalism",secondaryStyles:["Vibrant & Block-based","Accessible & Ethical"],landingPattern:"Conversion-Optimized + Feature-Rich",dashboardStyle:"HR Analytics Dashboard",colorFocus:"Professional Blue + Success Green",considerations:"Job listings. Search/filter. Salary insights."},
+{id:50,name:"Marketplace (P2P)",keywords:["buyers","marketplace","platform","sellers"],primaryStyle:"Vibrant & Block-based + Flat Design",secondaryStyles:["Micro-interactions","Trust & Authority"],landingPattern:"Feature-Rich Showcase + Social Proof",dashboardStyle:"E-commerce Analytics",colorFocus:"Trust colors + Success green",considerations:"Reviews/ratings. Secure payment. Trust badges."},
+{id:51,name:"Logistics/Delivery",keywords:["delivery","logistics"],primaryStyle:"Minimalism + Flat Design",secondaryStyles:["Dark Mode (OLED)","Micro-interactions"],landingPattern:"Feature-Rich Showcase + Conversion",dashboardStyle:"Real-Time Monitoring + Route Analytics",colorFocus:"Blue (#2563EB) + Orange + Green",considerations:"Real-time tracking. Route optimization. Map integration."},
+{id:52,name:"Agriculture/Farm Tech",keywords:["agriculture","farm","tech"],primaryStyle:"Organic Biophilic + Flat Design",secondaryStyles:["Minimalism","Accessible & Ethical"],landingPattern:"Feature-Rich Showcase + Trust",dashboardStyle:"IoT Sensor Dashboard",colorFocus:"Earth Green (#4A7C23) + Brown + Sky",considerations:"Crop monitoring. Weather data. IoT sensors."},
+{id:53,name:"Construction/Architecture",keywords:["architecture","construction"],primaryStyle:"Minimalism + 3D & Hyperrealism",secondaryStyles:["Brutalism","Swiss Modernism 2.0"],landingPattern:"Hero-Centric Design + Feature-Rich",dashboardStyle:"Project Management Dashboard",colorFocus:"Grey (#4A4A4A) + Orange + Blueprint Blue",considerations:"Project portfolio. 3D renders. Blueprint aesthetic."},
+{id:54,name:"Automotive/Car Dealership",keywords:["automotive","car","dealership"],primaryStyle:"Motion-Driven + 3D & Hyperrealism",secondaryStyles:["Dark Mode (OLED)","Glassmorphism"],landingPattern:"Hero-Centric Design + Feature-Rich",dashboardStyle:"Sales Intelligence Dashboard",colorFocus:"Brand colors + Metallic accents",considerations:"Vehicle showcase. 360\u00b0 views. Comparison tools."},
+{id:55,name:"Photography Studio",keywords:["photography","studio"],primaryStyle:"Motion-Driven + Minimalism",secondaryStyles:["Aurora UI","Glassmorphism"],landingPattern:"Storytelling-Driven + Hero-Centric",dashboardStyle:"N/A",colorFocus:"Black + White + Minimal accent",considerations:"Portfolio gallery. Full-bleed imagery."},
+{id:56,name:"Coworking Space",keywords:["coworking","space"],primaryStyle:"Vibrant & Block-based + Glassmorphism",secondaryStyles:["Minimalism","Motion-Driven"],landingPattern:"Hero-Centric Design + Feature-Rich",dashboardStyle:"Occupancy Dashboard",colorFocus:"Energetic colors + Wood tones",considerations:"Space tour. Membership plans. Community events."},
+{id:57,name:"Cleaning Service",keywords:["booking","cleaning","service"],primaryStyle:"Soft UI Evolution + Flat Design",secondaryStyles:["Minimalism","Micro-interactions"],landingPattern:"Conversion-Optimized + Trust",dashboardStyle:"Service Analytics",colorFocus:"Fresh Blue (#00B4D8) + White + Green",considerations:"Service packages. Booking system. Reviews."},
+{id:58,name:"Home Services (Plumber/Electrician)",keywords:["electrician","home","plumber","service"],primaryStyle:"Flat Design + Trust & Authority",secondaryStyles:["Minimalism","Accessible & Ethical"],landingPattern:"Conversion-Optimized + Trust",dashboardStyle:"Service Analytics",colorFocus:"Trust Blue + Safety Orange",considerations:"Emergency contact. Booking. Trust signals."},
+{id:59,name:"Childcare/Daycare",keywords:["childcare","daycare"],primaryStyle:"Claymorphism + Vibrant & Block-based",secondaryStyles:["Soft UI Evolution","Accessible & Ethical"],landingPattern:"Social Proof-Focused + Trust",dashboardStyle:"Parent Dashboard",colorFocus:"Playful pastels + Safe colors",considerations:"Safety certifications. Parent portal. Cheerful imagery."},
+{id:60,name:"Senior Care/Elderly",keywords:["care","elderly","senior"],primaryStyle:"Accessible & Ethical + Soft UI Evolution",secondaryStyles:["Minimalism","Neumorphism"],landingPattern:"Trust & Authority + Social Proof",dashboardStyle:"Healthcare Analytics",colorFocus:"Calm Blue + Warm neutrals + Large text",considerations:"Large touch targets. High contrast. Accessibility-first."},
+{id:61,name:"Medical Clinic",keywords:["clinic","medical"],primaryStyle:"Accessible & Ethical + Minimalism",secondaryStyles:["Neumorphism","Trust & Authority"],landingPattern:"Trust & Authority + Conversion",dashboardStyle:"Healthcare Analytics",colorFocus:"Medical Blue (#0077B6) + Trust White",considerations:"Doctor profiles. Online booking. HIPAA compliant."},
+{id:62,name:"Pharmacy/Drug Store",keywords:["drug","pharmacy","store"],primaryStyle:"Flat Design + Accessible & Ethical",secondaryStyles:["Minimalism","Trust & Authority"],landingPattern:"Conversion-Optimized + Trust",dashboardStyle:"Inventory Dashboard",colorFocus:"Pharmacy Green + Trust Blue + White",considerations:"Product catalog. Prescription upload. Safety."},
+{id:63,name:"Dental Practice",keywords:["dental","practice"],primaryStyle:"Soft UI Evolution + Minimalism",secondaryStyles:["Accessible & Ethical","Trust & Authority"],landingPattern:"Social Proof-Focused + Conversion",dashboardStyle:"Patient Analytics",colorFocus:"Fresh Blue + White + Smile Yellow",considerations:"Before/after. Online booking. Friendly imagery."},
+{id:64,name:"Veterinary Clinic",keywords:["clinic","veterinary"],primaryStyle:"Claymorphism + Accessible & Ethical",secondaryStyles:["Soft UI Evolution","Flat Design"],landingPattern:"Social Proof-Focused + Trust",dashboardStyle:"Pet Health Dashboard",colorFocus:"Caring Blue + Warm accents",considerations:"Pet services. Online booking. Friendly animal imagery."},
+{id:65,name:"Florist/Plant Shop",keywords:["florist","plant","shop"],primaryStyle:"Organic Biophilic + Vibrant & Block-based",secondaryStyles:["Aurora UI","Motion-Driven"],landingPattern:"Hero-Centric Design + Conversion",dashboardStyle:"E-commerce Analytics",colorFocus:"Natural Green + Floral pinks + Earth",considerations:"Occasion categories. Delivery scheduling. Beautiful imagery."},
+{id:66,name:"Bakery/Cafe",keywords:["bakery","cafe"],primaryStyle:"Vibrant & Block-based + Soft UI Evolution",secondaryStyles:["Claymorphism","Motion-Driven"],landingPattern:"Hero-Centric Design + Conversion",dashboardStyle:"N/A",colorFocus:"Warm Brown + Cream + Appetizing accents",considerations:"Menu display. Online ordering. Seasonal specials."},
+{id:67,name:"Coffee Shop",keywords:["coffee","shop"],primaryStyle:"Minimalism + Organic Biophilic",secondaryStyles:["Soft UI Evolution","Flat Design"],landingPattern:"Hero-Centric Design + Conversion",dashboardStyle:"N/A",colorFocus:"Coffee Brown (#6F4E37) + Cream + Warm",considerations:"Menu. Online ordering. Cozy aesthetic."},
+{id:68,name:"Brewery/Winery",keywords:["brewery","winery"],primaryStyle:"Motion-Driven + Storytelling-Driven",secondaryStyles:["Dark Mode (OLED)","Organic Biophilic"],landingPattern:"Storytelling-Driven + Hero-Centric",dashboardStyle:"N/A",colorFocus:"Deep amber/burgundy + Gold + Craft",considerations:"Story/heritage. Tasting notes. Artisanal imagery."},
+{id:69,name:"Airline",keywords:["airline"],primaryStyle:"Minimalism + Glassmorphism",secondaryStyles:["Motion-Driven","Accessible & Ethical"],landingPattern:"Conversion-Optimized + Feature-Rich",dashboardStyle:"Operations Dashboard",colorFocus:"Sky Blue + Brand colors + Trust",considerations:"Flight search. Booking. Loyalty program. Mobile-first."},
+{id:70,name:"News/Media Platform",keywords:["content","media","news","platform"],primaryStyle:"Minimalism + Flat Design",secondaryStyles:["Dark Mode (OLED)","Accessible & Ethical"],landingPattern:"Hero-Centric Design + Feature-Rich",dashboardStyle:"Media Analytics Dashboard",colorFocus:"Brand colors + High contrast + Category",considerations:"Article layout. Breaking news. Fast loading."},
+{id:71,name:"Magazine/Blog",keywords:["blog","content","magazine","writing"],primaryStyle:"Swiss Modernism 2.0 + Motion-Driven",secondaryStyles:["Minimalism","Aurora UI"],landingPattern:"Storytelling-Driven + Hero-Centric",dashboardStyle:"Content Analytics",colorFocus:"Editorial colors + Brand + White",considerations:"Typography-focused. Author profiles. Newsletter."},
+{id:72,name:"Freelancer Platform",keywords:["freelancer","platform"],primaryStyle:"Flat Design + Minimalism",secondaryStyles:["Vibrant & Block-based","Micro-interactions"],landingPattern:"Feature-Rich Showcase + Conversion",dashboardStyle:"Marketplace Analytics",colorFocus:"Professional Blue + Success Green",considerations:"Portfolio. Skill matching. Payment. Reviews."},
+{id:73,name:"Consulting Firm",keywords:["consulting","firm"],primaryStyle:"Trust & Authority + Minimalism",secondaryStyles:["Swiss Modernism 2.0","Accessible & Ethical"],landingPattern:"Trust & Authority + Feature-Rich",dashboardStyle:"N/A",colorFocus:"Navy + Gold + Professional grey",considerations:"Case studies. Team profiles. Thought leadership."},
+{id:74,name:"Marketing Agency",keywords:["agency","creative","marketing"],primaryStyle:"Brutalism + Motion-Driven",secondaryStyles:["Vibrant & Block-based","Aurora UI"],landingPattern:"Storytelling-Driven + Feature-Rich",dashboardStyle:"Campaign Analytics",colorFocus:"Bold brand colors + Creative freedom",considerations:"Portfolio. Case studies. Bold aesthetic."},
+{id:75,name:"Event Management",keywords:["conference","event","management","ticket"],primaryStyle:"Vibrant & Block-based + Motion-Driven",secondaryStyles:["Glassmorphism","Aurora UI"],landingPattern:"Hero-Centric Design + Feature-Rich",dashboardStyle:"Event Analytics",colorFocus:"Event theme colors + Excitement",considerations:"Registration. Agenda. Countdown timer."},
+{id:76,name:"Conference/Webinar Platform",keywords:["conference","platform","webinar"],primaryStyle:"Glassmorphism + Minimalism",secondaryStyles:["Motion-Driven","Flat Design"],landingPattern:"Feature-Rich Showcase + Conversion",dashboardStyle:"Attendee Analytics",colorFocus:"Professional Blue + Video accent",considerations:"Registration. Live stream. Networking."},
+{id:77,name:"Membership/Community",keywords:["community","membership"],primaryStyle:"Vibrant & Block-based + Soft UI Evolution",secondaryStyles:["Bento Box Grid","Micro-interactions"],landingPattern:"Social Proof-Focused + Conversion",dashboardStyle:"Community Analytics",colorFocus:"Community brand colors + Engagement",considerations:"Member benefits. Pricing tiers. Exclusive content."},
+{id:78,name:"Newsletter Platform",keywords:["newsletter","platform"],primaryStyle:"Minimalism + Flat Design",secondaryStyles:["Swiss Modernism 2.0","Accessible & Ethical"],landingPattern:"Minimal & Direct + Conversion",dashboardStyle:"Email Analytics",colorFocus:"Brand primary + Clean white + CTA",considerations:"Subscribe form. Archive. Simple conversion."},
+{id:79,name:"Digital Products/Downloads",keywords:["digital","downloads","products"],primaryStyle:"Vibrant & Block-based + Motion-Driven",secondaryStyles:["Glassmorphism","Bento Box Grid"],landingPattern:"Feature-Rich Showcase + Conversion",dashboardStyle:"E-commerce Analytics",colorFocus:"Product category colors + Success green",considerations:"Product showcase. Preview. Instant delivery."},
+{id:80,name:"Church/Religious Organization",keywords:["church","organization","religious"],primaryStyle:"Accessible & Ethical + Soft UI Evolution",secondaryStyles:["Minimalism","Trust & Authority"],landingPattern:"Hero-Centric Design + Social Proof",dashboardStyle:"N/A",colorFocus:"Warm Gold + Deep Purple/Blue",considerations:"Service times. Events. Welcoming imagery."},
+{id:81,name:"Sports Team/Club",keywords:["club","sports","team"],primaryStyle:"Vibrant & Block-based + Motion-Driven",secondaryStyles:["Dark Mode (OLED)","3D & Hyperrealism"],landingPattern:"Hero-Centric Design + Feature-Rich",dashboardStyle:"Performance Analytics",colorFocus:"Team colors + Energetic accents",considerations:"Schedule. Roster. Tickets. Fan engagement."},
+{id:82,name:"Museum/Gallery",keywords:["gallery","museum"],primaryStyle:"Minimalism + Motion-Driven",secondaryStyles:["Swiss Modernism 2.0","3D & Hyperrealism"],landingPattern:"Storytelling-Driven + Feature-Rich",dashboardStyle:"Visitor Analytics",colorFocus:"Art-appropriate neutrals + Exhibition",considerations:"Virtual tours. Educational content. Art-focused."},
+{id:83,name:"Theater/Cinema",keywords:["cinema","theater"],primaryStyle:"Dark Mode (OLED) + Motion-Driven",secondaryStyles:["Vibrant & Block-based","Glassmorphism"],landingPattern:"Hero-Centric Design + Conversion",dashboardStyle:"Booking Analytics",colorFocus:"Dark + Spotlight accents + Gold",considerations:"Showtimes. Seat selection. Dramatic imagery."},
+{id:84,name:"Language Learning App",keywords:["app","language","learning"],primaryStyle:"Claymorphism + Vibrant & Block-based",secondaryStyles:["Micro-interactions","Flat Design"],landingPattern:"Feature-Rich Showcase + Social Proof",dashboardStyle:"Learning Analytics",colorFocus:"Playful colors + Progress indicators",considerations:"Gamification. Speaking practice. Badges."},
+{id:85,name:"Coding Bootcamp",keywords:["bootcamp","coding"],primaryStyle:"Dark Mode (OLED) + Minimalism",secondaryStyles:["Cyberpunk UI","Flat Design"],landingPattern:"Feature-Rich Showcase + Social Proof",dashboardStyle:"Student Analytics",colorFocus:"Code editor colors + Success green",considerations:"Curriculum. Career outcomes. Terminal aesthetic."},
+{id:86,name:"Cybersecurity Platform",keywords:["cyber","security","platform"],primaryStyle:"Cyberpunk UI + Dark Mode (OLED)",secondaryStyles:["Neubrutalism","Minimal & Direct"],landingPattern:"Trust & Authority + Real-Time",dashboardStyle:"Real-Time Monitoring + Heat Map",colorFocus:"Matrix Green + Deep Black + Terminal",considerations:"Data density. Threat visualization. Dark mode default."},
+{id:87,name:"Developer Tool / IDE",keywords:["dev","developer","tool","ide"],primaryStyle:"Dark Mode (OLED) + Minimalism",secondaryStyles:["Flat Design","Bento Box Grid"],landingPattern:"Minimal & Direct + Documentation",dashboardStyle:"Real-Time Monitor + Terminal",colorFocus:"Dark syntax theme colors + Blue focus",considerations:"Keyboard shortcuts. Syntax highlighting. Fast performance."},
+{id:88,name:"Biotech / Life Sciences",keywords:["biotech","biology","science"],primaryStyle:"Glassmorphism + Clean Science",secondaryStyles:["Minimalism","Organic Biophilic"],landingPattern:"Storytelling-Driven + Research",dashboardStyle:"Data-Dense + Predictive",colorFocus:"Sterile White + DNA Blue + Life Green",considerations:"Data accuracy. Cleanliness. Complex data viz."},
+{id:89,name:"Space Tech / Aerospace",keywords:["aerospace","space","tech"],primaryStyle:"Holographic / HUD + Dark Mode",secondaryStyles:["Glassmorphism","3D & Hyperrealism"],landingPattern:"Immersive Experience + Hero",dashboardStyle:"Real-Time Monitoring + 3D",colorFocus:"Deep Space Black + Star White + Metallic",considerations:"High-tech feel. Precision. Telemetry data."},
+{id:90,name:"Architecture / Interior",keywords:["architecture","design","interior"],primaryStyle:"Exaggerated Minimalism + High Imagery",secondaryStyles:["Swiss Modernism 2.0","Parallax"],landingPattern:"Portfolio Grid + Visuals",dashboardStyle:"Project Management + Gallery",colorFocus:"Monochrome + Gold Accent + High Imagery",considerations:"High-res images. Typography. Space."},
+{id:91,name:"Quantum Computing Interface",keywords:["quantum","computing","physics","qubit"],primaryStyle:"Holographic / HUD + Dark Mode",secondaryStyles:["Glassmorphism","Spatial UI"],landingPattern:"Immersive/Interactive Experience",dashboardStyle:"3D Spatial Data + Real-Time Monitor",colorFocus:"Quantum Blue #00FFFF + Deep Black",considerations:"Visualize complexity. Qubit states. High-tech trust."},
+{id:92,name:"Biohacking / Longevity App",keywords:["biohacking","health","longevity","tracking"],primaryStyle:"Biomimetic / Organic 2.0",secondaryStyles:["Minimalism","Dark Mode (OLED)"],landingPattern:"Data-Dense + Storytelling",dashboardStyle:"Real-Time Monitor + Biological Data",colorFocus:"Cellular Pink/Red + DNA Blue + White",considerations:"Personal data privacy. Scientific credibility."},
+{id:93,name:"Autonomous Drone Fleet Manager",keywords:["drone","autonomous","fleet","aerial"],primaryStyle:"HUD / Sci-Fi FUI",secondaryStyles:["Real-Time Monitor","Spatial UI"],landingPattern:"Real-Time Monitor",dashboardStyle:"Geographic + Real-Time",colorFocus:"Tactical Green #00FF00 + Alert Red + Map Dark",considerations:"Real-time telemetry. 3D spatial awareness. Safety alerts."},
+{id:94,name:"Generative Art Platform",keywords:["art","generative","ai","creative"],primaryStyle:"Minimalism (Frame) + Gen Z Chaos",secondaryStyles:["Masonry Grid","Dark Mode"],landingPattern:"Bento Grid Showcase",dashboardStyle:"Gallery / Portfolio",colorFocus:"Neutral #F5F5F5 (Canvas) + User Content",considerations:"Content is king. Fast loading. Creator attribution."},
+{id:95,name:"Spatial Computing OS / App",keywords:["spatial","vr","ar","vision","immersive"],primaryStyle:"Spatial UI (VisionOS)",secondaryStyles:["Glassmorphism","3D & Hyperrealism"],landingPattern:"Immersive/Interactive Experience",dashboardStyle:"Spatial Dashboard",colorFocus:"Frosted Glass + System Colors + Depth",considerations:"Gaze/Pinch interaction. Depth hierarchy."},
+{id:96,name:"Sustainable Energy / Climate Tech",keywords:["climate","energy","sustainable","green","carbon"],primaryStyle:"Organic Biophilic + E-Ink / Paper",secondaryStyles:["Data-Dense","Swiss Modernism"],landingPattern:"Interactive Demo + Data",dashboardStyle:"Energy/Utilities Dashboard",colorFocus:"Earth Green + Sky Blue + Solar Yellow",considerations:"Data transparency. Impact visualization."}
+];
+
+// Build reverse lookup: product name -> group
+const productGroupMap = {};
+Object.entries(GROUPS).forEach(([group, names]) => {
+    names.forEach(n => { productGroupMap[n] = group; });
+});
+
+let activeGroup = 'All';
+
+// Render filter buttons
+function renderFilters() {
+    const container = document.getElementById('filters');
+    const groups = ['All', ...Object.keys(GROUPS)];
+    container.innerHTML = groups.map(g =>
+        `<button class="filter-btn px-3 py-1.5 text-xs rounded-lg border border-white/10 bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 ${g === activeGroup ? 'active' : ''}" data-group="${g}">${g}</button>`
+    ).join('');
+}
+
+function filterGroup(group) {
+    activeGroup = group;
+    renderFilters();
+    renderProducts();
+}
+
+function renderProducts() {
+    const query = document.getElementById('search').value.toLowerCase().trim();
+    const grid = document.getElementById('grid');
+    const empty = document.getElementById('empty');
+
+    let filtered = products;
+
+    // Filter by group
+    if (activeGroup !== 'All') {
+        const groupNames = GROUPS[activeGroup] || [];
+        filtered = filtered.filter(p => groupNames.includes(p.name));
+    }
+
+    // Filter by search
+    if (query) {
+        filtered = filtered.filter(p => {
+            const searchable = [
+                p.name,
+                ...p.keywords,
+                p.primaryStyle,
+                ...p.secondaryStyles,
+                p.landingPattern,
+                p.considerations
+            ].join(' ').toLowerCase();
+            return searchable.includes(query);
+        });
+    }
+
+    document.getElementById('count').textContent = `${filtered.length} of ${products.length}`;
+
+    if (filtered.length === 0) {
+        grid.innerHTML = '';
+        empty.classList.remove('hidden');
+        return;
+    }
+    empty.classList.add('hidden');
+
+    grid.innerHTML = filtered.map(p => {
+        const keywordTags = p.keywords.map(k =>
+            `<span class="px-2 py-0.5 text-[10px] rounded bg-white/5 text-gray-400 border border-white/10">${k}</span>`
+        ).join('');
+
+        const secondaryTags = p.secondaryStyles.map(s =>
+            `<a href="styles.html?q=${encodeURIComponent(s)}" class="px-2 py-0.5 text-xs rounded bg-violet-500/10 text-violet-400 border border-violet-500/20 hover:bg-violet-500/20 transition-colors">${s}</a>`
+        ).join('');
+
+        const patternBadge = `<a href="patterns.html?q=${encodeURIComponent(p.landingPattern)}" class="px-2.5 py-1 text-xs rounded-md bg-pink-500/10 text-pink-400 border border-pink-500/20 hover:bg-pink-500/20 transition-colors">${p.landingPattern}</a>`;
+
+        const dashboardBadge = p.dashboardStyle !== 'N/A'
+            ? `<span class="px-2.5 py-1 text-xs rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">${p.dashboardStyle}</span>`
+            : '';
+
+        return `<div class="product-card card-glow rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 hover:border-orange-500/20 transition-all">
+    <div class="flex items-start justify-between mb-3">
+        <h3 class="font-heading text-lg font-bold text-white">${p.name}</h3>
+        <span class="text-xs text-gray-600 font-mono">#${p.id}</span>
+    </div>
+    <div class="flex flex-wrap gap-1.5 mb-4">${keywordTags}</div>
+    <div class="mb-3">
+        <span class="text-[11px] text-gray-500 uppercase tracking-wider">Primary Style</span>
+        <div class="mt-1">
+            <a href="styles.html?q=${encodeURIComponent(p.primaryStyle)}" class="text-sm text-orange-400 hover:text-orange-300 transition-colors">${p.primaryStyle}</a>
+        </div>
+    </div>
+    <div class="mb-3">
+        <span class="text-[11px] text-gray-500 uppercase tracking-wider">Secondary Styles</span>
+        <div class="flex flex-wrap gap-1.5 mt-1">${secondaryTags}</div>
+    </div>
+    <div class="flex flex-wrap gap-2 mb-3">${patternBadge}${dashboardBadge}</div>
+    <div class="mb-3">
+        <span class="text-[11px] text-gray-500 uppercase tracking-wider">Color Palette</span>
+        <p class="text-sm text-gray-300 mt-1">${p.colorFocus}</p>
+    </div>
+    <p class="text-xs text-gray-500 leading-relaxed italic">${p.considerations}</p>
+</div>`;
+    }).join('');
+}
+
+// Event listeners
+document.getElementById('filters').addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    filterGroup(btn.dataset.group);
+});
+
+document.getElementById('search').addEventListener('input', renderProducts);
+
+// URL param support
+const urlQ = new URLSearchParams(window.location.search).get('q');
+if (urlQ) {
+    document.getElementById('search').value = urlQ;
+}
+
+// Init
+renderFilters();
+renderProducts();
+</script>
+</body>
+</html>

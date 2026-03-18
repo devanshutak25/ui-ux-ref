@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Reasoning Engine - 99 Rules - UI/UX Pro Max</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Space Grotesk', sans-serif; }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #818CF8, #06B6D4, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-blur {
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(ellipse at 30% 40%, rgba(167, 139, 250, 0.12) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 80%, rgba(129, 140, 248, 0.06) 0%, transparent 50%);
+        }
+
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(129, 140, 248, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(129, 140, 248, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .card-glass {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.06));
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .card-glass:hover {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.09));
+            box-shadow: 0 0 40px rgba(129, 140, 248, 0.08), 0 0 80px rgba(6, 182, 212, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn {
+            transition: all 0.2s ease;
+        }
+        .filter-btn.active {
+            background: rgba(129, 140, 248, 0.2);
+            border-color: rgba(129, 140, 248, 0.5);
+            color: #818CF8;
+        }
+
+        .rule-card.hidden-by-filter {
+            display: none;
+        }
+
+        .expand-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+        .expand-content.expanded {
+            max-height: 600px;
+            opacity: 1;
+        }
+
+        .expand-arrow {
+            transition: transform 0.3s ease;
+        }
+        .expand-arrow.rotated {
+            transform: rotate(180deg);
+        }
+
+        .color-swatch {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .style-tag {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 999px;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .icon-container {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .anti-tag {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #FCA5A5;
+        }
+
+        .effect-tag {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            color: #67E8F9;
+        }
+
+        .pattern-badge {
+            background: rgba(167, 139, 250, 0.1);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            color: #C4B5FD;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #08090E; }
+        ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in { animation: fadeInUp 0.5s ease forwards; }
+
+        .typo-preview {
+            line-height: 1.2;
+        }
+
+        .search-glow:focus {
+            box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.3), 0 0 20px rgba(129, 140, 248, 0.1);
+        }
+
+        .stats-bar {
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255,255,255,0.06);
+            overflow: hidden;
+        }
+        .stats-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.8s ease;
+        }
+
+        /* Cross-reference links */
+        .xref-link {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(129, 140, 248, 0.4);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .xref-link:hover {
+            color: #818CF8;
+            border-bottom-color: #818CF8;
+            border-bottom-style: solid;
+        }
+
+        /* Product Finder Autocomplete */
+        .product-finder-input {
+            font-size: 1.1rem;
+            padding: 1rem 1.25rem 1rem 3.25rem;
+        }
+        .autocomplete-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            margin-top: 4px;
+            background: #12131A;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            max-height: 320px;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .autocomplete-dropdown:empty {
+            display: none;
+        }
+        .autocomplete-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            cursor: pointer;
+            transition: background 0.15s ease;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .autocomplete-item:last-child {
+            border-bottom: none;
+        }
+        .autocomplete-item:hover,
+        .autocomplete-item.active {
+            background: rgba(129, 140, 248, 0.1);
+        }
+        .autocomplete-item .ac-icon {
+            font-size: 1.2rem;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        .autocomplete-item .ac-name {
+            font-weight: 600;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        .autocomplete-item .ac-cat {
+            font-size: 0.7rem;
+            color: #6B7280;
+        }
+        .autocomplete-item .ac-match {
+            color: #818CF8;
+            font-weight: 700;
+        }
+
+        /* Card highlight animation */
+        @keyframes highlightPulse {
+            0% { box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.6); }
+            50% { box-shadow: 0 0 30px 8px rgba(129, 140, 248, 0.3); }
+            100% { box-shadow: 0 0 0 0 rgba(129, 140, 248, 0); }
+        }
+        .card-highlighted {
+            animation: highlightPulse 1.5s ease 2;
+            border-color: rgba(129, 140, 248, 0.5) !important;
+        }
+
+        /* Copy Design Brief button */
+        .copy-brief-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #A78BFA;
+            background: rgba(167, 139, 250, 0.08);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .copy-brief-btn:hover {
+            background: rgba(167, 139, 250, 0.15);
+            border-color: rgba(167, 139, 250, 0.4);
+            color: #C4B5FD;
+        }
+        .copy-brief-btn.copied {
+            color: #4ADE80;
+            border-color: rgba(74, 222, 128, 0.3);
+            background: rgba(74, 222, 128, 0.08);
+        }
+
+        /* Toast notification */
+        .toast-notification {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: #1E1B4B;
+            border: 1px solid rgba(129, 140, 248, 0.3);
+            color: #C4B5FD;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            z-index: 9999;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .toast-notification.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-[#08090E] text-gray-200 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-[#08090E]/70 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="font-heading font-bold text-xl tracking-tight">
+                <span class="text-white">UI/UX</span>
+                <span class="gradient-text"> Pro Max</span>
+            </a>
+            <div class="hidden md:flex items-center gap-1">
+                <a href="styles.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Styles</a>
+                <a href="colors.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Colors</a>
+                <a href="typography.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Typography</a>
+                <a href="charts.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Charts</a>
+                <a href="products.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Products</a>
+                <a href="icons.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Icons</a>
+                <div class="relative">
+                    <button onclick="document.getElementById('more-menu').classList.toggle('hidden')" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5 inline-flex items-center gap-1">More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                    <div id="more-menu" class="hidden absolute right-0 top-full mt-2 w-52 bg-[#12131A] border border-white/10 rounded-xl shadow-2xl py-2 z-50">
+                        <a href="stacks.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Stacks</a>
+                        <a href="ux-guidelines.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">UX Guidelines</a>
+                        <a href="patterns.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Patterns</a>
+                        <a href="reasoning.html" class="block px-4 py-2 text-sm text-white bg-white/10 rounded-lg mx-2">Reasoning</a>
+                        <a href="react-performance.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">React Perf</a>
+                        <a href="web-interface.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Web Interface</a>
+                    </div>
+                </div>
+            </div>
+<button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 px-6 py-4 space-y-2">
+            <a href="styles.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Styles</a>
+            <a href="colors.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Colors</a>
+            <a href="typography.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Typography</a>
+            <a href="charts.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Charts</a>
+            <a href="products.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Products</a>
+            <a href="icons.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Icons</a>
+            <a href="stacks.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Stacks</a>
+            <a href="ux-guidelines.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">UX Guidelines</a>
+            <a href="patterns.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Patterns</a>
+            <a href="reasoning.html" class="block px-3 py-2 text-sm text-white bg-white/10 rounded-lg">Reasoning</a>
+            <a href="react-performance.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">React Perf</a>
+            <a href="web-interface.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Web Interface</a>
+        </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="relative hero-gradient grid-bg pt-28 pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-sm font-medium mb-6">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+                    AI Reasoning Engine
+                </div>
+                <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                    99 Reasoning <span class="gradient-text">Rules</span>
+                </h1>
+                <p class="text-lg text-gray-400 mb-6 max-w-2xl">
+                    The complete AI decision matrix. For every product type, the reasoning engine recommends patterns, styles, colors, typography, effects, and anti-patterns to ensure pixel-perfect design decisions.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10">
+                        <span class="text-2xl font-heading font-bold text-white">99</span>
+                        <span class="text-sm text-gray-400">Product Types</span>
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10">
+                        <span class="text-2xl font-heading font-bold text-cyan-400">7</span>
+                        <span class="text-sm text-gray-400">Decision Axes</span>
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10">
+                        <span class="text-2xl font-heading font-bold text-violet-400">14</span>
+                        <span class="text-sm text-gray-400">Industry Categories</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search & Filters -->
+    <section class="sticky top-[65px] z-40 bg-[#08090E]/90 nav-blur border-b border-white/5 py-4">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Product Finder -->
+            <div class="relative mb-4">
+                <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" id="search-input" placeholder="Find a product type... e.g. SaaS, Restaurant, Fintech" class="w-full product-finder-input bg-white/5 border border-white/10 rounded-2xl text-white placeholder-gray-500 focus:outline-none search-glow transition-all" autocomplete="off">
+                <div id="search-count" class="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-500 font-medium">99 rules</div>
+                <div id="autocomplete-dropdown" class="autocomplete-dropdown hidden"></div>
+            </div>
+            <!-- Category Filters -->
+            <div class="flex flex-wrap gap-2" id="filter-container">
+                <button class="filter-btn active px-3 py-1.5 text-xs font-medium rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30" data-filter="all">All (99)</button>
+                <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30" data-filter="saas-tech">SaaS / Tech</button>
+                <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30" data-filter="healthcare">Healthcare</button>
+                <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30" data-filter="finance">Finance</button>
+                <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30" data-filter="creative">Creative</button>
+                <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30" data-filter="food-bev">Food / Beverage</button>
+                <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30" data-filter="services">Services</button>
+                <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30" data-filter="education">Education</button>
+                <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30" data-filter="entertainment">Entertainment</button>
+                <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30" data-filter="ecommerce">E-commerce</button>
+                <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30" data-filter="real-estate">Real Estate</button>
+                <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30" data-filter="travel">Travel</button>
+                <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30" data-filter="community">Community</button>
+                <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30" data-filter="government">Government / Public</button>
+                <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/30" data-filter="frontier">Frontier Tech</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rules Grid -->
+    <section class="py-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4" id="rules-grid">
+                <!-- Cards will be injected by JS -->
+            </div>
+            <div id="no-results" class="hidden text-center py-20">
+                <svg class="w-16 h-16 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <p class="text-gray-500 text-lg font-heading">No reasoning rules match your search</p>
+                <p class="text-gray-600 text-sm mt-2">Try a different keyword or category filter</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="font-heading font-bold text-lg"><span class="text-white">UI/UX</span><span class="gradient-text"> Pro Max</span></div>
+                <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
+                    <a href="styles.html" class="hover:text-white transition-colors">Styles</a>
+                    <a href="colors.html" class="hover:text-white transition-colors">Colors</a>
+                    <a href="typography.html" class="hover:text-white transition-colors">Typography</a>
+                    <a href="charts.html" class="hover:text-white transition-colors">Charts</a>
+                    <a href="products.html" class="hover:text-white transition-colors">Products</a>
+                    <a href="icons.html" class="hover:text-white transition-colors">Icons</a>
+                    <a href="stacks.html" class="hover:text-white transition-colors">Stacks</a>
+                    <a href="ux-guidelines.html" class="hover:text-white transition-colors">UX Guidelines</a>
+                    <a href="patterns.html" class="hover:text-white transition-colors">Patterns</a>
+                    <a href="reasoning.html" class="hover:text-white transition-colors">Reasoning</a>
+                    <a href="react-performance.html" class="hover:text-white transition-colors">React Perf</a>
+                    <a href="web-interface.html" class="hover:text-white transition-colors">Web Interface</a>
+                </div>
+                <div class="text-sm text-gray-600">Design Intelligence System</div>
+            </div>
+        </div>
+    </footer>
+
+<!-- Toast notification -->
+<div id="toast" class="toast-notification">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+    <span id="toast-text">Copied to clipboard!</span>
+</div>
+
+<script>
+const reasoningRules = [
+    { id: 1, name: "SaaS (General)", icon: "\u2601\uFE0F", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Hero+Features+CTA", styles: ["Minimalism", "Glassmorphism"], colorMood: "Trust blue, professional", colorSwatches: ["#3B82F6","#1E40AF","#60A5FA","#F8FAFC"], typographyMood: "Clean sans-serif", typoPreview: "Inter / DM Sans", effects: ["Subtle hover", "Smooth transitions"], anti: ["Cluttered", "Too many CTAs"], accentColor: "#3B82F6" },
+    { id: 2, name: "Micro SaaS", icon: "\u26A1", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Minimal Single Column", styles: ["Flat Design", "Minimalism"], colorMood: "Indigo, focused", colorSwatches: ["#6366F1","#4F46E5","#818CF8","#E0E7FF"], typographyMood: "Friendly sans", typoPreview: "Plus Jakarta Sans", effects: ["Micro-interactions"], anti: ["Over-designed", "Complex layouts"], accentColor: "#6366F1" },
+    { id: 3, name: "E-commerce", icon: "\uD83D\uDED2", category: "ecommerce", catLabel: "E-commerce", pattern: "Product Demo+Features", styles: ["Clean", "Conversion-focused"], colorMood: "Green success, orange urgency", colorSwatches: ["#22C55E","#F97316","#FDE68A","#FFFFFF"], typographyMood: "Clean readable", typoPreview: "Inter / System UI", effects: ["Product zoom", "Quick view"], anti: ["Slow loading", "Hidden prices"], accentColor: "#22C55E" },
+    { id: 4, name: "E-commerce Luxury", icon: "\uD83D\uDC8E", category: "ecommerce", catLabel: "E-commerce", pattern: "Hero-Centric", styles: ["Minimalism", "Editorial"], colorMood: "Dark, gold accents", colorSwatches: ["#1C1917","#D4A843","#F5F0E8","#78716C"], typographyMood: "Serif headings", typoPreview: "Playfair Display", effects: ["Parallax", "Smooth scroll"], anti: ["Cluttered", "Discount-heavy"], accentColor: "#D4A843" },
+    { id: 5, name: "Healthcare App", icon: "\uD83C\uDFE5", category: "healthcare", catLabel: "Healthcare", pattern: "Trust & Authority", styles: ["Clean", "Accessible"], colorMood: "Calm cyan, health green", colorSwatches: ["#06B6D4","#10B981","#ECFDF5","#F0FDFA"], typographyMood: "Medical clean", typoPreview: "DM Sans / Nunito", effects: ["Smooth", "Calming"], anti: ["Aggressive CTAs", "Dark mode"], accentColor: "#06B6D4" },
+    { id: 6, name: "Fintech/Crypto", icon: "\uD83D\uDCB0", category: "finance", catLabel: "Finance", pattern: "Dashboard+Demo", styles: ["Dark Mode", "Data-Dense"], colorMood: "Gold, purple tech", colorSwatches: ["#EAB308","#8B5CF6","#1E1B2E","#F5F3FF"], typographyMood: "Mono for data", typoPreview: "JetBrains Mono / Inter", effects: ["Real-time updates", "Charts"], anti: ["Childish", "Unprofessional"], accentColor: "#EAB308" },
+    { id: 7, name: "Education", icon: "\uD83C\uDF93", category: "education", catLabel: "Education", pattern: "Interactive Demo", styles: ["Playful", "Colorful"], colorMood: "Indigo, orange energy", colorSwatches: ["#6366F1","#F97316","#FDE68A","#EEF2FF"], typographyMood: "Friendly rounded", typoPreview: "Nunito / Baloo 2", effects: ["Gamification", "Progress"], anti: ["Boring", "Text-heavy"], accentColor: "#F97316" },
+    { id: 8, name: "Portfolio/Personal", icon: "\uD83C\uDFA8", category: "creative", catLabel: "Creative", pattern: "Portfolio Grid", styles: ["Minimalism"], colorMood: "Monochrome + accent", colorSwatches: ["#18181B","#FAFAFA","#A1A1AA","#818CF8"], typographyMood: "Minimal Swiss", typoPreview: "Helvetica / Neue Haas", effects: ["Image reveals", "Hover overlays"], anti: ["Templates", "Generic"], accentColor: "#A1A1AA" },
+    { id: 9, name: "Government/Public", icon: "\uD83C\uDFDB\uFE0F", category: "government", catLabel: "Government / Public", pattern: "FAQ/Documentation", styles: ["Accessible", "Inclusive"], colorMood: "High contrast navy", colorSwatches: ["#1E3A5F","#FFFFFF","#0EA5E9","#F1F5F9"], typographyMood: "Corporate trust", typoPreview: "Source Sans Pro", effects: ["Simple", "Fast"], anti: ["Flashy", "Inaccessible"], accentColor: "#1E3A5F" },
+    { id: 10, name: "Banking/Traditional Finance", icon: "\uD83C\uDFE6", category: "finance", catLabel: "Finance", pattern: "Trust & Authority", styles: ["Conservative", "Professional"], colorMood: "Navy, gold premium", colorSwatches: ["#1E3A5F","#D4A843","#F8FAFC","#334155"], typographyMood: "Serif trust", typoPreview: "Georgia / Lora", effects: ["Minimal", "Stable"], anti: ["Trendy", "Experimental"], accentColor: "#1E3A5F" },
+    { id: 11, name: "Social Media App", icon: "\uD83D\uDCAC", category: "community", catLabel: "Community", pattern: "Community/Forum", styles: ["Vibrant", "Engaging"], colorMood: "Rose vibrant", colorSwatches: ["#F43F5E","#EC4899","#FB7185","#FFF1F2"], typographyMood: "Modern professional", typoPreview: "SF Pro / Inter", effects: ["Micro-interactions", "Feeds"], anti: ["Slow", "Static"], accentColor: "#F43F5E" },
+    { id: 12, name: "Startup Landing", icon: "\uD83D\uDE80", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Hero+Features+CTA", styles: ["Modern", "Bold"], colorMood: "Brand-driven", colorSwatches: ["#818CF8","#06B6D4","#F97316","#1E1B4B"], typographyMood: "Startup bold", typoPreview: "Cabinet Grotesk", effects: ["Scroll animations"], anti: ["Corporate", "Bland"], accentColor: "#818CF8" },
+    { id: 13, name: "Gaming", icon: "\uD83C\uDFAE", category: "entertainment", catLabel: "Entertainment", pattern: "Immersive Experience", styles: ["Cyberpunk", "Dark Mode"], colorMood: "Neon purple, rose", colorSwatches: ["#A855F7","#F43F5E","#0F0A1A","#22D3EE"], typographyMood: "Gaming bold", typoPreview: "Orbitron / Rajdhani", effects: ["Particle", "WebGL"], anti: ["Corporate", "Plain"], accentColor: "#A855F7" },
+    { id: 14, name: "Creative Agency", icon: "\u2728", category: "creative", catLabel: "Creative", pattern: "Portfolio Grid", styles: ["Editorial", "Motion-Driven"], colorMood: "Bold pink, cyan", colorSwatches: ["#EC4899","#06B6D4","#0F172A","#F5F3FF"], typographyMood: "Fashion forward", typoPreview: "Clash Display", effects: ["Custom cursor", "Kinetic type"], anti: ["Template", "Generic"], accentColor: "#EC4899" },
+    { id: 15, name: "Wellness/Mental Health", icon: "\uD83E\uDDD8", category: "healthcare", catLabel: "Healthcare", pattern: "Storytelling", styles: ["Organic", "Calm"], colorMood: "Lavender, wellness green", colorSwatches: ["#C4B5FD","#86EFAC","#FDF4FF","#F0FDF4"], typographyMood: "Wellness calm", typoPreview: "Jost / Quicksand", effects: ["Breathing anims", "Nature"], anti: ["Aggressive", "Dark", "Heavy"], accentColor: "#C4B5FD" },
+    { id: 16, name: "Restaurant/Food", icon: "\uD83C\uDF7D\uFE0F", category: "food-bev", catLabel: "Food / Beverage", pattern: "Hero-Centric", styles: ["Warm", "Appetizing"], colorMood: "Red appetizing, gold", colorSwatches: ["#DC2626","#D4A843","#FEF3C7","#451A03"], typographyMood: "Restaurant menu", typoPreview: "Playfair / DM Serif", effects: ["Food imagery", "Parallax"], anti: ["Stock photos", "Clinical"], accentColor: "#DC2626" },
+    { id: 17, name: "Real Estate", icon: "\uD83C\uDFE0", category: "real-estate", catLabel: "Real Estate", pattern: "Search+Listings", styles: ["Trust", "Professional"], colorMood: "Teal trust, blue", colorSwatches: ["#0D9488","#3B82F6","#F8FAFC","#1E293B"], typographyMood: "Real estate luxury", typoPreview: "Cormorant Garamond", effects: ["Map integration", "Gallery"], anti: ["Cluttered", "Small images"], accentColor: "#0D9488" },
+    { id: 18, name: "Travel/Tourism", icon: "\u2708\uFE0F", category: "travel", catLabel: "Travel", pattern: "Hero-Centric+Search", styles: ["Immersive", "Visual"], colorMood: "Sky blue, orange adventure", colorSwatches: ["#0EA5E9","#F97316","#FFF7ED","#0C4A6E"], typographyMood: "Modern professional", typoPreview: "Poppins / Nunito", effects: ["Parallax", "Destination imagery"], anti: ["Text-heavy", "No imagery"], accentColor: "#0EA5E9" },
+    { id: 19, name: "SaaS Dashboard", icon: "\uD83D\uDCCA", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Data-Dense Dashboard", styles: ["Minimalism", "Clean"], colorMood: "Blue data, amber highlights", colorSwatches: ["#3B82F6","#F59E0B","#111827","#1F2937"], typographyMood: "Dashboard data", typoPreview: "Inter / Tabular nums", effects: ["Data viz", "Real-time"], anti: ["Decorative", "Distracting"], accentColor: "#3B82F6" },
+    { id: 20, name: "B2B SaaS Enterprise", icon: "\uD83C\uDFE2", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Enterprise Gateway", styles: ["Professional", "Conservative"], colorMood: "Navy, blue CTA", colorSwatches: ["#1E3A5F","#2563EB","#F1F5F9","#475569"], typographyMood: "Corporate trust", typoPreview: "Source Sans Pro", effects: ["Subtle", "Professional"], anti: ["Flashy", "Trendy"], accentColor: "#1E3A5F" },
+    { id: 21, name: "Music/Entertainment", icon: "\uD83C\uDFB5", category: "entertainment", catLabel: "Entertainment", pattern: "Immersive Experience", styles: ["Dark Mode", "Bold"], colorMood: "Dark audio, green play", colorSwatches: ["#0A0A0A","#22C55E","#A855F7","#1DB954"], typographyMood: "Music/entertainment", typoPreview: "Montserrat / Circular", effects: ["Audio visualizer", "Waveform"], anti: ["Corporate", "Bland"], accentColor: "#1DB954" },
+    { id: 22, name: "Video Streaming/OTT", icon: "\uD83C\uDFAC", category: "entertainment", catLabel: "Entertainment", pattern: "Hero-Centric", styles: ["Dark Mode OLED", "Cinematic"], colorMood: "Cinema dark, red play", colorSwatches: ["#000000","#E50914","#141414","#FFFFFF"], typographyMood: "Bold sans", typoPreview: "Bebas Neue / Helvetica", effects: ["Video autoplay", "Carousel"], anti: ["Light mode", "Cluttered"], accentColor: "#E50914" },
+    { id: 23, name: "Job Board/Recruitment", icon: "\uD83D\uDCBC", category: "services", catLabel: "Services", pattern: "Search+Listings", styles: ["Professional", "Clean"], colorMood: "Professional blue, green success", colorSwatches: ["#2563EB","#22C55E","#F8FAFC","#334155"], typographyMood: "Modern professional", typoPreview: "Inter / SF Pro", effects: ["Search", "Filter"], anti: ["Cluttered", "No filters"], accentColor: "#2563EB" },
+    { id: 24, name: "Marketplace (P2P)", icon: "\uD83D\uDED2", category: "ecommerce", catLabel: "E-commerce", pattern: "Marketplace/Directory", styles: ["Clean", "Trustworthy"], colorMood: "Trust purple, green transaction", colorSwatches: ["#7C3AED","#22C55E","#FAFAFA","#1E1B4B"], typographyMood: "Friendly SaaS", typoPreview: "Plus Jakarta Sans", effects: ["Search", "Listing cards"], anti: ["Untrusted", "No reviews"], accentColor: "#7C3AED" },
+    { id: 25, name: "Logistics/Delivery", icon: "\uD83D\uDE9A", category: "services", catLabel: "Services", pattern: "Dashboard+Tracking", styles: ["Data-focused"], colorMood: "Tracking blue, delivery orange", colorSwatches: ["#3B82F6","#F97316","#111827","#1F2937"], typographyMood: "Dashboard data", typoPreview: "Inter Tabular / Mono", effects: ["Map", "Real-time tracking"], anti: ["Decorative", "Slow"], accentColor: "#F97316" },
+    { id: 26, name: "Agriculture/Farm Tech", icon: "\uD83C\uDF3E", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Product Demo", styles: ["Nature", "Clean"], colorMood: "Earth green, harvest gold", colorSwatches: ["#16A34A","#CA8A04","#F0FDF4","#365314"], typographyMood: "Clean sans", typoPreview: "DM Sans / Nunito", effects: ["Data viz", "Weather"], anti: ["High-tech looking"], accentColor: "#16A34A" },
+    { id: 27, name: "Construction/Architecture", icon: "\uD83C\uDFD7\uFE0F", category: "services", catLabel: "Services", pattern: "Portfolio+Services", styles: ["Industrial", "Professional"], colorMood: "Industrial grey, safety orange", colorSwatches: ["#44403C","#F97316","#FAFAF9","#1C1917"], typographyMood: "Bold sans", typoPreview: "Barlow / Archivo", effects: ["Project gallery"], anti: ["Playful", "Light"], accentColor: "#F97316" },
+    { id: 28, name: "Automotive/Car Dealership", icon: "\uD83D\uDE97", category: "ecommerce", catLabel: "E-commerce", pattern: "Product Demo 3D", styles: ["Premium", "Dark"], colorMood: "Premium dark, action red", colorSwatches: ["#18181B","#EF4444","#FAFAFA","#71717A"], typographyMood: "Bold statement", typoPreview: "Bebas Neue / Oswald", effects: ["3D configurator", "Gallery"], anti: ["Cheap looking"], accentColor: "#EF4444" },
+    { id: 29, name: "Photography Studio", icon: "\uD83D\uDCF7", category: "creative", catLabel: "Creative", pattern: "Portfolio Grid", styles: ["Minimal", "B&W"], colorMood: "Pure B&W contrast", colorSwatches: ["#000000","#FFFFFF","#525252","#A3A3A3"], typographyMood: "Minimalist portfolio", typoPreview: "Helvetica Neue", effects: ["Image lazy load", "Lightbox"], anti: ["Colorful", "Busy"], accentColor: "#525252" },
+    { id: 30, name: "Coworking Space", icon: "\uD83E\uDD1D", category: "real-estate", catLabel: "Real Estate", pattern: "Hero+Amenities", styles: ["Energetic", "Modern"], colorMood: "Energetic amber, booking blue", colorSwatches: ["#F59E0B","#3B82F6","#FFFBEB","#1E3A5F"], typographyMood: "Friendly SaaS", typoPreview: "Plus Jakarta Sans", effects: ["Virtual tour", "Booking"], anti: ["Corporate", "Cold"], accentColor: "#F59E0B" },
+    { id: 31, name: "Cleaning Service", icon: "\u2728", category: "services", catLabel: "Services", pattern: "Service Landing", styles: ["Fresh", "Clean"], colorMood: "Fresh cyan, clean green", colorSwatches: ["#06B6D4","#22C55E","#F0FDFA","#ECFDF5"], typographyMood: "Friendly sans", typoPreview: "Nunito / DM Sans", effects: ["Before/after slider"], anti: ["Dirty looking", "Dark"], accentColor: "#06B6D4" },
+    { id: 32, name: "Home Services", icon: "\uD83D\uDD27", category: "services", catLabel: "Services", pattern: "Service Landing", styles: ["Professional", "Trustworthy"], colorMood: "Professional blue, urgent orange", colorSwatches: ["#2563EB","#F97316","#F8FAFC","#1E293B"], typographyMood: "Corporate trust", typoPreview: "Source Sans Pro", effects: ["Booking form", "Reviews"], anti: ["Unprofessional"], accentColor: "#2563EB" },
+    { id: 33, name: "Childcare/Daycare", icon: "\uD83D\uDC76", category: "services", catLabel: "Services", pattern: "Trust+Safety", styles: ["Soft", "Safe"], colorMood: "Soft pink, safe green", colorSwatches: ["#FBCFE8","#86EFAC","#FDF2F8","#F0FDF4"], typographyMood: "Soft rounded", typoPreview: "Baloo 2 / Quicksand", effects: ["Gentle animations"], anti: ["Dark", "Aggressive"], accentColor: "#F9A8D4" },
+    { id: 34, name: "Senior Care/Elderly", icon: "\uD83E\uDDD3", category: "healthcare", catLabel: "Healthcare", pattern: "Trust & Authority", styles: ["Accessible", "Simple"], colorMood: "Calm blue, reassuring green", colorSwatches: ["#60A5FA","#4ADE80","#F0F9FF","#DCFCE7"], typographyMood: "Accessibility first", typoPreview: "Atkinson Hyperlegible", effects: ["Large text", "Simple"], anti: ["Small text", "Complex"], accentColor: "#60A5FA" },
+    { id: 35, name: "Medical Clinic", icon: "\u2695\uFE0F", category: "healthcare", catLabel: "Healthcare", pattern: "Trust+Booking", styles: ["Clinical", "Clean"], colorMood: "Medical teal, health green", colorSwatches: ["#0D9488","#10B981","#F0FDFA","#FFFFFF"], typographyMood: "Medical clean", typoPreview: "DM Sans / Nunito", effects: ["Appointment booking"], anti: ["Flashy", "Untrustworthy"], accentColor: "#0D9488" },
+    { id: 36, name: "Pharmacy/Drug Store", icon: "\uD83D\uDC8A", category: "healthcare", catLabel: "Healthcare", pattern: "E-commerce+Info", styles: ["Clean", "Trustworthy"], colorMood: "Pharmacy green, trust blue", colorSwatches: ["#22C55E","#3B82F6","#F0FDF4","#FFFFFF"], typographyMood: "Clean sans", typoPreview: "Inter / Roboto", effects: ["Search", "Categories"], anti: ["Flashy", "Cluttered"], accentColor: "#22C55E" },
+    { id: 37, name: "Dental Practice", icon: "\uD83E\uDDB7", category: "healthcare", catLabel: "Healthcare", pattern: "Trust+Booking", styles: ["Fresh", "Friendly"], colorMood: "Fresh blue, smile yellow", colorSwatches: ["#38BDF8","#FBBF24","#F0F9FF","#FFFBEB"], typographyMood: "Friendly SaaS", typoPreview: "Plus Jakarta Sans", effects: ["Smile gallery", "Booking"], anti: ["Clinical", "Scary"], accentColor: "#38BDF8" },
+    { id: 38, name: "Veterinary Clinic", icon: "\uD83D\uDC3E", category: "healthcare", catLabel: "Healthcare", pattern: "Trust+Services", styles: ["Caring", "Warm"], colorMood: "Caring teal, warm orange", colorSwatches: ["#14B8A6","#FB923C","#F0FDFA","#FFF7ED"], typographyMood: "Soft rounded", typoPreview: "Baloo 2 / Quicksand", effects: ["Pet gallery", "Booking"], anti: ["Clinical", "Cold"], accentColor: "#14B8A6" },
+    { id: 39, name: "News/Media Platform", icon: "\uD83D\uDCF0", category: "entertainment", catLabel: "Entertainment", pattern: "Content Grid", styles: ["Editorial", "Readable"], colorMood: "Breaking red, link blue", colorSwatches: ["#DC2626","#2563EB","#FFFFFF","#111827"], typographyMood: "News editorial", typoPreview: "Merriweather / Source", effects: ["Feed", "Breaking news"], anti: ["Cluttered", "Slow"], accentColor: "#DC2626" },
+    { id: 40, name: "Legal Services", icon: "\u2696\uFE0F", category: "services", catLabel: "Services", pattern: "Trust & Authority", styles: ["Professional", "Authoritative"], colorMood: "Authority navy, trust gold", colorSwatches: ["#1E3A5F","#CA8A04","#F8FAFC","#334155"], typographyMood: "Legal professional", typoPreview: "Cormorant / Georgia", effects: ["Minimal", "Professional"], anti: ["Casual", "Playful"], accentColor: "#1E3A5F" },
+    { id: 41, name: "Beauty/Spa/Wellness", icon: "\uD83D\uDC86", category: "services", catLabel: "Services", pattern: "Hero-Centric+Booking", styles: ["Elegant", "Soft"], colorMood: "Soft pink, lavender", colorSwatches: ["#F9A8D4","#C4B5FD","#FDF2F8","#FAF5FF"], typographyMood: "Classic elegant", typoPreview: "Cormorant Garamond", effects: ["Parallax", "Smooth"], anti: ["Harsh", "Dark"], accentColor: "#F9A8D4" },
+    { id: 42, name: "Service Landing Page", icon: "\uD83D\uDCC4", category: "services", catLabel: "Services", pattern: "Hero+Features+CTA", styles: ["Clean", "Conversion-focused"], colorMood: "Sky blue trust, warm CTA", colorSwatches: ["#0EA5E9","#F97316","#F0F9FF","#FFF7ED"], typographyMood: "Modern professional", typoPreview: "Inter / Poppins", effects: ["Scroll reveals"], anti: ["Too many CTAs"], accentColor: "#0EA5E9" },
+    { id: 43, name: "B2B Service", icon: "\uD83E\uDD1D", category: "services", catLabel: "Services", pattern: "Enterprise Gateway", styles: ["Professional", "Conservative"], colorMood: "Navy, blue CTA", colorSwatches: ["#1E3A5F","#2563EB","#F1F5F9","#334155"], typographyMood: "Corporate trust", typoPreview: "Source Sans Pro", effects: ["Case studies", "Testimonials"], anti: ["Flashy", "Casual"], accentColor: "#1E3A5F" },
+    { id: 44, name: "Financial Dashboard", icon: "\uD83D\uDCC8", category: "finance", catLabel: "Finance", pattern: "Executive Dashboard", styles: ["Data-Dense", "Dark"], colorMood: "Dark, green indicators", colorSwatches: ["#0F172A","#22C55E","#EF4444","#F59E0B"], typographyMood: "Dashboard data, mono numbers", typoPreview: "JetBrains Mono", effects: ["Real-time", "Sparklines"], anti: ["Decorative", "Light"], accentColor: "#22C55E" },
+    { id: 45, name: "Analytics Dashboard", icon: "\uD83D\uDCC9", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Data-Dense Dashboard", styles: ["Clean", "Data-first"], colorMood: "Blue data, amber highlights", colorSwatches: ["#3B82F6","#F59E0B","#111827","#E5E7EB"], typographyMood: "Dashboard data", typoPreview: "Inter Tabular / Mono", effects: ["Interactive charts"], anti: ["Heavy design", "Slow"], accentColor: "#3B82F6" },
+    { id: 46, name: "Productivity Tool", icon: "\u2705", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Product Demo", styles: ["Clean", "Focused"], colorMood: "Teal focus, action orange", colorSwatches: ["#14B8A6","#F97316","#F0FDFA","#FFF7ED"], typographyMood: "Friendly SaaS", typoPreview: "Plus Jakarta Sans", effects: ["Demo", "Shortcuts"], anti: ["Distracting", "Complex"], accentColor: "#14B8A6" },
+    { id: 47, name: "Design System/Component Library", icon: "\uD83E\uDDE9", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Documentation", styles: ["Minimal Swiss"], colorMood: "Indigo brand, doc hierarchy", colorSwatches: ["#6366F1","#818CF8","#F8FAFC","#1E1B4B"], typographyMood: "Minimal Swiss, mono code", typoPreview: "Fira Code / Inter", effects: ["Code highlighting"], anti: ["Inconsistent", "Cluttered"], accentColor: "#6366F1" },
+    { id: 48, name: "AI/Chatbot Platform", icon: "\uD83E\uDD16", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Interactive Demo", styles: ["AI-Native", "Glassmorphism"], colorMood: "AI purple, cyan interactions", colorSwatches: ["#A855F7","#06B6D4","#0F0A1A","#F5F3FF"], typographyMood: "Tech startup", typoPreview: "Cabinet Grotesk", effects: ["Typing indicator", "Streaming"], anti: ["Static", "Traditional"], accentColor: "#A855F7" },
+    { id: 49, name: "NFT/Web3 Platform", icon: "\uD83D\uDDBC\uFE0F", category: "frontier", catLabel: "Frontier Tech", pattern: "Marketplace+Gallery", styles: ["Dark Mode", "Glowing"], colorMood: "Purple tech, gold value", colorSwatches: ["#7C3AED","#EAB308","#0A0A0A","#1E1B4B"], typographyMood: "Crypto/Web3", typoPreview: "Space Grotesk", effects: ["3D", "Neon borders"], anti: ["Corporate", "Traditional"], accentColor: "#7C3AED" },
+    { id: 50, name: "Creator Economy", icon: "\uD83C\uDF1F", category: "community", catLabel: "Community", pattern: "Community+Portfolio", styles: ["Vibrant", "Engaging"], colorMood: "Creator pink, engagement orange", colorSwatches: ["#EC4899","#F97316","#0F172A","#FFF1F2"], typographyMood: "Modern professional", typoPreview: "Inter / SF Pro", effects: ["Social feed", "Creator spotlight"], anti: ["Corporate", "Bland"], accentColor: "#EC4899" },
+    { id: 51, name: "Sustainability/ESG", icon: "\uD83C\uDF0D", category: "government", catLabel: "Government / Public", pattern: "Storytelling", styles: ["Organic", "Nature"], colorMood: "Nature green, ocean blue", colorSwatches: ["#16A34A","#0284C7","#F0FDF4","#F0F9FF"], typographyMood: "Wellness calm", typoPreview: "Jost / Quicksand", effects: ["Data viz", "Impact counters"], anti: ["Greenwashing", "Fake"], accentColor: "#16A34A" },
+    { id: 52, name: "Remote Work/Collaboration", icon: "\uD83C\uDF10", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Product Demo+Pricing", styles: ["Clean", "Focused"], colorMood: "Calm indigo, success green", colorSwatches: ["#6366F1","#22C55E","#EEF2FF","#F0FDF4"], typographyMood: "Friendly SaaS", typoPreview: "Plus Jakarta Sans", effects: ["Video demo", "Integrations"], anti: ["Cluttered", "Enterprise-heavy"], accentColor: "#6366F1" },
+    { id: 53, name: "Pet Tech App", icon: "\uD83D\uDC36", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Playful+Product", styles: ["Playful", "Friendly"], colorMood: "Playful orange, trust blue", colorSwatches: ["#FB923C","#3B82F6","#FFF7ED","#EFF6FF"], typographyMood: "Soft rounded", typoPreview: "Baloo 2 / Quicksand", effects: ["Pet animations", "Playful hover"], anti: ["Corporate", "Serious"], accentColor: "#FB923C" },
+    { id: 54, name: "Smart Home/IoT", icon: "\uD83C\uDFE0", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Dashboard+Control", styles: ["Dark Mode", "Status-driven"], colorMood: "Dark tech, status green", colorSwatches: ["#111827","#22C55E","#3B82F6","#F59E0B"], typographyMood: "Dashboard data", typoPreview: "Inter / SF Mono", effects: ["Real-time status", "Controls"], anti: ["Light mode", "Complex"], accentColor: "#22C55E" },
+    { id: 55, name: "EV/Charging Ecosystem", icon: "\u26A1", category: "frontier", catLabel: "Frontier Tech", pattern: "Map+Network", styles: ["Clean", "Eco"], colorMood: "Electric cyan, eco green", colorSwatches: ["#06B6D4","#22C55E","#0F172A","#ECFDF5"], typographyMood: "Tech startup", typoPreview: "Cabinet Grotesk", effects: ["Map", "Station finder"], anti: ["Fossil fuel aesthetic"], accentColor: "#06B6D4" },
+    { id: 56, name: "Subscription Box", icon: "\uD83D\uDCE6", category: "ecommerce", catLabel: "E-commerce", pattern: "Product+Unboxing", styles: ["Exciting", "Visual"], colorMood: "Excitement purple, urgency orange", colorSwatches: ["#A855F7","#F97316","#FAF5FF","#FFF7ED"], typographyMood: "Bold statement", typoPreview: "Bebas Neue / Oswald", effects: ["Unboxing video", "Countdown"], anti: ["Boring", "Plain"], accentColor: "#A855F7" },
+    { id: 57, name: "Podcast Platform", icon: "\uD83C\uDF99\uFE0F", category: "entertainment", catLabel: "Entertainment", pattern: "Content+Listen", styles: ["Dark Mode", "Audio"], colorMood: "Dark audio, warm accent", colorSwatches: ["#18181B","#F59E0B","#A855F7","#FAFAFA"], typographyMood: "Modern professional", typoPreview: "Inter / Poppins", effects: ["Audio player", "Waveform"], anti: ["Light", "Distracting"], accentColor: "#F59E0B" },
+    { id: 58, name: "Dating App", icon: "\u2764\uFE0F", category: "community", catLabel: "Community", pattern: "Personality+Match", styles: ["Warm", "Romantic"], colorMood: "Romantic rose, warm orange", colorSwatches: ["#F43F5E","#FB923C","#FFF1F2","#FFF7ED"], typographyMood: "Friendly SaaS", typoPreview: "Plus Jakarta Sans", effects: ["Card swipe", "Match animation"], anti: ["Corporate", "Cold"], accentColor: "#F43F5E" },
+    { id: 59, name: "Micro-Credentials/Badges", icon: "\uD83C\uDFC5", category: "education", catLabel: "Education", pattern: "Showcase+Earn", styles: ["Achievement", "Clean"], colorMood: "Trust blue, achievement gold", colorSwatches: ["#3B82F6","#EAB308","#EFF6FF","#FFFBEB"], typographyMood: "Modern professional", typoPreview: "Inter / SF Pro", effects: ["Badge animations", "Progress"], anti: ["Cluttered", "Confusing"], accentColor: "#EAB308" },
+    { id: 60, name: "Knowledge Base/Documentation", icon: "\uD83D\uDCDA", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "FAQ/Documentation", styles: ["Minimal", "Readable"], colorMood: "Neutral grey, link blue", colorSwatches: ["#6B7280","#2563EB","#F9FAFB","#111827"], typographyMood: "Minimal Swiss", typoPreview: "Inter / Fira Code", effects: ["Search", "Accordion"], anti: ["Cluttered", "No search"], accentColor: "#6B7280" },
+    { id: 61, name: "Hyperlocal Services", icon: "\uD83D\uDCCD", category: "services", catLabel: "Services", pattern: "Map+Listings", styles: ["Location-aware"], colorMood: "Location green, action orange", colorSwatches: ["#22C55E","#F97316","#F0FDF4","#1E293B"], typographyMood: "Friendly SaaS", typoPreview: "Plus Jakarta Sans", effects: ["Map integration", "Nearby"], anti: ["No map", "Text-heavy"], accentColor: "#22C55E" },
+    { id: 62, name: "Luxury/Premium Brand", icon: "\uD83D\uDC51", category: "ecommerce", catLabel: "E-commerce", pattern: "Hero-Centric", styles: ["Minimalism", "Editorial"], colorMood: "Premium black, gold", colorSwatches: ["#0A0A0A","#D4A843","#F5F0E8","#44403C"], typographyMood: "Luxury serif", typoPreview: "Didot / Bodoni Moda", effects: ["Parallax", "Smooth scroll"], anti: ["Cluttered", "Cheap"], accentColor: "#D4A843" },
+    { id: 63, name: "Fitness/Gym App", icon: "\uD83D\uDCAA", category: "healthcare", catLabel: "Healthcare", pattern: "Challenge+Progress", styles: ["Energetic", "Bold"], colorMood: "Energy orange, success green", colorSwatches: ["#F97316","#22C55E","#18181B","#FFF7ED"], typographyMood: "Sports/fitness", typoPreview: "Barlow Condensed", effects: ["Progress tracking", "Animation"], anti: ["Calm", "Passive"], accentColor: "#F97316" },
+    { id: 64, name: "Hotel/Hospitality", icon: "\uD83C\uDFE8", category: "travel", catLabel: "Travel", pattern: "Hero+Booking", styles: ["Luxury", "Premium"], colorMood: "Luxury navy, gold service", colorSwatches: ["#1E3A5F","#D4A843","#F8FAFC","#0F172A"], typographyMood: "Classic elegant", typoPreview: "Cormorant Garamond", effects: ["Gallery", "Booking form"], anti: ["Budget looking"], accentColor: "#D4A843" },
+    { id: 65, name: "Wedding/Event Planning", icon: "\uD83D\uDC8D", category: "services", catLabel: "Services", pattern: "Gallery+Planning", styles: ["Romantic", "Elegant"], colorMood: "Romantic pink, elegant gold", colorSwatches: ["#F9A8D4","#D4A843","#FDF2F8","#FFFBEB"], typographyMood: "Wedding/romance", typoPreview: "Pinyon Script / Cormorant", effects: ["Gallery", "Countdown"], anti: ["Corporate", "Cold"], accentColor: "#F9A8D4" },
+    { id: 66, name: "Insurance Platform", icon: "\uD83D\uDEE1\uFE0F", category: "finance", catLabel: "Finance", pattern: "Trust+Quote", styles: ["Security", "Professional"], colorMood: "Security blue, protected green", colorSwatches: ["#1D4ED8","#16A34A","#EFF6FF","#F0FDF4"], typographyMood: "Corporate trust", typoPreview: "Source Sans Pro", effects: ["Quote calculator"], anti: ["Flashy", "Untrustworthy"], accentColor: "#1D4ED8" },
+    { id: 67, name: "Banking/Traditional Finance", icon: "\uD83C\uDFE6", category: "finance", catLabel: "Finance", pattern: "Trust & Authority", styles: ["Conservative"], colorMood: "Navy trust, premium gold", colorSwatches: ["#1E3A5F","#D4A843","#F1F5F9","#334155"], typographyMood: "Financial trust", typoPreview: "Georgia / Lora", effects: ["Calculator", "Stable"], anti: ["Trendy", "Unstable"], accentColor: "#1E3A5F" },
+    { id: 68, name: "Online Course/E-learning", icon: "\uD83D\uDCBB", category: "education", catLabel: "Education", pattern: "Curriculum+Enroll", styles: ["Progress-oriented"], colorMood: "Progress teal, achievement orange", colorSwatches: ["#0D9488","#F97316","#F0FDFA","#FFF7ED"], typographyMood: "Friendly SaaS", typoPreview: "Plus Jakarta Sans", effects: ["Progress bar", "Certificates"], anti: ["Boring", "Wall of text"], accentColor: "#0D9488" },
+    { id: 69, name: "Non-profit/Charity", icon: "\u2764\uFE0F", category: "government", catLabel: "Government / Public", pattern: "Storytelling+Donate", styles: ["Emotional", "Human"], colorMood: "Compassion blue, action orange", colorSwatches: ["#3B82F6","#F97316","#EFF6FF","#FFF7ED"], typographyMood: "Wellness calm", typoPreview: "Jost / Quicksand", effects: ["Impact stories", "Donate counter"], anti: ["Corporate", "Cold"], accentColor: "#3B82F6" },
+    { id: 70, name: "Florist/Plant Shop", icon: "\uD83C\uDF3A", category: "ecommerce", catLabel: "E-commerce", pattern: "Gallery+Shop", styles: ["Natural", "Fresh"], colorMood: "Natural green, floral pink", colorSwatches: ["#16A34A","#EC4899","#F0FDF4","#FDF2F8"], typographyMood: "Handwritten charm", typoPreview: "Caveat / Quicksand", effects: ["Seasonal", "Bloom"], anti: ["Industrial", "Dark"], accentColor: "#16A34A" },
+    { id: 71, name: "Bakery/Cafe", icon: "\uD83E\uDD50", category: "food-bev", catLabel: "Food / Beverage", pattern: "Menu+Gallery", styles: ["Warm", "Cozy"], colorMood: "Warm brown, cream", colorSwatches: ["#92400E","#D4A843","#FEF3C7","#451A03"], typographyMood: "Handwritten charm", typoPreview: "Caveat / Quicksand", effects: ["Food gallery", "Daily specials"], anti: ["Clinical", "Cold"], accentColor: "#92400E" },
+    { id: 72, name: "Coffee Shop", icon: "\u2615", category: "food-bev", catLabel: "Food / Beverage", pattern: "Menu+Location", styles: ["Artisan", "Warm"], colorMood: "Coffee brown, warm gold", colorSwatches: ["#78350F","#CA8A04","#FEF3C7","#1C1917"], typographyMood: "Indie/craft", typoPreview: "Libre Baskerville", effects: ["Latte art", "Bean origin"], anti: ["Chain-store", "Generic"], accentColor: "#78350F" },
+    { id: 73, name: "Brewery/Winery", icon: "\uD83C\uDF7A", category: "food-bev", catLabel: "Food / Beverage", pattern: "Product+Story", styles: ["Craft", "Premium"], colorMood: "Deep burgundy, craft gold", colorSwatches: ["#7F1D1D","#CA8A04","#FEF2F2","#1C1917"], typographyMood: "Retro vintage", typoPreview: "Old Standard TT", effects: ["Product showcase", "Tasting"], anti: ["Corporate", "Generic"], accentColor: "#7F1D1D" },
+    { id: 74, name: "Airline", icon: "\u2708\uFE0F", category: "travel", catLabel: "Travel", pattern: "Search+Book", styles: ["Professional", "Sky"], colorMood: "Sky blue, booking orange", colorSwatches: ["#0284C7","#F97316","#F0F9FF","#0C4A6E"], typographyMood: "Modern professional", typoPreview: "Inter / Poppins", effects: ["Search form", "Destination"], anti: ["Cluttered", "Slow"], accentColor: "#0284C7" },
+    { id: 75, name: "Magazine/Blog", icon: "\uD83D\uDCD6", category: "entertainment", catLabel: "Entertainment", pattern: "Content Grid", styles: ["Editorial", "Readable"], colorMood: "Editorial black, accent pink", colorSwatches: ["#111827","#EC4899","#FFFFFF","#F9FAFB"], typographyMood: "Magazine style", typoPreview: "Playfair / Source Serif", effects: ["Article cards", "Infinite scroll"], anti: ["Ad-heavy", "Cluttered"], accentColor: "#EC4899" },
+    { id: 76, name: "Freelancer Platform", icon: "\uD83D\uDCBB", category: "services", catLabel: "Services", pattern: "Portfolio+Hire", styles: ["Creative", "Professional"], colorMood: "Creative indigo, hire green", colorSwatches: ["#6366F1","#22C55E","#EEF2FF","#F0FDF4"], typographyMood: "Modern professional", typoPreview: "Inter / SF Pro", effects: ["Portfolio showcase", "Rating"], anti: ["Unprofessional", "Messy"], accentColor: "#6366F1" },
+    { id: 77, name: "Consulting Firm", icon: "\uD83D\uDCBC", category: "services", catLabel: "Services", pattern: "Enterprise Gateway", styles: ["Authority", "Professional"], colorMood: "Authority navy, premium gold", colorSwatches: ["#1E3A5F","#CA8A04","#F8FAFC","#0F172A"], typographyMood: "Corporate trust", typoPreview: "Source Sans Pro", effects: ["Case studies", "Team"], anti: ["Casual", "Trendy"], accentColor: "#1E3A5F" },
+    { id: 78, name: "Marketing Agency", icon: "\uD83D\uDCE3", category: "creative", catLabel: "Creative", pattern: "Portfolio+Results", styles: ["Creative", "Bold"], colorMood: "Bold pink, creative cyan", colorSwatches: ["#EC4899","#06B6D4","#0F172A","#FDF2F8"], typographyMood: "Fashion forward", typoPreview: "Clash Display", effects: ["Case studies", "Metrics"], anti: ["Boring", "Corporate"], accentColor: "#EC4899" },
+    { id: 79, name: "Event Management", icon: "\uD83C\uDF89", category: "services", catLabel: "Services", pattern: "Event/Conference", styles: ["Exciting", "Organized"], colorMood: "Excitement purple, action orange", colorSwatches: ["#A855F7","#F97316","#FAF5FF","#FFF7ED"], typographyMood: "Bold statement", typoPreview: "Bebas Neue / Oswald", effects: ["Countdown", "Speakers"], anti: ["Disorganized", "Plain"], accentColor: "#A855F7" },
+    { id: 80, name: "Conference/Webinar", icon: "\uD83C\uDF9F\uFE0F", category: "education", catLabel: "Education", pattern: "Event/Conference", styles: ["Professional", "Engaging"], colorMood: "Professional blue, join green", colorSwatches: ["#2563EB","#22C55E","#EFF6FF","#F0FDF4"], typographyMood: "Modern professional", typoPreview: "Inter / Poppins", effects: ["Speaker grid", "Schedule"], anti: ["Boring", "Text-heavy"], accentColor: "#2563EB" },
+    { id: 81, name: "Membership/Community", icon: "\uD83D\uDC65", category: "community", catLabel: "Community", pattern: "Community/Forum", styles: ["Welcoming", "Social"], colorMood: "Community purple, join green", colorSwatches: ["#7C3AED","#22C55E","#F5F3FF","#F0FDF4"], typographyMood: "Friendly SaaS", typoPreview: "Plus Jakarta Sans", effects: ["Member showcase", "Activity"], anti: ["Exclusive", "Cold"], accentColor: "#7C3AED" },
+    { id: 82, name: "Newsletter Platform", icon: "\uD83D\uDCE8", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Newsletter/Content", styles: ["Minimal", "Content-first"], colorMood: "Trust blue, subscribe orange", colorSwatches: ["#3B82F6","#F97316","#F8FAFC","#EFF6FF"], typographyMood: "News editorial", typoPreview: "Merriweather / Source", effects: ["Archive preview", "Sample"], anti: ["Cluttered", "No preview"], accentColor: "#3B82F6" },
+    { id: 83, name: "Digital Products", icon: "\uD83D\uDCBE", category: "ecommerce", catLabel: "E-commerce", pattern: "Product+Download", styles: ["Clean", "Value-driven"], colorMood: "Digital indigo, buy green", colorSwatches: ["#6366F1","#22C55E","#EEF2FF","#F0FDF4"], typographyMood: "Tech startup", typoPreview: "Cabinet Grotesk", effects: ["Preview", "Instant access"], anti: ["Confusing", "No preview"], accentColor: "#6366F1" },
+    { id: 84, name: "Church/Religious", icon: "\u26EA", category: "community", catLabel: "Community", pattern: "Community+Events", styles: ["Warm", "Welcoming"], colorMood: "Spiritual purple, warm gold", colorSwatches: ["#7C3AED","#CA8A04","#F5F3FF","#FFFBEB"], typographyMood: "Classic elegant", typoPreview: "Cormorant Garamond", effects: ["Event calendar", "Community"], anti: ["Cold", "Institutional"], accentColor: "#7C3AED" },
+    { id: 85, name: "Sports Team/Club", icon: "\u26BD", category: "entertainment", catLabel: "Entertainment", pattern: "Hero+Schedule", styles: ["Energetic", "Team spirit"], colorMood: "Team red, championship gold", colorSwatches: ["#DC2626","#EAB308","#18181B","#FEF2F2"], typographyMood: "Sports/fitness", typoPreview: "Barlow Condensed", effects: ["Highlights", "Schedule"], anti: ["Plain", "Static"], accentColor: "#DC2626" },
+    { id: 86, name: "Museum/Gallery", icon: "\uD83C\uDFDB\uFE0F", category: "creative", catLabel: "Creative", pattern: "Gallery+Exhibits", styles: ["Minimal", "Space for art"], colorMood: "Gallery B&W", colorSwatches: ["#FAFAFA","#18181B","#A1A1AA","#D4D4D4"], typographyMood: "Minimalist portfolio", typoPreview: "Helvetica Neue", effects: ["Virtual tour", "Exhibit"], anti: ["Cluttered", "Loud"], accentColor: "#A1A1AA" },
+    { id: 87, name: "Theater/Cinema", icon: "\uD83C\uDFAD", category: "entertainment", catLabel: "Entertainment", pattern: "Hero+Showtime", styles: ["Dramatic", "Dark"], colorMood: "Dramatic dark, spotlight gold", colorSwatches: ["#0A0A0A","#D4A843","#DC2626","#FAFAFA"], typographyMood: "Bold statement", typoPreview: "Bebas Neue / Oswald", effects: ["Trailer", "Showtime"], anti: ["Bright", "Casual"], accentColor: "#D4A843" },
+    { id: 88, name: "Language Learning", icon: "\uD83C\uDF0E", category: "education", catLabel: "Education", pattern: "Interactive Demo", styles: ["Gamified", "Playful"], colorMood: "Learning indigo, progress green", colorSwatches: ["#6366F1","#22C55E","#EEF2FF","#F0FDF4"], typographyMood: "Playful creative", typoPreview: "Baloo 2 / Nunito", effects: ["Interactive lessons", "Progress"], anti: ["Boring", "Text-only"], accentColor: "#6366F1" },
+    { id: 89, name: "Coding Bootcamp", icon: "\uD83D\uDCBB", category: "education", catLabel: "Education", pattern: "Curriculum+Demo", styles: ["Developer", "Terminal"], colorMood: "Terminal dark, success green", colorSwatches: ["#0F172A","#22C55E","#38BDF8","#F8FAFC"], typographyMood: "Developer mono", typoPreview: "JetBrains Mono / Fira Code", effects: ["Code demo", "Terminal"], anti: ["Non-technical", "Generic"], accentColor: "#22C55E" },
+    { id: 90, name: "Cybersecurity Platform", icon: "\uD83D\uDD12", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Dashboard+Monitoring", styles: ["Matrix", "Dark"], colorMood: "Matrix green, alert red", colorSwatches: ["#0F172A","#22C55E","#EF4444","#06B6D4"], typographyMood: "Tech/HUD mono", typoPreview: "Share Tech Mono", effects: ["Real-time threats", "Alerts"], anti: ["Bright", "Casual"], accentColor: "#22C55E" },
+    { id: 91, name: "Developer Tool/IDE", icon: "\u2328\uFE0F", category: "saas-tech", catLabel: "SaaS / Tech", pattern: "Documentation+Demo", styles: ["Dark Mode", "Code-first"], colorMood: "Code dark, run green", colorSwatches: ["#1E1E1E","#22C55E","#569CD6","#CE9178"], typographyMood: "Developer mono", typoPreview: "Cascadia Code / Fira", effects: ["Code highlighting", "Playground"], anti: ["Non-technical", "Flashy"], accentColor: "#569CD6" },
+    { id: 92, name: "Biotech/Life Sciences", icon: "\uD83E\uDDEC", category: "frontier", catLabel: "Frontier Tech", pattern: "Research+Data", styles: ["Scientific", "Clean"], colorMood: "DNA blue, life green", colorSwatches: ["#2563EB","#22C55E","#F0F9FF","#F0FDF4"], typographyMood: "Science/tech", typoPreview: "IBM Plex Sans", effects: ["Data viz", "Molecular"], anti: ["Non-scientific"], accentColor: "#2563EB" },
+    { id: 93, name: "Space Tech/Aerospace", icon: "\uD83D\uDE80", category: "frontier", catLabel: "Frontier Tech", pattern: "Immersive+Data", styles: ["Sci-Fi", "HUD"], colorMood: "Star white, launch blue", colorSwatches: ["#0F172A","#38BDF8","#FFFFFF","#6366F1"], typographyMood: "Tech/HUD mono", typoPreview: "Orbitron / Share Tech", effects: ["3D spacecraft", "Telemetry"], anti: ["Earthly", "Casual"], accentColor: "#38BDF8" },
+    { id: 94, name: "Architecture/Interior", icon: "\uD83C\uDFD7\uFE0F", category: "creative", catLabel: "Creative", pattern: "Portfolio+Services", styles: ["Minimal", "Spatial"], colorMood: "Minimal black, accent gold", colorSwatches: ["#18181B","#D4A843","#FAFAFA","#A1A1AA"], typographyMood: "Minimalist portfolio", typoPreview: "Helvetica Neue", effects: ["Project gallery", "3D tours"], anti: ["Cluttered", "Colorful"], accentColor: "#D4A843" },
+    { id: 95, name: "Quantum Computing", icon: "\u269B\uFE0F", category: "frontier", catLabel: "Frontier Tech", pattern: "Research+Explanation", styles: ["Abstract", "Futuristic"], colorMood: "Quantum cyan, interference purple", colorSwatches: ["#06B6D4","#A855F7","#0F172A","#F0FDFA"], typographyMood: "Science/tech", typoPreview: "IBM Plex Sans / Mono", effects: ["Quantum viz", "Particles"], anti: ["Simple", "Mundane"], accentColor: "#06B6D4" },
+    { id: 96, name: "Biohacking/Longevity", icon: "\uD83E\uDDEA", category: "frontier", catLabel: "Frontier Tech", pattern: "Data+Community", styles: ["Biotech", "Tracking"], colorMood: "Bio red/blue, vitality green", colorSwatches: ["#EF4444","#3B82F6","#22C55E","#0F172A"], typographyMood: "Science/tech", typoPreview: "IBM Plex Sans", effects: ["Bio data viz", "Metrics"], anti: ["Non-scientific"], accentColor: "#EF4444" },
+    { id: 97, name: "Autonomous Drone Fleet", icon: "\uD83D\uDEE9\uFE0F", category: "frontier", catLabel: "Frontier Tech", pattern: "Dashboard+Map", styles: ["HUD", "Monitoring"], colorMood: "Terminal green, alert red", colorSwatches: ["#0F172A","#22C55E","#EF4444","#F59E0B"], typographyMood: "Tech/HUD mono", typoPreview: "Share Tech Mono", effects: ["Map", "Fleet tracking"], anti: ["Consumer", "Cute"], accentColor: "#22C55E" },
+    { id: 98, name: "Generative AI Art", icon: "\uD83C\uDFA8", category: "creative", catLabel: "Creative", pattern: "Gallery+Create", styles: ["Creative", "Experimental"], colorMood: "Canvas neutral, creative pink", colorSwatches: ["#F5F5F4","#EC4899","#A855F7","#18181B"], typographyMood: "Fashion forward", typoPreview: "Clash Display", effects: ["Generative preview", "AI create"], anti: ["Corporate", "Rigid"], accentColor: "#EC4899" },
+    { id: 99, name: "Spatial Computing OS", icon: "\uD83E\uDD7D", category: "frontier", catLabel: "Frontier Tech", pattern: "Spatial UI", styles: ["VisionOS", "Glass"], colorMood: "Glass white, system blue", colorSwatches: ["#F8FAFC","#3B82F6","#E2E8F0","#0EA5E9"], typographyMood: "Spatial clear", typoPreview: "SF Pro / Myriad", effects: ["Depth layers", "Blur"], anti: ["Flat", "2D-only"], accentColor: "#3B82F6" }
+];
+
+// Category color mapping
+const categoryColors = {
+    "saas-tech": { bg: "rgba(99,102,241,0.1)", border: "rgba(99,102,241,0.25)", text: "#818CF8", label: "SaaS / Tech" },
+    "healthcare": { bg: "rgba(6,182,212,0.1)", border: "rgba(6,182,212,0.25)", text: "#22D3EE", label: "Healthcare" },
+    "finance": { bg: "rgba(234,179,8,0.1)", border: "rgba(234,179,8,0.25)", text: "#FBBF24", label: "Finance" },
+    "creative": { bg: "rgba(236,72,153,0.1)", border: "rgba(236,72,153,0.25)", text: "#F472B6", label: "Creative" },
+    "food-bev": { bg: "rgba(220,38,38,0.1)", border: "rgba(220,38,38,0.25)", text: "#FCA5A5", label: "Food / Beverage" },
+    "services": { bg: "rgba(59,130,246,0.1)", border: "rgba(59,130,246,0.25)", text: "#93C5FD", label: "Services" },
+    "education": { bg: "rgba(249,115,22,0.1)", border: "rgba(249,115,22,0.25)", text: "#FDBA74", label: "Education" },
+    "entertainment": { bg: "rgba(168,85,247,0.1)", border: "rgba(168,85,247,0.25)", text: "#C4B5FD", label: "Entertainment" },
+    "ecommerce": { bg: "rgba(34,197,94,0.1)", border: "rgba(34,197,94,0.25)", text: "#86EFAC", label: "E-commerce" },
+    "real-estate": { bg: "rgba(13,148,136,0.1)", border: "rgba(13,148,136,0.25)", text: "#5EEAD4", label: "Real Estate" },
+    "travel": { bg: "rgba(14,165,233,0.1)", border: "rgba(14,165,233,0.25)", text: "#7DD3FC", label: "Travel" },
+    "community": { bg: "rgba(244,63,94,0.1)", border: "rgba(244,63,94,0.25)", text: "#FDA4AF", label: "Community" },
+    "government": { bg: "rgba(30,58,95,0.15)", border: "rgba(96,165,250,0.25)", text: "#93C5FD", label: "Government / Public" },
+    "frontier": { bg: "rgba(6,182,212,0.1)", border: "rgba(6,182,212,0.25)", text: "#67E8F9", label: "Frontier Tech" }
+};
+
+// --- Cross-reference link helpers ---
+// Build a cross-ref link wrapping text that links to the target page with ?q= prefilled
+function xref(text, page) {
+    return `<a href="${page}?q=${encodeURIComponent(text)}" class="xref-link" title="View in ${page.replace('.html','')}">${text}</a>`;
+}
+
+// Wrap style names with links to styles.html
+function xrefStyles(stylesArr) {
+    return stylesArr.map(s => {
+        const linked = xref(s, 'styles.html');
+        return `<span class="style-tag bg-white/5 border border-white/10 text-gray-300">${linked}</span>`;
+    }).join('');
+}
+
+// Wrap pattern name with link to patterns.html
+function xrefPattern(pattern) {
+    return xref(pattern, 'patterns.html');
+}
+
+// Wrap color mood text - extract recognizable color words and link them to colors.html
+function xrefColorMood(mood) {
+    // Link each comma-separated segment to colors
+    const parts = mood.split(',').map(part => {
+        const trimmed = part.trim();
+        return xref(trimmed, 'colors.html');
+    });
+    return parts.join(', ');
+}
+
+// Wrap typography preview text - extract font names and link to typography.html
+function xrefTypo(typoPreview) {
+    // Split by "/" or " / " to get individual font names
+    const fonts = typoPreview.split(/\s*\/\s*/);
+    return fonts.map(f => xref(f.trim(), 'typography.html')).join(' / ');
+}
+
+// --- Toast notification ---
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    const toastText = document.getElementById('toast-text');
+    toastText.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+// --- Copy Design Brief ---
+function copyDesignBrief(ruleId) {
+    const rule = reasoningRules.find(r => r.id === ruleId);
+    if (!rule) return;
+
+    const brief = `# Design Brief: ${rule.name}
+
+## Style: ${rule.styles.join(', ')}
+
+## Colors: ${rule.colorMood}
+Palette: ${rule.colorSwatches.join(', ')}
+
+## Typography: ${rule.typoPreview}
+Mood: ${rule.typographyMood}
+
+## Pattern: ${rule.pattern}
+
+## Effects
+${rule.effects.map(e => '- ' + e).join('\n')}
+
+## Anti-Patterns to Avoid
+${rule.anti.map(a => '- ' + a).join('\n')}
+`;
+
+    navigator.clipboard.writeText(brief).then(() => {
+        showToast('Design brief copied to clipboard!');
+        const btn = document.querySelector(`[data-brief-id="${ruleId}"]`);
+        if (btn) {
+            btn.classList.add('copied');
+            btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Copied!';
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg> Copy Brief';
+            }, 2000);
+        }
+    }).catch(() => {
+        showToast('Failed to copy - try again');
+    });
+}
+
+function renderCards(rules) {
+    const grid = document.getElementById('rules-grid');
+    const noResults = document.getElementById('no-results');
+
+    if (rules.length === 0) {
+        grid.innerHTML = '';
+        noResults.classList.remove('hidden');
+        return;
+    }
+
+    noResults.classList.add('hidden');
+    grid.innerHTML = rules.map((rule, idx) => {
+        const cat = categoryColors[rule.category];
+        return `
+        <div class="rule-card card-glass rounded-2xl border border-white/5 overflow-hidden" data-category="${rule.category}" data-id="${rule.id}" style="animation-delay: ${idx * 30}ms">
+            <!-- Card Header -->
+            <div class="p-5 pb-3">
+                <div class="flex items-start gap-3 mb-3">
+                    <div class="icon-container" style="background: ${cat.bg}; border: 1px solid ${cat.border};">
+                        <span>${rule.icon}</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-mono text-gray-500">#${String(rule.id).padStart(2,'0')}</span>
+                            <span class="style-tag" style="background: ${cat.bg}; border: 1px solid ${cat.border}; color: ${cat.text};">${rule.catLabel}</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-white text-base leading-tight truncate">${rule.name}</h3>
+                    </div>
+                </div>
+
+                <!-- Pattern Badge (cross-referenced) -->
+                <div class="mb-3">
+                    <div class="pattern-badge style-tag text-xs px-3 py-1">
+                        <svg class="inline w-3 h-3 mr-1 -mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/></svg>
+                        ${xrefPattern(rule.pattern)}
+                    </div>
+                </div>
+
+                <!-- Style Tags (cross-referenced) -->
+                <div class="flex flex-wrap gap-1.5 mb-3">
+                    ${xrefStyles(rule.styles)}
+                </div>
+
+                <!-- Color Swatches with mood (cross-referenced) -->
+                <div class="flex items-center gap-2 mb-3">
+                    <div class="flex -space-x-1.5">
+                        ${rule.colorSwatches.map(c => `<div class="color-swatch" style="background: ${c};" title="${c}"></div>`).join('')}
+                    </div>
+                    <span class="text-xs text-gray-500 truncate flex-1">${xrefColorMood(rule.colorMood)}</span>
+                </div>
+
+                <!-- Typography Preview (cross-referenced) -->
+                <div class="flex items-center gap-2 mb-3 px-3 py-2 rounded-lg bg-white/[0.02] border border-white/5">
+                    <span class="text-[10px] uppercase tracking-wider text-gray-600 w-10 flex-shrink-0">Type</span>
+                    <span class="typo-preview text-sm text-gray-300 truncate">${xrefTypo(rule.typoPreview)}</span>
+                    <span class="text-[10px] text-gray-600 truncate flex-shrink-0 ml-auto">${rule.typographyMood}</span>
+                </div>
+
+                <!-- Effects -->
+                <div class="flex flex-wrap gap-1.5 mb-2">
+                    ${rule.effects.map(e => `<span class="effect-tag style-tag">${e}</span>`).join('')}
+                </div>
+
+                <!-- Copy Design Brief Button -->
+                <div class="mt-2 mb-1">
+                    <button class="copy-brief-btn" data-brief-id="${rule.id}" onclick="copyDesignBrief(${rule.id})">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                        Copy Brief
+                    </button>
+                </div>
+            </div>
+
+            <!-- Expand Button -->
+            <button onclick="toggleExpand(this)" class="w-full px-5 py-2.5 flex items-center justify-between text-xs text-gray-500 hover:text-gray-300 border-t border-white/5 hover:bg-white/[0.02] transition-colors">
+                <span>Anti-patterns & Details</span>
+                <svg class="expand-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+
+            <!-- Expandable Content -->
+            <div class="expand-content">
+                <div class="px-5 pb-5 pt-2 border-t border-white/5">
+                    <!-- Anti-patterns -->
+                    <div class="mb-3">
+                        <span class="text-[10px] uppercase tracking-wider text-gray-600 block mb-2">Anti-Patterns to Avoid</span>
+                        <div class="flex flex-wrap gap-1.5">
+                            ${rule.anti.map(a => `<span class="anti-tag style-tag"><svg class="inline w-3 h-3 mr-0.5 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>${a}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Summary Grid (cross-referenced) -->
+                    <div class="grid grid-cols-2 gap-2 mt-3">
+                        <div class="rounded-lg bg-white/[0.02] border border-white/5 p-2.5">
+                            <span class="text-[10px] uppercase tracking-wider text-gray-600 block mb-1">Color Mood</span>
+                            <span class="text-xs text-gray-300">${xrefColorMood(rule.colorMood)}</span>
+                        </div>
+                        <div class="rounded-lg bg-white/[0.02] border border-white/5 p-2.5">
+                            <span class="text-[10px] uppercase tracking-wider text-gray-600 block mb-1">Typography Mood</span>
+                            <span class="text-xs text-gray-300">${rule.typographyMood}</span>
+                        </div>
+                    </div>
+
+                    <!-- Visual Color Bar -->
+                    <div class="mt-3 rounded-lg overflow-hidden flex h-6">
+                        ${rule.colorSwatches.map((c, i) => `<div class="flex-1 h-full" style="background: ${c};" title="${c}"></div>`).join('')}
+                    </div>
+                    <div class="flex justify-between mt-1">
+                        ${rule.colorSwatches.map(c => `<span class="text-[9px] text-gray-600 font-mono">${c}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function toggleExpand(btn) {
+    const content = btn.nextElementSibling;
+    const arrow = btn.querySelector('.expand-arrow');
+    content.classList.toggle('expanded');
+    arrow.classList.toggle('rotated');
+}
+
+// --- Filtering ---
+let activeFilter = 'all';
+let searchQuery = '';
+
+function applyFilters() {
+    let filtered = reasoningRules;
+
+    if (activeFilter !== 'all') {
+        filtered = filtered.filter(r => r.category === activeFilter);
+    }
+
+    if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter(r =>
+            r.name.toLowerCase().includes(q) ||
+            r.pattern.toLowerCase().includes(q) ||
+            r.styles.some(s => s.toLowerCase().includes(q)) ||
+            r.colorMood.toLowerCase().includes(q) ||
+            r.typographyMood.toLowerCase().includes(q) ||
+            r.effects.some(e => e.toLowerCase().includes(q)) ||
+            r.anti.some(a => a.toLowerCase().includes(q)) ||
+            r.catLabel.toLowerCase().includes(q) ||
+            r.typoPreview.toLowerCase().includes(q)
+        );
+    }
+
+    renderCards(filtered);
+    document.getElementById('search-count').textContent = `${filtered.length} rule${filtered.length !== 1 ? 's' : ''}`;
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        applyFilters();
+    });
+});
+
+// --- Product Finder Autocomplete ---
+const searchInput = document.getElementById('search-input');
+const acDropdown = document.getElementById('autocomplete-dropdown');
+let acIndex = -1;
+
+function highlightMatch(text, query) {
+    if (!query) return text;
+    const idx = text.toLowerCase().indexOf(query.toLowerCase());
+    if (idx === -1) return text;
+    return text.slice(0, idx) + '<span class="ac-match">' + text.slice(idx, idx + query.length) + '</span>' + text.slice(idx + query.length);
+}
+
+function updateAutocomplete(query) {
+    if (!query || query.length < 1) {
+        acDropdown.classList.add('hidden');
+        acDropdown.innerHTML = '';
+        acIndex = -1;
+        return;
+    }
+
+    const q = query.toLowerCase();
+    const matches = reasoningRules.filter(r =>
+        r.name.toLowerCase().includes(q) ||
+        r.catLabel.toLowerCase().includes(q) ||
+        r.pattern.toLowerCase().includes(q)
+    ).slice(0, 8);
+
+    if (matches.length === 0) {
+        acDropdown.classList.add('hidden');
+        acDropdown.innerHTML = '';
+        acIndex = -1;
+        return;
+    }
+
+    acDropdown.innerHTML = matches.map((r, i) => {
+        const cat = categoryColors[r.category];
+        return `<div class="autocomplete-item${i === acIndex ? ' active' : ''}" data-ac-id="${r.id}" data-ac-idx="${i}">
+            <div class="ac-icon" style="background: ${cat.bg}; border: 1px solid ${cat.border};">${r.icon}</div>
+            <div class="flex-1 min-w-0">
+                <div class="ac-name">${highlightMatch(r.name, query)}</div>
+                <div class="ac-cat">${r.catLabel} &middot; ${r.pattern}</div>
+            </div>
+        </div>`;
+    }).join('');
+
+    acDropdown.classList.remove('hidden');
+
+    // Click handlers on items
+    acDropdown.querySelectorAll('.autocomplete-item').forEach(item => {
+        item.addEventListener('click', () => {
+            selectAutocompleteItem(parseInt(item.dataset.acId));
+        });
+    });
+}
+
+function selectAutocompleteItem(ruleId) {
+    const rule = reasoningRules.find(r => r.id === ruleId);
+    if (!rule) return;
+
+    // Set search to the rule name and filter
+    searchInput.value = rule.name;
+    searchQuery = rule.name.toLowerCase();
+    acDropdown.classList.add('hidden');
+    acDropdown.innerHTML = '';
+    acIndex = -1;
+
+    applyFilters();
+
+    // Scroll to and highlight the card
+    setTimeout(() => {
+        const card = document.querySelector(`[data-id="${ruleId}"]`);
+        if (card) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            card.classList.add('card-highlighted');
+            setTimeout(() => card.classList.remove('card-highlighted'), 3500);
+        }
+    }, 100);
+}
+
+searchInput.addEventListener('input', (e) => {
+    searchQuery = e.target.value;
+    acIndex = -1;
+    updateAutocomplete(e.target.value);
+    applyFilters();
+});
+
+searchInput.addEventListener('keydown', (e) => {
+    const items = acDropdown.querySelectorAll('.autocomplete-item');
+    if (items.length === 0) return;
+
+    if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        acIndex = Math.min(acIndex + 1, items.length - 1);
+        items.forEach((item, i) => item.classList.toggle('active', i === acIndex));
+        items[acIndex]?.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        acIndex = Math.max(acIndex - 1, 0);
+        items.forEach((item, i) => item.classList.toggle('active', i === acIndex));
+        items[acIndex]?.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (acIndex >= 0 && items[acIndex]) {
+            selectAutocompleteItem(parseInt(items[acIndex].dataset.acId));
+        } else {
+            // Just close dropdown and filter
+            acDropdown.classList.add('hidden');
+        }
+    } else if (e.key === 'Escape') {
+        acDropdown.classList.add('hidden');
+        acIndex = -1;
+    }
+});
+
+// Close autocomplete on outside click
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('#search-input') && !e.target.closest('#autocomplete-dropdown')) {
+        acDropdown.classList.add('hidden');
+        acIndex = -1;
+    }
+});
+
+// Show autocomplete again on focus if there's text
+searchInput.addEventListener('focus', () => {
+    if (searchInput.value.length >= 1) {
+        updateAutocomplete(searchInput.value);
+    }
+});
+
+// Initial render
+renderCards(reasoningRules);
+</script>
+
+<script>document.addEventListener('click',e=>{if(!e.target.closest('#more-menu')&&!e.target.closest('[onclick*="more-menu"]')){document.getElementById('more-menu')?.classList.add('hidden')}})
+// URL param support
+const urlParams = new URLSearchParams(window.location.search);
+const qParam = urlParams.get('q');
+if (qParam) {
+    document.getElementById('search-input').value = qParam;
+    searchQuery = qParam.toLowerCase();
+    applyFilters();
+}
+</script>
+</body>
+</html>

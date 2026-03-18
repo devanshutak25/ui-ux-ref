@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Interface - UI/UX Pro Max</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Space Grotesk', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #10B981, #06B6D4, #34D399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-blur {
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+        }
+        .card-glow:hover {
+            box-shadow: 0 0 40px rgba(16, 185, 129, 0.15), 0 0 80px rgba(6, 182, 212, 0.08);
+        }
+        .hero-gradient {
+            background: radial-gradient(ellipse at 20% 50%, rgba(16, 185, 129, 0.12) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 80%, rgba(52, 211, 153, 0.06) 0%, transparent 50%);
+        }
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        pre code { font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.8rem; }
+        .guideline-card { transition: all 0.3s ease; }
+        .guideline-card:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="bg-[#08090E] text-gray-200 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-[#08090E]/70 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="font-heading font-bold text-xl tracking-tight"><span class="text-white">UI/UX</span><span class="gradient-text"> Pro Max</span></a>
+            <div class="hidden md:flex items-center gap-1">
+                <a href="styles.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Styles</a>
+                <a href="colors.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Colors</a>
+                <a href="typography.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Typography</a>
+                <a href="charts.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Charts</a>
+                <a href="products.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Products</a>
+                <a href="icons.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Icons</a>
+                <div class="relative">
+                    <button onclick="document.getElementById('more-menu').classList.toggle('hidden')" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5 inline-flex items-center gap-1">More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                    <div id="more-menu" class="hidden absolute right-0 top-full mt-2 w-52 bg-[#12131A] border border-white/10 rounded-xl shadow-2xl py-2 z-50">
+                        <a href="stacks.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Stacks</a>
+                        <a href="ux-guidelines.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">UX Guidelines</a>
+                        <a href="patterns.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Patterns</a>
+                        <a href="reasoning.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Reasoning</a>
+                        <a href="react-performance.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">React Perf</a>
+                        <a href="web-interface.html" class="block px-4 py-2 text-sm text-white bg-white/10 rounded-lg mx-2">Web Interface</a>
+                    </div>
+                </div>
+            </div>
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 px-6 py-4 space-y-2">
+            <a href="styles.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Styles</a>
+            <a href="colors.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Colors</a>
+            <a href="typography.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Typography</a>
+            <a href="charts.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Charts</a>
+            <a href="products.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Products</a>
+            <a href="icons.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Icons</a>
+            <a href="stacks.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Stacks</a>
+            <a href="ux-guidelines.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">UX Guidelines</a>
+            <a href="patterns.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Patterns</a>
+            <a href="reasoning.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Reasoning</a>
+            <a href="react-performance.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">React Perf</a>
+            <a href="web-interface.html" class="block px-3 py-2 text-sm text-white bg-white/10 rounded-lg">Web Interface</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative hero-gradient grid-bg pt-28 pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-6">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                30 Web Interface Guidelines
+            </div>
+            <h1 class="font-heading text-4xl md:text-6xl font-bold tracking-tight mb-4">
+                <span class="text-white">Web </span><span class="gradient-text">Interface</span>
+            </h1>
+            <p class="text-gray-400 text-lg max-w-2xl mb-8">Essential web accessibility, forms, performance, and state management patterns. WCAG compliance, focus management, and anti-patterns to avoid.</p>
+
+            <!-- Stats -->
+            <div class="flex flex-wrap gap-4 mb-8">
+                <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10">
+                    <span class="text-2xl font-bold text-white font-heading" id="total-count">30</span>
+                    <span class="text-gray-400 text-sm ml-2">Guidelines</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10">
+                    <span class="text-2xl font-bold text-white font-heading">7</span>
+                    <span class="text-gray-400 text-sm ml-2">Categories</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-red-500/10 border border-red-500/20">
+                    <span class="text-2xl font-bold text-red-400 font-heading" id="critical-count">0</span>
+                    <span class="text-gray-400 text-sm ml-2">Critical</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-red-400/10 border border-red-400/20">
+                    <span class="text-2xl font-bold text-red-300 font-heading" id="high-count">0</span>
+                    <span class="text-gray-400 text-sm ml-2">High</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                    <span class="text-2xl font-bold text-amber-400 font-heading" id="med-count">0</span>
+                    <span class="text-gray-400 text-sm ml-2">Medium</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-green-500/10 border border-green-500/20">
+                    <span class="text-2xl font-bold text-green-400 font-heading" id="low-count">0</span>
+                    <span class="text-gray-400 text-sm ml-2">Low</span>
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="relative max-w-xl mb-6">
+                <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" id="search-input" placeholder="Search guidelines..." class="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/30 transition-all">
+            </div>
+
+            <!-- Severity Filter -->
+            <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-sm text-gray-500 mr-2 self-center">Severity:</span>
+                <button onclick="toggleSeverity('all')" data-sev="all" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/10 text-white border border-white/20 transition-all">All</button>
+                <button onclick="toggleSeverity('Critical')" data-sev="Critical" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-red-500/30 transition-all">Critical</button>
+                <button onclick="toggleSeverity('High')" data-sev="High" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-red-400/30 transition-all">High</button>
+                <button onclick="toggleSeverity('Medium')" data-sev="Medium" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-amber-500/30 transition-all">Medium</button>
+                <button onclick="toggleSeverity('Low')" data-sev="Low" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-green-500/30 transition-all">Low</button>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="flex flex-wrap gap-2">
+                <button onclick="filterCategory('all')" data-cat="all" id="cat-all-btn" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 transition-all">All</button>
+                <button onclick="filterCategory('Accessibility')" data-cat="Accessibility" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-emerald-500/30 transition-all">Accessibility</button>
+                <button onclick="filterCategory('Focus')" data-cat="Focus" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-cyan-500/30 transition-all">Focus</button>
+                <button onclick="filterCategory('Forms')" data-cat="Forms" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-purple-500/30 transition-all">Forms</button>
+                <button onclick="filterCategory('Performance')" data-cat="Performance" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-yellow-500/30 transition-all">Performance</button>
+                <button onclick="filterCategory('State')" data-cat="State" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-blue-500/30 transition-all">State</button>
+                <button onclick="filterCategory('Typography')" data-cat="Typography" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-violet-500/30 transition-all">Typography</button>
+                <button onclick="filterCategory('Anti-Pattern')" data-cat="Anti-Pattern" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-rose-500/30 transition-all">Anti-Pattern</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guidelines Grid -->
+    <section class="max-w-7xl mx-auto px-6 py-12">
+        <div class="text-sm text-gray-500 mb-6"><span id="visible-count">--</span> guidelines shown</div>
+        <div id="guidelines-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Cards rendered by JS -->
+        </div>
+        <div id="no-results" class="hidden text-center py-20">
+            <svg class="w-16 h-16 mx-auto text-gray-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <p class="text-gray-500 text-lg">No guidelines match your filters.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-8">
+                <a href="styles.html" class="text-sm text-gray-500 hover:text-white transition-colors">Styles</a>
+                <a href="colors.html" class="text-sm text-gray-500 hover:text-white transition-colors">Colors</a>
+                <a href="typography.html" class="text-sm text-gray-500 hover:text-white transition-colors">Typography</a>
+                <a href="charts.html" class="text-sm text-gray-500 hover:text-white transition-colors">Charts</a>
+                <a href="products.html" class="text-sm text-gray-500 hover:text-white transition-colors">Products</a>
+                <a href="icons.html" class="text-sm text-gray-500 hover:text-white transition-colors">Icons</a>
+                <a href="stacks.html" class="text-sm text-gray-500 hover:text-white transition-colors">Stacks</a>
+                <a href="ux-guidelines.html" class="text-sm text-gray-500 hover:text-white transition-colors">UX Guidelines</a>
+                <a href="patterns.html" class="text-sm text-gray-500 hover:text-white transition-colors">Patterns</a>
+                <a href="reasoning.html" class="text-sm text-gray-500 hover:text-white transition-colors">Reasoning</a>
+                <a href="react-performance.html" class="text-sm text-gray-500 hover:text-white transition-colors">React Perf</a>
+                <a href="web-interface.html" class="text-sm text-emerald-400 hover:text-emerald-300 transition-colors">Web Interface</a>
+            </div>
+            <div class="text-center text-gray-600 text-sm">
+                UI/UX Pro Max -- Complete Design Intelligence System
+            </div>
+        </div>
+    </footer>
+
+<script>
+const CATEGORIES = {
+    'Accessibility': { bg: 'rgba(16,185,129,0.15)', border: 'rgba(16,185,129,0.3)', text: '#34D399' },
+    'Focus': { bg: 'rgba(6,182,212,0.15)', border: 'rgba(6,182,212,0.3)', text: '#22D3EE' },
+    'Forms': { bg: 'rgba(168,85,247,0.15)', border: 'rgba(168,85,247,0.3)', text: '#C084FC' },
+    'Performance': { bg: 'rgba(234,179,8,0.15)', border: 'rgba(234,179,8,0.3)', text: '#FACC15' },
+    'State': { bg: 'rgba(59,130,246,0.15)', border: 'rgba(59,130,246,0.3)', text: '#60A5FA' },
+    'Typography': { bg: 'rgba(139,92,246,0.15)', border: 'rgba(139,92,246,0.3)', text: '#A78BFA' },
+    'Anti-Pattern': { bg: 'rgba(244,63,94,0.15)', border: 'rgba(244,63,94,0.3)', text: '#FB7185' }
+};
+
+const SEVERITY = {
+    Critical: { bg: 'rgba(220,38,38,0.15)', border: 'rgba(220,38,38,0.3)', text: '#EF4444' },
+    High: { bg: 'rgba(239,68,68,0.15)', border: 'rgba(239,68,68,0.3)', text: '#F87171' },
+    Medium: { bg: 'rgba(245,158,11,0.15)', border: 'rgba(245,158,11,0.3)', text: '#FBBF24' },
+    Low: { bg: 'rgba(34,197,94,0.15)', border: 'rgba(34,197,94,0.3)', text: '#4ADE80' }
+};
+
+const PLATFORM_COLORS = {
+    Web: { bg: 'rgba(16,185,129,0.15)', border: 'rgba(16,185,129,0.3)', text: '#34D399' }
+};
+
+const guidelines = [
+{id:1,cat:"Accessibility",name:"Icon Button Labels",keywords:"icon button aria-label",platform:"Web",severity:"Critical",desc:"Icon-only buttons must have accessible names.",doCode:`<button aria-label='Close'>\n  <XIcon />\n</button>`,dontCode:`<button>\n  <XIcon />\n</button>`},
+{id:2,cat:"Accessibility",name:"Form Control Labels",keywords:"form input label aria",platform:"Web",severity:"Critical",desc:"All form controls need labels or aria-label.",doCode:`<label for='email'>Email</label>\n<input id='email' />`,dontCode:`<input placeholder='Email' />`},
+{id:3,cat:"Accessibility",name:"Keyboard Handlers",keywords:"keyboard onclick onkeydown",platform:"Web",severity:"High",desc:"Interactive elements must support keyboard interaction.",doCode:`<div onClick={fn}\n  onKeyDown={fn}\n  tabIndex={0}>`,dontCode:`<div onClick={fn}>`},
+{id:4,cat:"Accessibility",name:"Semantic HTML",keywords:"semantic button a label",platform:"Web",severity:"High",desc:"Use semantic HTML before ARIA attributes.",doCode:`<button onClick={fn}>\n  Submit\n</button>`,dontCode:`<div role='button' onClick={fn}>\n  Submit\n</div>`},
+{id:5,cat:"Accessibility",name:"Aria Live",keywords:"aria-live polite async",platform:"Web",severity:"Medium",desc:"Async updates need aria-live for screen readers.",doCode:`<div aria-live='polite'>\n  {status}\n</div>`,dontCode:`<div>{status}</div>\n// no announcement`},
+{id:6,cat:"Accessibility",name:"Decorative Icons",keywords:"aria-hidden decorative icon",platform:"Web",severity:"Medium",desc:"Decorative icons should be hidden from screen readers.",doCode:`<Icon aria-hidden='true' />`,dontCode:`<Icon />\n// announced as 'image'`},
+{id:7,cat:"Focus",name:"Visible Focus States",keywords:"focus-visible outline ring",platform:"Web",severity:"Critical",desc:"All interactive elements need visible focus states.",doCode:`focus-visible:ring-2\nfocus-visible:ring-blue-500`,dontCode:`outline-none\n// no replacement`},
+{id:8,cat:"Focus",name:"Never Remove Outline",keywords:"outline-none focus replacement",platform:"Web",severity:"Critical",desc:"Never remove outline without providing replacement.",doCode:`focus:outline-none\nfocus:ring-2`,dontCode:`focus:outline-none\n// nothing else`},
+{id:9,cat:"Focus",name:"Checkbox Radio Hit Target",keywords:"checkbox radio label target",platform:"Web",severity:"Medium",desc:"Checkbox/radio must share hit target with label.",doCode:`<label class='flex gap-2'>\n  <input type='checkbox' />\n  <span>Option</span>\n</label>`,dontCode:`<input type='checkbox' id='x' />\n<label for='x'>Option</label>`},
+{id:10,cat:"Forms",name:"Autocomplete Attribute",keywords:"autocomplete input form",platform:"Web",severity:"High",desc:"Inputs need autocomplete attribute for autofill.",doCode:`<input autocomplete='email'\n  type='email' />`,dontCode:`<input type='email' />`},
+{id:11,cat:"Forms",name:"Semantic Input Types",keywords:"input type email tel url",platform:"Web",severity:"Medium",desc:"Use semantic input type attributes.",doCode:`<input type='email' />`,dontCode:`<input type='text' />\n// for email`},
+{id:12,cat:"Forms",name:"Never Block Paste",keywords:"paste onpaste password",platform:"Web",severity:"High",desc:"Never prevent paste functionality.",doCode:`<input type='password' />`,dontCode:`<input onPaste={\n  e => e.preventDefault()\n} />`},
+{id:13,cat:"Forms",name:"Spellcheck Disable",keywords:"spellcheck email code",platform:"Web",severity:"Low",desc:"Disable spellcheck on emails and codes.",doCode:`<input spellCheck='false'\n  type='email' />`,dontCode:`<input type='email' />\n// red squiggles`},
+{id:14,cat:"Forms",name:"Submit Button Enabled",keywords:"submit button disabled loading",platform:"Web",severity:"Medium",desc:"Keep submit enabled and show spinner during requests.",doCode:`<button>\n  {loading\n    ? <Spinner />\n    : 'Submit'}\n</button>`,dontCode:`<button disabled={loading}>\n  Submit\n</button>`},
+{id:15,cat:"Forms",name:"Inline Errors",keywords:"error message inline focus",platform:"Web",severity:"High",desc:"Show error messages inline near the problem field.",doCode:`<input />\n<span class='text-red-500'>\n  {error}\n</span>`,dontCode:`<div class='error'>\n  {allErrors}\n</div>\n// at top`},
+{id:16,cat:"Performance",name:"Virtualize Lists",keywords:"virtualize list 50 items",platform:"Web",severity:"High",desc:"Virtualize lists exceeding 50 items.",doCode:`<VirtualList items={items} />`,dontCode:`items.map(item => <Item />)`},
+{id:17,cat:"Performance",name:"Avoid Layout Reads",keywords:"layout read render getboundingclientrect",platform:"Web",severity:"Medium",desc:"Avoid layout reads during render phase.",doCode:`useEffect(() => {\n  el.getBoundingClientRect()\n})`,dontCode:`const rect =\n  el.getBoundingClientRect()\n// in render`},
+{id:18,cat:"Performance",name:"Batch DOM Operations",keywords:"batch dom write read",platform:"Web",severity:"Medium",desc:"Group DOM operations to minimize reflows.",doCode:`writes.forEach(w => w());\nreads.forEach(r => r())`,dontCode:`write(); read();\nwrite(); read();\n// thrashing`},
+{id:19,cat:"Performance",name:"Preconnect CDN",keywords:"preconnect link cdn",platform:"Web",severity:"Low",desc:"Add preconnect links for CDN domains.",doCode:`<link rel='preconnect'\n  href='https://cdn.example.com' />`,dontCode:`// no preconnect hint`},
+{id:20,cat:"Performance",name:"Lazy Load Images",keywords:"lazy loading image below-fold",platform:"Web",severity:"Medium",desc:"Lazy-load images below the fold.",doCode:`<img loading='lazy' src='...' />`,dontCode:`<img src='...' />\n// above fold only`},
+{id:21,cat:"State",name:"URL Reflects State",keywords:"url state query params",platform:"Web",severity:"High",desc:"URL should reflect current UI state.",doCode:`?tab=settings&page=2`,dontCode:`useState only\n// lost on refresh`},
+{id:22,cat:"State",name:"Deep Linking",keywords:"deep link stateful component",platform:"Web",severity:"Medium",desc:"Stateful components should support deep-linking.",doCode:`router.push({\n  query: { ...filters }\n})`,dontCode:`setFilters(f)\n// not in URL`},
+{id:23,cat:"State",name:"Confirm Destructive Actions",keywords:"confirm destructive delete modal",platform:"Web",severity:"High",desc:"Destructive actions require confirmation.",doCode:`if (confirm('Delete?'))\n  delete()`,dontCode:`onClick={delete}\n// no confirmation`},
+{id:24,cat:"Typography",name:"Proper Unicode",keywords:"unicode ellipsis quotes",platform:"Web",severity:"Low",desc:"Use proper Unicode characters.",doCode:`'Hello\u2026' with proper ellipsis`,dontCode:`'Hello...' with three dots`},
+{id:25,cat:"Typography",name:"Text Overflow",keywords:"truncate line-clamp overflow",platform:"Web",severity:"Medium",desc:"Handle text overflow properly.",doCode:`<p class='truncate'>\n  Long text...\n</p>`,dontCode:`<p>Long text...</p>\n// overflows`},
+{id:26,cat:"Typography",name:"Non-Breaking Spaces",keywords:"nbsp unit brand",platform:"Web",severity:"Low",desc:"Use non-breaking spaces for units and brand names.",doCode:`10&nbsp;kg or Next.js&nbsp;14`,dontCode:`10 kg // may wrap`},
+{id:27,cat:"Anti-Pattern",name:"No Zoom Disable",keywords:"viewport zoom disable",platform:"Web",severity:"Critical",desc:"Never disable zoom in viewport meta.",doCode:`<meta name='viewport'\n  content='width=device-width'>`,dontCode:`<meta name='viewport'\n  content='maximum-scale=1'>`},
+{id:28,cat:"Anti-Pattern",name:"No Transition All",keywords:"transition all specific",platform:"Web",severity:"Medium",desc:"Avoid transition: all - specify properties.",doCode:`transition-colors duration-200`,dontCode:`transition-all duration-200`},
+{id:29,cat:"Anti-Pattern",name:"Outline Replacement",keywords:"outline-none ring focus",platform:"Web",severity:"Critical",desc:"Never use outline-none without replacement.",doCode:`focus:outline-none\nfocus:ring-2\nfocus:ring-blue-500`,dontCode:`focus:outline-none\n// alone`},
+{id:30,cat:"Anti-Pattern",name:"No Hardcoded Dates",keywords:"date format intl locale",platform:"Web",severity:"Medium",desc:"Use Intl for date/number formatting.",doCode:`new Intl.DateTimeFormat('en')\n  .format(date)`,dontCode:`date.toLocaleDateString()\n// or manual format`}
+];
+
+// State
+let activeCategory = 'all';
+let activeSeverity = 'all';
+let searchQuery = '';
+
+// Render
+function renderGuidelines() {
+    const grid = document.getElementById('guidelines-grid');
+    const noResults = document.getElementById('no-results');
+    const filtered = guidelines.filter(g => {
+        const catMatch = activeCategory === 'all' || g.cat === activeCategory;
+        const sevMatch = activeSeverity === 'all' || g.severity === activeSeverity;
+        const searchMatch = !searchQuery ||
+            g.name.toLowerCase().includes(searchQuery) ||
+            g.desc.toLowerCase().includes(searchQuery) ||
+            g.cat.toLowerCase().includes(searchQuery) ||
+            (g.keywords && g.keywords.toLowerCase().includes(searchQuery));
+        return catMatch && sevMatch && searchMatch;
+    });
+
+    document.getElementById('visible-count').textContent = filtered.length;
+
+    if (filtered.length === 0) {
+        grid.classList.add('hidden');
+        noResults.classList.remove('hidden');
+        return;
+    }
+    grid.classList.remove('hidden');
+    noResults.classList.add('hidden');
+
+    grid.innerHTML = filtered.map(g => {
+        const cat = CATEGORIES[g.cat];
+        const sev = SEVERITY[g.severity];
+        const plat = PLATFORM_COLORS[g.platform];
+        return `
+        <div class="guideline-card rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden" data-id="${g.id}">
+            <div class="p-6">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class="px-2.5 py-1 rounded-md text-xs font-semibold" style="background:${cat.bg};border:1px solid ${cat.border};color:${cat.text}">${g.cat}</span>
+                    <span class="px-2.5 py-1 rounded-md text-xs font-medium" style="background:${plat.bg};border:1px solid ${plat.border};color:${plat.text}">${g.platform}</span>
+                    <span class="px-2.5 py-1 rounded-md text-xs font-semibold" style="background:${sev.bg};border:1px solid ${sev.border};color:${sev.text}">${g.severity}</span>
+                    <span class="ml-auto text-xs text-gray-600 font-mono">#${g.id}</span>
+                </div>
+                <h3 class="font-heading text-lg font-bold text-white mb-2">${g.name}</h3>
+                <p class="text-sm text-gray-400 leading-relaxed mb-4">${g.desc}</p>
+                <button onclick="toggleCode(${g.id})" class="text-xs font-medium text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1">
+                    <svg class="w-4 h-4 transition-transform" id="chevron-${g.id}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    <span id="toggle-text-${g.id}">Show Examples</span>
+                </button>
+            </div>
+            <div id="code-${g.id}" class="hidden border-t border-white/[0.06]">
+                <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/[0.06]">
+                    <div class="p-4">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center">
+                                <svg class="w-3 h-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            </span>
+                            <span class="text-xs font-bold text-green-400 uppercase tracking-wider">Do</span>
+                        </div>
+                        <pre class="bg-green-500/[0.04] border border-green-500/10 rounded-lg p-3 overflow-x-auto text-sm leading-relaxed"><code class="text-green-300/90">${escapeHtml(g.doCode)}</code></pre>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center">
+                                <svg class="w-3 h-3 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/></svg>
+                            </span>
+                            <span class="text-xs font-bold text-red-400 uppercase tracking-wider">Don't</span>
+                        </div>
+                        <pre class="bg-red-500/[0.04] border border-red-500/10 rounded-lg p-3 overflow-x-auto text-sm leading-relaxed"><code class="text-red-300/90">${escapeHtml(g.dontCode)}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function toggleCode(id) {
+    const codeEl = document.getElementById('code-' + id);
+    const chevron = document.getElementById('chevron-' + id);
+    const text = document.getElementById('toggle-text-' + id);
+    const isHidden = codeEl.classList.contains('hidden');
+    codeEl.classList.toggle('hidden');
+    chevron.style.transform = isHidden ? 'rotate(180deg)' : '';
+    text.textContent = isHidden ? 'Hide Examples' : 'Show Examples';
+}
+
+function filterCategory(cat) {
+    activeCategory = cat;
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+        const isActive = btn.dataset.cat === cat;
+        const label = btn.textContent;
+        btn.className = `cat-btn px-3 py-1.5 text-xs font-medium rounded-lg border transition-all ${isActive ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' : 'bg-white/5 text-gray-400 border-white/10'}`;
+        btn.textContent = label;
+    });
+    renderGuidelines();
+}
+
+function toggleSeverity(sev) {
+    activeSeverity = sev;
+    document.querySelectorAll('.sev-btn').forEach(btn => {
+        const isActive = btn.dataset.sev === sev;
+        btn.className = `sev-btn px-3 py-1.5 text-xs font-medium rounded-lg border transition-all ${isActive ? 'bg-white/10 text-white border-white/20' : 'bg-white/5 text-gray-400 border-white/10'}`;
+    });
+    renderGuidelines();
+}
+
+// Search
+document.getElementById('search-input').addEventListener('input', (e) => {
+    searchQuery = e.target.value.toLowerCase().trim();
+    renderGuidelines();
+});
+
+// Update counts
+function updateCounts() {
+    document.getElementById('total-count').textContent = guidelines.length;
+    document.getElementById('critical-count').textContent = guidelines.filter(g => g.severity === 'Critical').length;
+    document.getElementById('high-count').textContent = guidelines.filter(g => g.severity === 'High').length;
+    document.getElementById('med-count').textContent = guidelines.filter(g => g.severity === 'Medium').length;
+    document.getElementById('low-count').textContent = guidelines.filter(g => g.severity === 'Low').length;
+}
+
+// Update category button labels with counts
+function updateCategoryLabels() {
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+        const cat = btn.dataset.cat;
+        const count = cat === 'all' ? guidelines.length : guidelines.filter(g => g.cat === cat).length;
+        const baseName = cat === 'all' ? 'All' : cat;
+        btn.textContent = `${baseName} (${count})`;
+    });
+}
+
+// ?q= URL parameter support
+function applyUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q');
+    if (q) {
+        searchQuery = q.toLowerCase().trim();
+        document.getElementById('search-input').value = q;
+    }
+}
+
+// Init
+applyUrlParams();
+updateCounts();
+updateCategoryLabels();
+renderGuidelines();
+</script>
+<script>document.addEventListener('click',e=>{if(!e.target.closest('#more-menu')&&!e.target.closest('[onclick*="more-menu"]')){document.getElementById('more-menu')?.classList.add('hidden')}})</script>
+</body>
+</html>

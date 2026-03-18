@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Icon Reference | UI/UX Pro Max</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter'],heading:['Space Grotesk'],mono:['Space Mono']},colors:{violet:{500:'#8B5CF6'}}}}}</script>
+<style>
+body{font-family:'Inter',sans-serif;background:#08090E;color:#fff;-webkit-font-smoothing:antialiased}
+.font-heading{font-family:'Space Grotesk',sans-serif}
+.font-mono{font-family:'Space Mono',monospace}
+.gradient-text{background:linear-gradient(135deg,#8B5CF6,#06B6D4,#8B5CF6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% 200%;animation:gradShift 3s ease infinite}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.nav-blur{backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.hero-gradient{position:relative;overflow:hidden}
+.hero-gradient::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 40%,rgba(139,92,246,0.08) 0%,transparent 50%),radial-gradient(circle at 70% 60%,rgba(6,182,212,0.06) 0%,transparent 50%);pointer-events:none}
+.grid-bg{background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px}
+.card-glow:hover{box-shadow:0 0 30px rgba(139,92,246,0.08)}
+.icon-card{transition:all 0.3s ease}
+.icon-card:hover{transform:translateY(-2px)}
+.filter-btn{transition:all 0.2s ease}
+.filter-btn.active{background:rgba(139,92,246,0.2)!important;border-color:rgba(139,92,246,0.4)!important;color:#A78BFA!important}
+.hidden-card{display:none!important}
+@keyframes toastIn{from{opacity:0;transform:translateY(8px) scale(0.9)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes toastOut{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-8px) scale(0.9)}}
+.copy-toast{animation:toastIn 0.3s ease,toastOut 0.3s ease 1s forwards}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(139,92,246,0.3);border-radius:3px}
+</style>
+</head>
+<body class="min-h-screen grid-bg">
+
+<!-- Nav -->
+<nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-[#08090E]/70 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="font-heading font-bold text-xl tracking-tight"><span class="text-white">UI/UX</span><span class="gradient-text"> Pro Max</span></a>
+        <div class="hidden md:flex items-center gap-1">
+            <a href="styles.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Styles</a>
+            <a href="colors.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Colors</a>
+            <a href="typography.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Typography</a>
+            <a href="charts.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Charts</a>
+            <a href="products.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Products</a>
+            <a href="icons.html" class="px-3 py-2 text-sm text-white bg-white/10 transition-colors rounded-lg">Icons</a>
+            <div class="relative">
+                <button onclick="document.getElementById('more-menu').classList.toggle('hidden')" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5 inline-flex items-center gap-1">More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                <div id="more-menu" class="hidden absolute right-0 top-full mt-2 w-52 bg-[#12131A] border border-white/10 rounded-xl shadow-2xl py-2 z-50">
+                    <a href="stacks.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Stacks</a>
+                    <a href="ux-guidelines.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">UX Guidelines</a>
+                    <a href="patterns.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Patterns</a>
+                    <a href="reasoning.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Reasoning</a>
+                    <a href="react-performance.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">React Perf</a>
+                    <a href="web-interface.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Web Interface</a>
+                </div>
+            </div>
+        </div>
+        <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 text-gray-400 hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 px-6 py-4 space-y-2">
+        <a href="styles.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Styles</a>
+        <a href="colors.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Colors</a>
+        <a href="typography.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Typography</a>
+        <a href="charts.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Charts</a>
+        <a href="products.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Products</a>
+        <a href="icons.html" class="block px-3 py-2 text-sm text-white bg-white/10 rounded-lg">Icons</a>
+        <a href="stacks.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Stacks</a>
+        <a href="ux-guidelines.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">UX Guidelines</a>
+        <a href="patterns.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Patterns</a>
+        <a href="reasoning.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Reasoning</a>
+        <a href="react-performance.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">React Perf</a>
+        <a href="web-interface.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Web Interface</a>
+    </div>
+</nav>
+
+<!-- Close dropdown on outside click -->
+<script>document.addEventListener('click',e=>{if(!e.target.closest('#more-menu')&&!e.target.closest('[onclick*="more-menu"]')){document.getElementById('more-menu')?.classList.add('hidden')}})</script>
+
+<!-- Hero -->
+<section class="hero-gradient pt-32 pb-16 relative">
+    <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-violet-500/30 bg-violet-500/10 mb-8">
+            <svg class="w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+            <span class="text-sm font-medium text-violet-300">100 Icon Categories</span>
+        </div>
+        <h1 class="font-heading text-5xl md:text-6xl font-bold tracking-tight mb-6">
+            <span class="text-white">Icon </span><span class="gradient-text">Reference</span>
+        </h1>
+        <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">The complete Lucide icon reference for React. Every category with import code, usage snippets, and best-use context.</p>
+        <div class="flex items-center justify-center gap-8 mb-10">
+            <div class="text-center">
+                <div class="font-heading text-2xl font-bold text-white">100</div>
+                <div class="text-xs text-gray-500 mt-1">Icons</div>
+            </div>
+            <div class="w-px h-10 bg-white/10"></div>
+            <div class="text-center">
+                <div class="font-heading text-2xl font-bold text-white">14</div>
+                <div class="text-xs text-gray-500 mt-1">Categories</div>
+            </div>
+            <div class="w-px h-10 bg-white/10"></div>
+            <div class="text-center">
+                <div class="font-heading text-2xl font-bold text-violet-400">Lucide React</div>
+                <div class="text-xs text-gray-500 mt-1">Library</div>
+            </div>
+        </div>
+        <!-- Search -->
+        <div class="max-w-xl mx-auto mb-8">
+            <div class="relative">
+                <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input id="search" type="text" placeholder="Search icons by name, keyword, or category..." class="w-full pl-12 pr-4 py-3.5 bg-white/[0.04] border border-white/10 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-violet-500/50 focus:bg-white/[0.06] transition-all">
+            </div>
+        </div>
+        <!-- Category Filters -->
+        <div id="filters" class="flex flex-wrap justify-center gap-2 mb-4">
+            <button class="filter-btn active px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="all">All</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="Navigation">Navigation</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="Action">Action</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="Status">Status</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="Communication">Communication</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="User">User</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="Media">Media</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="Commerce">Commerce</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="Data">Data</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="Files">Files</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="Layout">Layout</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="Social">Social</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="Device">Device</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="Security">Security</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="Location">Location</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="Time">Time</button>
+            <button class="filter-btn px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 bg-white/[0.04] text-gray-400 hover:text-white hover:border-white/20" data-f="Development">Development</button>
+        </div>
+        <div id="count" class="text-sm text-gray-500">100 icons</div>
+    </div>
+</section>
+
+<!-- Grid -->
+<section class="max-w-7xl mx-auto px-6 pb-20">
+    <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+    <div id="empty" class="hidden text-center py-20">
+        <svg class="w-16 h-16 mx-auto mb-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <p class="text-gray-500 text-lg font-medium">No icons found</p>
+        <p class="text-gray-600 text-sm mt-1">Try adjusting your search or filter</p>
+    </div>
+</section>
+
+<!-- Copy Toast -->
+<div id="copyToast" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[9999] hidden">
+    <div class="copy-toast flex items-center gap-2 px-4 py-2.5 bg-emerald-500 text-white text-sm font-medium rounded-xl shadow-lg shadow-emerald-500/25">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span>Copied!</span>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="border-t border-white/5 py-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="font-heading font-bold text-lg"><span class="text-white">UI/UX</span><span class="gradient-text"> Pro Max</span></div>
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+            <a href="styles.html" class="hover:text-white transition-colors">Styles</a>
+            <a href="colors.html" class="hover:text-white transition-colors">Colors</a>
+            <a href="typography.html" class="hover:text-white transition-colors">Typography</a>
+            <a href="charts.html" class="hover:text-white transition-colors">Charts</a>
+            <a href="products.html" class="hover:text-white transition-colors">Products</a>
+            <a href="icons.html" class="hover:text-white transition-colors">Icons</a>
+            <a href="stacks.html" class="hover:text-white transition-colors">Stacks</a>
+            <a href="ux-guidelines.html" class="hover:text-white transition-colors">UX Guidelines</a>
+            <a href="patterns.html" class="hover:text-white transition-colors">Patterns</a>
+            <a href="reasoning.html" class="hover:text-white transition-colors">Reasoning</a>
+            <a href="react-performance.html" class="hover:text-white transition-colors">React Perf</a>
+            <a href="web-interface.html" class="hover:text-white transition-colors">Web Interface</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+const icons = [
+{id:1,cat:"Navigation",name:"menu",svg:'<line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>',keywords:"hamburger menu navigation toggle bars",lib:"Lucide",import:"import { Menu } from 'lucide-react'",usage:"<Menu />",bestFor:"Mobile navigation drawer toggle sidebar",style:"Outline"},
+{id:2,cat:"Navigation",name:"arrow-left",svg:'<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',keywords:"back previous return navigate",lib:"Lucide",import:"import { ArrowLeft } from 'lucide-react'",usage:"<ArrowLeft />",bestFor:"Back button breadcrumb navigation",style:"Outline"},
+{id:3,cat:"Navigation",name:"arrow-right",svg:'<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',keywords:"next forward continue navigate",lib:"Lucide",import:"import { ArrowRight } from 'lucide-react'",usage:"<ArrowRight />",bestFor:"Forward button next step CTA",style:"Outline"},
+{id:4,cat:"Navigation",name:"chevron-down",svg:'<path d="m6 9 6 6 6-6"/>',keywords:"dropdown expand accordion select",lib:"Lucide",import:"import { ChevronDown } from 'lucide-react'",usage:"<ChevronDown />",bestFor:"Dropdown toggle accordion header",style:"Outline"},
+{id:5,cat:"Navigation",name:"chevron-up",svg:'<path d="m18 15-6-6-6 6"/>',keywords:"collapse close accordion minimize",lib:"Lucide",import:"import { ChevronUp } from 'lucide-react'",usage:"<ChevronUp />",bestFor:"Accordion collapse minimize",style:"Outline"},
+{id:6,cat:"Navigation",name:"home",svg:'<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',keywords:"homepage main dashboard start",lib:"Lucide",import:"import { Home } from 'lucide-react'",usage:"<Home />",bestFor:"Home navigation main page",style:"Outline"},
+{id:7,cat:"Navigation",name:"x",svg:'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',keywords:"close cancel dismiss remove exit",lib:"Lucide",import:"import { X } from 'lucide-react'",usage:"<X />",bestFor:"Modal close dismiss button",style:"Outline"},
+{id:8,cat:"Navigation",name:"external-link",svg:'<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/>',keywords:"open new tab external link",lib:"Lucide",import:"import { ExternalLink } from 'lucide-react'",usage:"<ExternalLink />",bestFor:"External link indicator",style:"Outline"},
+{id:9,cat:"Action",name:"plus",svg:'<path d="M5 12h14"/><path d="M12 5v14"/>',keywords:"add create new insert",lib:"Lucide",import:"import { Plus } from 'lucide-react'",usage:"<Plus />",bestFor:"Add button create new item",style:"Outline"},
+{id:10,cat:"Action",name:"minus",svg:'<path d="M5 12h14"/>',keywords:"remove subtract decrease delete",lib:"Lucide",import:"import { Minus } from 'lucide-react'",usage:"<Minus />",bestFor:"Remove item quantity decrease",style:"Outline"},
+{id:11,cat:"Action",name:"trash-2",svg:'<path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/>',keywords:"delete remove discard bin",lib:"Lucide",import:"import { Trash2 } from 'lucide-react'",usage:"<Trash2 />",bestFor:"Delete action destructive",style:"Outline"},
+{id:12,cat:"Action",name:"edit",svg:'<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>',keywords:"pencil modify change update",lib:"Lucide",import:"import { Edit } from 'lucide-react'",usage:"<Edit />",bestFor:"Edit button modify content",style:"Outline"},
+{id:13,cat:"Action",name:"save",svg:'<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>',keywords:"disk store persist save",lib:"Lucide",import:"import { Save } from 'lucide-react'",usage:"<Save />",bestFor:"Save button persist changes",style:"Outline"},
+{id:14,cat:"Action",name:"download",svg:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>',keywords:"export save file download",lib:"Lucide",import:"import { Download } from 'lucide-react'",usage:"<Download />",bestFor:"Download file export",style:"Outline"},
+{id:15,cat:"Action",name:"upload",svg:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/>',keywords:"import file attach upload",lib:"Lucide",import:"import { Upload } from 'lucide-react'",usage:"<Upload />",bestFor:"Upload file import",style:"Outline"},
+{id:16,cat:"Action",name:"copy",svg:'<rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>',keywords:"duplicate clipboard paste",lib:"Lucide",import:"import { Copy } from 'lucide-react'",usage:"<Copy />",bestFor:"Copy to clipboard",style:"Outline"},
+{id:17,cat:"Action",name:"share",svg:'<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/>',keywords:"social distribute send",lib:"Lucide",import:"import { Share } from 'lucide-react'",usage:"<Share />",bestFor:"Share button social",style:"Outline"},
+{id:18,cat:"Action",name:"search",svg:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',keywords:"find lookup filter query",lib:"Lucide",import:"import { Search } from 'lucide-react'",usage:"<Search />",bestFor:"Search input bar",style:"Outline"},
+{id:19,cat:"Action",name:"filter",svg:'<polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>',keywords:"sort refine narrow options",lib:"Lucide",import:"import { Filter } from 'lucide-react'",usage:"<Filter />",bestFor:"Filter dropdown sort",style:"Outline"},
+{id:20,cat:"Action",name:"settings",svg:'<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>',keywords:"gear cog preferences config",lib:"Lucide",import:"import { Settings } from 'lucide-react'",usage:"<Settings />",bestFor:"Settings page configuration",style:"Outline"},
+{id:21,cat:"Status",name:"check",svg:'<polyline points="20 6 9 17 4 12"/>',keywords:"success done complete verified",lib:"Lucide",import:"import { Check } from 'lucide-react'",usage:"<Check />",bestFor:"Success state checkmark",style:"Outline"},
+{id:22,cat:"Status",name:"check-circle",svg:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',keywords:"success verified approved complete",lib:"Lucide",import:"import { CheckCircle } from 'lucide-react'",usage:"<CheckCircle />",bestFor:"Success badge verified",style:"Outline"},
+{id:23,cat:"Status",name:"x-circle",svg:'<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/>',keywords:"error failed cancel rejected",lib:"Lucide",import:"import { XCircle } from 'lucide-react'",usage:"<XCircle />",bestFor:"Error state failed",style:"Outline"},
+{id:24,cat:"Status",name:"alert-triangle",svg:'<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/>',keywords:"warning caution attention danger",lib:"Lucide",import:"import { AlertTriangle } from 'lucide-react'",usage:"<AlertTriangle />",bestFor:"Warning message caution",style:"Outline"},
+{id:25,cat:"Status",name:"alert-circle",svg:'<circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>',keywords:"info notice information help",lib:"Lucide",import:"import { AlertCircle } from 'lucide-react'",usage:"<AlertCircle />",bestFor:"Info notice alert",style:"Outline"},
+{id:26,cat:"Status",name:"info",svg:'<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>',keywords:"information help tooltip details",lib:"Lucide",import:"import { Info } from 'lucide-react'",usage:"<Info />",bestFor:"Information tooltip help",style:"Outline"},
+{id:27,cat:"Status",name:"loader",svg:'<line x1="12" x2="12" y1="2" y2="6"/><line x1="12" x2="12" y1="18" y2="22"/><line x1="4.93" x2="7.76" y1="4.93" y2="7.76"/><line x1="16.24" x2="19.07" y1="16.24" y2="19.07"/><line x1="2" x2="6" y1="12" y2="12"/><line x1="18" x2="22" y1="12" y2="12"/><line x1="4.93" x2="7.76" y1="19.07" y2="16.24"/><line x1="16.24" x2="19.07" y1="7.76" y2="4.93"/>',keywords:"loading spinner processing wait",lib:"Lucide",import:"import { Loader } from 'lucide-react'",usage:'<Loader className="animate-spin" />',bestFor:"Loading state spinner",style:"Outline"},
+{id:28,cat:"Status",name:"clock",svg:'<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',keywords:"time schedule pending wait",lib:"Lucide",import:"import { Clock } from 'lucide-react'",usage:"<Clock />",bestFor:"Pending time schedule",style:"Outline"},
+{id:29,cat:"Communication",name:"mail",svg:'<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',keywords:"email message inbox letter",lib:"Lucide",import:"import { Mail } from 'lucide-react'",usage:"<Mail />",bestFor:"Email contact inbox",style:"Outline"},
+{id:30,cat:"Communication",name:"message-circle",svg:'<path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/>',keywords:"chat comment bubble conversation",lib:"Lucide",import:"import { MessageCircle } from 'lucide-react'",usage:"<MessageCircle />",bestFor:"Chat comment message",style:"Outline"},
+{id:31,cat:"Communication",name:"phone",svg:'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',keywords:"call mobile telephone contact",lib:"Lucide",import:"import { Phone } from 'lucide-react'",usage:"<Phone />",bestFor:"Phone contact call",style:"Outline"},
+{id:32,cat:"Communication",name:"send",svg:'<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>',keywords:"submit dispatch message airplane",lib:"Lucide",import:"import { Send } from 'lucide-react'",usage:"<Send />",bestFor:"Send message submit",style:"Outline"},
+{id:33,cat:"Communication",name:"bell",svg:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',keywords:"notification alert ring reminder",lib:"Lucide",import:"import { Bell } from 'lucide-react'",usage:"<Bell />",bestFor:"Notification bell alert",style:"Outline"},
+{id:34,cat:"User",name:"user",svg:'<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',keywords:"profile account person avatar",lib:"Lucide",import:"import { User } from 'lucide-react'",usage:"<User />",bestFor:"User profile account",style:"Outline"},
+{id:35,cat:"User",name:"users",svg:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',keywords:"team group people members",lib:"Lucide",import:"import { Users } from 'lucide-react'",usage:"<Users />",bestFor:"Team group members",style:"Outline"},
+{id:36,cat:"User",name:"user-plus",svg:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/>',keywords:"add invite new member",lib:"Lucide",import:"import { UserPlus } from 'lucide-react'",usage:"<UserPlus />",bestFor:"Add user invite",style:"Outline"},
+{id:37,cat:"User",name:"log-in",svg:'<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/>',keywords:"signin authenticate enter",lib:"Lucide",import:"import { LogIn } from 'lucide-react'",usage:"<LogIn />",bestFor:"Login signin",style:"Outline"},
+{id:38,cat:"User",name:"log-out",svg:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/>',keywords:"signout exit leave logout",lib:"Lucide",import:"import { LogOut } from 'lucide-react'",usage:"<LogOut />",bestFor:"Logout signout",style:"Outline"},
+{id:39,cat:"Media",name:"image",svg:'<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>',keywords:"photo picture gallery thumbnail",lib:"Lucide",import:"import { Image } from 'lucide-react'",usage:"<Image />",bestFor:"Image photo gallery",style:"Outline"},
+{id:40,cat:"Media",name:"video",svg:'<path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/>',keywords:"movie film play record",lib:"Lucide",import:"import { Video } from 'lucide-react'",usage:"<Video />",bestFor:"Video player media",style:"Outline"},
+{id:41,cat:"Media",name:"play",svg:'<polygon points="5 3 19 12 5 21 5 3"/>',keywords:"start video audio media",lib:"Lucide",import:"import { Play } from 'lucide-react'",usage:"<Play />",bestFor:"Play button video audio",style:"Outline"},
+{id:42,cat:"Media",name:"pause",svg:'<rect width="4" height="16" x="6" y="4"/><rect width="4" height="16" x="14" y="4"/>',keywords:"stop halt video audio",lib:"Lucide",import:"import { Pause } from 'lucide-react'",usage:"<Pause />",bestFor:"Pause button media",style:"Outline"},
+{id:43,cat:"Media",name:"volume-2",svg:'<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>',keywords:"sound audio speaker music",lib:"Lucide",import:"import { Volume2 } from 'lucide-react'",usage:"<Volume2 />",bestFor:"Volume audio sound",style:"Outline"},
+{id:44,cat:"Media",name:"mic",svg:'<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/>',keywords:"microphone record voice audio",lib:"Lucide",import:"import { Mic } from 'lucide-react'",usage:"<Mic />",bestFor:"Microphone voice record",style:"Outline"},
+{id:45,cat:"Media",name:"camera",svg:'<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>',keywords:"photo capture snapshot picture",lib:"Lucide",import:"import { Camera } from 'lucide-react'",usage:"<Camera />",bestFor:"Camera photo capture",style:"Outline"},
+{id:46,cat:"Commerce",name:"shopping-cart",svg:'<circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>',keywords:"cart checkout basket buy",lib:"Lucide",import:"import { ShoppingCart } from 'lucide-react'",usage:"<ShoppingCart />",bestFor:"Shopping cart e-commerce",style:"Outline"},
+{id:47,cat:"Commerce",name:"shopping-bag",svg:'<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',keywords:"purchase buy store bag",lib:"Lucide",import:"import { ShoppingBag } from 'lucide-react'",usage:"<ShoppingBag />",bestFor:"Shopping bag purchase",style:"Outline"},
+{id:48,cat:"Commerce",name:"credit-card",svg:'<rect width="22" height="16" x="1" y="4" rx="2"/><line x1="1" x2="23" y1="10" y2="10"/>',keywords:"payment card checkout stripe",lib:"Lucide",import:"import { CreditCard } from 'lucide-react'",usage:"<CreditCard />",bestFor:"Payment credit card",style:"Outline"},
+{id:49,cat:"Commerce",name:"dollar-sign",svg:'<line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',keywords:"money price currency cost",lib:"Lucide",import:"import { DollarSign } from 'lucide-react'",usage:"<DollarSign />",bestFor:"Price money currency",style:"Outline"},
+{id:50,cat:"Commerce",name:"tag",svg:'<path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"/><path d="M7 7h.01"/>',keywords:"label price discount sale",lib:"Lucide",import:"import { Tag } from 'lucide-react'",usage:"<Tag />",bestFor:"Price tag label",style:"Outline"},
+{id:51,cat:"Commerce",name:"gift",svg:'<polyline points="20 12 20 22 4 22 4 12"/><rect width="20" height="5" x="2" y="7"/><line x1="12" x2="12" y1="22" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>',keywords:"present reward bonus offer",lib:"Lucide",import:"import { Gift } from 'lucide-react'",usage:"<Gift />",bestFor:"Gift reward offer",style:"Outline"},
+{id:52,cat:"Commerce",name:"percent",svg:'<line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>',keywords:"discount sale offer promo",lib:"Lucide",import:"import { Percent } from 'lucide-react'",usage:"<Percent />",bestFor:"Discount percentage sale",style:"Outline"},
+{id:53,cat:"Data",name:"bar-chart",svg:'<line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/>',keywords:"analytics statistics graph metrics",lib:"Lucide",import:"import { BarChart } from 'lucide-react'",usage:"<BarChart />",bestFor:"Bar chart analytics",style:"Outline"},
+{id:54,cat:"Data",name:"pie-chart",svg:'<path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/>',keywords:"statistics distribution breakdown",lib:"Lucide",import:"import { PieChart } from 'lucide-react'",usage:"<PieChart />",bestFor:"Pie chart distribution",style:"Outline"},
+{id:55,cat:"Data",name:"trending-up",svg:'<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',keywords:"growth increase positive trend",lib:"Lucide",import:"import { TrendingUp } from 'lucide-react'",usage:"<TrendingUp />",bestFor:"Growth trend positive",style:"Outline"},
+{id:56,cat:"Data",name:"trending-down",svg:'<polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/>',keywords:"decline decrease negative trend",lib:"Lucide",import:"import { TrendingDown } from 'lucide-react'",usage:"<TrendingDown />",bestFor:"Decline trend negative",style:"Outline"},
+{id:57,cat:"Data",name:"activity",svg:'<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>',keywords:"pulse heartbeat monitor live",lib:"Lucide",import:"import { Activity } from 'lucide-react'",usage:"<Activity />",bestFor:"Activity monitor pulse",style:"Outline"},
+{id:58,cat:"Data",name:"database",svg:'<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/>',keywords:"storage server data backend",lib:"Lucide",import:"import { Database } from 'lucide-react'",usage:"<Database />",bestFor:"Database storage",style:"Outline"},
+{id:59,cat:"Files",name:"file",svg:'<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/>',keywords:"document page paper doc",lib:"Lucide",import:"import { File } from 'lucide-react'",usage:"<File />",bestFor:"File document",style:"Outline"},
+{id:60,cat:"Files",name:"file-text",svg:'<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/>',keywords:"document text page article",lib:"Lucide",import:"import { FileText } from 'lucide-react'",usage:"<FileText />",bestFor:"Text document article",style:"Outline"},
+{id:61,cat:"Files",name:"folder",svg:'<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>',keywords:"directory organize group files",lib:"Lucide",import:"import { Folder } from 'lucide-react'",usage:"<Folder />",bestFor:"Folder directory",style:"Outline"},
+{id:62,cat:"Files",name:"folder-open",svg:'<path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2v2"/>',keywords:"expanded browse files view",lib:"Lucide",import:"import { FolderOpen } from 'lucide-react'",usage:"<FolderOpen />",bestFor:"Open folder browse",style:"Outline"},
+{id:63,cat:"Files",name:"paperclip",svg:'<path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/>',keywords:"attachment attach file link",lib:"Lucide",import:"import { Paperclip } from 'lucide-react'",usage:"<Paperclip />",bestFor:"Attachment paperclip",style:"Outline"},
+{id:64,cat:"Files",name:"link",svg:'<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',keywords:"url hyperlink chain connect",lib:"Lucide",import:"import { Link } from 'lucide-react'",usage:"<Link />",bestFor:"Link URL hyperlink",style:"Outline"},
+{id:65,cat:"Files",name:"clipboard",svg:'<rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>',keywords:"paste copy buffer notes",lib:"Lucide",import:"import { Clipboard } from 'lucide-react'",usage:"<Clipboard />",bestFor:"Clipboard paste",style:"Outline"},
+{id:66,cat:"Layout",name:"grid",svg:'<rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>',keywords:"tiles gallery layout dashboard",lib:"Lucide",import:"import { Grid } from 'lucide-react'",usage:"<Grid />",bestFor:"Grid layout gallery",style:"Outline"},
+{id:67,cat:"Layout",name:"list",svg:'<line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/>',keywords:"rows table lines items",lib:"Lucide",import:"import { List } from 'lucide-react'",usage:"<List />",bestFor:"List view rows",style:"Outline"},
+{id:68,cat:"Layout",name:"columns",svg:'<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="12" x2="12" y1="3" y2="21"/>',keywords:"layout split dual sidebar",lib:"Lucide",import:"import { Columns } from 'lucide-react'",usage:"<Columns />",bestFor:"Column layout split",style:"Outline"},
+{id:69,cat:"Layout",name:"maximize",svg:'<path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/>',keywords:"fullscreen expand enlarge zoom",lib:"Lucide",import:"import { Maximize } from 'lucide-react'",usage:"<Maximize />",bestFor:"Fullscreen maximize",style:"Outline"},
+{id:70,cat:"Layout",name:"minimize",svg:'<path d="M8 3v3a2 2 0 0 1-2 2H3"/><path d="M21 8h-3a2 2 0 0 1-2-2V3"/><path d="M3 16h3a2 2 0 0 1 2 2v3"/><path d="M16 21v-3a2 2 0 0 1 2-2h3"/>',keywords:"reduce shrink collapse exit",lib:"Lucide",import:"import { Minimize } from 'lucide-react'",usage:"<Minimize />",bestFor:"Minimize reduce",style:"Outline"},
+{id:71,cat:"Layout",name:"sidebar",svg:'<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="9" x2="9" y1="3" y2="21"/>',keywords:"panel drawer navigation menu",lib:"Lucide",import:"import { Sidebar } from 'lucide-react'",usage:"<Sidebar />",bestFor:"Sidebar panel",style:"Outline"},
+{id:72,cat:"Social",name:"heart",svg:'<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',keywords:"like love favorite wishlist",lib:"Lucide",import:"import { Heart } from 'lucide-react'",usage:"<Heart />",bestFor:"Like favorite love",style:"Outline"},
+{id:73,cat:"Social",name:"star",svg:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',keywords:"rating review favorite bookmark",lib:"Lucide",import:"import { Star } from 'lucide-react'",usage:"<Star />",bestFor:"Star rating favorite",style:"Outline"},
+{id:74,cat:"Social",name:"thumbs-up",svg:'<path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/>',keywords:"like approve agree positive",lib:"Lucide",import:"import { ThumbsUp } from 'lucide-react'",usage:"<ThumbsUp />",bestFor:"Like approve thumb",style:"Outline"},
+{id:75,cat:"Social",name:"thumbs-down",svg:'<path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z"/>',keywords:"dislike disapprove disagree negative",lib:"Lucide",import:"import { ThumbsDown } from 'lucide-react'",usage:"<ThumbsDown />",bestFor:"Dislike disapprove",style:"Outline"},
+{id:76,cat:"Social",name:"bookmark",svg:'<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>',keywords:"save later favorite mark",lib:"Lucide",import:"import { Bookmark } from 'lucide-react'",usage:"<Bookmark />",bestFor:"Bookmark save",style:"Outline"},
+{id:77,cat:"Social",name:"flag",svg:'<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/>',keywords:"report mark important highlight",lib:"Lucide",import:"import { Flag } from 'lucide-react'",usage:"<Flag />",bestFor:"Flag report",style:"Outline"},
+{id:78,cat:"Device",name:"smartphone",svg:'<rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" x2="12.01" y1="18" y2="18"/>',keywords:"mobile phone device touch",lib:"Lucide",import:"import { Smartphone } from 'lucide-react'",usage:"<Smartphone />",bestFor:"Mobile smartphone",style:"Outline"},
+{id:79,cat:"Device",name:"tablet",svg:'<rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><line x1="12" x2="12.01" y1="18" y2="18"/>',keywords:"ipad device touch screen",lib:"Lucide",import:"import { Tablet } from 'lucide-react'",usage:"<Tablet />",bestFor:"Tablet device",style:"Outline"},
+{id:80,cat:"Device",name:"monitor",svg:'<rect width="20" height="14" x="2" y="3" rx="2" ry="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>',keywords:"desktop screen computer display",lib:"Lucide",import:"import { Monitor } from 'lucide-react'",usage:"<Monitor />",bestFor:"Desktop monitor",style:"Outline"},
+{id:81,cat:"Device",name:"laptop",svg:'<path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/>',keywords:"notebook computer portable device",lib:"Lucide",import:"import { Laptop } from 'lucide-react'",usage:"<Laptop />",bestFor:"Laptop computer",style:"Outline"},
+{id:82,cat:"Device",name:"printer",svg:'<polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/>',keywords:"print document output paper",lib:"Lucide",import:"import { Printer } from 'lucide-react'",usage:"<Printer />",bestFor:"Printer print",style:"Outline"},
+{id:83,cat:"Security",name:"lock",svg:'<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',keywords:"secure password protected private",lib:"Lucide",import:"import { Lock } from 'lucide-react'",usage:"<Lock />",bestFor:"Lock secure",style:"Outline"},
+{id:84,cat:"Security",name:"unlock",svg:'<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/>',keywords:"open access unsecure public",lib:"Lucide",import:"import { Unlock } from 'lucide-react'",usage:"<Unlock />",bestFor:"Unlock open",style:"Outline"},
+{id:85,cat:"Security",name:"shield",svg:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',keywords:"protection security safe guard",lib:"Lucide",import:"import { Shield } from 'lucide-react'",usage:"<Shield />",bestFor:"Shield protection",style:"Outline"},
+{id:86,cat:"Security",name:"key",svg:'<path d="m21 2-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 8"/>',keywords:"password access unlock login",lib:"Lucide",import:"import { Key } from 'lucide-react'",usage:"<Key />",bestFor:"Key password",style:"Outline"},
+{id:87,cat:"Security",name:"eye",svg:'<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',keywords:"view show visible password",lib:"Lucide",import:"import { Eye } from 'lucide-react'",usage:"<Eye />",bestFor:"Show password view",style:"Outline"},
+{id:88,cat:"Security",name:"eye-off",svg:'<path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/>',keywords:"hide invisible password hidden",lib:"Lucide",import:"import { EyeOff } from 'lucide-react'",usage:"<EyeOff />",bestFor:"Hide password",style:"Outline"},
+{id:89,cat:"Location",name:"map-pin",svg:'<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',keywords:"location marker place address",lib:"Lucide",import:"import { MapPin } from 'lucide-react'",usage:"<MapPin />",bestFor:"Location pin marker",style:"Outline"},
+{id:90,cat:"Location",name:"map",svg:'<polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" x2="9" y1="3" y2="18"/><line x1="15" x2="15" y1="6" y2="21"/>',keywords:"directions navigate geography location",lib:"Lucide",import:"import { Map } from 'lucide-react'",usage:"<Map />",bestFor:"Map directions",style:"Outline"},
+{id:91,cat:"Location",name:"navigation",svg:'<polygon points="3 11 22 2 13 21 11 13 3 11"/>',keywords:"compass direction pointer arrow",lib:"Lucide",import:"import { Navigation } from 'lucide-react'",usage:"<Navigation />",bestFor:"Navigation compass",style:"Outline"},
+{id:92,cat:"Location",name:"globe",svg:'<circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',keywords:"world international global web",lib:"Lucide",import:"import { Globe } from 'lucide-react'",usage:"<Globe />",bestFor:"Globe world",style:"Outline"},
+{id:93,cat:"Time",name:"calendar",svg:'<rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>',keywords:"date schedule event appointment",lib:"Lucide",import:"import { Calendar } from 'lucide-react'",usage:"<Calendar />",bestFor:"Calendar date",style:"Outline"},
+{id:94,cat:"Time",name:"refresh-cw",svg:'<polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>',keywords:"reload sync update refresh",lib:"Lucide",import:"import { RefreshCw } from 'lucide-react'",usage:"<RefreshCw />",bestFor:"Refresh reload",style:"Outline"},
+{id:95,cat:"Time",name:"rotate-ccw",svg:'<polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>',keywords:"undo back revert history",lib:"Lucide",import:"import { RotateCcw } from 'lucide-react'",usage:"<RotateCcw />",bestFor:"Undo revert",style:"Outline"},
+{id:96,cat:"Time",name:"rotate-cw",svg:'<polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>',keywords:"redo forward repeat history",lib:"Lucide",import:"import { RotateCw } from 'lucide-react'",usage:"<RotateCw />",bestFor:"Redo forward",style:"Outline"},
+{id:97,cat:"Development",name:"code",svg:'<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',keywords:"develop programming syntax html",lib:"Lucide",import:"import { Code } from 'lucide-react'",usage:"<Code />",bestFor:"Code development",style:"Outline"},
+{id:98,cat:"Development",name:"terminal",svg:'<polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/>',keywords:"console cli command shell",lib:"Lucide",import:"import { Terminal } from 'lucide-react'",usage:"<Terminal />",bestFor:"Terminal console",style:"Outline"},
+{id:99,cat:"Development",name:"git-branch",svg:'<line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/>',keywords:"version control branch merge",lib:"Lucide",import:"import { GitBranch } from 'lucide-react'",usage:"<GitBranch />",bestFor:"Git branch",style:"Outline"},
+{id:100,cat:"Development",name:"github",svg:'<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/>',keywords:"repository code open source",lib:"Lucide",import:"import { Github } from 'lucide-react'",usage:"<Github />",bestFor:"GitHub repository",style:"Outline"}
+];
+
+const CATEGORIES = {
+    Navigation: { bg:'rgba(59,130,246,0.15)', border:'rgba(59,130,246,0.3)', text:'#60A5FA' },
+    Action: { bg:'rgba(249,115,22,0.15)', border:'rgba(249,115,22,0.3)', text:'#FB923C' },
+    Status: { bg:'rgba(16,185,129,0.15)', border:'rgba(16,185,129,0.3)', text:'#34D399' },
+    Communication: { bg:'rgba(6,182,212,0.15)', border:'rgba(6,182,212,0.3)', text:'#22D3EE' },
+    User: { bg:'rgba(236,72,153,0.15)', border:'rgba(236,72,153,0.3)', text:'#F472B6' },
+    Media: { bg:'rgba(168,85,247,0.15)', border:'rgba(168,85,247,0.3)', text:'#C084FC' },
+    Commerce: { bg:'rgba(234,179,8,0.15)', border:'rgba(234,179,8,0.3)', text:'#FACC15' },
+    Data: { bg:'rgba(139,92,246,0.15)', border:'rgba(139,92,246,0.3)', text:'#A78BFA' },
+    Files: { bg:'rgba(148,163,184,0.15)', border:'rgba(148,163,184,0.3)', text:'#94A3B8' },
+    Layout: { bg:'rgba(244,63,94,0.15)', border:'rgba(244,63,94,0.3)', text:'#FB7185' },
+    Social: { bg:'rgba(251,113,133,0.15)', border:'rgba(251,113,133,0.3)', text:'#FDA4AF' },
+    Device: { bg:'rgba(20,184,166,0.15)', border:'rgba(20,184,166,0.3)', text:'#2DD4BF' },
+    Security: { bg:'rgba(220,38,38,0.15)', border:'rgba(220,38,38,0.3)', text:'#EF4444' },
+    Location: { bg:'rgba(34,197,94,0.15)', border:'rgba(34,197,94,0.3)', text:'#4ADE80' },
+    Time: { bg:'rgba(245,158,11,0.15)', border:'rgba(245,158,11,0.3)', text:'#FBBF24' },
+    Development: { bg:'rgba(99,102,241,0.15)', border:'rgba(99,102,241,0.3)', text:'#818CF8' }
+};
+
+function escapeHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function renderIcons() {
+    const grid = document.getElementById('grid');
+    grid.innerHTML = icons.map(ic => {
+        const c = CATEGORIES[ic.cat] || CATEGORIES.Navigation;
+        const importEsc = escapeHtml(ic.import);
+        const usageEsc = escapeHtml(ic.usage);
+        const kwTags = ic.keywords.split(' ').map(k => `<span class="px-1.5 py-0.5 text-[9px] rounded bg-white/[0.04] text-gray-600 border border-white/[0.04]">${k}</span>`).join('');
+        const searchData = `${ic.name} ${ic.keywords} ${ic.bestFor} ${ic.cat}`.toLowerCase();
+        return `<div class="icon-card card-glow rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 hover:border-violet-500/30 hover:bg-white/[0.04] transition-all" data-cat="${ic.cat}" data-search="${searchData}">
+            <div class="flex items-center gap-2 mb-3">
+                <span class="px-2 py-0.5 rounded text-[10px] font-semibold" style="background:${c.bg};border:1px solid ${c.border};color:${c.text}">${ic.cat}</span>
+                <span class="text-[10px] text-gray-600 font-mono ml-auto">#${ic.id}</span>
+            </div>
+            <div class="flex justify-center py-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="${c.text}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${ic.svg}</svg>
+            </div>
+            <h3 class="font-heading text-sm font-bold text-white mb-1">${ic.name}</h3>
+            <p class="text-[11px] text-gray-500 mb-2">${ic.bestFor}</p>
+            <div class="space-y-2">
+                <div class="relative">
+                    <pre class="bg-violet-500/[0.05] border border-violet-500/10 rounded-lg p-2 text-[11px] overflow-x-auto"><code class="text-violet-300/90">${importEsc}</code></pre>
+                    <button onclick="copyText(this, '${ic.import.replace(/'/g,"\\'")}')" class="absolute top-1 right-1 p-1 rounded bg-white/5 hover:bg-white/10 text-gray-500 hover:text-white transition-all" title="Copy">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                    </button>
+                </div>
+                <div class="relative">
+                    <pre class="bg-white/[0.03] border border-white/[0.06] rounded-lg p-2 text-[11px] overflow-x-auto"><code class="text-cyan-300/80">${usageEsc}</code></pre>
+                    <button onclick="copyText(this, '${ic.usage.replace(/'/g,"\\'").replace(/"/g,'&quot;')}')" class="absolute top-1 right-1 p-1 rounded bg-white/5 hover:bg-white/10 text-gray-500 hover:text-white transition-all" title="Copy">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-1 mt-2">${kwTags}</div>
+        </div>`;
+    }).join('');
+}
+
+let activeFilter = 'all';
+
+function filterCategory(cat) {
+    activeFilter = cat;
+    document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.f === cat);
+    });
+    applyFilters();
+}
+
+function applyFilters() {
+    const q = document.getElementById('search').value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.icon-card');
+    let n = 0;
+    cards.forEach(c => {
+        const matchCat = activeFilter === 'all' || c.dataset.cat === activeFilter;
+        const matchSearch = !q || c.dataset.search.includes(q);
+        const show = matchCat && matchSearch;
+        c.classList.toggle('hidden-card', !show);
+        if (show) n++;
+    });
+    document.getElementById('count').textContent = n + ' icon' + (n !== 1 ? 's' : '');
+    document.getElementById('empty').classList.toggle('hidden', n > 0);
+}
+
+function copyText(btn, text) {
+    // Decode HTML entities for clipboard
+    const ta = document.createElement('textarea');
+    ta.innerHTML = text;
+    const decoded = ta.value;
+    navigator.clipboard.writeText(decoded).then(() => {
+        const toast = document.getElementById('copyToast');
+        toast.classList.remove('hidden');
+        toast.querySelector('.copy-toast').style.animation = 'none';
+        toast.offsetHeight; // reflow
+        toast.querySelector('.copy-toast').style.animation = '';
+        setTimeout(() => toast.classList.add('hidden'), 1400);
+    });
+}
+
+// Filter buttons
+document.getElementById('filters').addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    filterCategory(btn.dataset.f);
+});
+
+// Search
+document.getElementById('search').addEventListener('input', applyFilters);
+
+// URL param support
+const urlQ = new URLSearchParams(window.location.search).get('q');
+if (urlQ) {
+    document.getElementById('search').value = urlQ;
+}
+
+// Init
+renderIcons();
+if (urlQ) applyFilters();
+</script>
+</body>
+</html>

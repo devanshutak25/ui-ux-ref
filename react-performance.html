@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Performance - UI/UX Pro Max</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Space Grotesk', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #818CF8, #06B6D4, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-blur {
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+        }
+        .card-glow:hover {
+            box-shadow: 0 0 40px rgba(129, 140, 248, 0.15), 0 0 80px rgba(6, 182, 212, 0.08);
+        }
+        .hero-gradient {
+            background: radial-gradient(ellipse at 20% 50%, rgba(129, 140, 248, 0.12) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 80%, rgba(167, 139, 250, 0.06) 0%, transparent 50%);
+        }
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(129, 140, 248, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(129, 140, 248, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        pre code { font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.8rem; }
+        .guideline-card { transition: all 0.3s ease; }
+        .guideline-card:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="bg-[#08090E] text-gray-200 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-[#08090E]/70 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="font-heading font-bold text-xl tracking-tight"><span class="text-white">UI/UX</span><span class="gradient-text"> Pro Max</span></a>
+            <div class="hidden md:flex items-center gap-1">
+                <a href="styles.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Styles</a>
+                <a href="colors.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Colors</a>
+                <a href="typography.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Typography</a>
+                <a href="charts.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Charts</a>
+                <a href="products.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Products</a>
+                <a href="icons.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Icons</a>
+                <div class="relative">
+                    <button onclick="document.getElementById('more-menu').classList.toggle('hidden')" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5 inline-flex items-center gap-1">More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                    <div id="more-menu" class="hidden absolute right-0 top-full mt-2 w-52 bg-[#12131A] border border-white/10 rounded-xl shadow-2xl py-2 z-50">
+                        <a href="stacks.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Stacks</a>
+                        <a href="ux-guidelines.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">UX Guidelines</a>
+                        <a href="patterns.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Patterns</a>
+                        <a href="reasoning.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Reasoning</a>
+                        <a href="react-performance.html" class="block px-4 py-2 text-sm text-white bg-white/10 rounded-lg mx-2">React Perf</a>
+                        <a href="web-interface.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Web Interface</a>
+                    </div>
+                </div>
+            </div>
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 px-6 py-4 space-y-2">
+            <a href="styles.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Styles</a>
+            <a href="colors.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Colors</a>
+            <a href="typography.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Typography</a>
+            <a href="charts.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Charts</a>
+            <a href="products.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Products</a>
+            <a href="icons.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Icons</a>
+            <a href="stacks.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Stacks</a>
+            <a href="ux-guidelines.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">UX Guidelines</a>
+            <a href="patterns.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Patterns</a>
+            <a href="reasoning.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Reasoning</a>
+            <a href="react-performance.html" class="block px-3 py-2 text-sm text-white bg-white/10 rounded-lg">React Perf</a>
+            <a href="web-interface.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Web Interface</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative hero-gradient grid-bg pt-28 pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium mb-6">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                44 React Performance Guidelines
+            </div>
+            <h1 class="font-heading text-4xl md:text-6xl font-bold tracking-tight mb-4">
+                <span class="text-white">React </span><span class="gradient-text">Performance</span>
+            </h1>
+            <p class="text-gray-400 text-lg max-w-2xl mb-8">Every React/Next.js performance optimization -- from async waterfalls to bundle splitting, server components to client-side caching. With Do/Don't code examples.</p>
+
+            <!-- Stats -->
+            <div class="flex flex-wrap gap-4 mb-8">
+                <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10">
+                    <span class="text-2xl font-bold text-white font-heading" id="total-count">44</span>
+                    <span class="text-gray-400 text-sm ml-2">Guidelines</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10">
+                    <span class="text-2xl font-bold text-white font-heading">8</span>
+                    <span class="text-gray-400 text-sm ml-2">Categories</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-red-500/10 border border-red-500/20">
+                    <span class="text-2xl font-bold text-red-400 font-heading" id="critical-count">0</span>
+                    <span class="text-gray-400 text-sm ml-2">Critical</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-red-400/10 border border-red-400/20">
+                    <span class="text-2xl font-bold text-red-300 font-heading" id="high-count">0</span>
+                    <span class="text-gray-400 text-sm ml-2">High</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                    <span class="text-2xl font-bold text-amber-400 font-heading" id="med-count">0</span>
+                    <span class="text-gray-400 text-sm ml-2">Medium</span>
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-green-500/10 border border-green-500/20">
+                    <span class="text-2xl font-bold text-green-400 font-heading" id="low-count">0</span>
+                    <span class="text-gray-400 text-sm ml-2">Low</span>
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="relative max-w-xl mb-6">
+                <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" id="search-input" placeholder="Search guidelines..." class="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/30 transition-all">
+            </div>
+
+            <!-- Severity Filter -->
+            <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-sm text-gray-500 mr-2 self-center">Severity:</span>
+                <button onclick="toggleSeverity('all')" data-sev="all" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/10 text-white border border-white/20 transition-all">All</button>
+                <button onclick="toggleSeverity('Critical')" data-sev="Critical" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-red-500/30 transition-all">Critical</button>
+                <button onclick="toggleSeverity('High')" data-sev="High" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-red-500/30 transition-all">High</button>
+                <button onclick="toggleSeverity('Medium')" data-sev="Medium" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-amber-500/30 transition-all">Medium</button>
+                <button onclick="toggleSeverity('Low')" data-sev="Low" class="sev-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-green-500/30 transition-all">Low</button>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="flex flex-wrap gap-2">
+                <button onclick="filterCategory('all')" data-cat="all" id="cat-all-btn" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 transition-all">All</button>
+                <button onclick="filterCategory('Async Waterfall')" data-cat="Async Waterfall" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-cyan-500/30 transition-all">Async Waterfall</button>
+                <button onclick="filterCategory('Bundle Size')" data-cat="Bundle Size" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-purple-500/30 transition-all">Bundle Size</button>
+                <button onclick="filterCategory('Server')" data-cat="Server" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-blue-500/30 transition-all">Server</button>
+                <button onclick="filterCategory('Client')" data-cat="Client" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-orange-500/30 transition-all">Client</button>
+                <button onclick="filterCategory('Rerender')" data-cat="Rerender" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-pink-500/30 transition-all">Rerender</button>
+                <button onclick="filterCategory('Rendering')" data-cat="Rendering" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-emerald-500/30 transition-all">Rendering</button>
+                <button onclick="filterCategory('JS Perf')" data-cat="JS Perf" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-yellow-500/30 transition-all">JS Perf</button>
+                <button onclick="filterCategory('Advanced')" data-cat="Advanced" class="cat-btn px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 hover:border-violet-500/30 transition-all">Advanced</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guidelines Grid -->
+    <section class="max-w-7xl mx-auto px-6 py-12">
+        <div class="text-sm text-gray-500 mb-6"><span id="visible-count">--</span> guidelines shown</div>
+        <div id="guidelines-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Cards rendered by JS -->
+        </div>
+        <div id="no-results" class="hidden text-center py-20">
+            <svg class="w-16 h-16 mx-auto text-gray-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <p class="text-gray-500 text-lg">No guidelines match your filters.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="font-heading font-bold text-lg"><span class="text-white">UI/UX</span><span class="gradient-text"> Pro Max</span></div>
+                <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
+                    <a href="styles.html" class="hover:text-white transition-colors">Styles</a>
+                    <a href="colors.html" class="hover:text-white transition-colors">Colors</a>
+                    <a href="typography.html" class="hover:text-white transition-colors">Typography</a>
+                    <a href="charts.html" class="hover:text-white transition-colors">Charts</a>
+                    <a href="products.html" class="hover:text-white transition-colors">Products</a>
+                    <a href="icons.html" class="hover:text-white transition-colors">Icons</a>
+                    <a href="stacks.html" class="hover:text-white transition-colors">Stacks</a>
+                    <a href="ux-guidelines.html" class="hover:text-white transition-colors">UX Guidelines</a>
+                    <a href="patterns.html" class="hover:text-white transition-colors">Patterns</a>
+                    <a href="reasoning.html" class="hover:text-white transition-colors">Reasoning</a>
+                    <a href="react-performance.html" class="hover:text-white transition-colors">React Perf</a>
+                    <a href="web-interface.html" class="hover:text-white transition-colors">Web Interface</a>
+                </div>
+                <div class="text-sm text-gray-600">Design Intelligence System</div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+const CATEGORIES = {
+    'Async Waterfall': { bg: 'rgba(6,182,212,0.15)', border: 'rgba(6,182,212,0.3)', text: '#22D3EE' },
+    'Bundle Size': { bg: 'rgba(168,85,247,0.15)', border: 'rgba(168,85,247,0.3)', text: '#C084FC' },
+    'Server': { bg: 'rgba(59,130,246,0.15)', border: 'rgba(59,130,246,0.3)', text: '#60A5FA' },
+    'Client': { bg: 'rgba(249,115,22,0.15)', border: 'rgba(249,115,22,0.3)', text: '#FB923C' },
+    'Rerender': { bg: 'rgba(236,72,153,0.15)', border: 'rgba(236,72,153,0.3)', text: '#F472B6' },
+    'Rendering': { bg: 'rgba(16,185,129,0.15)', border: 'rgba(16,185,129,0.3)', text: '#34D399' },
+    'JS Perf': { bg: 'rgba(234,179,8,0.15)', border: 'rgba(234,179,8,0.3)', text: '#FACC15' },
+    'Advanced': { bg: 'rgba(139,92,246,0.15)', border: 'rgba(139,92,246,0.3)', text: '#A78BFA' }
+};
+
+const SEVERITY = {
+    Critical: { bg: 'rgba(220,38,38,0.15)', border: 'rgba(220,38,38,0.3)', text: '#EF4444' },
+    High: { bg: 'rgba(239,68,68,0.15)', border: 'rgba(239,68,68,0.3)', text: '#F87171' },
+    Medium: { bg: 'rgba(245,158,11,0.15)', border: 'rgba(245,158,11,0.3)', text: '#FBBF24' },
+    Low: { bg: 'rgba(34,197,94,0.15)', border: 'rgba(34,197,94,0.3)', text: '#4ADE80' }
+};
+
+const PLATFORM_COLORS = {
+    'React/Next.js': { bg: 'rgba(6,182,212,0.15)', border: 'rgba(6,182,212,0.3)', text: '#22D3EE' }
+};
+
+const guidelines = [
+{id:1,cat:"Async Waterfall",name:"Defer Await",keywords:"async await defer branch",platform:"React/Next.js",severity:"Critical",desc:"Move await into branches where actually used to avoid blocking unused code paths.",doCode:`if (skip) return { skipped: true };\nconst data = await fetch();`,dontCode:`const data = await fetch();\nif (skip) return { skipped: true }`},
+{id:2,cat:"Async Waterfall",name:"Promise.all Parallel",keywords:"promise all parallel concurrent",platform:"React/Next.js",severity:"Critical",desc:"Execute independent async operations concurrently using Promise.all().",doCode:`const [user, posts] = await Promise.all([\n  fetchUser(),\n  fetchPosts()\n]);`,dontCode:`const user = await fetchUser();\nconst posts = await fetchPosts();`},
+{id:3,cat:"Async Waterfall",name:"Dependency Parallelization",keywords:"better-all dependency parallel",platform:"React/Next.js",severity:"Critical",desc:"Use better-all for operations with partial dependencies to maximize parallelism.",doCode:`await all({\n  user() {},\n  config() {},\n  profile() {\n    return fetch((await this.$.user).id)\n  }\n})`,dontCode:`const [user, config] = await Promise.all([...]);\nconst profile = await fetchProfile(user.id);`},
+{id:4,cat:"Async Waterfall",name:"API Route Optimization",keywords:"api route waterfall promise",platform:"React/Next.js",severity:"Critical",desc:"In API routes start independent operations immediately even if not awaited yet.",doCode:`const sessionP = auth();\nconst configP = fetchConfig();\nconst session = await sessionP;`,dontCode:`const session = await auth();\nconst config = await fetchConfig();`},
+{id:5,cat:"Async Waterfall",name:"Suspense Boundaries",keywords:"suspense streaming boundary",platform:"React/Next.js",severity:"High",desc:"Use Suspense to show wrapper UI faster while data loads.",doCode:`<Suspense fallback={<Skeleton />}>\n  <DataDisplay />\n</Suspense>`,dontCode:`const data = await fetchData();\nreturn <DataDisplay data={data} />`},
+{id:6,cat:"Bundle Size",name:"Barrel Imports",keywords:"barrel import direct path",platform:"React/Next.js",severity:"Critical",desc:"Import directly from source files instead of barrel files to avoid loading unused modules.",doCode:`import Check from\n  'lucide-react/dist/esm/icons/check'`,dontCode:`import { Check } from 'lucide-react'`},
+{id:7,cat:"Bundle Size",name:"Dynamic Imports",keywords:"dynamic import lazy next",platform:"React/Next.js",severity:"Critical",desc:"Use next/dynamic to lazy-load large components not needed on initial render.",doCode:`const Monaco = dynamic(\n  () => import('./monaco'),\n  { ssr: false }\n)`,dontCode:`import { MonacoEditor }\n  from './monaco-editor'`},
+{id:8,cat:"Bundle Size",name:"Defer Third Party",keywords:"analytics defer third-party",platform:"React/Next.js",severity:"Medium",desc:"Load analytics and logging after hydration since they don't block interaction.",doCode:`const Analytics = dynamic(\n  () => import('@vercel/analytics'),\n  { ssr: false }\n)`,dontCode:`import { Analytics }\n  from '@vercel/analytics/react'`},
+{id:9,cat:"Bundle Size",name:"Conditional Loading",keywords:"conditional module lazy",platform:"React/Next.js",severity:"High",desc:"Load large data or modules only when a feature is activated.",doCode:`useEffect(() => {\n  if (enabled) import('./heavy.js')\n}, [enabled])`,dontCode:`import { heavyData } from './heavy.js'`},
+{id:10,cat:"Bundle Size",name:"Preload Intent",keywords:"preload hover focus intent",platform:"React/Next.js",severity:"Medium",desc:"Preload heavy bundles on hover/focus before they're needed.",doCode:`onMouseEnter={\n  () => import('./editor')\n}`,dontCode:`onClick={\n  () => import('./editor')\n}`},
+{id:11,cat:"Server",name:"React.cache Dedup",keywords:"react cache deduplicate request",platform:"React/Next.js",severity:"Medium",desc:"Use React.cache() for server-side request deduplication within single request.",doCode:`export const getUser = cache(\n  async () => await db.user.find()\n)`,dontCode:`export async function getUser() {\n  return await db.user.find()\n}`},
+{id:12,cat:"Server",name:"LRU Cache Cross-Request",keywords:"lru cache cross request",platform:"React/Next.js",severity:"High",desc:"Use LRU cache for data shared across sequential requests.",doCode:`const cache = new LRUCache({\n  max: 1000, ttl: 5*60*1000\n})`,dontCode:`// Always fetch from database`},
+{id:13,cat:"Server",name:"Minimize Serialization",keywords:"serialization rsc boundary",platform:"React/Next.js",severity:"High",desc:"Only pass fields that client actually uses across RSC boundaries.",doCode:`<Profile name={user.name} />`,dontCode:`<Profile user={user} />\n// 50 fields serialized`},
+{id:14,cat:"Server",name:"Parallel Fetching",keywords:"parallel fetch component composition",platform:"React/Next.js",severity:"Critical",desc:"Restructure components to parallelize data fetching in RSC.",doCode:`<Header />\n<Sidebar />\n// both fetch in parallel`,dontCode:`const header = await fetchHeader();\nreturn <><div>{header}</div>\n  <Sidebar /></>`},
+{id:15,cat:"Server",name:"After Non-blocking",keywords:"after non-blocking logging",platform:"React/Next.js",severity:"Medium",desc:"Use Next.js after() to schedule work after response is sent.",doCode:`after(async () => {\n  await logAction()\n});\nreturn Response.json(data)`,dontCode:`await logAction();\nreturn Response.json(data)`},
+{id:16,cat:"Client",name:"SWR Deduplication",keywords:"swr dedup cache revalidate",platform:"React/Next.js",severity:"Medium",desc:"Use SWR for automatic request deduplication and caching.",doCode:`const { data } = useSWR(\n  '/api/users', fetcher\n)`,dontCode:`useEffect(() => {\n  fetch('/api/users').then(setUsers)\n}, [])`},
+{id:17,cat:"Client",name:"Event Listener Dedup",keywords:"event listener deduplicate global",platform:"React/Next.js",severity:"Low",desc:"Share global event listeners across component instances.",doCode:`useSWRSubscription(\n  'global-keydown',\n  () => { window.addEventListener... }\n)`,dontCode:`useEffect(() => {\n  window.addEventListener(\n    'keydown', handler\n  )\n}, [])`},
+{id:18,cat:"Rerender",name:"Defer State Reads",keywords:"state read callback subscription",platform:"React/Next.js",severity:"Medium",desc:"Don't subscribe to state only used in callbacks.",doCode:`const handleClick = () => {\n  const params = new URLSearchParams(\n    location.search\n  )\n}`,dontCode:`const params = useSearchParams();\nconst handleClick = () => {\n  params.get('ref')\n}`},
+{id:19,cat:"Rerender",name:"Memoized Components",keywords:"memo extract expensive",platform:"React/Next.js",severity:"Medium",desc:"Extract expensive work into memoized components for early returns.",doCode:`const UserAvatar = memo(\n  ({ user }) => ...\n);\nif (loading) return <Skeleton />`,dontCode:`const avatar = useMemo(\n  () => compute(user)\n);\nif (loading) return <Skeleton />`},
+{id:20,cat:"Rerender",name:"Narrow Dependencies",keywords:"effect dependency primitive",platform:"React/Next.js",severity:"Low",desc:"Specify primitive dependencies instead of objects in effects.",doCode:`useEffect(() => {\n  console.log(user.id)\n}, [user.id])`,dontCode:`useEffect(() => {\n  console.log(user.id)\n}, [user])`},
+{id:21,cat:"Rerender",name:"Derived State",keywords:"derived boolean subscription",platform:"React/Next.js",severity:"Medium",desc:"Subscribe to derived booleans instead of continuous values.",doCode:`const isMobile = useMediaQuery(\n  '(max-width: 767px)'\n)`,dontCode:`const width = useWindowWidth();\nconst isMobile = width < 768`},
+{id:22,cat:"Rerender",name:"Functional setState",keywords:"functional setstate callback",platform:"React/Next.js",severity:"Medium",desc:"Use functional setState updates for stable callbacks and no stale closures.",doCode:`setItems(\n  curr => [...curr, newItem]\n)`,dontCode:`setItems([...items, newItem])\n// items in deps`},
+{id:23,cat:"Rerender",name:"Lazy State Init",keywords:"usestate lazy initialization",platform:"React/Next.js",severity:"Medium",desc:"Pass function to useState for expensive initial values.",doCode:`useState(\n  () => buildSearchIndex(items)\n)`,dontCode:`useState(\n  buildSearchIndex(items)\n)\n// runs every render`},
+{id:24,cat:"Rerender",name:"Transitions",keywords:"starttransition non-urgent",platform:"React/Next.js",severity:"Medium",desc:"Mark frequent non-urgent state updates as transitions.",doCode:`startTransition(() =>\n  setScrollY(window.scrollY)\n)`,dontCode:`setScrollY(window.scrollY)\n// blocks on every scroll`},
+{id:25,cat:"Rendering",name:"SVG Animation Wrapper",keywords:"svg animation wrapper div",platform:"React/Next.js",severity:"Low",desc:"Wrap SVG in div and animate wrapper for hardware acceleration.",doCode:`<div class='animate-spin'>\n  <svg>...</svg>\n</div>`,dontCode:`<svg class='animate-spin'>\n  ...</svg>`},
+{id:26,cat:"Rendering",name:"Content Visibility",keywords:"content-visibility auto",platform:"React/Next.js",severity:"High",desc:"Apply content-visibility: auto to defer off-screen rendering.",doCode:`.item {\n  content-visibility: auto;\n  contain-intrinsic-size: 0 80px;\n}`,dontCode:`// Render 1000 items\n// without optimization`},
+{id:27,cat:"Rendering",name:"Hoist Static JSX",keywords:"hoist static jsx element",platform:"React/Next.js",severity:"Low",desc:"Extract static JSX outside components to avoid re-creation.",doCode:`const skeleton =\n  <div class='animate-pulse' />;\nfunction C() {\n  return skeleton\n}`,dontCode:`function C() {\n  return <div class='animate-pulse' />\n}`},
+{id:28,cat:"Rendering",name:"Hydration No Flicker",keywords:"hydration mismatch flicker",platform:"React/Next.js",severity:"Medium",desc:"Use inline script to set client-only data before hydration.",doCode:`<script dangerouslySetInnerHTML={\n  { __html:\n    'el.className = localStorage.theme'\n  }\n} />`,dontCode:`useEffect(() =>\n  setTheme(localStorage.theme), []\n)\n// flickers`},
+{id:29,cat:"Rendering",name:"Conditional Render",keywords:"conditional render ternary",platform:"React/Next.js",severity:"Low",desc:"Use ternary instead of && when condition can be 0 or NaN.",doCode:`{count > 0\n  ? <Badge>{count}</Badge>\n  : null}`,dontCode:`{count && <Badge>{count}</Badge>}\n// renders '0'`},
+{id:30,cat:"Rendering",name:"Activity Component",keywords:"activity show hide preserve",platform:"React/Next.js",severity:"Medium",desc:"Use Activity component to preserve state/DOM for toggled components.",doCode:`<Activity mode={\n  isOpen ? 'visible' : 'hidden'\n}>\n  <Menu />\n</Activity>`,dontCode:`{isOpen && <Menu />}\n// loses state`},
+{id:31,cat:"JS Perf",name:"Batch DOM CSS",keywords:"batch dom css reflow",platform:"React/Next.js",severity:"Medium",desc:"Group CSS changes via classes or cssText to minimize reflows.",doCode:`element.classList.add('highlighted')`,dontCode:`el.style.width='100px';\nel.style.height='200px';`},
+{id:32,cat:"JS Perf",name:"Index Map Lookup",keywords:"map index lookup find",platform:"React/Next.js",severity:"Low",desc:"Build Map for repeated lookups instead of multiple .find() calls.",doCode:`const byId = new Map(\n  users.map(u => [u.id, u])\n);\nbyId.get(id)`,dontCode:`users.find(\n  u => u.id === order.userId\n)\n// O(n) each time`},
+{id:33,cat:"JS Perf",name:"Cache Property Access",keywords:"cache property loop",platform:"React/Next.js",severity:"Low",desc:"Cache object property lookups in hot paths.",doCode:`const val =\n  obj.config.settings.value;\nfor (...) process(val)`,dontCode:`for (...)\n  process(obj.config.settings.value)`},
+{id:34,cat:"JS Perf",name:"Cache Function Results",keywords:"memoize cache function",platform:"React/Next.js",severity:"Medium",desc:"Use module-level Map to cache repeated function results.",doCode:`const cache = new Map();\nif (cache.has(x))\n  return cache.get(x)`,dontCode:`slugify(name)\n// called 100 times same input`},
+{id:35,cat:"JS Perf",name:"Cache Storage API",keywords:"localstorage cache read",platform:"React/Next.js",severity:"Low",desc:"Cache localStorage/sessionStorage reads in memory.",doCode:`if (!cache.has(key))\n  cache.set(key,\n    localStorage.getItem(key)\n  )`,dontCode:`localStorage.getItem('theme')\n// every call`},
+{id:36,cat:"JS Perf",name:"Combine Iterations",keywords:"combine filter map loop",platform:"React/Next.js",severity:"Low",desc:"Combine multiple filter/map into single loop.",doCode:`for (u of users) {\n  if (u.isAdmin) admins.push(u);\n  if (u.isTester) testers.push(u);\n}`,dontCode:`users.filter(admin);\nusers.filter(tester);\nusers.filter(inactive);`},
+{id:37,cat:"JS Perf",name:"Length Check First",keywords:"length check array compare",platform:"React/Next.js",severity:"Medium",desc:"Check array lengths before expensive comparisons.",doCode:`if (a.length !== b.length)\n  return true;\n// then compare`,dontCode:`a.sort().join() !== b.sort().join()\n// even when lengths differ`},
+{id:38,cat:"JS Perf",name:"Early Return",keywords:"early return exit function",platform:"React/Next.js",severity:"Low",desc:"Return early when result is determined to skip processing.",doCode:`for (u of users) {\n  if (!u.email)\n    return { error: 'Email required' }\n}`,dontCode:`let hasError;\nfor (...) {\n  if (!email) hasError=true\n};\nif (hasError)...`},
+{id:39,cat:"JS Perf",name:"Hoist RegExp",keywords:"regexp hoist module",platform:"React/Next.js",severity:"Low",desc:"Don't create RegExp inside render - hoist or memoize.",doCode:`const EMAIL_RE = /^[^@]+@[^@]+$/;\nfunction validate() {\n  EMAIL_RE.test(x)\n}`,dontCode:`function C() {\n  const re = new RegExp(pattern);\n  re.test(x)\n}`},
+{id:40,cat:"JS Perf",name:"Loop Min Max",keywords:"loop min max sort",platform:"React/Next.js",severity:"Low",desc:"Use loop for min/max instead of sort - O(n) vs O(n log n).",doCode:`let max = arr[0];\nfor (x of arr)\n  if (x > max) max = x`,dontCode:`arr.sort((a,b) => b-a)[0]\n// O(n log n)`},
+{id:41,cat:"JS Perf",name:"Set Map Lookups",keywords:"set map includes has",platform:"React/Next.js",severity:"Low",desc:"Use Set/Map for O(1) lookups instead of array.includes().",doCode:`const allowed = new Set(\n  ['a','b']\n);\nallowed.has(id)`,dontCode:`const allowed = ['a','b'];\nallowed.includes(id)`},
+{id:42,cat:"JS Perf",name:"toSorted Immutable",keywords:"tosorted sort immutable",platform:"React/Next.js",severity:"Medium",desc:"Use toSorted() instead of sort() to avoid mutating arrays.",doCode:`users.toSorted((a,b) =>\n  a.name.localeCompare(b.name)\n)`,dontCode:`users.sort((a,b) =>\n  a.name.localeCompare(b.name)\n)\n// mutates`},
+{id:43,cat:"Advanced",name:"Event Handler Refs",keywords:"useeffectevent ref handler",platform:"React/Next.js",severity:"Low",desc:"Store callbacks in refs for stable effect subscriptions.",doCode:`const onEvent = useEffectEvent(handler);\nuseEffect(() => {\n  listen(onEvent)\n}, [])`,dontCode:`useEffect(() => {\n  listen(handler)\n}, [handler])\n// re-subscribes`},
+{id:44,cat:"Advanced",name:"useLatest Hook",keywords:"uselatest ref callback",platform:"React/Next.js",severity:"Low",desc:"Access latest values in callbacks without adding to dependency arrays.",doCode:`const cbRef = useLatest(cb);\nuseEffect(() => {\n  setTimeout(\n    () => cbRef.current()\n  )\n}, [])`,dontCode:`useEffect(() => {\n  setTimeout(() => cb())\n}, [cb])\n// re-runs`}
+];
+
+let activeCategory = 'all';
+let activeSeverity = 'all';
+let searchQuery = '';
+
+function escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderGuidelines() {
+    const filtered = guidelines.filter(g => {
+        const matchCat = activeCategory === 'all' || g.cat === activeCategory;
+        const matchSev = activeSeverity === 'all' || g.severity === activeSeverity;
+        const matchSearch = !searchQuery ||
+            g.name.toLowerCase().includes(searchQuery) ||
+            g.desc.toLowerCase().includes(searchQuery) ||
+            g.cat.toLowerCase().includes(searchQuery) ||
+            g.keywords.toLowerCase().includes(searchQuery) ||
+            String(g.id).includes(searchQuery);
+        return matchCat && matchSev && matchSearch;
+    });
+
+    const grid = document.getElementById('guidelines-grid');
+    const noResults = document.getElementById('no-results');
+
+    if (filtered.length === 0) {
+        grid.innerHTML = '';
+        noResults.classList.remove('hidden');
+        document.getElementById('visible-count').textContent = '0';
+        return;
+    }
+
+    noResults.classList.add('hidden');
+    document.getElementById('visible-count').textContent = filtered.length;
+
+    grid.innerHTML = filtered.map(g => {
+        const cat = CATEGORIES[g.cat] || { bg: 'rgba(148,163,184,0.12)', border: 'rgba(148,163,184,0.25)', text: '#94A3B8' };
+        const sev = SEVERITY[g.severity] || SEVERITY.Medium;
+        const plat = PLATFORM_COLORS[g.platform] || PLATFORM_COLORS['React/Next.js'];
+
+        return `<div class="guideline-card bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 card-glow">
+            <div class="flex items-start justify-between mb-3">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="px-2.5 py-1 text-xs font-medium rounded-lg" style="background:${cat.bg};border:1px solid ${cat.border};color:${cat.text}">${g.cat}</span>
+                    <span class="px-2.5 py-1 text-xs font-medium rounded-lg" style="background:${plat.bg};border:1px solid ${plat.border};color:${plat.text}">${g.platform}</span>
+                    <span class="px-2.5 py-1 text-xs font-medium rounded-lg" style="background:${sev.bg};border:1px solid ${sev.border};color:${sev.text}">${g.severity}</span>
+                </div>
+                <span class="text-xs text-gray-600 font-mono">#${g.id}</span>
+            </div>
+            <h3 class="font-heading font-semibold text-white text-lg mb-2">${g.name}</h3>
+            <p class="text-gray-400 text-sm mb-4 leading-relaxed">${g.desc}</p>
+            <div class="space-y-3">
+                <button onclick="this.nextElementSibling.classList.toggle('hidden');this.querySelector('span').textContent=this.nextElementSibling.classList.contains('hidden')?'Show':'Hide'" class="flex items-center gap-2 text-xs font-medium text-green-400 hover:text-green-300 transition-colors cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    <span>Show</span> Do
+                </button>
+                <div class="hidden rounded-xl bg-green-500/5 border border-green-500/10 p-4 overflow-x-auto">
+                    <pre><code class="text-green-300 whitespace-pre">${escapeHtml(g.doCode)}</code></pre>
+                </div>
+                <button onclick="this.nextElementSibling.classList.toggle('hidden');this.querySelector('span').textContent=this.nextElementSibling.classList.contains('hidden')?'Show':'Hide'" class="flex items-center gap-2 text-xs font-medium text-red-400 hover:text-red-300 transition-colors cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    <span>Show</span> Don't
+                </button>
+                <div class="hidden rounded-xl bg-red-500/5 border border-red-500/10 p-4 overflow-x-auto">
+                    <pre><code class="text-red-300 whitespace-pre">${escapeHtml(g.dontCode)}</code></pre>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function filterCategory(cat) {
+    activeCategory = cat;
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+        const isActive = btn.dataset.cat === cat;
+        btn.className = `cat-btn px-3 py-1.5 text-xs font-medium rounded-lg transition-all ${isActive ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30' : 'bg-white/5 text-gray-400 border border-white/10 hover:border-cyan-500/30'}`;
+    });
+    renderGuidelines();
+}
+
+function toggleSeverity(sev) {
+    activeSeverity = sev;
+    document.querySelectorAll('.sev-btn').forEach(btn => {
+        const isActive = btn.dataset.sev === sev;
+        btn.className = `sev-btn px-3 py-1.5 text-xs font-medium rounded-lg transition-all ${isActive ? 'bg-white/10 text-white border border-white/20' : 'bg-white/5 text-gray-400 border border-white/10'}`;
+    });
+    renderGuidelines();
+}
+
+document.getElementById('search-input').addEventListener('input', (e) => {
+    searchQuery = e.target.value.toLowerCase();
+    renderGuidelines();
+});
+
+// Count severities
+document.getElementById('critical-count').textContent = guidelines.filter(g => g.severity === 'Critical').length;
+document.getElementById('high-count').textContent = guidelines.filter(g => g.severity === 'High').length;
+document.getElementById('med-count').textContent = guidelines.filter(g => g.severity === 'Medium').length;
+document.getElementById('low-count').textContent = guidelines.filter(g => g.severity === 'Low').length;
+
+// URL param support
+const urlParams = new URLSearchParams(window.location.search);
+const qParam = urlParams.get('q');
+if (qParam) {
+    document.getElementById('search-input').value = qParam;
+    searchQuery = qParam.toLowerCase();
+    renderGuidelines();
+} else {
+    renderGuidelines();
+}
+</script>
+<script>document.addEventListener('click',e=>{if(!e.target.closest('#more-menu')&&!e.target.closest('[onclick*="more-menu"]')){document.getElementById('more-menu')?.classList.add('hidden')}})</script>
+</body>
+</html>

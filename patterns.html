@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Patterns - UI/UX Pro Max</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1,h2,h3,h4,h5,h6,.font-heading { font-family: 'Space Grotesk', sans-serif; }
+        .gradient-text { background: linear-gradient(135deg, #818CF8, #06B6D4, #A78BFA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .card-glow:hover { box-shadow: 0 0 40px rgba(129,140,248,0.15), 0 0 80px rgba(6,182,212,0.08); }
+        .hero-gradient { background: radial-gradient(ellipse at 20% 50%, rgba(129,140,248,0.12) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(6,182,212,0.08) 0%, transparent 50%), radial-gradient(ellipse at 50% 80%, rgba(167,139,250,0.06) 0%, transparent 50%); }
+        .nav-blur { backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); }
+        .grid-bg { background-image: linear-gradient(rgba(129,140,248,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(129,140,248,0.04) 1px, transparent 1px); background-size: 60px 60px; }
+
+        .wireframe-block { transition: all 0.2s ease; position: relative; display: flex; align-items: center; justify-content: center; }
+        .wireframe-block:hover { filter: brightness(1.3); transform: scaleX(1.02); z-index: 2; }
+
+        .pattern-card { transition: all 0.3s ease; }
+        .pattern-card:hover { transform: translateY(-4px); }
+
+        .pattern-details { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .pattern-details.open { max-height: 2000px; }
+
+        .tag { font-size: 0.6rem; padding: 2px 8px; border-radius: 9999px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+        .info-dot { width: 7px; height: 7px; border-radius: 2px; display: inline-block; flex-shrink: 0; margin-top: 6px; }
+
+        .phone-frame {
+            background: #111218;
+            border-radius: 14px;
+            border: 2px solid rgba(255,255,255,0.08);
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .phone-notch {
+            width: 40%;
+            height: 6px;
+            background: #08090E;
+            border-radius: 0 0 6px 6px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .phone-screen {
+            padding: 2px;
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .filter-btn.active {
+            background: rgba(129,140,248,0.2) !important;
+            color: rgb(165,180,252) !important;
+            border-color: rgba(129,140,248,0.3) !important;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-card { animation: fadeInUp 0.4s ease forwards; opacity: 0; }
+
+        /* Industry Mapping badges */
+        .industry-badge {
+            display: inline-block;
+            font-size: 0.6rem;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            background: rgba(249,115,22,0.12);
+            border: 1px solid rgba(249,115,22,0.25);
+            color: #FB923C;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .industry-badge:hover {
+            background: rgba(249,115,22,0.25);
+            border-color: rgba(249,115,22,0.5);
+            color: #FDBA74;
+            transform: translateY(-1px);
+        }
+
+        /* Expandable sub-panels */
+        .sub-panel { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1); }
+        .sub-panel.open { max-height: 1200px; }
+
+        .sub-panel-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            padding: 6px 10px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            color: #9CA3AF;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .sub-panel-toggle:hover { background: rgba(255,255,255,0.06); color: #E5E7EB; }
+        .sub-panel-toggle svg { transition: transform 0.3s ease; width: 12px; height: 12px; flex-shrink: 0; }
+        .sub-panel-toggle.active svg { transform: rotate(180deg); }
+
+        /* Section breakdown rows */
+        .section-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            transition: background 0.2s ease;
+        }
+        .section-row:hover { background: rgba(255,255,255,0.04); }
+        .section-num {
+            width: 20px; height: 20px; border-radius: 5px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.6rem; font-weight: 700; flex-shrink: 0;
+            background: rgba(129,140,248,0.15); color: #818CF8;
+        }
+
+        /* A/B Testing rows */
+        .ab-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+        .ab-priority {
+            width: 20px; height: 20px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.6rem; font-weight: 700; flex-shrink: 0;
+        }
+        .ab-priority-1 { background: rgba(239,68,68,0.2); color: #F87171; }
+        .ab-priority-2 { background: rgba(234,179,8,0.2); color: #FACC15; }
+        .ab-priority-3 { background: rgba(34,197,94,0.2); color: #4ADE80; }
+        .impact-badge {
+            font-size: 0.55rem; padding: 1px 6px; border-radius: 9999px;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+            display: inline-block;
+        }
+        .impact-high { background: rgba(239,68,68,0.15); color: #F87171; border: 1px solid rgba(239,68,68,0.25); }
+        .impact-medium { background: rgba(234,179,8,0.15); color: #FACC15; border: 1px solid rgba(234,179,8,0.25); }
+        .impact-low { background: rgba(34,197,94,0.15); color: #4ADE80; border: 1px solid rgba(34,197,94,0.25); }
+
+        /* Wireframe view toggle */
+        .wf-toggle-btn {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 3px 8px; border-radius: 6px;
+            font-size: 0.6rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.04em; cursor: pointer; transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .wf-toggle-btn.active { background: rgba(129,140,248,0.2); color: #A5B4FC; border-color: rgba(129,140,248,0.3); }
+        .wf-toggle-btn:not(.active) { background: rgba(255,255,255,0.03); color: #6B7280; }
+        .wf-toggle-btn:hover { border-color: rgba(129,140,248,0.4); }
+
+        /* Desktop wireframe */
+        .desktop-wireframe {
+            background: #111218;
+            border-radius: 8px;
+            border: 2px solid rgba(255,255,255,0.08);
+            overflow: hidden;
+            padding: 0;
+        }
+        .desktop-toolbar {
+            display: flex; align-items: center; gap: 4px;
+            padding: 4px 8px;
+            background: rgba(255,255,255,0.04);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .desktop-dot { width: 5px; height: 5px; border-radius: 50%; }
+        .desktop-screen {
+            padding: 3px;
+            display: flex; flex-direction: column; gap: 2px;
+        }
+        .desktop-block {
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 3px;
+            transition: all 0.2s ease;
+        }
+        .desktop-block:hover { filter: brightness(1.3); z-index: 2; }
+
+        .wf-view { display: none; }
+        .wf-view.active { display: block; }
+    </style>
+</head>
+<body class="bg-[#08090E] text-gray-200 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-[#08090E]/70 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="font-heading font-bold text-xl tracking-tight">
+                <span class="text-white">UI/UX</span><span class="gradient-text"> Pro Max</span>
+            </a>
+            <div class="hidden md:flex items-center gap-1">
+                <a href="styles.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Styles</a>
+                <a href="colors.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Colors</a>
+                <a href="typography.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Typography</a>
+                <a href="charts.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Charts</a>
+                <a href="products.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Products</a>
+                <a href="icons.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Icons</a>
+                <div class="relative">
+                    <button onclick="document.getElementById('more-menu').classList.toggle('hidden')" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5 inline-flex items-center gap-1">More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                    <div id="more-menu" class="hidden absolute right-0 top-full mt-2 w-52 bg-[#12131A] border border-white/10 rounded-xl shadow-2xl py-2 z-50">
+                        <a href="stacks.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Stacks</a>
+                        <a href="ux-guidelines.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">UX Guidelines</a>
+                        <a href="patterns.html" class="block px-4 py-2 text-sm text-white bg-white/10 rounded-lg mx-2">Patterns</a>
+                        <a href="reasoning.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Reasoning</a>
+                        <a href="react-performance.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">React Perf</a>
+                        <a href="web-interface.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Web Interface</a>
+                    </div>
+                </div>
+            </div>
+<button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 px-6 py-4 space-y-2">
+            <a href="styles.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Styles</a>
+            <a href="colors.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Colors</a>
+            <a href="typography.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Typography</a>
+            <a href="charts.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Charts</a>
+            <a href="products.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Products</a>
+            <a href="icons.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Icons</a>
+            <a href="stacks.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Stacks</a>
+            <a href="ux-guidelines.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">UX Guidelines</a>
+            <a href="patterns.html" class="block px-3 py-2 text-sm text-white bg-white/10 rounded-lg">Patterns</a>
+            <a href="reasoning.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Reasoning</a>
+            <a href="react-performance.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">React Perf</a>
+            <a href="web-interface.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Web Interface</a>
+        </div>
+</nav>
+
+    <!-- Hero -->
+    <section class="relative hero-gradient grid-bg pt-32 pb-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-medium mb-6">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+                30 Landing Page Patterns
+            </div>
+            <h1 class="font-heading text-4xl md:text-6xl font-bold tracking-tight mb-4">
+                <span class="text-white">Landing Page</span> <span class="gradient-text">Patterns</span>
+            </h1>
+            <p class="text-lg text-gray-400 max-w-2xl mb-8">Every proven landing page structure with visual wireframes, CTA strategies, color systems, and conversion optimization tips.</p>
+
+            <!-- Search -->
+            <div class="relative max-w-xl mb-4">
+                <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input id="searchInput" type="text" placeholder="Search patterns, sections, strategies..." class="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/50 focus:bg-white/[0.07] transition-all">
+            </div>
+            <div id="resultCount" class="text-sm text-gray-500 mb-6">Showing 30 of 30 patterns</div>
+
+            <!-- Category Filters -->
+            <div class="flex flex-wrap gap-2" id="filters">
+                <button data-cat="all" class="filter-btn active px-4 py-2 text-sm font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 transition-all hover:bg-white/10">All (30)</button>
+                <button data-cat="Conversion" class="filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 transition-all hover:bg-white/10">Conversion</button>
+                <button data-cat="Content" class="filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 transition-all hover:bg-white/10">Content</button>
+                <button data-cat="Interactive" class="filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 transition-all hover:bg-white/10">Interactive</button>
+                <button data-cat="E-commerce" class="filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 transition-all hover:bg-white/10">E-commerce</button>
+                <button data-cat="Community" class="filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-white/5 text-gray-400 border border-white/10 transition-all hover:bg-white/10">Community</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patterns Grid -->
+    <section class="max-w-7xl mx-auto px-6 py-12">
+        <div id="patternsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        <div id="noResults" class="hidden text-center py-20">
+            <svg class="w-16 h-16 mx-auto text-gray-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <p class="text-gray-500 text-lg font-medium">No patterns match your search.</p>
+            <p class="text-gray-600 text-sm mt-1">Try adjusting your filter or search terms.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="font-heading font-bold text-lg">
+                    <span class="text-white">UI/UX</span>
+                    <span class="gradient-text"> Pro Max</span>
+                </div>
+                                <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
+                    <a href="styles.html" class="hover:text-white transition-colors">Styles</a>
+                    <a href="colors.html" class="hover:text-white transition-colors">Colors</a>
+                    <a href="typography.html" class="hover:text-white transition-colors">Typography</a>
+                    <a href="charts.html" class="hover:text-white transition-colors">Charts</a>
+                    <a href="products.html" class="hover:text-white transition-colors">Products</a>
+                    <a href="icons.html" class="hover:text-white transition-colors">Icons</a>
+                    <a href="stacks.html" class="hover:text-white transition-colors">Stacks</a>
+                    <a href="ux-guidelines.html" class="hover:text-white transition-colors">UX Guidelines</a>
+                    <a href="patterns.html" class="hover:text-white transition-colors">Patterns</a>
+                    <a href="reasoning.html" class="hover:text-white transition-colors">Reasoning</a>
+                    <a href="react-performance.html" class="hover:text-white transition-colors">React Perf</a>
+                    <a href="web-interface.html" class="hover:text-white transition-colors">Web Interface</a>
+                </div>
+                <div class="text-sm text-gray-600">Design Intelligence System</div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+const patterns = [
+{id:1,name:"Hero + Features + CTA",cat:"Conversion",sections:["Hero","Value Prop","Features (3-5)","CTA","Footer"],cta:"Hero sticky + bottom",color:"Brand primary hero. Feature cards #FAFAFA. CTA: contrasting accent.",effects:"Hero parallax, feature card hover lift, CTA glow",tips:"Deep CTA placement. 7:1 contrast ratio. Sticky navbar CTA.",wireframe:[{h:3,c:"#3B82F6",l:"Hero"},{h:1,c:"#1E293B",l:"Value"},{h:2,c:"#334155",l:"Features"},{h:1,c:"#F97316",l:"CTA"},{h:1,c:"#0F172A",l:"Footer"}]},
+{id:2,name:"Hero + Testimonials + CTA",cat:"Conversion",sections:["Hero","Problem","Solution","Testimonials","CTA"],cta:"Hero sticky + post-testimonials",color:"Brand color hero. Testimonials: light #F5F5F5. Quotes italic.",effects:"Carousel slide, quote marks animation, avatar fade-in",tips:"Social proof before CTA. 3-5 testimonials with photo+name+role.",wireframe:[{h:3,c:"#3B82F6",l:"Hero"},{h:1,c:"#1E293B",l:"Problem"},{h:1,c:"#334155",l:"Solution"},{h:2,c:"#475569",l:"Testimonials"},{h:1,c:"#F97316",l:"CTA"}]},
+{id:3,name:"Product Demo + Features",cat:"Interactive",sections:["Hero","Product video/mockup","Feature breakdown","Comparison","CTA"],cta:"Video center + CTA bottom",color:"Brand overlay on video. Feature icon #0080FF.",effects:"Video play button pulse, feature scroll reveals",tips:"Embedded demo increases engagement. Auto-play video muted.",wireframe:[{h:2,c:"#3B82F6",l:"Hero"},{h:3,c:"#6366F1",l:"Demo/Video"},{h:2,c:"#334155",l:"Features"},{h:1,c:"#1E293B",l:"Compare"},{h:1,c:"#F97316",l:"CTA"}]},
+{id:4,name:"Minimal Single Column",cat:"Conversion",sections:["Hero headline","Description","Benefits (3 max)","CTA","Footer"],cta:"Center, large CTA button",color:"Minimalist: brand + white + accent. 7:1+ contrast buttons.",effects:"Minimal hover, smooth scroll, CTA scale on hover",tips:"Single CTA focus. Large typography. Lots of whitespace. Mobile-first.",wireframe:[{h:3,c:"#F8FAFC",l:"Hero",dark:true},{h:1,c:"#E2E8F0",l:"Benefits",dark:true},{h:1,c:"#F97316",l:"CTA"},{h:1,c:"#0F172A",l:"Footer"}]},
+{id:5,name:"Funnel (3-Step)",cat:"Conversion",sections:["Hero","Step 1: Problem","Step 2: Solution","Step 3: Action","Final CTA"],cta:"Mini-CTA each step + final main",color:"Step 1: Red/Problem. Step 2: Orange/Process. Step 3: Green/Solution.",effects:"Step number animations, progress bar fill",tips:"Progressive disclosure. Essential info per step. Progress indicators.",wireframe:[{h:2,c:"#3B82F6",l:"Hero"},{h:1,c:"#EF4444",l:"Step 1"},{h:1,c:"#F59E0B",l:"Step 2"},{h:1,c:"#22C55E",l:"Step 3"},{h:1,c:"#F97316",l:"Final CTA"}]},
+{id:6,name:"Comparison Table + CTA",cat:"Conversion",sections:["Hero","Problem intro","Comparison table","Pricing","CTA"],cta:"Right column + below table",color:"Alternating rows. Your product highlighted in accent/green.",effects:"Table row hover, price toggle, checkmark animations",tips:"Show unique value. 35% higher conversion. Be factual.",wireframe:[{h:2,c:"#3B82F6",l:"Hero"},{h:1,c:"#1E293B",l:"Problem"},{h:3,c:"#334155",l:"Comparison Table"},{h:1,c:"#F97316",l:"CTA"}]},
+{id:7,name:"Lead Magnet + Form",cat:"Conversion",sections:["Hero benefit","Lead magnet preview","Form (3 fields max)","CTA submit"],cta:"Form submit button",color:"Clean white form. Light border inputs. Brand CTA.",effects:"Form focus animations, validation feedback",tips:"Form fields <=3 for best conversion. Valuable lead magnet preview.",wireframe:[{h:2,c:"#3B82F6",l:"Hero + Benefit"},{h:2,c:"#F8FAFC",l:"Lead Magnet Preview",dark:true},{h:2,c:"#E2E8F0",l:"Form",dark:true},{h:1,c:"#22C55E",l:"Submit CTA"}]},
+{id:8,name:"Pricing Page",cat:"Conversion",sections:["Hero pricing","Price cards (3 tiers)","Feature comparison","FAQ","Final CTA"],cta:"Each card + sticky nav + bottom",color:"Free: grey. Starter: blue. Pro: green/gold. Enterprise: dark.",effects:"Price toggle monthly/annual, card hover lift, FAQ accordion",tips:"Recommend mid-tier (most popular badge). Annual 20-30% discount.",wireframe:[{h:2,c:"#3B82F6",l:"Hero"},{h:3,c:"#334155",l:"Pricing Cards"},{h:2,c:"#1E293B",l:"Features + FAQ"},{h:1,c:"#F97316",l:"Final CTA"}]},
+{id:9,name:"Video-First Hero",cat:"Content",sections:["Hero with video bg","Features overlay","Benefits","CTA"],cta:"Overlay center/bottom + bottom section",color:"Dark overlay 60% on video. White text. Brand accent CTA.",effects:"Video autoplay muted, parallax, text fade-in",tips:"86% higher engagement. Add captions. Compress video.",wireframe:[{h:4,c:"#1E293B",l:"Video Hero + Overlay"},{h:2,c:"#334155",l:"Benefits"},{h:1,c:"#F97316",l:"CTA"}]},
+{id:10,name:"Scroll-Triggered Storytelling",cat:"Interactive",sections:["Intro hook","Chapter 1: Problem","Chapter 2: Journey","Chapter 3: Solution","Climax CTA"],cta:"End of each chapter + final climax",color:"Progressive, each chapter distinct color. Building intensity.",effects:"ScrollTrigger, parallax layers, progressive disclosure",tips:"Narrative increases time-on-page 3x. Progress indicator. Simplify on mobile.",wireframe:[{h:2,c:"#1E293B",l:"Intro"},{h:2,c:"#7C3AED",l:"Ch.1"},{h:2,c:"#3B82F6",l:"Ch.2"},{h:2,c:"#22C55E",l:"Ch.3"},{h:1,c:"#F97316",l:"Climax CTA"}]},
+{id:11,name:"Waitlist / Coming Soon",cat:"Conversion",sections:["Hero countdown","Product teaser","Email capture","Social proof count"],cta:"Email form prominent above fold + sticky",color:"Dark + accent highlights. Countdown in brand color. Urgency.",effects:"Countdown timer, email validation, confetti on submit",tips:"Scarcity + exclusivity. Show waitlist count. Referral program.",wireframe:[{h:3,c:"#0F172A",l:"Countdown Hero"},{h:2,c:"#1E293B",l:"Product Teaser"},{h:2,c:"#F97316",l:"Email Capture"},{h:1,c:"#334155",l:"Social Proof"}]},
+{id:12,name:"App Store Style",cat:"Content",sections:["Hero device mockup","Screenshots carousel","Features + icons","Reviews/ratings","Download CTAs"],cta:"Download buttons throughout",color:"Dark/light matching app store. Gold star ratings.",effects:"Device mockup rotation, screenshot slider, star animations",tips:"Show real screenshots. Include 4.5+ ratings. QR code for mobile.",wireframe:[{h:3,c:"#1E293B",l:"Device Mockup"},{h:2,c:"#334155",l:"Screenshots"},{h:2,c:"#0F172A",l:"Features"},{h:1,c:"#22C55E",l:"Download CTAs"}]},
+{id:13,name:"FAQ / Documentation",cat:"Content",sections:["Hero + search bar","Popular categories","FAQ accordion","Contact CTA"],cta:"Search bar + contact for unresolved",color:"Clean, high readability. Minimal color. Category icons branded.",effects:"Search autocomplete, smooth accordion",tips:"Reduce support tickets. Track search. Show related articles.",wireframe:[{h:2,c:"#3B82F6",l:"Search Hero"},{h:2,c:"#1E293B",l:"Categories"},{h:3,c:"#334155",l:"FAQ Accordion"},{h:1,c:"#F97316",l:"Contact CTA"}]},
+{id:14,name:"Immersive / Interactive",cat:"Interactive",sections:["Full-screen interactive","Guided tour","Benefits revealed","CTA after completion"],cta:"After interaction + skip option",color:"Dark bg for focus. Highlight interactive elements.",effects:"WebGL, 3D interactions, gamification, progress",tips:"40% higher engagement. Provide skip option. Mobile fallback.",wireframe:[{h:4,c:"#7C3AED",l:"Interactive Experience"},{h:2,c:"#334155",l:"Benefits"},{h:1,c:"#F97316",l:"CTA"}]},
+{id:15,name:"Event / Conference",cat:"Community",sections:["Hero date/countdown","Speakers grid","Agenda/schedule","Sponsors","Register CTA"],cta:"Register sticky + after speakers + bottom",color:"Urgency countdown. Event branding. Professional speakers.",effects:"Countdown timer, speaker hover cards, agenda tabs",tips:"Early bird pricing. Social proof past attendees. Speaker credibility.",wireframe:[{h:2,c:"#3B82F6",l:"Hero + Countdown"},{h:2,c:"#334155",l:"Speakers"},{h:2,c:"#1E293B",l:"Agenda"},{h:1,c:"#475569",l:"Sponsors"},{h:1,c:"#F97316",l:"Register"}]},
+{id:16,name:"Community / Forum",cat:"Community",sections:["Hero community value","Popular topics","Active members","Join CTA"],cta:"Join after member showcase",color:"Warm, welcoming. Member photos. Activity indicators green.",effects:"Member avatars, activity feed, topic hover previews",tips:"Show active community. Member count + posts today. Preview content.",wireframe:[{h:2,c:"#7C3AED",l:"Community Hero"},{h:2,c:"#334155",l:"Topics"},{h:2,c:"#1E293B",l:"Members"},{h:1,c:"#22C55E",l:"Join CTA"}]},
+{id:17,name:"Before-After Transformation",cat:"Conversion",sections:["Hero problem state","Transformation slider","How it works","Results CTA"],cta:"After transformation + bottom",color:"Muted/grey (before) vs vibrant/colorful (after). Green for results.",effects:"Slider comparison, before/after reveal, result counters",tips:"Visual proof. 45% higher conversion. Real results with specific metrics.",wireframe:[{h:2,c:"#64748B",l:"Before"},{h:2,c:"#22C55E",l:"After / Slider"},{h:2,c:"#334155",l:"How It Works"},{h:1,c:"#F97316",l:"Results CTA"}]},
+{id:18,name:"Marketplace / Directory",cat:"E-commerce",sections:["Hero search","Categories","Featured listings","Trust/safety","CTA"],cta:"Hero search bar + listing CTA",color:"Search high contrast. Category icons. Trust blue/green.",effects:"Search autocomplete, map hover, card carousel",tips:"Search bar IS the CTA. Reduce friction. Popular search suggestions.",wireframe:[{h:2,c:"#3B82F6",l:"Search Hero"},{h:1,c:"#334155",l:"Categories"},{h:3,c:"#1E293B",l:"Listings"},{h:1,c:"#475569",l:"Trust"},{h:1,c:"#F97316",l:"CTA"}]},
+{id:19,name:"Newsletter / Content First",cat:"Content",sections:["Hero value + form","Recent issues/archives","Social proof","About author"],cta:"Hero inline form + sticky header form",color:"Minimalist, paper-like. Text focus. Accent for subscribe.",effects:"Text highlight, typewriter effect, subtle fade-in",tips:"Single field (email only). Show subscriber count. Sample link.",wireframe:[{h:3,c:"#F8FAFC",l:"Hero + Email Form",dark:true},{h:2,c:"#E2E8F0",l:"Archives",dark:true},{h:1,c:"#334155",l:"Social Proof"},{h:1,c:"#0F172A",l:"Author"}]},
+{id:20,name:"Enterprise Gateway",cat:"E-commerce",sections:["Hero video/mission","Solutions by industry","Solutions by role","Client logos","Contact sales"],cta:"Contact Sales + Login secondary",color:"Corporate navy/grey. Conservative. Trust signals.",effects:"Slow video bg, logo carousel, tab switching",tips:"Path selection (I am a...). Mega menu navigation. Trust prominent.",wireframe:[{h:3,c:"#0F172A",l:"Hero + Video"},{h:2,c:"#1E293B",l:"Solutions"},{h:1,c:"#334155",l:"Client Logos"},{h:1,c:"#F97316",l:"Contact Sales"}]},
+{id:21,name:"Portfolio Grid",cat:"Content",sections:["Hero name/role","Project grid (masonry)","About/philosophy","Contact"],cta:"Project card hover + footer contact",color:"Neutral bg (let work shine). Minimal accent.",effects:"Image lazy reveal, hover overlay info, lightbox",tips:"Visuals first. Filter by category. Fast loading essential.",wireframe:[{h:2,c:"#18181B",l:"Hero Name"},{h:4,c:"#27272A",l:"Project Grid"},{h:1,c:"#334155",l:"About"},{h:1,c:"#F97316",l:"Contact"}]},
+{id:22,name:"Horizontal Scroll Journey",cat:"Interactive",sections:["Intro (vertical)","Journey (horizontal)","Detail reveal","Footer (vertical)"],cta:"Floating sticky or end of track",color:"Continuous palette transition. Chapter colors. Progress bar.",effects:"Scroll-jacking, parallax layers, horizontal slide, progress indicator",tips:"Immersive discovery. High engagement. Keep navigation visible.",wireframe:[{h:2,c:"#3B82F6",l:"Intro"},{h:3,c:"linear-gradient(90deg,#7C3AED,#3B82F6,#22C55E)",l:"Horizontal Journey"},{h:1,c:"#334155",l:"Details"},{h:1,c:"#0F172A",l:"Footer"}]},
+{id:23,name:"Bento Grid Showcase",cat:"Content",sections:["Hero","Bento grid features","Detail cards","Tech specs","CTA"],cta:"Floating action button or bottom",color:"Card bg #F5F5F7 or glass. Vibrant brand icons.",effects:"Hover card scale, video in cards, tilt effect, stagger reveal",tips:"Scannable value props. High density without clutter. Mobile stack.",wireframe:[{h:2,c:"#3B82F6",l:"Hero"},{h:4,c:"#1E293B",l:"Bento Grid"},{h:1,c:"#334155",l:"Tech Specs"},{h:1,c:"#F97316",l:"CTA"}]},
+{id:24,name:"Interactive 3D Configurator",cat:"Interactive",sections:["Hero configurator","Feature highlight (synced)","Price/specs","Purchase"],cta:"Inside configurator + sticky bottom",color:"Neutral studio bg. Realistic materials. Minimal UI overlay.",effects:"Real-time render, material swap, camera rotate/zoom",tips:"Increases ownership feeling. 360 view reduces returns. Add to cart.",wireframe:[{h:4,c:"#334155",l:"3D Configurator"},{h:2,c:"#1E293B",l:"Features + Price"},{h:1,c:"#F97316",l:"Purchase CTA"}]},
+{id:25,name:"AI-Driven Dynamic Landing",cat:"Interactive",sections:["Prompt/input hero","Generated result preview","How it works","Value prop"],cta:"Input field hero + try it buttons",color:"Adaptive to input. Dark for compute feel. Neon accents.",effects:"Typing effects, shimmering loaders, morphing layouts",tips:"Immediate value demonstration. Show don't tell. Low friction.",wireframe:[{h:3,c:"#7C3AED",l:"AI Input Hero"},{h:2,c:"#1E293B",l:"Generated Preview"},{h:2,c:"#334155",l:"How It Works"},{h:1,c:"#F97316",l:"Try It CTA"}]},
+{id:26,name:"Webinar Registration",cat:"Community",sections:["Hero topic+timer+form","What you'll learn","Speaker bio","Urgency/bonuses","Form again"],cta:"Hero right form + bottom anchor",color:"Urgency red/orange. Professional blue. High contrast form.",effects:"Countdown timer, speaker avatar, urgency ticker",tips:"Limited seats. Live indicator. Auto-fill timezone.",wireframe:[{h:3,c:"#3B82F6",l:"Hero + Form"},{h:1,c:"#334155",l:"Learn"},{h:1,c:"#1E293B",l:"Speaker"},{h:1,c:"#EF4444",l:"Urgency"},{h:1,c:"#F97316",l:"Form CTA"}]},
+{id:27,name:"Product Review/Ratings",cat:"E-commerce",sections:["Hero product + rating","Rating breakdown","Individual reviews","Buy CTA"],cta:"After reviews + buy alongside",color:"Gold star ratings. Verified green. Trust colors.",effects:"Star fill animations, review filtering, photo lightbox",tips:"User-generated content builds trust. Show verified. Filter by rating.",wireframe:[{h:2,c:"#3B82F6",l:"Product + Rating"},{h:1,c:"#F59E0B",l:"Rating Breakdown"},{h:3,c:"#334155",l:"Reviews"},{h:1,c:"#22C55E",l:"Buy CTA"}]},
+{id:28,name:"Comparison Table Focus",cat:"Conversion",sections:["Hero problem","Comparison matrix","Feature deep-dive","Winner CTA"],cta:"After table + bottom",color:"Your product column highlighted. Competitors neutral. Green checks.",effects:"Table row hover, checkmark animations, sticky header",tips:"Show value vs competitors. 35% higher conversion. Be factual.",wireframe:[{h:2,c:"#3B82F6",l:"Hero Problem"},{h:3,c:"#1E293B",l:"Comparison Matrix"},{h:2,c:"#334155",l:"Deep Dive"},{h:1,c:"#22C55E",l:"Winner CTA"}]},
+{id:29,name:"Pricing-Focused",cat:"Conversion",sections:["Hero value","Pricing cards (3)","Feature table","FAQ","Final CTA"],cta:"Each card + sticky + bottom",color:"Popular highlighted. Free grey. Enterprise dark.",effects:"Monthly/annual toggle, card hover, FAQ accordion",tips:"Annual 20-30% discount. Mid-tier recommended. FAQ addresses objections.",wireframe:[{h:2,c:"#3B82F6",l:"Hero Value"},{h:3,c:"#334155",l:"Pricing Cards"},{h:2,c:"#1E293B",l:"Features + FAQ"},{h:1,c:"#F97316",l:"Final CTA"}]},
+{id:30,name:"Case Study Deep-Dive",cat:"Conversion",sections:["Hero client logo + headline","Challenge overview","Solution + process","Results + metrics","Testimonial quote","CTA: Get Similar Results"],cta:"After results section + sticky bottom bar",color:"Professional navy/charcoal. Results metrics in green/brand accent. Client branding subtle.",effects:"Counter animations on metrics, timeline reveal, quote fade-in, parallax imagery",tips:"Lead with the most impressive metric. Include real numbers (%, $, time). Name the client if possible. Link to related case studies.",wireframe:[{h:2,c:"#1E293B",l:"Hero + Client"},{h:1,c:"#334155",l:"Challenge"},{h:2,c:"#3B82F6",l:"Solution"},{h:2,c:"#22C55E",l:"Results"},{h:1,c:"#475569",l:"Quote"},{h:1,c:"#F97316",l:"CTA"}]},
+];
+
+// === Industry Mapping: pattern name keywords → product names from CSV ===
+const patternToProducts = {
+    "Hero + Features + CTA": ["SaaS (General)"],
+    "Hero + Testimonials + CTA": [],
+    "Product Demo + Features": [],
+    "Minimal Single Column": ["Micro SaaS","Government/Public Service","Newsletter Platform"],
+    "Funnel (3-Step)": [],
+    "Comparison Table + CTA": [],
+    "Lead Magnet + Form": [],
+    "Pricing Page": [],
+    "Video-First Hero": [],
+    "Scroll-Triggered Storytelling": [],
+    "Waitlist / Coming Soon": [],
+    "App Store Style": [],
+    "FAQ / Documentation": ["Knowledge Base/Documentation"],
+    "Immersive / Interactive": ["Quantum Computing Interface","Spatial Computing OS / App","Space Tech / Aerospace"],
+    "Event / Conference": [],
+    "Community / Forum": [],
+    "Before-After Transformation": [],
+    "Marketplace / Directory": [],
+    "Newsletter / Content First": [],
+    "Enterprise Gateway": [],
+    "Portfolio Grid": ["Architecture / Interior","Generative Art Platform"],
+    "Horizontal Scroll Journey": [],
+    "Bento Grid Showcase": ["Generative Art Platform"],
+    "Interactive 3D Configurator": [],
+    "AI-Driven Dynamic Landing": [],
+    "Webinar Registration": [],
+    "Product Review/Ratings": [],
+    "Comparison Table Focus": [],
+    "Pricing-Focused": [],
+    "Case Study Deep-Dive": ["B2B Service","Consulting Firm","Marketing Agency"],
+};
+
+// Cross-reference: parse products CSV "Landing Page Pattern" to enrich mapping
+// Pattern matching via keywords found in CSV "Landing Page Pattern" column
+(function buildIndustryMap() {
+    const csvPatternMap = [
+        {products:["SaaS (General)"],patterns:["Hero + Features + CTA"]},
+        {products:["Micro SaaS"],patterns:["Minimal Single Column","Product Demo + Features"]},
+        {products:["E-commerce","E-commerce Luxury"],patterns:["Marketplace / Directory","Product Review/Ratings"]},
+        {products:["Service Landing Page","Beauty/Spa/Wellness Service"],patterns:["Hero + Features + CTA","Hero + Testimonials + CTA"]},
+        {products:["B2B Service"],patterns:["Hero + Features + CTA","Comparison Table + CTA"]},
+        {products:["Healthcare App","Mental Health App"],patterns:["Hero + Testimonials + CTA"]},
+        {products:["Educational App","Online Course/E-learning"],patterns:["Scroll-Triggered Storytelling","Hero + Features + CTA"]},
+        {products:["Creative Agency","Marketing Agency"],patterns:["Scroll-Triggered Storytelling","Portfolio Grid"]},
+        {products:["Portfolio/Personal","Photography Studio"],patterns:["Scroll-Triggered Storytelling","Portfolio Grid"]},
+        {products:["Gaming"],patterns:["Immersive / Interactive","Product Demo + Features"]},
+        {products:["Government/Public Service"],patterns:["Minimal Single Column"]},
+        {products:["Fintech/Crypto"],patterns:["Funnel (3-Step)","Comparison Table + CTA"]},
+        {products:["Social Media App"],patterns:["Product Demo + Features","Hero + Features + CTA"]},
+        {products:["Productivity Tool"],patterns:["Product Demo + Features"]},
+        {products:["AI/Chatbot Platform"],patterns:["Product Demo + Features","AI-Driven Dynamic Landing"]},
+        {products:["NFT/Web3 Platform"],patterns:["Marketplace / Directory","Product Demo + Features"]},
+        {products:["Creator Economy Platform","Membership/Community"],patterns:["Hero + Testimonials + CTA","Community / Forum"]},
+        {products:["Sustainability/ESG Platform"],patterns:["Hero + Testimonials + CTA","Enterprise Gateway"]},
+        {products:["Remote Work/Collaboration Tool"],patterns:["Product Demo + Features","Hero + Features + CTA"]},
+        {products:["Pet Tech App"],patterns:["Scroll-Triggered Storytelling"]},
+        {products:["Smart Home/IoT Dashboard"],patterns:["Product Demo + Features"]},
+        {products:["EV/Charging Ecosystem"],patterns:["Hero + Features + CTA"]},
+        {products:["Subscription Box Service"],patterns:["Product Demo + Features","Hero + Features + CTA"]},
+        {products:["Podcast Platform"],patterns:["Scroll-Triggered Storytelling"]},
+        {products:["Dating App"],patterns:["Hero + Testimonials + CTA"]},
+        {products:["Micro-Credentials/Badges Platform"],patterns:["Hero + Testimonials + CTA","Enterprise Gateway"]},
+        {products:["Knowledge Base/Documentation"],patterns:["FAQ / Documentation"]},
+        {products:["Hyperlocal Services"],patterns:["Funnel (3-Step)","Marketplace / Directory"]},
+        {products:["Restaurant/Food Service","Bakery/Cafe","Coffee Shop"],patterns:["Hero + Features + CTA","Funnel (3-Step)"]},
+        {products:["Fitness/Gym App"],patterns:["Product Demo + Features","Hero + Features + CTA"]},
+        {products:["Real Estate/Property"],patterns:["Hero + Features + CTA","Marketplace / Directory"]},
+        {products:["Travel/Tourism Agency"],patterns:["Scroll-Triggered Storytelling","Hero + Features + CTA"]},
+        {products:["Hotel/Hospitality"],patterns:["Hero + Features + CTA","Hero + Testimonials + CTA"]},
+        {products:["Wedding/Event Planning"],patterns:["Scroll-Triggered Storytelling","Hero + Testimonials + CTA"]},
+        {products:["Legal Services","Consulting Firm"],patterns:["Enterprise Gateway","Hero + Testimonials + CTA"]},
+        {products:["Insurance Platform"],patterns:["Funnel (3-Step)","Comparison Table + CTA"]},
+        {products:["Banking/Traditional Finance"],patterns:["Enterprise Gateway","Hero + Features + CTA"]},
+        {products:["Non-profit/Charity"],patterns:["Scroll-Triggered Storytelling","Hero + Testimonials + CTA"]},
+        {products:["Music Streaming","Video Streaming/OTT"],patterns:["Product Demo + Features","Hero + Features + CTA"]},
+        {products:["Job Board/Recruitment"],patterns:["Funnel (3-Step)","Marketplace / Directory"]},
+        {products:["Marketplace (P2P)"],patterns:["Marketplace / Directory","Hero + Testimonials + CTA"]},
+        {products:["Logistics/Delivery"],patterns:["Product Demo + Features","Hero + Features + CTA"]},
+        {products:["Agriculture/Farm Tech"],patterns:["Product Demo + Features","Enterprise Gateway"]},
+        {products:["Construction/Architecture"],patterns:["Hero + Features + CTA","Portfolio Grid"]},
+        {products:["Automotive/Car Dealership"],patterns:["Hero + Features + CTA","Interactive 3D Configurator"]},
+        {products:["Coworking Space"],patterns:["Hero + Features + CTA"]},
+        {products:["Cleaning Service","Home Services (Plumber/Electrician)"],patterns:["Funnel (3-Step)","Hero + Testimonials + CTA"]},
+        {products:["Childcare/Daycare"],patterns:["Hero + Testimonials + CTA"]},
+        {products:["Senior Care/Elderly"],patterns:["Hero + Testimonials + CTA","Enterprise Gateway"]},
+        {products:["Medical Clinic","Dental Practice"],patterns:["Hero + Testimonials + CTA","Funnel (3-Step)"]},
+        {products:["Pharmacy/Drug Store"],patterns:["Funnel (3-Step)","Marketplace / Directory"]},
+        {products:["Veterinary Clinic"],patterns:["Hero + Testimonials + CTA"]},
+        {products:["Florist/Plant Shop"],patterns:["Hero + Features + CTA","Marketplace / Directory"]},
+        {products:["Brewery/Winery"],patterns:["Scroll-Triggered Storytelling","Hero + Features + CTA"]},
+        {products:["Airline"],patterns:["Funnel (3-Step)","Hero + Features + CTA"]},
+        {products:["News/Media Platform"],patterns:["Hero + Features + CTA","Newsletter / Content First"]},
+        {products:["Magazine/Blog"],patterns:["Scroll-Triggered Storytelling","Newsletter / Content First"]},
+        {products:["Freelancer Platform"],patterns:["Marketplace / Directory","Product Demo + Features"]},
+        {products:["Event Management","Conference/Webinar Platform"],patterns:["Event / Conference","Webinar Registration"]},
+        {products:["Digital Products/Downloads"],patterns:["Product Demo + Features","Hero + Features + CTA"]},
+        {products:["Church/Religious Organization"],patterns:["Hero + Features + CTA","Hero + Testimonials + CTA"]},
+        {products:["Sports Team/Club"],patterns:["Hero + Features + CTA","Community / Forum"]},
+        {products:["Museum/Gallery"],patterns:["Scroll-Triggered Storytelling","Portfolio Grid"]},
+        {products:["Theater/Cinema"],patterns:["Hero + Features + CTA","Event / Conference"]},
+        {products:["Language Learning App","Coding Bootcamp"],patterns:["Product Demo + Features","Hero + Testimonials + CTA"]},
+        {products:["Cybersecurity Platform","Developer Tool / IDE"],patterns:["Minimal Single Column","Product Demo + Features"]},
+        {products:["Biotech / Life Sciences"],patterns:["Scroll-Triggered Storytelling","Enterprise Gateway"]},
+        {products:["Space Tech / Aerospace"],patterns:["Immersive / Interactive"]},
+        {products:["Quantum Computing Interface"],patterns:["Immersive / Interactive"]},
+        {products:["Biohacking / Longevity App"],patterns:["Scroll-Triggered Storytelling","Product Demo + Features"]},
+        {products:["Autonomous Drone Fleet Manager"],patterns:["Product Demo + Features"]},
+        {products:["Generative Art Platform"],patterns:["Bento Grid Showcase","Portfolio Grid"]},
+        {products:["Spatial Computing OS / App"],patterns:["Immersive / Interactive"]},
+        {products:["Sustainable Energy / Climate Tech"],patterns:["Product Demo + Features","Enterprise Gateway"]},
+        {products:["Waitlist / Coming Soon"],patterns:["Waitlist / Coming Soon"]},
+    ];
+    csvPatternMap.forEach(entry => {
+        entry.patterns.forEach(pName => {
+            if (patternToProducts[pName]) {
+                entry.products.forEach(prod => {
+                    if (!patternToProducts[pName].includes(prod)) patternToProducts[pName].push(prod);
+                });
+            }
+        });
+    });
+})();
+
+// === Section Design Tips ===
+const sectionDesignTips = {
+    "Hero": "Use a clear, benefit-driven headline (6-12 words). Single CTA above the fold. High-contrast text over imagery.",
+    "Hero headline": "Keep to 6-12 words max. Focus on the primary benefit, not the feature. Test different emotional angles.",
+    "Value Prop": "Summarize your unique advantage in one sentence. Use an icon or illustration to reinforce the message.",
+    "Value": "Summarize your unique advantage in one sentence. Use an icon or illustration to reinforce the message.",
+    "Features (3-5)": "Use a 3-column grid with icons. Each feature gets a short headline + 1-line description. Less is more.",
+    "Features": "Use a 3-column grid with icons. Each feature gets a short headline + 1-line description.",
+    "Feature breakdown": "Break down each feature with icon + heading + brief copy. Use alternating layout for visual interest.",
+    "CTA": "Use action-oriented text ('Start Free Trial', not 'Submit'). High contrast button. Add a micro-benefit line below.",
+    "Footer": "Include navigation links, social icons, legal links. Keep it clean. Consider a final CTA or newsletter signup.",
+    "Problem": "Articulate the user's pain point clearly. Use empathy-driven language. Consider a relatable scenario.",
+    "Solution": "Present your product as the natural answer. Show the transformation from problem to solution state.",
+    "Testimonials": "Use real photos, full names, and roles. 3-5 testimonials. Star ratings add credibility. Video testimonials convert best.",
+    "Product video/mockup": "Auto-play muted with captions. Show the product in action within 3 seconds. Add play button overlay.",
+    "Comparison": "Highlight your advantages with green checks. Keep competitor columns neutral. Be factual, not negative.",
+    "Comparison table": "Highlight your advantages with green checks. Keep competitor columns neutral. Be factual, not negative.",
+    "Description": "Keep concise (2-3 sentences max). Focus on the 'why' not the 'how'. Use clear, jargon-free language.",
+    "Benefits (3 max)": "Focus on outcomes, not features. Use power words. Each benefit should be scannable in under 3 seconds.",
+    "Step 1: Problem": "Use red/warm tones to convey urgency. State the problem in the user's own words.",
+    "Step 2: Solution": "Transition to hopeful tones. Show the process simply with numbered steps or timeline.",
+    "Step 3: Action": "Use green/success tones. Make the action feel easy and low-risk. Add reassurance copy.",
+    "Final CTA": "Reinforce the value proposition. Add urgency or scarcity. Include trust badges near the button.",
+    "Problem intro": "Brief setup (2-3 lines) that resonates with the target audience's daily frustration.",
+    "Pricing": "Show 3 tiers. Highlight the recommended plan. Annual toggle saves 20-30%. Show per-month pricing.",
+    "Lead magnet preview": "Show a preview/mockup of what they'll receive. Make it look valuable and professional.",
+    "Form (3 fields max)": "Name + Email + one qualifier. Reduce friction. Show privacy assurance. Smart defaults.",
+    "CTA submit": "Use value-focused text ('Get My Free Guide'). Show what happens after submission.",
+    "Hero pricing": "State the value proposition before showing prices. Anchor with the highest tier first.",
+    "Price cards (3 tiers)": "Good/Better/Best structure. Highlight the middle tier. Show annual savings.",
+    "Feature comparison": "Expandable table rows. Check/X icons. Group by category. Sticky header on scroll.",
+    "FAQ": "Address top 5-7 objections. Use accordion pattern. Search-friendly answers.",
+    "Hero with video bg": "Darken overlay to 60%+. White text only. Compress video heavily. Provide fallback image.",
+    "Features overlay": "Semi-transparent cards over video. Keep text minimal. Use icons for scannability.",
+    "Benefits": "Focus on user outcomes. Use metrics when possible ('Save 2 hours/week'). Icon + short text format.",
+    "Intro hook": "Open with a provocative question or bold statement. Create curiosity to scroll further.",
+    "Chapter 1: Problem": "Build empathy. Use storytelling to make the problem feel personal and urgent.",
+    "Chapter 2: Journey": "Show the exploration/discovery phase. Build anticipation for the solution reveal.",
+    "Chapter 3: Solution": "The payoff moment. Show transformation clearly. Use before/after or data visualization.",
+    "Climax CTA": "Emotionally charged CTA after the story arc. The reader should feel compelled to act.",
+    "Hero countdown": "Large countdown timer. Show days/hours/minutes. Pair with a compelling launch promise.",
+    "Product teaser": "Show just enough to create desire. Blurred screenshots, partial reveals, or highlight reels.",
+    "Email capture": "Single field (email only). Clear value exchange. Show social proof (X people joined).",
+    "Social proof count": "Show live or near-live count. Milestone celebrations. 'Join X,000+ early adopters'.",
+    "Hero device mockup": "Show the product in a realistic device frame. Multiple angles build confidence.",
+    "Screenshots carousel": "4-6 key screens. Add brief captions. Auto-advance with manual controls.",
+    "Features + icons": "Icon grid with short labels. Group by category. Use consistent icon style.",
+    "Reviews/ratings": "Aggregate rating + individual reviews. Show verified badge. Most helpful first.",
+    "Download CTAs": "Platform-specific buttons (App Store, Google Play). QR code for desktop visitors.",
+    "Hero + search bar": "Prominent search bar. Show popular queries as suggestions. Auto-complete enabled.",
+    "Popular categories": "6-8 category cards with icons. Show article count per category.",
+    "FAQ accordion": "Smooth expand/collapse. Show 1-2 open by default. Search within FAQ.",
+    "Contact CTA": "Multiple contact options (chat, email, phone). Set response time expectation.",
+    "Full-screen interactive": "Provide clear instructions. Subtle tutorial overlay. Performance-optimized.",
+    "Guided tour": "Step-by-step with progress indicator. Skip option always visible.",
+    "Benefits revealed": "Progressive reveal tied to interaction completion. Reward exploration.",
+    "CTA after completion": "Appears after the interactive experience. User is now primed and engaged.",
+    "Hero date/countdown": "Date + countdown + location. Clear event branding. Early bird pricing visible.",
+    "Speakers grid": "Photo + name + title + company. 2-4 per row. Hover for bio preview.",
+    "Agenda/schedule": "Tabbed by day. Time + session + speaker. Filterable by track.",
+    "Sponsors": "Logo grid. Tiered by sponsorship level. Link to sponsor pages.",
+    "Register CTA": "Clear pricing. Group discount option. Calendar add button. Share with colleague.",
+    "Hero community value": "Show the community's mission and size. Feature member testimonials prominently.",
+    "Popular topics": "Trending topics with post counts. Recent activity indicators.",
+    "Active members": "Avatar grid or carousel. Show online status. Member achievements.",
+    "Join CTA": "Low barrier ('Join Free'). Show what's inside. Member count as social proof.",
+    "Hero problem state": "Show the 'before' state in muted/grey tones. Make the pain tangible.",
+    "Transformation slider": "Interactive before/after slider. Real results with specific metrics.",
+    "How it works": "3-step process with icons. Simple and clear. Timeline or numbered layout.",
+    "Results CTA": "Data-driven results near the CTA. Specific numbers convert better than vague promises.",
+    "Hero search": "Large search bar as primary interaction. Category pills below. Recent/popular suggestions.",
+    "Categories": "Visual category cards. Show listing counts. Most popular first.",
+    "Featured listings": "Card grid with key info visible. Price, rating, location. Quick-view option.",
+    "Trust/safety": "Security badges, payment protection, guarantee. Address buyer/seller concerns.",
+    "Hero value + form": "Value proposition + inline email form. Show subscriber count and frequency.",
+    "Recent issues/archives": "Preview cards of past issues. Show topics covered. 'Read sample' links.",
+    "Social proof": "Subscriber count, notable subscribers, press mentions. Build credibility.",
+    "About author": "Photo + bio + credentials. Personal connection builds trust for newsletters.",
+    "Hero video/mission": "Corporate video with mission statement. Professional but approachable.",
+    "Solutions by industry": "Tabbed or card layout. Industry-specific messaging and case studies.",
+    "Solutions by role": "Role-based navigation (Developer, Manager, Executive). Tailored value props.",
+    "Client logos": "Logo wall of recognizable brands. 6-12 logos. Grayscale with hover color.",
+    "Contact sales": "Form with company size qualifier. Phone option for enterprise. SLA mention.",
+    "Hero name/role": "Large name. Brief tagline. Optional animated role/skill rotation.",
+    "Project grid (masonry)": "Masonry or uniform grid. Hover reveals project details. Filter by category.",
+    "About/philosophy": "Brief personal statement. Design philosophy. What makes you different.",
+    "Contact": "Simple form or email link. Social links. Availability status.",
+    "Intro (vertical)": "Set the stage with a compelling opening. Vertical scroll feels natural.",
+    "Journey (horizontal)": "Horizontal scroll section with chapters. Progress indicator essential.",
+    "Detail reveal": "Deeper content for interested users. Expandable cards or sections.",
+    "Footer (vertical)": "Return to vertical scroll. Summary + CTA + standard footer.",
+    "Hero": "Use a clear, benefit-driven headline (6-12 words). Single CTA above the fold.",
+    "Bento grid features": "Mixed-size cards in grid. Hero card 2x size. Video cards engage well.",
+    "Detail cards": "Expandable cards with deeper feature info. Icon + heading + description.",
+    "Tech specs": "Clean table or list format. Collapsible sections for different spec categories.",
+    "Hero configurator": "3D model front and center. Controls clearly labeled. Preset options for quick start.",
+    "Feature highlight (synced)": "Feature details update as user configures. Show compatibility and specs.",
+    "Price/specs": "Dynamic pricing based on configuration. Spec sheet updates in real-time.",
+    "Purchase": "Clear price + add to cart. Financing options. Delivery estimate.",
+    "Prompt/input hero": "Input field as the hero element. Show example prompts. Instant response preview.",
+    "Generated result preview": "Show AI output in real-time. Streaming text effect. Edit/refine options.",
+    "How it works": "Simple 3-step explanation. Technical credibility without jargon.",
+    "Value prop": "Concise statement of unique value. Pair with a supporting visual or metric.",
+    "Hero topic+timer+form": "Topic headline + countdown + registration form side by side. Urgency-driven.",
+    "What you'll learn": "3-5 bullet points of takeaways. Specific and actionable outcomes.",
+    "Speaker bio": "Photo + credentials + social links. Past talk recordings if available.",
+    "Urgency/bonuses": "Limited seats. Bonus materials. Early registration perks. Countdown timer.",
+    "Form again": "Repeat registration form for users who scrolled past. Pre-filled if possible.",
+    "Hero product + rating": "Product image + aggregate rating + review count. Trust at first glance.",
+    "Rating breakdown": "Star distribution bar chart. Highlight most common rating.",
+    "Individual reviews": "Photo + name + verified badge + star rating + review text. Filter and sort.",
+    "Buy CTA": "Prominent buy button near rating summary. Price + availability clear.",
+    "Hero problem": "Articulate the competitor landscape problem. Why existing solutions fall short.",
+    "Comparison matrix": "Your product highlighted column. Feature rows with check/X. Sticky header.",
+    "Feature deep-dive": "Expandable rows for each feature category. Screenshots or demos per feature.",
+    "Winner CTA": "Position your product as the clear winner. Summary of key advantages + CTA.",
+    "Hero value": "Lead with the value proposition. What does the user gain? Price anchoring.",
+    "Pricing cards (3)": "Good/Better/Best. Highlight middle tier. Show monthly/annual toggle.",
+    "Feature table": "Comprehensive feature comparison across tiers. Collapsible categories.",
+    "Hero client logo + headline": "Display client logo alongside a results-driven headline. Show credibility immediately.",
+    "Challenge overview": "2-3 sentences describing the client's original problem. Use their industry language.",
+    "Solution + process": "Show your approach step-by-step. Include timeline. Screenshots or diagrams help.",
+    "Results + metrics": "Lead with 2-4 key metrics. Use large numbers with counter animations. Be specific.",
+    "Testimonial quote": "Direct quote from client with photo, name, title. Video testimonial converts best.",
+    "CTA: Get Similar Results": "Connect the results shown to the prospect's potential. Use action-oriented copy.",
+};
+
+// === A/B Testing Tips per pattern ===
+const abTestingTips = {
+    1: [
+        { test: "Hero headline: benefit-driven vs feature-driven copy", impact: "High", priority: 1 },
+        { test: "CTA button color: brand primary vs high-contrast accent", impact: "Medium", priority: 2 },
+        { test: "Feature count: 3 features vs 5 features displayed", impact: "Low", priority: 3 }
+    ],
+    2: [
+        { test: "Testimonial format: text-only vs video testimonials", impact: "High", priority: 1 },
+        { test: "Social proof placement: before vs after solution section", impact: "High", priority: 2 },
+        { test: "Number of testimonials shown: 3 vs 5", impact: "Low", priority: 3 }
+    ],
+    3: [
+        { test: "Demo type: auto-play video vs interactive walkthrough", impact: "High", priority: 1 },
+        { test: "Feature breakdown: tabs vs scrolling sections", impact: "Medium", priority: 2 },
+        { test: "Comparison table: included vs omitted", impact: "Medium", priority: 3 }
+    ],
+    4: [
+        { test: "CTA button size: standard vs oversized", impact: "High", priority: 1 },
+        { test: "Hero copy length: single sentence vs short paragraph", impact: "Medium", priority: 2 },
+        { test: "Background: pure white vs subtle gradient", impact: "Low", priority: 3 }
+    ],
+    5: [
+        { test: "Progress indicator: bar vs numbered steps", impact: "Medium", priority: 1 },
+        { test: "Step-by-step vs all-at-once content reveal", impact: "High", priority: 2 },
+        { test: "Mini-CTA text at each step: 'Next' vs benefit-oriented", impact: "Medium", priority: 3 }
+    ],
+    6: [
+        { test: "Comparison format: table vs side-by-side cards", impact: "High", priority: 1 },
+        { test: "Your product highlight: subtle vs bold column highlight", impact: "Medium", priority: 2 },
+        { test: "Number of competitors shown: 2 vs 4", impact: "Low", priority: 3 }
+    ],
+    7: [
+        { test: "Form fields: 2 fields vs 3 fields", impact: "High", priority: 1 },
+        { test: "Lead magnet preview: static image vs animated/video preview", impact: "Medium", priority: 2 },
+        { test: "CTA copy: 'Download Free' vs 'Get Instant Access'", impact: "Medium", priority: 3 }
+    ],
+    8: [
+        { test: "Default toggle: monthly vs annual pricing shown first", impact: "High", priority: 1 },
+        { test: "Recommended badge text: 'Most Popular' vs 'Best Value'", impact: "Medium", priority: 2 },
+        { test: "FAQ placement: below pricing vs in a separate tab", impact: "Low", priority: 3 }
+    ],
+    9: [
+        { test: "Video length: 15-second loop vs 60-second narrative", impact: "High", priority: 1 },
+        { test: "Overlay opacity: 50% vs 70% darkness", impact: "Medium", priority: 2 },
+        { test: "CTA position: overlaid on video vs below video section", impact: "Medium", priority: 3 }
+    ],
+    10: [
+        { test: "Story length: 3 chapters vs 5 chapters", impact: "High", priority: 1 },
+        { test: "Progress indicator: visible vs hidden", impact: "Medium", priority: 2 },
+        { test: "Animation intensity: subtle vs dramatic scroll effects", impact: "Low", priority: 3 }
+    ],
+    11: [
+        { test: "Countdown precision: days only vs days+hours+minutes", impact: "Medium", priority: 1 },
+        { test: "Social proof: waitlist count vs notable signups", impact: "High", priority: 2 },
+        { test: "Referral incentive: queue jump vs bonus feature", impact: "Medium", priority: 3 }
+    ],
+    12: [
+        { test: "Device mockup: static vs rotating 3D device", impact: "Medium", priority: 1 },
+        { test: "Screenshot count: 3 vs 6 in carousel", impact: "Low", priority: 2 },
+        { test: "Download CTA: buttons vs QR code vs both", impact: "High", priority: 3 }
+    ],
+    13: [
+        { test: "Search bar prominence: standard vs oversized hero search", impact: "High", priority: 1 },
+        { test: "Category layout: grid vs list view", impact: "Medium", priority: 2 },
+        { test: "FAQ default state: all collapsed vs top 2 expanded", impact: "Low", priority: 3 }
+    ],
+    14: [
+        { test: "Skip option visibility: prominent vs subtle", impact: "High", priority: 1 },
+        { test: "Interaction type: guided vs free exploration", impact: "High", priority: 2 },
+        { test: "CTA timing: after completion vs available throughout", impact: "Medium", priority: 3 }
+    ],
+    15: [
+        { test: "Speaker display: grid vs carousel format", impact: "Medium", priority: 1 },
+        { test: "Early bird pricing: percentage off vs dollar amount saved", impact: "High", priority: 2 },
+        { test: "Agenda format: timeline vs tabbed by day", impact: "Low", priority: 3 }
+    ],
+    16: [
+        { test: "Member showcase: avatars vs activity feed", impact: "Medium", priority: 1 },
+        { test: "Join barrier: free signup vs gated preview", impact: "High", priority: 2 },
+        { test: "Topic display: trending vs curated selections", impact: "Low", priority: 3 }
+    ],
+    17: [
+        { test: "Slider interaction: drag vs auto-animate on scroll", impact: "High", priority: 1 },
+        { test: "Results format: percentage improvement vs absolute numbers", impact: "Medium", priority: 2 },
+        { test: "Before/after: side-by-side vs overlay slider", impact: "Medium", priority: 3 }
+    ],
+    18: [
+        { test: "Search bar: text input vs category browse first", impact: "High", priority: 1 },
+        { test: "Listing card info: minimal vs detailed preview", impact: "Medium", priority: 2 },
+        { test: "Trust section placement: header vs footer", impact: "Low", priority: 3 }
+    ],
+    19: [
+        { test: "Form location: hero inline vs separate section", impact: "High", priority: 1 },
+        { test: "Archive display: list vs card grid", impact: "Low", priority: 2 },
+        { test: "Social proof type: subscriber count vs notable names", impact: "Medium", priority: 3 }
+    ],
+    20: [
+        { test: "Path selection: role-based vs industry-based navigation", impact: "High", priority: 1 },
+        { test: "Client logos: static grid vs scrolling carousel", impact: "Low", priority: 2 },
+        { test: "CTA text: 'Contact Sales' vs 'Get a Demo'", impact: "Medium", priority: 3 }
+    ],
+    21: [
+        { test: "Grid layout: masonry vs uniform grid", impact: "Medium", priority: 1 },
+        { test: "Project hover: quick info vs lightbox preview", impact: "Medium", priority: 2 },
+        { test: "Filter interface: buttons vs dropdown", impact: "Low", priority: 3 }
+    ],
+    22: [
+        { test: "Scroll behavior: smooth horizontal vs snap scrolling", impact: "High", priority: 1 },
+        { test: "Progress bar: top vs bottom position", impact: "Low", priority: 2 },
+        { test: "Navigation cues: arrows vs scroll indicator", impact: "Medium", priority: 3 }
+    ],
+    23: [
+        { test: "Grid density: 4 cards vs 6 cards visible", impact: "Medium", priority: 1 },
+        { test: "Hero card: static vs video/animated content", impact: "High", priority: 2 },
+        { test: "Card interaction: hover scale vs hover tilt", impact: "Low", priority: 3 }
+    ],
+    24: [
+        { test: "Default view: front view vs 3/4 angle", impact: "Medium", priority: 1 },
+        { test: "Configuration presets: shown vs hidden", impact: "High", priority: 2 },
+        { test: "Price display: real-time update vs on-demand calculate", impact: "Medium", priority: 3 }
+    ],
+    25: [
+        { test: "Input type: text prompt vs template selection", impact: "High", priority: 1 },
+        { test: "Result preview: instant vs progressive reveal", impact: "Medium", priority: 2 },
+        { test: "Example prompts: shown vs hidden", impact: "Medium", priority: 3 }
+    ],
+    26: [
+        { test: "Form position: right sidebar vs below content", impact: "High", priority: 1 },
+        { test: "Urgency element: countdown vs 'X seats left'", impact: "High", priority: 2 },
+        { test: "Speaker section: before vs after 'What you'll learn'", impact: "Low", priority: 3 }
+    ],
+    27: [
+        { test: "Review sort: most helpful vs most recent default", impact: "Medium", priority: 1 },
+        { test: "Rating visualization: stars vs numeric score", impact: "Low", priority: 2 },
+        { test: "Photo reviews: prominent vs same as text reviews", impact: "High", priority: 3 }
+    ],
+    28: [
+        { test: "Matrix layout: traditional table vs card comparison", impact: "High", priority: 1 },
+        { test: "Competitor naming: specific brands vs generic 'Others'", impact: "Medium", priority: 2 },
+        { test: "Feature grouping: flat list vs categorized sections", impact: "Low", priority: 3 }
+    ],
+    29: [
+        { test: "Default selection: monthly vs annual toggle", impact: "High", priority: 1 },
+        { test: "Savings display: percentage vs dollar amount", impact: "Medium", priority: 2 },
+        { test: "Feature table: expanded vs collapsed by default", impact: "Low", priority: 3 }
+    ],
+    30: [
+        { test: "Lead metric: percentage vs absolute number", impact: "High", priority: 1 },
+        { test: "Client logo: prominent vs subtle placement", impact: "Medium", priority: 2 },
+        { test: "CTA copy: 'Get Similar Results' vs 'Start Your Project'", impact: "High", priority: 3 }
+    ],
+};
+
+const categoryMeta = {
+    "Conversion":   { bg:"bg-emerald-500/15", border:"border-emerald-500/30", text:"text-emerald-400", dot:"#22C55E" },
+    "Content":      { bg:"bg-blue-500/15",    border:"border-blue-500/30",    text:"text-blue-400",    dot:"#3B82F6" },
+    "Interactive":  { bg:"bg-purple-500/15",   border:"border-purple-500/30",  text:"text-purple-400",  dot:"#A855F7" },
+    "E-commerce":   { bg:"bg-amber-500/15",    border:"border-amber-500/30",   text:"text-amber-400",   dot:"#F59E0B" },
+    "Community":    { bg:"bg-pink-500/15",     border:"border-pink-500/30",    text:"text-pink-400",    dot:"#EC4899" },
+};
+
+let currentFilter = 'all';
+let currentSearch = '';
+
+function buildPhoneWireframe(wf) {
+    const totalH = wf.reduce((s, b) => s + b.h, 0);
+    let html = '<div class="phone-frame">';
+    html += '<div class="phone-notch"></div>';
+    html += '<div class="phone-screen">';
+    wf.forEach(block => {
+        const heightPx = Math.max(Math.round((block.h / totalH) * 220), 18);
+        const isDark = block.dark === true;
+        const textColor = isDark ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.75)';
+        html += `<div class="wireframe-block" style="height:${heightPx}px;background:${block.c};border-radius:3px;">`;
+        html += `<span style="font-size:8px;font-weight:600;color:${textColor};letter-spacing:0.03em;text-align:center;padding:2px 4px;line-height:1.2;">${block.l}</span>`;
+        html += '</div>';
+    });
+    html += '</div></div>';
+    return html;
+}
+
+function buildDesktopWireframe(wf) {
+    const totalH = wf.reduce((s, b) => s + b.h, 0);
+    let html = '<div class="desktop-wireframe">';
+    html += '<div class="desktop-toolbar"><span class="desktop-dot" style="background:#EF4444"></span><span class="desktop-dot" style="background:#F59E0B"></span><span class="desktop-dot" style="background:#22C55E"></span></div>';
+    html += '<div class="desktop-screen">';
+    wf.forEach(block => {
+        const heightPx = Math.max(Math.round((block.h / totalH) * 180), 16);
+        const isDark = block.dark === true;
+        const textColor = isDark ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.75)';
+        html += `<div class="desktop-block" style="height:${heightPx}px;background:${block.c};">`;
+        html += `<span style="font-size:8px;font-weight:600;color:${textColor};letter-spacing:0.03em;text-align:center;padding:2px 4px;line-height:1.2;">${block.l}</span>`;
+        html += '</div>';
+    });
+    html += '</div></div>';
+    return html;
+}
+
+function buildSectionFlow(sections) {
+    return sections.map((s, i) => {
+        let arrow = i < sections.length - 1
+            ? '<svg class="w-3 h-3 text-gray-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>'
+            : '';
+        return `<span class="text-[11px] px-2 py-0.5 rounded bg-white/5 text-gray-300 border border-white/5 whitespace-nowrap">${s}</span>${arrow}`;
+    }).join('');
+}
+
+function buildIndustryBadges(p) {
+    const products = patternToProducts[p.name] || [];
+    if (products.length === 0) return '';
+    const badges = products.map(prod => {
+        const encoded = encodeURIComponent(prod);
+        return `<a href="products.html?q=${encoded}" class="industry-badge" title="View ${prod} design specs">${prod}</a>`;
+    }).join('');
+    return `
+        <div class="mt-3">
+            <div class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-1.5 flex items-center gap-1.5">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                Used By Products
+            </div>
+            <div class="flex flex-wrap gap-1">${badges}</div>
+        </div>`;
+}
+
+function buildSectionBreakdown(p) {
+    const rows = p.sections.map((s, i) => {
+        const tip = sectionDesignTips[s] || "Follow design best practices for this section. Ensure visual hierarchy and clear content structure.";
+        return `<div class="section-row">
+            <span class="section-num">${i + 1}</span>
+            <div class="min-w-0">
+                <div class="text-[11px] font-semibold text-gray-200">${s}</div>
+                <div class="text-[10px] text-gray-500 leading-relaxed mt-0.5">${tip}</div>
+            </div>
+        </div>`;
+    }).join('');
+    return `
+        <div class="mt-2">
+            <button onclick="toggleSubPanel(event, 'sections-${p.id}')" class="sub-panel-toggle">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                <span>Section Breakdown (${p.sections.length} sections)</span>
+            </button>
+            <div id="sections-${p.id}" class="sub-panel">
+                <div class="pt-2 space-y-1.5">${rows}</div>
+            </div>
+        </div>`;
+}
+
+function buildABTesting(p) {
+    const tips = abTestingTips[p.id];
+    if (!tips) return '';
+    const rows = tips.map(t => {
+        const impactClass = t.impact === 'High' ? 'impact-high' : t.impact === 'Medium' ? 'impact-medium' : 'impact-low';
+        const prioClass = t.priority === 1 ? 'ab-priority-1' : t.priority === 2 ? 'ab-priority-2' : 'ab-priority-3';
+        return `<div class="ab-row">
+            <span class="ab-priority ${prioClass}">${t.priority}</span>
+            <div class="min-w-0 flex-1">
+                <div class="text-[11px] text-gray-300 leading-relaxed">${t.test}</div>
+                <div class="mt-1"><span class="impact-badge ${impactClass}">${t.impact} impact</span></div>
+            </div>
+        </div>`;
+    }).join('');
+    return `
+        <div class="mt-2">
+            <button onclick="toggleSubPanel(event, 'ab-${p.id}')" class="sub-panel-toggle">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                <span>A/B Testing Tips (${tips.length} tests)</span>
+            </button>
+            <div id="ab-${p.id}" class="sub-panel">
+                <div class="pt-2 space-y-1.5">${rows}</div>
+            </div>
+        </div>`;
+}
+
+function buildCard(p, idx) {
+    const meta = categoryMeta[p.cat] || categoryMeta["Conversion"];
+    const delay = Math.min(idx * 40, 400);
+    return `
+    <div class="pattern-card card-glow rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden animate-card" data-cat="${p.cat}" data-name="${p.name.toLowerCase()}" style="animation-delay:${delay}ms;">
+        <div class="p-5">
+            <!-- Header -->
+            <div class="flex items-start justify-between mb-3">
+                <div class="flex items-center gap-3 min-w-0">
+                    <span class="font-heading text-2xl font-bold text-white/15 flex-shrink-0">${String(p.id).padStart(2,'0')}</span>
+                    <div class="min-w-0">
+                        <h3 class="font-heading text-[15px] font-semibold text-white leading-tight truncate">${p.name}</h3>
+                        <span class="tag ${meta.bg} ${meta.border} ${meta.text} border mt-1.5 inline-block">${p.cat}</span>
+                    </div>
+                </div>
+                <button onclick="toggleDetails(${p.id})" class="expand-btn p-1.5 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-gray-400 hover:text-white flex-shrink-0 ml-2" title="Expand details">
+                    <svg class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+            </div>
+
+            <!-- Wireframe with Desktop/Mobile Toggle -->
+            <div class="mb-4">
+                <div class="flex items-center justify-between mb-1.5">
+                    <div class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Wireframe</div>
+                    <div class="flex gap-1">
+                        <button onclick="toggleWireframe(event, ${p.id}, 'desktop')" class="wf-toggle-btn active" data-wf-view="desktop" data-wf-id="${p.id}" title="Desktop view">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        </button>
+                        <button onclick="toggleWireframe(event, ${p.id}, 'mobile')" class="wf-toggle-btn" data-wf-view="mobile" data-wf-id="${p.id}" title="Mobile view">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div id="wf-desktop-${p.id}" class="wf-view active">${buildDesktopWireframe(p.wireframe)}</div>
+                <div id="wf-mobile-${p.id}" class="wf-view">${buildPhoneWireframe(p.wireframe)}</div>
+            </div>
+
+            <!-- Section Flow -->
+            <div class="mb-3">
+                <div class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-1.5">Section Flow</div>
+                <div class="flex flex-wrap items-center gap-1">${buildSectionFlow(p.sections)}</div>
+            </div>
+
+            <!-- Industry Mapping Badges -->
+            ${buildIndustryBadges(p)}
+
+            <!-- Section Breakdown (expandable) -->
+            ${buildSectionBreakdown(p)}
+
+            <!-- A/B Testing Tips (expandable) -->
+            ${buildABTesting(p)}
+
+            <!-- Expandable Details -->
+            <div id="details-${p.id}" class="pattern-details">
+                <div class="pt-3 border-t border-white/5 space-y-3 mt-3">
+                    <div>
+                        <div class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-1">CTA Placement</div>
+                        <div class="flex items-start gap-2">
+                            <span class="info-dot" style="background:#818CF8;"></span>
+                            <p class="text-sm text-gray-300 leading-relaxed">${p.cta}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-1">Color Strategy</div>
+                        <div class="flex items-start gap-2">
+                            <span class="info-dot" style="background:#06B6D4;"></span>
+                            <p class="text-sm text-gray-300 leading-relaxed">${p.color}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-1">Recommended Effects</div>
+                        <div class="flex items-start gap-2">
+                            <span class="info-dot" style="background:#A855F7;"></span>
+                            <p class="text-sm text-gray-300 leading-relaxed">${p.effects}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold mb-1">Conversion Tips</div>
+                        <div class="flex items-start gap-2">
+                            <span class="info-dot" style="background:#22C55E;"></span>
+                            <p class="text-sm text-gray-300 leading-relaxed">${p.tips}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`;
+}
+
+function getFiltered() {
+    let filtered = patterns;
+    if (currentFilter !== 'all') {
+        filtered = filtered.filter(p => p.cat === currentFilter);
+    }
+    if (currentSearch) {
+        const q = currentSearch.toLowerCase();
+        filtered = filtered.filter(p =>
+            p.name.toLowerCase().includes(q) ||
+            p.cat.toLowerCase().includes(q) ||
+            p.sections.join(' ').toLowerCase().includes(q) ||
+            p.cta.toLowerCase().includes(q) ||
+            p.color.toLowerCase().includes(q) ||
+            p.effects.toLowerCase().includes(q) ||
+            p.tips.toLowerCase().includes(q) ||
+            (patternToProducts[p.name] || []).some(prod => prod.toLowerCase().includes(q))
+        );
+    }
+    return filtered;
+}
+
+function render() {
+    const filtered = getFiltered();
+    const grid = document.getElementById('patternsGrid');
+    const noRes = document.getElementById('noResults');
+    const countEl = document.getElementById('resultCount');
+
+    countEl.textContent = `Showing ${filtered.length} of ${patterns.length} patterns`;
+
+    if (filtered.length === 0) {
+        grid.innerHTML = '';
+        noRes.classList.remove('hidden');
+    } else {
+        noRes.classList.add('hidden');
+        grid.innerHTML = filtered.map((p, i) => buildCard(p, i)).join('');
+    }
+}
+
+function toggleDetails(id) {
+    const el = document.getElementById('details-' + id);
+    if (!el) return;
+    const card = el.closest('.pattern-card');
+    const svg = card.querySelector('.expand-btn svg');
+    el.classList.toggle('open');
+    if (el.classList.contains('open')) {
+        svg.style.transform = 'rotate(180deg)';
+    } else {
+        svg.style.transform = 'rotate(0deg)';
+    }
+}
+
+function toggleSubPanel(event, panelId) {
+    event.stopPropagation();
+    const panel = document.getElementById(panelId);
+    const btn = event.currentTarget;
+    if (!panel) return;
+    panel.classList.toggle('open');
+    btn.classList.toggle('active');
+}
+
+function toggleWireframe(event, id, view) {
+    event.stopPropagation();
+    const desktopEl = document.getElementById('wf-desktop-' + id);
+    const mobileEl = document.getElementById('wf-mobile-' + id);
+    if (!desktopEl || !mobileEl) return;
+    const card = desktopEl.closest('.pattern-card');
+    const btns = card.querySelectorAll('[data-wf-id="' + id + '"]');
+    btns.forEach(b => b.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+    if (view === 'desktop') {
+        desktopEl.classList.add('active');
+        mobileEl.classList.remove('active');
+    } else {
+        desktopEl.classList.remove('active');
+        mobileEl.classList.add('active');
+    }
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentFilter = this.dataset.cat;
+        render();
+    });
+});
+
+// Search
+document.getElementById('searchInput').addEventListener('input', function() {
+    currentSearch = this.value;
+    render();
+});
+
+// Initial render
+render();
+</script>
+<script>document.addEventListener('click',e=>{if(!e.target.closest('#more-menu')&&!e.target.closest('[onclick*="more-menu"]')){document.getElementById('more-menu')?.classList.add('hidden')}})
+// URL param support
+const urlParams = new URLSearchParams(window.location.search);
+const qParam = urlParams.get('q');
+if (qParam) {
+    document.getElementById('searchInput').value = qParam;
+    currentSearch = qParam.toLowerCase();
+    render();
+}
+</script>
+</body>
+</html>

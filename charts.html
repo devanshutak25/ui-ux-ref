@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>25 Chart Types - UI/UX Pro Max</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <script>tailwind.config={theme:{extend:{fontFamily:{heading:['Space Grotesk','sans-serif'],body:['Inter','sans-serif']}}}}</script>
+    <style>
+        body{font-family:'Inter',sans-serif}h1,h2,h3,h4,.font-heading{font-family:'Space Grotesk',sans-serif}
+        .gradient-text{background:linear-gradient(135deg,#818CF8,#06B6D4,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .nav-blur{backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%)}
+        .card-glow:hover{box-shadow:0 0 40px rgba(129,140,248,0.12)}
+        .filter-btn.active{background:rgba(129,140,248,0.2);border-color:rgba(129,140,248,0.5);color:#818CF8}
+        .chart-card.hidden-card{display:none}
+        .chart-card.highlight-card{border-color:rgba(129,140,248,0.6)!important;box-shadow:0 0 30px rgba(129,140,248,0.15)}
+        ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#08090E}::-webkit-scrollbar-thumb{background:#1E293B;border-radius:4px}
+
+        /* Decision Guide */
+        .dg-step{animation:dgFadeIn 0.3s ease}
+        @keyframes dgFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+        .dg-btn{transition:all 0.2s}
+        .dg-btn:hover{background:rgba(129,140,248,0.15);border-color:rgba(129,140,248,0.4);color:#818CF8;transform:translateY(-1px)}
+
+        /* Code tabs */
+        .code-tab{transition:all 0.15s}
+        .code-tab.active-tab{background:rgba(129,140,248,0.2);border-color:rgba(129,140,248,0.5);color:#818CF8}
+        .code-panel{display:none}
+        .code-panel.active-panel{display:block}
+        .expand-section{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+        .expand-section.expanded{max-height:3000px}
+        .expand-toggle{transition:transform 0.3s}
+        .expand-toggle.rotated{transform:rotate(180deg)}
+        pre.code-block{background:#0B0D14;border:1px solid rgba(255,255,255,0.06);border-radius:0.5rem;padding:0.75rem;font-size:0.7rem;line-height:1.5;overflow-x:auto;color:#CBD5E1;font-family:'Space Mono',monospace;position:relative}
+        .copy-btn{position:absolute;top:0.5rem;right:0.5rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:0.375rem;padding:0.25rem 0.5rem;font-size:0.625rem;color:#94A3B8;cursor:pointer;transition:all 0.15s}
+        .copy-btn:hover{background:rgba(129,140,248,0.2);color:#818CF8}
+        .copy-btn.copied{background:rgba(34,197,94,0.2);color:#22C55E}
+
+        /* Use case badges */
+        .use-case-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:9999px;font-size:0.625rem;font-weight:500;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#94A3B8;white-space:nowrap}
+    </style>
+</head>
+<body class="bg-[#08090E] text-gray-200 antialiased">
+<nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-[#08090E]/70 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="font-heading font-bold text-xl tracking-tight"><span class="text-white">UI/UX</span><span class="gradient-text"> Pro Max</span></a>
+        <div class="hidden md:flex items-center gap-1">
+            <a href="styles.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Styles</a>
+            <a href="colors.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Colors</a>
+            <a href="typography.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Typography</a>
+            <a href="charts.html" class="px-3 py-2 text-sm text-white bg-white/10 transition-colors rounded-lg">Charts</a>
+            <a href="products.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Products</a>
+            <a href="icons.html" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">Icons</a>
+            <div class="relative">
+                <button onclick="document.getElementById('more-menu').classList.toggle('hidden')" class="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5 inline-flex items-center gap-1">More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                <div id="more-menu" class="hidden absolute right-0 top-full mt-2 w-52 bg-[#12131A] border border-white/10 rounded-xl shadow-2xl py-2 z-50">
+                    <a href="stacks.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Stacks</a>
+                    <a href="ux-guidelines.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">UX Guidelines</a>
+                    <a href="patterns.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Patterns</a>
+                    <a href="reasoning.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Reasoning</a>
+                    <a href="react-performance.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">React Perf</a>
+                    <a href="web-interface.html" class="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5">Web Interface</a>
+                </div>
+            </div>
+        </div>
+        <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 text-gray-400 hover:text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 px-6 py-4 space-y-2">
+        <a href="styles.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Styles</a>
+        <a href="colors.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Colors</a>
+        <a href="typography.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Typography</a>
+        <a href="charts.html" class="block px-3 py-2 text-sm text-white bg-white/10 rounded-lg">Charts</a>
+        <a href="products.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Products</a>
+        <a href="icons.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Icons</a>
+        <a href="stacks.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Stacks</a>
+        <a href="ux-guidelines.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">UX Guidelines</a>
+        <a href="patterns.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Patterns</a>
+        <a href="reasoning.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Reasoning</a>
+        <a href="react-performance.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">React Perf</a>
+        <a href="web-interface.html" class="block px-3 py-2 text-sm text-gray-400 hover:text-white rounded-lg hover:bg-white/5">Web Interface</a>
+    </div>
+</nav>
+
+<section class="pt-28 pb-12" style="background:radial-gradient(ellipse at 30% 50%,rgba(129,140,248,0.1),transparent 50%),radial-gradient(ellipse at 70% 20%,rgba(6,182,212,0.07),transparent 50%)">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-medium mb-6">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+            25 Chart Types
+        </div>
+        <h1 class="font-heading text-4xl md:text-6xl font-bold tracking-tight leading-[0.95] mb-6">
+            <span class="text-white">Every chart type,</span><br><span class="gradient-text">decoded.</span>
+        </h1>
+        <p class="text-lg text-gray-400 leading-relaxed max-w-2xl">From Line Charts to Sankey Diagrams, Scatter Plots to Process Maps. Each chart with a visual preview, color guidance, accessibility notes, and library recommendations.</p>
+    </div>
+</section>
+
+<!-- Decision Guide Widget -->
+<section class="py-10 border-b border-white/5" id="decision-guide">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+                </div>
+                <div>
+                    <h2 class="font-heading text-lg font-bold text-white">What chart should I use?</h2>
+                    <p class="text-xs text-gray-500">Answer a few questions to find the right chart type</p>
+                </div>
+            </div>
+            <div id="dg-container">
+                <div id="dg-step" class="dg-step"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="sticky top-[73px] z-40 bg-[#08090E]/95 nav-blur border-b border-white/5 py-4">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="relative mb-3">
+            <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input id="search" type="text" placeholder="Search charts..." class="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 text-sm focus:outline-none focus:border-indigo-500/50 transition-all">
+            <span id="count" class="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-500"></span>
+        </div>
+        <div class="flex flex-wrap gap-2" id="filters"></div>
+    </div>
+</section>
+
+<section class="py-12"><div class="max-w-7xl mx-auto px-6"><div id="grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"></div><div id="empty" class="hidden text-center py-20"><p class="text-gray-500 text-lg font-heading">No charts match your search</p></div></div></section>
+
+<footer class="border-t border-white/5 py-12"><div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6"><div class="font-heading font-bold text-lg"><span class="text-white">UI/UX</span><span class="gradient-text"> Pro Max</span></div><div class="flex flex-wrap justify-center gap-4 text-sm text-gray-500"><a href="styles.html" class="hover:text-white transition-colors">Styles</a><a href="colors.html" class="hover:text-white transition-colors">Colors</a><a href="typography.html" class="hover:text-white transition-colors">Typography</a><a href="charts.html" class="hover:text-white transition-colors">Charts</a><a href="products.html" class="hover:text-white transition-colors">Products</a><a href="icons.html" class="hover:text-white transition-colors">Icons</a><a href="stacks.html" class="hover:text-white transition-colors">Stacks</a><a href="ux-guidelines.html" class="hover:text-white transition-colors">UX Guidelines</a><a href="patterns.html" class="hover:text-white transition-colors">Patterns</a><a href="reasoning.html" class="hover:text-white transition-colors">Reasoning</a><a href="react-performance.html" class="hover:text-white transition-colors">React Perf</a><a href="web-interface.html" class="hover:text-white transition-colors">Web Interface</a></div><div class="text-sm text-gray-600">Design Intelligence System</div></div></footer>
+
+<script>
+const charts = [
+{name:"Line Chart",type:"Trend Over Time",cat:"Basic",keywords:"trend time-series growth",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><polyline points="10,40 25,32 40,35 55,22 70,28 85,15 100,18 115,8" fill="none" stroke="#3B82F6" stroke-width="2"/><polyline points="10,40 25,32 40,35 55,22 70,28 85,15 100,18 115,8" fill="url(#lg1)" stroke="none"/><defs><linearGradient id="lg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3B82F6" stop-opacity="0.3"/><stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/></linearGradient></defs></svg>`,secondary:"Area Chart, Smooth Area",colors:["#0080FF","#3B82F6","#60A5FA"],colorNote:"Primary #0080FF. Multiple series: distinct colors. Fill: 20% opacity",perf:"Excellent",a11y:"Clear line patterns for colorblind. Add pattern overlays.",libs:"Chart.js, Recharts, ApexCharts",interact:"Hover + Zoom"},
+
+{name:"Bar Chart",type:"Compare Categories",cat:"Basic",keywords:"compare categories ranking",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><rect x="10" y="30" width="12" height="15" fill="#3B82F6" rx="1"/><rect x="27" y="20" width="12" height="25" fill="#60A5FA" rx="1"/><rect x="44" y="10" width="12" height="35" fill="#2563EB" rx="1"/><rect x="61" y="25" width="12" height="20" fill="#3B82F6" rx="1"/><rect x="78" y="15" width="12" height="30" fill="#818CF8" rx="1"/><rect x="95" y="22" width="12" height="23" fill="#6366F1" rx="1"/></svg>`,secondary:"Column Chart, Grouped Bar",colors:["#3B82F6","#60A5FA","#2563EB","#818CF8"],colorNote:"Distinct per bar. Grouped: same color. Sort descending.",perf:"Excellent",a11y:"Easy to compare. Add value labels on bars.",libs:"Chart.js, Recharts, D3.js",interact:"Hover + Sort"},
+
+{name:"Pie / Donut Chart",type:"Part-to-Whole",cat:"Basic",keywords:"pie donut percentage proportion",svg:`<svg viewBox="0 0 120 60" class="w-full h-20"><rect width="120" height="60" fill="#0F172A" rx="4"/><circle cx="60" cy="30" r="22" fill="none" stroke="#3B82F6" stroke-width="8" stroke-dasharray="40 100" transform="rotate(-90 60 30)"/><circle cx="60" cy="30" r="22" fill="none" stroke="#22C55E" stroke-width="8" stroke-dasharray="30 100" stroke-dashoffset="-40" transform="rotate(-90 60 30)"/><circle cx="60" cy="30" r="22" fill="none" stroke="#F59E0B" stroke-width="8" stroke-dasharray="20 100" stroke-dashoffset="-70" transform="rotate(-90 60 30)"/><circle cx="60" cy="30" r="22" fill="none" stroke="#EF4444" stroke-width="8" stroke-dasharray="10 100" stroke-dashoffset="-90" transform="rotate(-90 60 30)"/></svg>`,secondary:"Stacked Bar, Treemap",colors:["#3B82F6","#22C55E","#F59E0B","#EF4444"],colorNote:"5-6 max slices. Contrasting palette. Large slices first.",perf:"Good (limit 6)",a11y:"Hard for accessibility. Better: Stacked bar with legend.",libs:"Chart.js, Recharts, D3.js",interact:"Hover + Drill"},
+
+{name:"Scatter Plot",type:"Correlation/Distribution",cat:"Statistical",keywords:"correlation scatter relationship",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><circle cx="20" cy="35" r="3" fill="#3B82F6" opacity="0.7"/><circle cx="35" cy="28" r="4" fill="#3B82F6" opacity="0.7"/><circle cx="50" cy="20" r="3" fill="#3B82F6" opacity="0.7"/><circle cx="55" cy="32" r="5" fill="#EF4444" opacity="0.7"/><circle cx="70" cy="15" r="3" fill="#3B82F6" opacity="0.7"/><circle cx="80" cy="25" r="4" fill="#3B82F6" opacity="0.7"/><circle cx="90" cy="10" r="3" fill="#3B82F6" opacity="0.7"/><circle cx="100" cy="18" r="5" fill="#22C55E" opacity="0.7"/></svg>`,secondary:"Heat Map, Matrix",colors:["#3B82F6","#EF4444","#22C55E"],colorNote:"Color axis: gradient blue-red. Size: relative. Opacity: 0.6-0.8",perf:"Moderate",a11y:"Provide data table alternative. Pattern + color distinction.",libs:"D3.js, Plotly, Recharts",interact:"Hover + Brush"},
+
+{name:"Heat Map",type:"Intensity/Density",cat:"Statistical",keywords:"heatmap intensity density matrix",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/>${Array(35).fill(0).map((_,i)=>{const x=8+(i%7)*15,y=6+Math.floor(i/7)*8,v=Math.random();const c=v>0.7?'#EF4444':v>0.4?'#F59E0B':v>0.2?'#3B82F6':'#1E293B';return`<rect x="${x}" y="${y}" width="13" height="6" fill="${c}" rx="1" opacity="${0.5+v*0.5}"/>`}).join('')}</svg>`,secondary:"Grid Heat Map, Bubble Heat",colors:["#3B82F6","#22C55E","#F59E0B","#EF4444"],colorNote:"Cool (blue) to Hot (red) gradient. Clear legend.",perf:"Excellent (CSS)",a11y:"Colorblind: pattern overlay. Numerical legend needed.",libs:"D3.js, Plotly, ApexCharts",interact:"Hover + Zoom"},
+
+{name:"Choropleth Map",type:"Geographic Data",cat:"Specialized",keywords:"geographic map location region",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><path d="M20,15 L40,10 L55,18 L50,30 L30,35 Z" fill="#3B82F6" opacity="0.6" stroke="#1E293B"/><path d="M55,18 L75,12 L85,22 L80,32 L50,30 Z" fill="#22C55E" opacity="0.7" stroke="#1E293B"/><path d="M40,10 L60,5 L75,12 L55,18 Z" fill="#F59E0B" opacity="0.5" stroke="#1E293B"/><path d="M80,32 L100,28 L105,40 L85,42 L70,38 Z" fill="#EF4444" opacity="0.6" stroke="#1E293B"/></svg>`,secondary:"Geographic Heat Map",colors:["#3B82F6","#22C55E","#F59E0B","#EF4444"],colorNote:"Single color gradient or categorized. Clear scale legend.",perf:"Moderate",a11y:"Include text labels. Provide data table alternative.",libs:"D3.js, Mapbox, Leaflet",interact:"Pan + Zoom + Drill"},
+
+{name:"Funnel Chart",type:"Funnel/Flow",cat:"Flow",keywords:"funnel flow conversion",svg:`<svg viewBox="0 0 120 55" class="w-full h-20"><rect width="120" height="55" fill="#0F172A" rx="4"/><polygon points="15,8 105,8 95,18 25,18" fill="#3B82F6" opacity="0.9"/><polygon points="25,20 95,20 85,30 35,30" fill="#3B82F6" opacity="0.7"/><polygon points="35,32 85,32 75,42 45,42" fill="#3B82F6" opacity="0.5"/><polygon points="45,44 75,44 70,50 50,50" fill="#22C55E" opacity="0.9"/></svg>`,secondary:"Waterfall, Sankey",colors:["#3B82F6","#22C55E"],colorNote:"Gradient from starting to ending color. Show conversion %.",perf:"Good",a11y:"Clear stage labels + percentages.",libs:"D3.js, Recharts, Custom SVG",interact:"Hover + Drill"},
+
+{name:"Gauge Chart",type:"Performance vs Target",cat:"Dashboard",keywords:"gauge performance target",svg:`<svg viewBox="0 0 120 60" class="w-full h-20"><rect width="120" height="60" fill="#0F172A" rx="4"/><path d="M30,48 A30,30 0 0,1 90,48" fill="none" stroke="#1E293B" stroke-width="6" stroke-linecap="round"/><path d="M30,48 A30,30 0 0,1 80,22" fill="none" stroke="#22C55E" stroke-width="6" stroke-linecap="round"/><circle cx="60" cy="48" r="3" fill="#F8FAFC"/><text x="60" y="42" text-anchor="middle" fill="#F8FAFC" font-size="8" font-weight="700">78%</text></svg>`,secondary:"Dial, Thermometer, Bullet",colors:["#EF4444","#F59E0B","#22C55E"],colorNote:"Red-Yellow-Green gradient. Target: marker line.",perf:"Good",a11y:"Add numerical value + percentage label.",libs:"D3.js, ApexCharts, Custom SVG",interact:"Hover"},
+
+{name:"Forecast Line",type:"Time-Series Forecast",cat:"Specialized",keywords:"forecast prediction confidence",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><polyline points="10,38 25,30 40,33 55,22 65,18" fill="none" stroke="#3B82F6" stroke-width="2"/><polyline points="65,18 80,12 95,8 110,5" fill="none" stroke="#F59E0B" stroke-width="2" stroke-dasharray="4,3"/><path d="M65,18 L80,8 95,4 110,2 110,10 95,14 80,18 Z" fill="#F59E0B" opacity="0.1"/></svg>`,secondary:"Ribbon Chart",colors:["#3B82F6","#F59E0B"],colorNote:"Actual: solid #0080FF. Forecast: dashed #FF9500. Band: light shading.",perf:"Good",a11y:"Clearly distinguish actual vs forecast.",libs:"Chart.js, ApexCharts, Plotly",interact:"Hover + Toggle"},
+
+{name:"Anomaly Detection",type:"Anomaly/Outlier",cat:"Specialized",keywords:"anomaly outlier detection alert",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><polyline points="10,30 20,28 30,32 40,25 50,28 60,10 70,30 80,27 90,32 100,28 110,30" fill="none" stroke="#3B82F6" stroke-width="1.5"/><circle cx="60" cy="10" r="4" fill="none" stroke="#EF4444" stroke-width="2"/><line x1="60" y1="2" x2="60" y2="6" stroke="#EF4444" stroke-width="1.5"/></svg>`,secondary:"Scatter with Alert",colors:["#3B82F6","#EF4444"],colorNote:"Normal: #0080FF. Anomaly: #FF0000 markers + alert.",perf:"Good",a11y:"Circle markers for anomalies. Text annotations.",libs:"D3.js, Plotly, ApexCharts",interact:"Hover + Alert"},
+
+{name:"Treemap",type:"Hierarchical/Nested",cat:"Specialized",keywords:"hierarchical nested treemap",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><rect x="6" y="6" width="50" height="38" fill="#3B82F6" rx="2" opacity="0.8"/><rect x="58" y="6" width="30" height="20" fill="#22C55E" rx="2" opacity="0.7"/><rect x="58" y="28" width="30" height="16" fill="#F59E0B" rx="2" opacity="0.7"/><rect x="90" y="6" width="24" height="14" fill="#A78BFA" rx="2" opacity="0.6"/><rect x="90" y="22" width="24" height="10" fill="#EC4899" rx="2" opacity="0.5"/><rect x="90" y="34" width="24" height="10" fill="#06B6D4" rx="2" opacity="0.5"/></svg>`,secondary:"Sunburst, Icicle",colors:["#3B82F6","#22C55E","#F59E0B","#A78BFA"],colorNote:"Parent: distinct hues. Children: lighter shades. White borders.",perf:"Moderate",a11y:"Poor - provide table alternative.",libs:"D3.js, Recharts, ApexCharts",interact:"Hover + Drilldown"},
+
+{name:"Sankey Diagram",type:"Flow/Process",cat:"Flow",keywords:"flow process sankey",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><rect x="8" y="5" width="6" height="18" fill="#3B82F6" rx="1"/><rect x="8" y="27" width="6" height="12" fill="#22C55E" rx="1"/><rect x="106" y="8" width="6" height="14" fill="#F59E0B" rx="1"/><rect x="106" y="26" width="6" height="10" fill="#A78BFA" rx="1"/><rect x="106" y="40" width="6" height="6" fill="#EC4899" rx="1"/><path d="M14,14 C60,14 60,15 106,15" fill="none" stroke="#3B82F6" stroke-width="8" opacity="0.3"/><path d="M14,33 C60,33 60,31 106,31" fill="none" stroke="#22C55E" stroke-width="6" opacity="0.3"/></svg>`,secondary:"Alluvial, Chord",colors:["#3B82F6","#22C55E","#F59E0B"],colorNote:"Gradient source to target. Opacity 0.4-0.6.",perf:"Moderate",a11y:"Poor - provide flow table.",libs:"D3.js (d3-sankey), Plotly",interact:"Hover + Drilldown"},
+
+{name:"Waterfall Chart",type:"Cumulative Changes",cat:"Statistical",keywords:"waterfall cumulative cascade",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><rect x="10" y="10" width="12" height="30" fill="#3B82F6" rx="1"/><rect x="27" y="10" width="12" height="12" fill="#22C55E" rx="1"/><line x1="27" y1="22" x2="39" y2="22" stroke="#334155" stroke-width="0.5"/><rect x="44" y="22" width="12" height="8" fill="#EF4444" rx="1"/><rect x="61" y="14" width="12" height="16" fill="#22C55E" rx="1"/><rect x="78" y="14" width="12" height="6" fill="#EF4444" rx="1"/><rect x="95" y="8" width="12" height="32" fill="#1E40AF" rx="1"/></svg>`,secondary:"Stacked Bar, Cascade",colors:["#22C55E","#EF4444","#3B82F6","#1E40AF"],colorNote:"Increase: green. Decrease: red. Start: blue. End: navy.",perf:"Good",a11y:"Good - clear directional colors with labels.",libs:"ApexCharts, Highcharts, Plotly",interact:"Hover"},
+
+{name:"Radar / Spider",type:"Multi-Variable",cat:"Statistical",keywords:"radar spider multi-variable",svg:`<svg viewBox="0 0 120 60" class="w-full h-20"><rect width="120" height="60" fill="#0F172A" rx="4"/><polygon points="60,10 85,25 80,48 40,48 35,25" fill="none" stroke="#1E293B" stroke-width="0.5"/><polygon points="60,18 78,28 75,43 45,43 42,28" fill="none" stroke="#1E293B" stroke-width="0.5"/><polygon points="60,15 82,22 72,46 48,42 38,28" fill="#3B82F6" fill-opacity="0.2" stroke="#3B82F6" stroke-width="1.5"/><circle cx="60" cy="15" r="2" fill="#3B82F6"/><circle cx="82" cy="22" r="2" fill="#3B82F6"/><circle cx="72" cy="46" r="2" fill="#3B82F6"/></svg>`,secondary:"Parallel Coordinates, Grouped Bar",colors:["#3B82F6"],colorNote:"Single: #0080FF 20% fill. Multiple: distinct colors.",perf:"Good",a11y:"Moderate - limit 5-8 axes. Add data table.",libs:"Chart.js, Recharts, ApexCharts",interact:"Hover + Toggle"},
+
+{name:"Candlestick",type:"Stock/Trading OHLC",cat:"Dashboard",keywords:"stock trading candlestick OHLC",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/>${[[15,12,35,8,true],[28,18,30,15,false],[41,10,28,6,true],[54,20,32,16,false],[67,8,25,5,true],[80,15,28,12,true],[93,22,34,18,false],[106,10,22,7,true]].map(([x,y,h,t,bull])=>`<line x1="${x}" y1="${t}" x2="${x}" y2="${y+h}" stroke="${bull?'#22C55E':'#EF4444'}" stroke-width="1"/><rect x="${x-3}" y="${y}" width="6" height="${h-y>0?h-y:8}" fill="${bull?'#22C55E':'#EF4444'}" rx="0.5"/>`).join('')}</svg>`,secondary:"OHLC Bar, Heikin-Ashi",colors:["#22C55E","#EF4444"],colorNote:"Bullish: #26A69A. Bearish: #EF5350. Volume: 40% opacity.",perf:"Good",a11y:"Provide OHLC data table.",libs:"Lightweight Charts (TradingView), ApexCharts",interact:"Real-time + Zoom"},
+
+{name:"Network Graph",type:"Relationships",cat:"Specialized",keywords:"network graph relationship connection",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><line x1="40" y1="25" x2="60" y2="15" stroke="#334155" stroke-width="1"/><line x1="40" y1="25" x2="55" y2="38" stroke="#334155" stroke-width="1"/><line x1="60" y1="15" x2="85" y2="20" stroke="#334155" stroke-width="1"/><line x1="60" y1="15" x2="75" y2="35" stroke="#334155" stroke-width="1"/><line x1="55" y1="38" x2="75" y2="35" stroke="#334155" stroke-width="1"/><circle cx="40" cy="25" r="5" fill="#3B82F6"/><circle cx="60" cy="15" r="6" fill="#A78BFA"/><circle cx="85" cy="20" r="4" fill="#22C55E"/><circle cx="55" cy="38" r="4" fill="#F59E0B"/><circle cx="75" cy="35" r="5" fill="#EC4899"/></svg>`,secondary:"Tree, Adjacency Matrix",colors:["#3B82F6","#A78BFA","#22C55E","#EC4899"],colorNote:"Node types: categorical. Edges: #90A4AE 60% opacity.",perf:"Poor (500+ nodes)",a11y:"Very poor - provide adjacency list.",libs:"D3.js (d3-force), Vis.js, Cytoscape.js",interact:"Drag + Hover"},
+
+{name:"Box Plot",type:"Distribution/Statistical",cat:"Statistical",keywords:"distribution statistical box whisker",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><line x1="30" y1="12" x2="30" y2="40" stroke="#BBDEFB" stroke-width="1"/><rect x="22" y="18" width="16" height="16" fill="#BBDEFB" fill-opacity="0.3" stroke="#1976D2" stroke-width="1.5" rx="1"/><line x1="22" y1="26" x2="38" y2="26" stroke="#D32F2F" stroke-width="2"/><line x1="22" y1="12" x2="38" y2="12" stroke="#1976D2" stroke-width="1"/><line x1="22" y1="40" x2="38" y2="40" stroke="#1976D2" stroke-width="1"/><circle cx="30" cy="8" r="2" fill="#EF4444" opacity="0.7"/><line x1="70" y1="15" x2="70" y2="38" stroke="#BBDEFB" stroke-width="1"/><rect x="62" y="20" width="16" height="12" fill="#BBDEFB" fill-opacity="0.3" stroke="#1976D2" stroke-width="1.5" rx="1"/><line x1="62" y1="28" x2="78" y2="28" stroke="#D32F2F" stroke-width="2"/></svg>`,secondary:"Violin Plot, Beeswarm",colors:["#BBDEFB","#1976D2","#D32F2F"],colorNote:"Box: #BBDEFB. Border: #1976D2. Median: red. Outliers: red.",perf:"Excellent",a11y:"Good - include stats table.",libs:"Plotly, D3.js, Chart.js",interact:"Hover"},
+
+{name:"Bullet Chart",type:"Performance Compact",cat:"Dashboard",keywords:"bullet performance target compact",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><rect x="10" y="16" width="100" height="8" fill="#1E293B" rx="2"/><rect x="10" y="16" width="70" height="8" fill="#334155" rx="2"/><rect x="10" y="16" width="50" height="8" fill="#475569" rx="2"/><rect x="10" y="14" width="65" height="12" fill="#3B82F6" rx="2" opacity="0.8"/><line x1="80" y1="12" x2="80" y2="30" stroke="#F8FAFC" stroke-width="2"/><rect x="10" y="36" width="100" height="8" fill="#1E293B" rx="2"/><rect x="10" y="36" width="80" height="8" fill="#334155" rx="2"/><rect x="10" y="34" width="85" height="12" fill="#22C55E" rx="2" opacity="0.8"/><line x1="90" y1="32" x2="90" y2="48" stroke="#F8FAFC" stroke-width="2"/></svg>`,secondary:"Gauge, Progress Bar",colors:["#3B82F6","#22C55E","#F8FAFC"],colorNote:"Ranges: red/yellow/green. Performance: blue. Target: white line.",perf:"Excellent",a11y:"Excellent - compact with clear values.",libs:"D3.js, Plotly, Custom SVG",interact:"Hover"},
+
+{name:"Waffle Chart",type:"Proportional/Percentage",cat:"Basic",keywords:"waffle proportional percentage",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/>${Array(50).fill(0).map((_,i)=>{const x=12+(i%10)*10,y=6+Math.floor(i/10)*8;const c=i<25?'#3B82F6':i<35?'#22C55E':i<42?'#F59E0B':'#1E293B';return`<rect x="${x}" y="${y}" width="8" height="6" fill="${c}" rx="1"/>`}).join('')}</svg>`,secondary:"Pictogram, Stacked Bar 100%",colors:["#3B82F6","#22C55E","#F59E0B"],colorNote:"10x10 grid. 3-5 categories max. 2-3px spacing.",perf:"Good",a11y:"Good - better than pie for accessibility.",libs:"D3.js, React-Waffle, CSS Grid",interact:"Hover"},
+
+{name:"Sunburst",type:"Hierarchical Proportional",cat:"Specialized",keywords:"sunburst hierarchical proportional",svg:`<svg viewBox="0 0 120 60" class="w-full h-20"><rect width="120" height="60" fill="#0F172A" rx="4"/><circle cx="60" cy="30" r="10" fill="#3B82F6"/><path d="M60,30 L60,8 A22,22 0 0,1 80,22 Z" fill="#60A5FA" opacity="0.7"/><path d="M60,30 L80,22 A22,22 0 0,1 82,32 Z" fill="#22C55E" opacity="0.6"/><path d="M60,30 L82,32 A22,22 0 0,1 72,50 Z" fill="#F59E0B" opacity="0.6"/><path d="M60,30 L72,50 A22,22 0 0,1 48,50 Z" fill="#A78BFA" opacity="0.5"/><path d="M60,30 L48,50 A22,22 0 0,1 38,32 Z" fill="#EC4899" opacity="0.5"/><path d="M60,30 L38,32 A22,22 0 0,1 60,8 Z" fill="#06B6D4" opacity="0.6"/></svg>`,secondary:"Treemap, Circle Packing",colors:["#3B82F6","#22C55E","#F59E0B","#A78BFA"],colorNote:"Center to outer: darker to lighter. 15-20% per level.",perf:"Moderate",a11y:"Poor - provide hierarchy table.",libs:"D3.js (d3-hierarchy), Recharts",interact:"Drilldown + Hover"},
+
+{name:"Decomposition Tree",type:"Root Cause Analysis",cat:"Flow",keywords:"root-cause decomposition drill-down",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><rect x="45" y="4" width="30" height="10" fill="#3B82F6" rx="2"/><line x1="60" y1="14" x2="35" y2="22" stroke="#334155"/><line x1="60" y1="14" x2="85" y2="22" stroke="#334155"/><rect x="22" y="22" width="26" height="8" fill="#22C55E" rx="2"/><rect x="72" y="22" width="26" height="8" fill="#EF4444" rx="2"/><line x1="35" y1="30" x2="25" y2="36" stroke="#334155"/><line x1="35" y1="30" x2="45" y2="36" stroke="#334155"/><rect x="14" y="36" width="22" height="8" fill="#22C55E" rx="2" opacity="0.7"/><rect x="34" y="36" width="22" height="8" fill="#F59E0B" rx="2" opacity="0.7"/></svg>`,secondary:"Decision Tree, Flow Chart",colors:["#3B82F6","#22C55E","#EF4444"],colorNote:"Primary nodes: blue. Negative: red. Connectors: grey.",perf:"Moderate",a11y:"Clear hierarchy. Keyboard navigation for nodes.",libs:"React-Flow, Custom D3.js",interact:"Drill + Expand"},
+
+{name:"3D Scatter/Surface",type:"3D Spatial Data",cat:"Specialized",keywords:"3d spatial terrain volumetric",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><line x1="20" y1="40" x2="100" y2="40" stroke="#334155" stroke-width="0.5"/><line x1="20" y1="40" x2="10" y2="20" stroke="#334155" stroke-width="0.5"/><line x1="20" y1="40" x2="50" y2="45" stroke="#334155" stroke-width="0.5"/><circle cx="40" cy="30" r="3" fill="#3B82F6" opacity="0.6"/><circle cx="55" cy="22" r="4" fill="#22C55E" opacity="0.7"/><circle cx="70" cy="28" r="3" fill="#F59E0B" opacity="0.6"/><circle cx="85" cy="18" r="5" fill="#EF4444" opacity="0.7"/><circle cx="50" cy="35" r="3" fill="#A78BFA" opacity="0.5"/></svg>`,secondary:"Point Cloud, Volumetric",colors:["#3B82F6","#22C55E","#F59E0B","#EF4444"],colorNote:"Depth: lighting/shading. Z-axis: cool to warm gradient.",perf:"Heavy (WebGL)",a11y:"Poor - requires 2D alternative.",libs:"Three.js, Deck.gl, Plotly 3D",interact:"Rotate + Zoom"},
+
+{name:"Streaming Area",type:"Real-Time",cat:"Dashboard",keywords:"streaming real-time live ticker",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><path d="M5,35 Q15,32 25,30 T45,25 T65,20 T85,28 T105,15 L105,45 L5,45 Z" fill="#22C55E" fill-opacity="0.15"/><path d="M5,35 Q15,32 25,30 T45,25 T65,20 T85,28 T105,15" fill="none" stroke="#22C55E" stroke-width="2"/><circle cx="105" cy="15" r="3" fill="#22C55E"><animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/></circle></svg>`,secondary:"Ticker Tape, Moving Gauge",colors:["#22C55E","#00FF00"],colorNote:"Current: bright pulse. History: fading opacity.",perf:"Optimized (canvas)",a11y:"Provide pause button. High contrast.",libs:"D3.js, CanvasJS",interact:"Real-time"},
+
+{name:"Word Cloud",type:"Sentiment/Emotion",cat:"Specialized",keywords:"sentiment emotion word-cloud nlp",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><text x="20" y="20" fill="#22C55E" font-size="10" font-weight="700">great</text><text x="55" y="15" fill="#22C55E" font-size="14" font-weight="800">love</text><text x="85" y="25" fill="#EF4444" font-size="8">bad</text><text x="15" y="35" fill="#94A3B8" font-size="7">okay</text><text x="40" y="30" fill="#22C55E" font-size="9">happy</text><text x="65" y="38" fill="#EF4444" font-size="11" font-weight="700">angry</text><text x="90" y="42" fill="#94A3B8" font-size="6">meh</text><text x="25" y="45" fill="#22C55E" font-size="7">nice</text></svg>`,secondary:"Sentiment Arc, Radar",colors:["#22C55E","#EF4444","#94A3B8"],colorNote:"Positive: green. Negative: red. Neutral: grey. Size = frequency.",perf:"Good",a11y:"Poor for screen readers. Use list view.",libs:"D3-cloud, Highcharts, Nivo",interact:"Hover + Filter"},
+
+{name:"Process Map",type:"Process Mining",cat:"Flow",keywords:"process mining path bottleneck",svg:`<svg viewBox="0 0 120 50" class="w-full h-20"><rect width="120" height="50" fill="#0F172A" rx="4"/><rect x="8" y="18" width="20" height="14" fill="#3B82F6" rx="3"/><rect x="38" y="18" width="20" height="14" fill="#22C55E" rx="3"/><rect x="68" y="10" width="20" height="14" fill="#F59E0B" rx="3"/><rect x="68" y="28" width="20" height="14" fill="#22C55E" rx="3"/><rect x="98" y="18" width="16" height="14" fill="#3B82F6" rx="3"/><line x1="28" y1="25" x2="38" y2="25" stroke="#22C55E" stroke-width="2" marker-end="url(#arr)"/><line x1="58" y1="22" x2="68" y2="17" stroke="#F59E0B" stroke-width="1.5"/><line x1="58" y1="28" x2="68" y2="35" stroke="#22C55E" stroke-width="2"/><line x1="88" y1="17" x2="98" y2="22" stroke="#F59E0B" stroke-width="1"/><line x1="88" y1="35" x2="98" y2="28" stroke="#22C55E" stroke-width="2"/></svg>`,secondary:"DAG, Petri Net",colors:["#22C55E","#F59E0B","#EF4444"],colorNote:"Happy path: green thick. Deviations: amber thin. Bottlenecks: red.",perf:"Moderate to Heavy",a11y:"Complex - provide path summary.",libs:"React-Flow, Cytoscape.js",interact:"Drag + Click"}
+];
+
+// Extended metadata: code snippets, data shapes, use cases per chart
+const chartMeta = {
+"Line Chart": {
+  useCases: ["Stock price tracking (Fintech)","User growth over time (SaaS)","Temperature trends (Weather)"],
+  dataShape: `[
+  { x: "Jan", y: 100 },
+  { x: "Feb", y: 150 },
+  { x: "Mar", y: 130 },
+  { x: "Apr", y: 180 }
+]`,
+  chartjs: `const ctx = document.getElementById('myChart');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Jan','Feb','Mar','Apr'],
+    datasets: [{
+      label: 'Revenue',
+      data: [100, 150, 130, 180],
+      borderColor: '#3B82F6',
+      tension: 0.3,
+      fill: true,
+      backgroundColor: 'rgba(59,130,246,0.1)'
+    }]
+  },
+  options: { responsive: true }
+});`,
+  recharts: `import { LineChart, Line, XAxis, YAxis,
+  CartesianGrid, Tooltip } from 'recharts';
+
+const data = [
+  { name: 'Jan', value: 100 },
+  { name: 'Feb', value: 150 },
+  { name: 'Mar', value: 130 },
+  { name: 'Apr', value: 180 },
+];
+
+<LineChart width={600} height={300} data={data}>
+  <CartesianGrid strokeDasharray="3 3" />
+  <XAxis dataKey="name" />
+  <YAxis />
+  <Tooltip />
+  <Line type="monotone" dataKey="value"
+    stroke="#3B82F6" strokeWidth={2} />
+</LineChart>`
+},
+"Bar Chart": {
+  useCases: ["Revenue by product (E-commerce)","Feature usage comparison (SaaS)","Survey responses (Research)"],
+  dataShape: `[
+  { label: "Product A", value: 420 },
+  { label: "Product B", value: 380 },
+  { label: "Product C", value: 510 },
+  { label: "Product D", value: 290 }
+]`,
+  chartjs: `const ctx = document.getElementById('myChart');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Q1','Q2','Q3','Q4'],
+    datasets: [{
+      label: 'Sales',
+      data: [420, 380, 510, 290],
+      backgroundColor: [
+        '#3B82F6','#60A5FA',
+        '#2563EB','#818CF8'
+      ],
+      borderRadius: 4
+    }]
+  },
+  options: { responsive: true }
+});`,
+  recharts: `import { BarChart, Bar, XAxis, YAxis,
+  CartesianGrid, Tooltip } from 'recharts';
+
+const data = [
+  { name: 'Q1', sales: 420 },
+  { name: 'Q2', sales: 380 },
+  { name: 'Q3', sales: 510 },
+  { name: 'Q4', sales: 290 },
+];
+
+<BarChart width={600} height={300} data={data}>
+  <CartesianGrid strokeDasharray="3 3" />
+  <XAxis dataKey="name" />
+  <YAxis />
+  <Tooltip />
+  <Bar dataKey="sales" fill="#3B82F6"
+    radius={[4,4,0,0]} />
+</BarChart>`
+},
+"Pie / Donut Chart": {
+  useCases: ["Market share breakdown (Business)","Budget allocation (Finance)","Traffic sources (Marketing)"],
+  dataShape: `[
+  { label: "Category A", value: 40 },
+  { label: "Category B", value: 30 },
+  { label: "Category C", value: 20 },
+  { label: "Category D", value: 10 }
+]`,
+  chartjs: `const ctx = document.getElementById('myChart');
+new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Direct','Social','Referral','Other'],
+    datasets: [{
+      data: [40, 30, 20, 10],
+      backgroundColor: [
+        '#3B82F6','#22C55E',
+        '#F59E0B','#EF4444'
+      ],
+      borderWidth: 0
+    }]
+  },
+  options: { cutout: '60%' }
+});`,
+  recharts: `import { PieChart, Pie, Cell,
+  Tooltip, Legend } from 'recharts';
+
+const data = [
+  { name: 'Direct', value: 40 },
+  { name: 'Social', value: 30 },
+  { name: 'Referral', value: 20 },
+  { name: 'Other', value: 10 },
+];
+const COLORS = ['#3B82F6','#22C55E','#F59E0B','#EF4444'];
+
+<PieChart width={400} height={300}>
+  <Pie data={data} dataKey="value"
+    innerRadius={60} outerRadius={100}>
+    {data.map((_, i) =>
+      <Cell key={i} fill={COLORS[i]} />)}
+  </Pie>
+  <Tooltip /><Legend />
+</PieChart>`
+},
+"Scatter Plot": {
+  useCases: ["Price vs demand correlation (Retail)","Test scores vs study hours (Education)","Ad spend vs conversions (Marketing)"],
+  dataShape: `[
+  { x: 10, y: 20 },
+  { x: 15, y: 35 },
+  { x: 22, y: 28 },
+  { x: 30, y: 45 }
+]`,
+  chartjs: `const ctx = document.getElementById('myChart');
+new Chart(ctx, {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: 'Correlation',
+      data: [
+        {x:10,y:20},{x:15,y:35},
+        {x:22,y:28},{x:30,y:45}
+      ],
+      backgroundColor: '#3B82F6',
+      pointRadius: 6
+    }]
+  },
+  options: {
+    scales: { x: { type: 'linear' } }
+  }
+});`,
+  recharts: `import { ScatterChart, Scatter, XAxis,
+  YAxis, CartesianGrid, Tooltip } from 'recharts';
+
+const data = [
+  { x: 10, y: 20 }, { x: 15, y: 35 },
+  { x: 22, y: 28 }, { x: 30, y: 45 },
+];
+
+<ScatterChart width={600} height={300}>
+  <CartesianGrid strokeDasharray="3 3" />
+  <XAxis dataKey="x" type="number" />
+  <YAxis dataKey="y" type="number" />
+  <Tooltip />
+  <Scatter data={data} fill="#3B82F6" />
+</ScatterChart>`
+},
+"Heat Map": {
+  useCases: ["User activity by hour/day (SaaS)","Correlation matrix (Data Science)","Website click density (UX)"],
+  dataShape: `[
+  { row: "Mon", col: "9AM", value: 12 },
+  { row: "Mon", col: "10AM", value: 25 },
+  { row: "Tue", col: "9AM", value: 8 },
+  { row: "Tue", col: "10AM", value: 30 }
+]`,
+  chartjs: `// Chart.js doesn't have native heatmap.
+// Use chartjs-chart-matrix plugin:
+import 'chartjs-chart-matrix';
+
+new Chart(ctx, {
+  type: 'matrix',
+  data: {
+    datasets: [{
+      label: 'Activity',
+      data: [
+        {x:'Mon',y:'9AM',v:12},
+        {x:'Mon',y:'10AM',v:25},
+        {x:'Tue',y:'9AM',v:8}
+      ],
+      backgroundColor(ctx) {
+        const v = ctx.dataset.data[ctx.dataIndex].v;
+        return \`rgba(59,130,246,\${v/30})\`;
+      },
+      width: 40, height: 40
+    }]
+  }
+});`,
+  recharts: `// Recharts doesn't have a native heatmap.
+// Build with custom <rect> elements:
+import { ResponsiveContainer } from 'recharts';
+
+const data = [
+  { row: 'Mon', col: '9AM', value: 12 },
+  { row: 'Mon', col: '10AM', value: 25 },
+  { row: 'Tue', col: '9AM', value: 8 },
+];
+
+// Typically use D3.js or Nivo for heatmaps
+// Nivo example:
+import { ResponsiveHeatMap } from '@nivo/heatmap';
+<ResponsiveHeatMap
+  data={data}
+  colors={{ type: 'sequential', scheme: 'blues' }}
+/>`
+},
+"Choropleth Map": {
+  useCases: ["COVID case density by state (Healthcare)","Sales by region (Retail)","Election results by county (Politics)"],
+  dataShape: `[
+  { region: "US-CA", value: 39500000 },
+  { region: "US-TX", value: 29000000 },
+  { region: "US-NY", value: 19450000 }
+]`,
+  chartjs: `// Use D3.js + TopoJSON for choropleths
+import * as d3 from 'd3';
+import * as topojson from 'topojson-client';
+
+const svg = d3.select('#map')
+  .append('svg')
+  .attr('width', 960)
+  .attr('height', 600);
+
+const color = d3.scaleQuantize()
+  .domain([0, 40000000])
+  .range(d3.schemeBlues[9]);
+
+d3.json('us-states.json').then(us => {
+  svg.selectAll('path')
+    .data(topojson.feature(us, us.objects.states).features)
+    .join('path')
+    .attr('d', d3.geoPath())
+    .attr('fill', d => color(d.properties.pop));
+});`,
+  recharts: `// Use react-simple-maps for React:
+import {
+  ComposableMap, Geographies,
+  Geography
+} from 'react-simple-maps';
+import { scaleQuantize } from 'd3-scale';
+
+const colorScale = scaleQuantize()
+  .domain([0, 40000000])
+  .range(['#E0F2FE','#3B82F6','#1E3A8A']);
+
+<ComposableMap projection="geoAlbersUsa">
+  <Geographies geography="/us-topo.json">
+    {({ geographies }) =>
+      geographies.map(geo => (
+        <Geography key={geo.rsmKey} geography={geo}
+          fill={colorScale(geo.properties.pop)} />
+      ))
+    }
+  </Geographies>
+</ComposableMap>`
+},
+"Funnel Chart": {
+  useCases: ["Sales pipeline stages (CRM)","Signup-to-purchase conversion (E-commerce)","Recruitment hiring pipeline (HR)"],
+  dataShape: `[
+  { stage: "Visitors", value: 10000 },
+  { stage: "Signups", value: 4500 },
+  { stage: "Trials", value: 2000 },
+  { stage: "Paid", value: 800 }
+]`,
+  chartjs: `// Chart.js doesn't have native funnel.
+// Use chartjs-chart-funnel or custom SVG.
+// With ApexCharts:
+new ApexCharts(el, {
+  chart: { type: 'bar', height: 350 },
+  plotOptions: {
+    bar: { horizontal: true, isFunnel: true }
+  },
+  series: [{
+    data: [
+      { x: 'Visitors', y: 10000 },
+      { x: 'Signups', y: 4500 },
+      { x: 'Trials', y: 2000 },
+      { x: 'Paid', y: 800 }
+    ]
+  }],
+  colors: ['#3B82F6']
+});`,
+  recharts: `import { Funnel, FunnelChart,
+  Tooltip, LabelList } from 'recharts';
+
+const data = [
+  { name: 'Visitors', value: 10000, fill: '#3B82F6' },
+  { name: 'Signups', value: 4500, fill: '#60A5FA' },
+  { name: 'Trials', value: 2000, fill: '#93C5FD' },
+  { name: 'Paid', value: 800, fill: '#22C55E' },
+];
+
+<FunnelChart width={400} height={300}>
+  <Tooltip />
+  <Funnel dataKey="value" data={data}>
+    <LabelList dataKey="name"
+      position="right" fill="#fff" />
+  </Funnel>
+</FunnelChart>`
+},
+"Gauge Chart": {
+  useCases: ["Server CPU usage (DevOps)","Customer satisfaction score (Support)","Goal completion percentage (OKRs)"],
+  dataShape: `{
+  value: 78,
+  min: 0,
+  max: 100,
+  target: 85,
+  ranges: [
+    { from: 0, to: 40, color: "#EF4444" },
+    { from: 40, to: 70, color: "#F59E0B" },
+    { from: 70, to: 100, color: "#22C55E" }
+  ]
+}`,
+  chartjs: `// Use chartjs-gauge or custom doughnut:
+new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    datasets: [{
+      data: [78, 22],
+      backgroundColor: ['#22C55E','#1E293B'],
+      borderWidth: 0
+    }]
+  },
+  options: {
+    circumference: 180,
+    rotation: 270,
+    cutout: '75%',
+    plugins: { tooltip: { enabled: false } }
+  }
+});`,
+  recharts: `// Recharts doesn't have a native gauge.
+// Use a custom radial bar:
+import { RadialBarChart, RadialBar,
+  PolarAngleAxis } from 'recharts';
+
+const data = [{ value: 78, fill: '#22C55E' }];
+
+<RadialBarChart width={300} height={200}
+  cx={150} cy={150}
+  innerRadius={80} outerRadius={120}
+  startAngle={180} endAngle={0}
+  data={data}>
+  <PolarAngleAxis type="number"
+    domain={[0,100]} tick={false} />
+  <RadialBar dataKey="value"
+    cornerRadius={10} />
+</RadialBarChart>`
+},
+"Forecast Line": {
+  useCases: ["Demand forecasting (Supply Chain)","Revenue projection (Finance)","Traffic prediction (Logistics)"],
+  dataShape: `{
+  actual: [
+    { x: "Jan", y: 100 },
+    { x: "Feb", y: 120 },
+    { x: "Mar", y: 115 }
+  ],
+  forecast: [
+    { x: "Apr", y: 130, lo: 115, hi: 145 },
+    { x: "May", y: 142, lo: 120, hi: 160 }
+  ]
+}`,
+  chartjs: `new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Jan','Feb','Mar','Apr','May'],
+    datasets: [
+      {
+        label: 'Actual',
+        data: [100,120,115,null,null],
+        borderColor: '#3B82F6',
+        borderWidth: 2
+      },
+      {
+        label: 'Forecast',
+        data: [null,null,115,130,142],
+        borderColor: '#F59E0B',
+        borderDash: [5,5],
+        borderWidth: 2
+      }
+    ]
+  },
+  options: { spanGaps: false }
+});`,
+  recharts: `import { LineChart, Line, XAxis, YAxis,
+  Area, Tooltip } from 'recharts';
+
+const data = [
+  { m: 'Jan', actual: 100 },
+  { m: 'Feb', actual: 120 },
+  { m: 'Mar', actual: 115, forecast: 115 },
+  { m: 'Apr', forecast: 130, lo: 115, hi: 145 },
+  { m: 'May', forecast: 142, lo: 120, hi: 160 },
+];
+
+<LineChart width={600} height={300} data={data}>
+  <XAxis dataKey="m" /><YAxis /><Tooltip />
+  <Line dataKey="actual" stroke="#3B82F6"
+    strokeWidth={2} />
+  <Line dataKey="forecast" stroke="#F59E0B"
+    strokeDasharray="5 5" />
+</LineChart>`
+},
+"Anomaly Detection": {
+  useCases: ["Fraud detection in transactions (Fintech)","Server error spike detection (DevOps)","Quality control outliers (Manufacturing)"],
+  dataShape: `[
+  { x: "10:00", y: 45, anomaly: false },
+  { x: "10:05", y: 42, anomaly: false },
+  { x: "10:10", y: 98, anomaly: true },
+  { x: "10:15", y: 44, anomaly: false }
+]`,
+  chartjs: `new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['10:00','10:05','10:10','10:15'],
+    datasets: [{
+      label: 'Metric',
+      data: [45, 42, 98, 44],
+      borderColor: '#3B82F6',
+      pointBackgroundColor: (ctx) => {
+        const v = ctx.dataset.data[ctx.dataIndex];
+        return v > 80 ? '#EF4444' : '#3B82F6';
+      },
+      pointRadius: (ctx) => {
+        const v = ctx.dataset.data[ctx.dataIndex];
+        return v > 80 ? 8 : 3;
+      }
+    }]
+  }
+});`,
+  recharts: `import { LineChart, Line, XAxis, YAxis,
+  Tooltip, ReferenceDot } from 'recharts';
+
+const data = [
+  { t: '10:00', val: 45 },
+  { t: '10:05', val: 42 },
+  { t: '10:10', val: 98 },
+  { t: '10:15', val: 44 },
+];
+
+<LineChart width={600} height={300} data={data}>
+  <XAxis dataKey="t" /><YAxis /><Tooltip />
+  <Line dataKey="val" stroke="#3B82F6" />
+  <ReferenceDot x="10:10" y={98}
+    r={8} fill="#EF4444" stroke="#EF4444" />
+</LineChart>`
+},
+"Treemap": {
+  useCases: ["Disk space usage visualization (DevTools)","Portfolio allocation (Finance)","Category sales breakdown (Retail)"],
+  dataShape: `{
+  name: "root",
+  children: [
+    { name: "Group A", value: 100 },
+    { name: "Group B", children: [
+      { name: "B1", value: 40 },
+      { name: "B2", value: 30 }
+    ]}
+  ]
+}`,
+  chartjs: `// Use chartjs-chart-treemap plugin:
+import 'chartjs-chart-treemap';
+
+new Chart(ctx, {
+  type: 'treemap',
+  data: {
+    datasets: [{
+      tree: [100, 40, 30, 20, 10],
+      labels: ['A','B','C','D','E'],
+      backgroundColor: [
+        '#3B82F6','#22C55E',
+        '#F59E0B','#A78BFA','#EC4899'
+      ],
+      borderWidth: 2,
+      borderColor: '#0F172A'
+    }]
+  }
+});`,
+  recharts: `import { Treemap, ResponsiveContainer }
+  from 'recharts';
+
+const data = [
+  { name: 'Group A', size: 100, fill: '#3B82F6' },
+  { name: 'Group B', size: 40, fill: '#22C55E' },
+  { name: 'Group C', size: 30, fill: '#F59E0B' },
+  { name: 'Group D', size: 20, fill: '#A78BFA' },
+];
+
+<ResponsiveContainer width="100%" height={300}>
+  <Treemap data={data} dataKey="size"
+    aspectRatio={4/3}
+    stroke="#0F172A" />
+</ResponsiveContainer>`
+},
+"Sankey Diagram": {
+  useCases: ["User flow through website (Analytics)","Energy production to consumption (Energy)","Budget flow from revenue to expenses (Finance)"],
+  dataShape: `{
+  nodes: [
+    { id: "Source A" },
+    { id: "Source B" },
+    { id: "Target X" },
+    { id: "Target Y" }
+  ],
+  links: [
+    { source: "Source A", target: "Target X", value: 50 },
+    { source: "Source A", target: "Target Y", value: 30 },
+    { source: "Source B", target: "Target X", value: 20 }
+  ]
+}`,
+  chartjs: `// Use D3.js sankey layout:
+import * as d3 from 'd3';
+import { sankey, sankeyLinkHorizontal }
+  from 'd3-sankey';
+
+const sk = sankey()
+  .nodeWidth(15)
+  .nodePadding(10)
+  .extent([[1,1],[width-1,height-5]]);
+
+const {nodes, links} = sk({
+  nodes: data.nodes.map(d => ({...d})),
+  links: data.links.map(d => ({...d}))
+});
+
+svg.selectAll('path')
+  .data(links).join('path')
+  .attr('d', sankeyLinkHorizontal())
+  .attr('stroke-width', d => d.width)
+  .attr('stroke', '#3B82F6')
+  .attr('opacity', 0.4);`,
+  recharts: `// Recharts doesn't have native Sankey.
+// Use @nivo/sankey or react-flow:
+import { ResponsiveSankey } from '@nivo/sankey';
+
+const data = {
+  nodes: [
+    { id: 'Source A' }, { id: 'Source B' },
+    { id: 'Target X' }, { id: 'Target Y' }
+  ],
+  links: [
+    { source: 'Source A', target: 'Target X', value: 50 },
+    { source: 'Source A', target: 'Target Y', value: 30 },
+    { source: 'Source B', target: 'Target X', value: 20 }
+  ]
+};
+
+<ResponsiveSankey data={data}
+  colors={{ scheme: 'category10' }} />`
+},
+"Waterfall Chart": {
+  useCases: ["Quarterly profit bridge (Finance)","Feature impact on conversion (Product)","Cost breakdown analysis (Operations)"],
+  dataShape: `[
+  { label: "Start", value: 1000, type: "total" },
+  { label: "Sales", value: 400, type: "increase" },
+  { label: "Costs", value: -200, type: "decrease" },
+  { label: "Tax", value: -80, type: "decrease" },
+  { label: "End", value: 1120, type: "total" }
+]`,
+  chartjs: `// Use chartjs-plugin-waterfall or custom bar:
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Start','Sales','Costs','Tax','End'],
+    datasets: [{
+      data: [
+        [0,1000],[1000,1400],
+        [1400,1200],[1200,1120],[0,1120]
+      ],
+      backgroundColor: [
+        '#3B82F6','#22C55E',
+        '#EF4444','#EF4444','#1E40AF'
+      ]
+    }]
+  },
+  options: {
+    plugins: { legend: { display: false } }
+  }
+});`,
+  recharts: `import { BarChart, Bar, XAxis, YAxis,
+  Cell, Tooltip } from 'recharts';
+
+const data = [
+  { name: 'Start', value: [0,1000] },
+  { name: 'Sales', value: [1000,1400] },
+  { name: 'Costs', value: [1400,1200] },
+  { name: 'Tax', value: [1200,1120] },
+  { name: 'End', value: [0,1120] },
+];
+const colors = ['#3B82F6','#22C55E','#EF4444','#EF4444','#1E40AF'];
+
+<BarChart width={600} height={300} data={data}>
+  <XAxis dataKey="name" /><YAxis /><Tooltip />
+  <Bar dataKey="value">
+    {data.map((_, i) =>
+      <Cell key={i} fill={colors[i]} />)}
+  </Bar>
+</BarChart>`
+},
+"Radar / Spider": {
+  useCases: ["Product feature comparison (Product)","Player stats in games (Gaming)","Employee skill assessment (HR)"],
+  dataShape: `[
+  { axis: "Speed", value: 80 },
+  { axis: "Power", value: 65 },
+  { axis: "Defense", value: 90 },
+  { axis: "Agility", value: 72 },
+  { axis: "Stamina", value: 85 }
+]`,
+  chartjs: `new Chart(ctx, {
+  type: 'radar',
+  data: {
+    labels: ['Speed','Power','Defense',
+             'Agility','Stamina'],
+    datasets: [{
+      label: 'Player A',
+      data: [80, 65, 90, 72, 85],
+      borderColor: '#3B82F6',
+      backgroundColor: 'rgba(59,130,246,0.2)',
+      pointBackgroundColor: '#3B82F6'
+    }]
+  },
+  options: {
+    scales: { r: { min: 0, max: 100 } }
+  }
+});`,
+  recharts: `import { RadarChart, Radar, PolarGrid,
+  PolarAngleAxis, PolarRadiusAxis }
+  from 'recharts';
+
+const data = [
+  { stat: 'Speed', A: 80 },
+  { stat: 'Power', A: 65 },
+  { stat: 'Defense', A: 90 },
+  { stat: 'Agility', A: 72 },
+  { stat: 'Stamina', A: 85 },
+];
+
+<RadarChart width={400} height={300} data={data}>
+  <PolarGrid />
+  <PolarAngleAxis dataKey="stat" />
+  <PolarRadiusAxis domain={[0,100]} />
+  <Radar dataKey="A" stroke="#3B82F6"
+    fill="#3B82F6" fillOpacity={0.2} />
+</RadarChart>`
+},
+"Candlestick": {
+  useCases: ["Stock trading dashboard (Fintech)","Crypto price analysis (Web3)","Commodity market tracking (Trading)"],
+  dataShape: `[
+  { date: "2024-01-02", open: 150, high: 155, low: 148, close: 153 },
+  { date: "2024-01-03", open: 153, high: 158, low: 151, close: 149 },
+  { date: "2024-01-04", open: 149, high: 154, low: 147, close: 152 }
+]`,
+  chartjs: `// Use chartjs-chart-financial plugin:
+import 'chartjs-chart-financial';
+
+new Chart(ctx, {
+  type: 'candlestick',
+  data: {
+    datasets: [{
+      label: 'AAPL',
+      data: [
+        {x:new Date('2024-01-02'),o:150,h:155,l:148,c:153},
+        {x:new Date('2024-01-03'),o:153,h:158,l:151,c:149},
+        {x:new Date('2024-01-04'),o:149,h:154,l:147,c:152}
+      ]
+    }]
+  },
+  options: {
+    scales: { x: { type: 'time' } }
+  }
+});`,
+  recharts: `// Use lightweight-charts (TradingView):
+import { createChart } from 'lightweight-charts';
+
+const chart = createChart(container, {
+  width: 600, height: 300
+});
+
+const series = chart.addCandlestickSeries({
+  upColor: '#22C55E',
+  downColor: '#EF4444'
+});
+
+series.setData([
+  { time: '2024-01-02',
+    open: 150, high: 155, low: 148, close: 153 },
+  { time: '2024-01-03',
+    open: 153, high: 158, low: 151, close: 149 },
+  { time: '2024-01-04',
+    open: 149, high: 154, low: 147, close: 152 }
+]);`
+},
+"Network Graph": {
+  useCases: ["Social network connections (Social Media)","Microservice dependency map (DevOps)","Knowledge graph explorer (AI/ML)"],
+  dataShape: `{
+  nodes: [
+    { id: "A", group: 1 },
+    { id: "B", group: 1 },
+    { id: "C", group: 2 }
+  ],
+  links: [
+    { source: "A", target: "B", weight: 5 },
+    { source: "A", target: "C", weight: 3 }
+  ]
+}`,
+  chartjs: `// Use D3.js force layout:
+import * as d3 from 'd3';
+
+const simulation = d3.forceSimulation(nodes)
+  .force('link', d3.forceLink(links)
+    .id(d => d.id))
+  .force('charge', d3.forceManyBody()
+    .strength(-200))
+  .force('center', d3.forceCenter(
+    width/2, height/2));
+
+const link = svg.selectAll('line')
+  .data(links).join('line')
+  .attr('stroke', '#334155');
+
+const node = svg.selectAll('circle')
+  .data(nodes).join('circle')
+  .attr('r', 8)
+  .attr('fill', d => color(d.group))
+  .call(d3.drag());`,
+  recharts: `// Use react-force-graph:
+import ForceGraph2D from
+  'react-force-graph-2d';
+
+const data = {
+  nodes: [
+    { id: 'A', group: 1 },
+    { id: 'B', group: 1 },
+    { id: 'C', group: 2 },
+  ],
+  links: [
+    { source: 'A', target: 'B' },
+    { source: 'A', target: 'C' },
+  ]
+};
+
+<ForceGraph2D
+  graphData={data}
+  nodeAutoColorBy="group"
+  linkColor={() => '#334155'}
+  nodeRelSize={6}
+/>`
+},
+"Box Plot": {
+  useCases: ["Salary distribution by role (HR)","Test score spread analysis (Education)","Response time percentiles (DevOps)"],
+  dataShape: `[
+  {
+    label: "Group A",
+    min: 10, q1: 25, median: 35,
+    q3: 50, max: 70,
+    outliers: [2, 85]
+  },
+  {
+    label: "Group B",
+    min: 15, q1: 30, median: 40,
+    q3: 55, max: 65
+  }
+]`,
+  chartjs: `// Use @sgratzl/chartjs-chart-boxplot:
+import { BoxPlotChart }
+  from '@sgratzl/chartjs-chart-boxplot';
+
+new Chart(ctx, {
+  type: 'boxplot',
+  data: {
+    labels: ['Group A', 'Group B'],
+    datasets: [{
+      label: 'Distribution',
+      data: [
+        { min:10, q1:25, median:35,
+          q3:50, max:70, outliers:[2,85] },
+        { min:15, q1:30, median:40,
+          q3:55, max:65 }
+      ],
+      borderColor: '#1976D2',
+      backgroundColor: 'rgba(187,222,251,0.3)'
+    }]
+  }
+});`,
+  recharts: `// Use Plotly for box plots in React:
+import Plot from 'react-plotly.js';
+
+<Plot
+  data={[
+    {
+      y: [10, 25, 35, 35, 50, 70, 2, 85],
+      type: 'box',
+      name: 'Group A',
+      marker: { color: '#1976D2' }
+    },
+    {
+      y: [15, 30, 40, 40, 55, 65],
+      type: 'box',
+      name: 'Group B',
+      marker: { color: '#22C55E' }
+    }
+  ]}
+  layout={{ width: 600, height: 300 }}
+/>`
+},
+"Bullet Chart": {
+  useCases: ["KPI dashboard metrics (Business)","Sprint velocity vs target (Agile)","Sales quota achievement (Sales)"],
+  dataShape: `{
+  label: "Revenue",
+  value: 275,
+  target: 300,
+  ranges: [200, 250, 300]
+}`,
+  chartjs: `// Custom horizontal bar as bullet:
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Revenue'],
+    datasets: [
+      { label:'Poor', data:[200],
+        backgroundColor:'#1E293B' },
+      { label:'Ok', data:[50],
+        backgroundColor:'#334155' },
+      { label:'Good', data:[50],
+        backgroundColor:'#475569' },
+      { label:'Actual', data:[275],
+        backgroundColor:'#3B82F6',
+        barThickness: 20 }
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    scales: { x: { stacked: true } }
+  }
+});`,
+  recharts: `// Custom bullet with Recharts:
+import { BarChart, Bar, XAxis, YAxis,
+  ReferenceLine } from 'recharts';
+
+const data = [{
+  name: 'Revenue',
+  range1: 200, range2: 250, range3: 300,
+  actual: 275
+}];
+
+<BarChart width={500} height={80} data={data}
+  layout="vertical">
+  <XAxis type="number" domain={[0,300]} />
+  <YAxis type="category" dataKey="name" />
+  <Bar dataKey="range3" fill="#475569"
+    barSize={30} />
+  <Bar dataKey="actual" fill="#3B82F6"
+    barSize={15} />
+  <ReferenceLine x={300} stroke="#fff"
+    strokeWidth={2} />
+</BarChart>`
+},
+"Waffle Chart": {
+  useCases: ["Survey result percentages (Research)","Vaccination coverage (Healthcare)","Goal progress tracking (Product)"],
+  dataShape: `[
+  { label: "Completed", value: 50, color: "#3B82F6" },
+  { label: "In Progress", value: 20, color: "#22C55E" },
+  { label: "Remaining", value: 30, color: "#1E293B" }
+]`,
+  chartjs: `// No native waffle in Chart.js.
+// Use CSS Grid approach:
+const grid = document.querySelector('.waffle');
+const data = [
+  { pct: 50, color: '#3B82F6' },
+  { pct: 20, color: '#22C55E' },
+  { pct: 30, color: '#1E293B' }
+];
+let idx = 0;
+for (const seg of data) {
+  for (let i = 0; i < seg.pct; i++) {
+    const cell = document.createElement('div');
+    cell.style.background = seg.color;
+    cell.className = 'w-4 h-4 rounded-sm';
+    grid.appendChild(cell);
+  }
+}`,
+  recharts: `// Use @nivo/waffle:
+import { ResponsiveWaffle } from '@nivo/waffle';
+
+const data = [
+  { id: 'completed', label: 'Completed',
+    value: 50, color: '#3B82F6' },
+  { id: 'progress', label: 'In Progress',
+    value: 20, color: '#22C55E' },
+  { id: 'remaining', label: 'Remaining',
+    value: 30, color: '#1E293B' }
+];
+
+<ResponsiveWaffle
+  data={data}
+  total={100}
+  rows={10}
+  columns={10}
+  padding={2}
+  colors={{ datum: 'color' }}
+/>`
+},
+"Sunburst": {
+  useCases: ["File system size explorer (DevTools)","Org hierarchy with headcount (HR)","Category taxonomy drilldown (E-commerce)"],
+  dataShape: `{
+  name: "Root",
+  children: [
+    { name: "Group A", value: 100 },
+    { name: "Group B", children: [
+      { name: "B1", value: 40 },
+      { name: "B2", value: 30 }
+    ]}
+  ]
+}`,
+  chartjs: `// Use D3.js for sunburst:
+import * as d3 from 'd3';
+
+const root = d3.hierarchy(data)
+  .sum(d => d.value);
+
+const partition = d3.partition()
+  .size([2 * Math.PI, radius]);
+
+partition(root);
+
+svg.selectAll('path')
+  .data(root.descendants())
+  .join('path')
+  .attr('d', d3.arc()
+    .startAngle(d => d.x0)
+    .endAngle(d => d.x1)
+    .innerRadius(d => d.y0)
+    .outerRadius(d => d.y1))
+  .attr('fill', d => color(d.data.name));`,
+  recharts: `// Use @nivo/sunburst:
+import { ResponsiveSunburst }
+  from '@nivo/sunburst';
+
+const data = {
+  name: 'Root',
+  children: [
+    { name: 'Group A', value: 100 },
+    { name: 'Group B', children: [
+      { name: 'B1', value: 40 },
+      { name: 'B2', value: 30 }
+    ]}
+  ]
+};
+
+<ResponsiveSunburst
+  data={data}
+  identity="name"
+  value="value"
+  colors={{ scheme: 'nivo' }}
+  borderWidth={1}
+  borderColor="#0F172A"
+/>`
+},
+"Decomposition Tree": {
+  useCases: ["Root cause failure analysis (Manufacturing)","Revenue driver breakdown (Finance)","Bug triage decision tree (Engineering)"],
+  dataShape: `{
+  name: "Total Revenue",
+  value: "$10M",
+  children: [
+    { name: "Product", value: "$6M", children: [
+      { name: "SaaS", value: "$4M" },
+      { name: "License", value: "$2M" }
+    ]},
+    { name: "Services", value: "$4M" }
+  ]
+}`,
+  chartjs: `// Use React-Flow for decomposition trees:
+import ReactFlow from 'reactflow';
+
+const nodes = [
+  { id: '1', data: { label: 'Revenue $10M' },
+    position: { x: 250, y: 0 } },
+  { id: '2', data: { label: 'Product $6M' },
+    position: { x: 100, y: 100 } },
+  { id: '3', data: { label: 'Services $4M' },
+    position: { x: 400, y: 100 } },
+];
+
+const edges = [
+  { id: 'e1-2', source: '1', target: '2' },
+  { id: 'e1-3', source: '1', target: '3' },
+];
+
+<ReactFlow nodes={nodes} edges={edges}
+  fitView />;`,
+  recharts: `// Use react-organizational-chart or d3:
+import { Tree, TreeNode }
+  from 'react-organizational-chart';
+
+<Tree label={<span>Revenue $10M</span>}>
+  <TreeNode label={<span>Product $6M</span>}>
+    <TreeNode
+      label={<span>SaaS $4M</span>} />
+    <TreeNode
+      label={<span>License $2M</span>} />
+  </TreeNode>
+  <TreeNode
+    label={<span>Services $4M</span>} />
+</Tree>`
+},
+"3D Scatter/Surface": {
+  useCases: ["Molecular structure visualization (Biotech)","Geographic elevation mapping (GIS)","Multi-dimensional clustering (Data Science)"],
+  dataShape: `[
+  { x: 1.2, y: 3.4, z: 5.6, label: "A" },
+  { x: 2.1, y: 4.5, z: 3.2, label: "B" },
+  { x: 3.3, y: 1.2, z: 4.8, label: "C" }
+]`,
+  chartjs: `// Use Plotly.js for 3D scatter:
+import Plotly from 'plotly.js-dist';
+
+Plotly.newPlot('chart', [{
+  type: 'scatter3d',
+  mode: 'markers',
+  x: [1.2, 2.1, 3.3],
+  y: [3.4, 4.5, 1.2],
+  z: [5.6, 3.2, 4.8],
+  marker: {
+    size: 8,
+    color: [5.6, 3.2, 4.8],
+    colorscale: 'Viridis'
+  }
+}], {
+  scene: {
+    xaxis: { title: 'X' },
+    yaxis: { title: 'Y' },
+    zaxis: { title: 'Z' }
+  }
+});`,
+  recharts: `// Use react-plotly.js for 3D in React:
+import Plot from 'react-plotly.js';
+
+<Plot
+  data={[{
+    type: 'scatter3d',
+    mode: 'markers',
+    x: [1.2, 2.1, 3.3],
+    y: [3.4, 4.5, 1.2],
+    z: [5.6, 3.2, 4.8],
+    marker: {
+      size: 6,
+      color: [5.6, 3.2, 4.8],
+      colorscale: 'Viridis'
+    }
+  }]}
+  layout={{
+    width: 600, height: 400,
+    scene: {
+      xaxis: { title: 'X' },
+      yaxis: { title: 'Y' },
+      zaxis: { title: 'Z' }
+    }
+  }}
+/>`
+},
+"Streaming Area": {
+  useCases: ["Live server metrics dashboard (DevOps)","Real-time stock ticker (Fintech)","IoT sensor monitoring (IoT)"],
+  dataShape: `// Streaming data arrives as events:
+{
+  timestamp: 1704067200000,
+  value: 42.5
+}
+// Buffer: last N data points
+[
+  { t: 1704067200, y: 42.5 },
+  { t: 1704067205, y: 43.1 },
+  { t: 1704067210, y: 41.8 }
+]`,
+  chartjs: `// Chart.js with streaming plugin:
+import 'chartjs-plugin-streaming';
+
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    datasets: [{
+      label: 'Live',
+      borderColor: '#22C55E',
+      fill: true,
+      backgroundColor: 'rgba(34,197,94,0.1)',
+      data: []
+    }]
+  },
+  options: {
+    scales: {
+      x: {
+        type: 'realtime',
+        realtime: {
+          duration: 20000,
+          onRefresh(chart) {
+            chart.data.datasets[0].data.push({
+              x: Date.now(), y: Math.random()*100
+            });
+          }
+        }
+      }
+    }
+  }
+});`,
+  recharts: `// Use a rolling buffer with React state:
+import { useState, useEffect } from 'react';
+import { AreaChart, Area, XAxis, YAxis }
+  from 'recharts';
+
+function LiveChart() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setData(prev => [
+        ...prev.slice(-50),
+        { t: Date.now(), v: Math.random()*100 }
+      ]);
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <AreaChart width={600} height={200} data={data}>
+      <XAxis dataKey="t" /><YAxis />
+      <Area dataKey="v" stroke="#22C55E"
+        fill="rgba(34,197,94,0.1)" />
+    </AreaChart>
+  );
+}`
+},
+"Word Cloud": {
+  useCases: ["Customer review analysis (E-commerce)","Social media trend topics (Marketing)","Survey open-text summarization (Research)"],
+  dataShape: `[
+  { text: "great", value: 64 },
+  { text: "love", value: 55 },
+  { text: "easy", value: 40 },
+  { text: "fast", value: 35 },
+  { text: "bad", value: 12 }
+]`,
+  chartjs: `// Use d3-cloud for word clouds:
+import cloud from 'd3-cloud';
+import * as d3 from 'd3';
+
+const words = [
+  {text:'great',size:64},{text:'love',size:55},
+  {text:'easy',size:40},{text:'fast',size:35}
+];
+
+cloud().size([600, 300])
+  .words(words)
+  .padding(5)
+  .rotate(() => ~~(Math.random()*2) * 90)
+  .font('Inter')
+  .fontSize(d => d.size)
+  .on('end', draw)
+  .start();
+
+function draw(words) {
+  svg.selectAll('text')
+    .data(words).join('text')
+    .style('font-size', d => d.size + 'px')
+    .text(d => d.text);
+}`,
+  recharts: `// Use react-wordcloud:
+import ReactWordcloud from 'react-wordcloud';
+
+const words = [
+  { text: 'great', value: 64 },
+  { text: 'love', value: 55 },
+  { text: 'easy', value: 40 },
+  { text: 'fast', value: 35 },
+  { text: 'bad', value: 12 },
+];
+
+const options = {
+  rotations: 2,
+  rotationAngles: [0, 90],
+  fontSizes: [14, 64],
+  fontFamily: 'Inter',
+};
+
+<ReactWordcloud words={words}
+  options={options} />`
+},
+"Process Map": {
+  useCases: ["Order fulfillment workflow (Logistics)","CI/CD pipeline visualization (DevOps)","Patient care pathway (Healthcare)"],
+  dataShape: `{
+  nodes: [
+    { id: "start", label: "Order Placed", type: "start" },
+    { id: "process", label: "Processing", type: "task" },
+    { id: "ship", label: "Shipped", type: "task" },
+    { id: "end", label: "Delivered", type: "end" }
+  ],
+  edges: [
+    { from: "start", to: "process", label: "1.2s avg" },
+    { from: "process", to: "ship", label: "3.5s avg" },
+    { from: "ship", to: "end", label: "48h avg" }
+  ]
+}`,
+  chartjs: `// Use React-Flow for process maps:
+import ReactFlow from 'reactflow';
+
+const nodes = [
+  { id: '1', data: { label: 'Order Placed' },
+    position: { x: 0, y: 0 },
+    style: { background: '#3B82F6' } },
+  { id: '2', data: { label: 'Processing' },
+    position: { x: 200, y: 0 },
+    style: { background: '#22C55E' } },
+  { id: '3', data: { label: 'Shipped' },
+    position: { x: 400, y: 0 },
+    style: { background: '#22C55E' } },
+];
+const edges = [
+  { id: 'e1-2', source: '1', target: '2',
+    animated: true },
+  { id: 'e2-3', source: '2', target: '3' },
+];
+
+<ReactFlow nodes={nodes} edges={edges} />;`,
+  recharts: `// Use react-flow or dagre for layout:
+import ReactFlow, { Background }
+  from 'reactflow';
+import dagre from 'dagre';
+
+const g = new dagre.graphlib.Graph();
+g.setGraph({ rankdir: 'LR' });
+g.setDefaultEdgeLabel(() => ({}));
+
+nodes.forEach(n =>
+  g.setNode(n.id, { width: 150, height: 40 }));
+edges.forEach(e =>
+  g.setEdge(e.from, e.to));
+
+dagre.layout(g);
+
+const layoutNodes = nodes.map(n => ({
+  ...n,
+  position: {
+    x: g.node(n.id).x,
+    y: g.node(n.id).y
+  }
+}));
+
+<ReactFlow nodes={layoutNodes} edges={edges}>
+  <Background />
+</ReactFlow>`
+}
+};
+
+const catOrder = ["Basic","Statistical","Dashboard","Specialized","Flow"];
+const catAccent = {Basic:'#818CF8',Statistical:'#06B6D4',Dashboard:'#22C55E',Specialized:'#F472B6',Flow:'#F59E0B'};
+
+// Build filter buttons
+const filterCt=document.getElementById('filters');
+filterCt.innerHTML=`<button class="filter-btn active px-3 py-1.5 text-xs rounded-lg border border-white/10 text-gray-400" data-f="all">All (${charts.length})</button>`+catOrder.map(c=>{const n=charts.filter(ch=>ch.cat===c).length;return`<button class="filter-btn px-3 py-1.5 text-xs rounded-lg border border-white/10 text-gray-400" data-f="${c}">${c} (${n})</button>`}).join('');
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function renderCharts(list){
+    const grid=document.getElementById('grid');
+    grid.innerHTML=list.map((ch,i)=>{
+        const accent=catAccent[ch.cat]||'#818CF8';
+        const perfColor=ch.perf.startsWith('Excellent')?'text-emerald-400':ch.perf.startsWith('Good')||ch.perf.startsWith('Optimized')?'text-cyan-400':ch.perf.startsWith('Moderate')?'text-amber-400':ch.perf.startsWith('Poor')?'text-red-400':'text-amber-400';
+        const meta=chartMeta[ch.name]||{};
+        const uid='card-'+i;
+        const useCasesHtml=meta.useCases?`<div class="flex flex-wrap gap-1.5 mb-3">${meta.useCases.map(u=>`<span class="use-case-badge"><svg class="w-2.5 h-2.5 text-indigo-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z"/></svg>${u}</span>`).join('')}</div>`:'';
+        const dataShapeHtml=meta.dataShape?`<div class="mt-3"><p class="text-[10px] text-gray-500 font-medium mb-1.5 uppercase tracking-wider">Data Shape</p><pre class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>${esc(meta.dataShape)}</code></pre></div>`:'';
+        const codeHtml=(meta.chartjs&&meta.recharts)?`<div class="mt-3"><p class="text-[10px] text-gray-500 font-medium mb-1.5 uppercase tracking-wider">Code Examples</p><div class="flex gap-1 mb-2"><button class="code-tab active-tab px-2.5 py-1 text-[10px] rounded-md border border-white/10 text-gray-400" onclick="switchTab(this,'${uid}','chartjs')">Chart.js</button><button class="code-tab px-2.5 py-1 text-[10px] rounded-md border border-white/10 text-gray-400" onclick="switchTab(this,'${uid}','recharts')">Recharts</button></div><div id="${uid}-chartjs" class="code-panel active-panel"><pre class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>${esc(meta.chartjs)}</code></pre></div><div id="${uid}-recharts" class="code-panel"><pre class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>${esc(meta.recharts)}</code></pre></div></div>`:'';
+        const hasExpandable=dataShapeHtml||codeHtml;
+        return`<div class="chart-card card-glow rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden hover:border-white/10 transition-all" data-cat="${ch.cat}" data-name="${ch.name}" data-search="${(ch.name+' '+ch.type+' '+ch.keywords+' '+ch.secondary+' '+ch.libs).toLowerCase()}" id="${uid}">
+            <div class="p-5">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="px-2 py-0.5 text-[10px] rounded-md font-medium" style="background:${accent}20;color:${accent};border:1px solid ${accent}40">${ch.cat}</span>
+                    <span class="px-2 py-0.5 text-[10px] rounded-md font-medium bg-white/5 text-gray-400 border border-white/5">${ch.interact}</span>
+                </div>
+
+                <div class="rounded-xl overflow-hidden mb-4 border border-white/5">${ch.svg}</div>
+
+                <h3 class="font-heading text-lg font-bold text-white mb-1">${ch.name}</h3>
+                <p class="text-xs text-indigo-400 font-medium mb-3">${ch.type}</p>
+
+                ${useCasesHtml}
+
+                <div class="flex flex-wrap gap-1.5 mb-3">${ch.keywords.split(' ').map(k=>`<span class="px-2 py-0.5 text-[10px] rounded-full bg-white/5 text-gray-500 border border-white/5">${k}</span>`).join('')}</div>
+
+                <p class="text-xs text-gray-400 mb-3"><span class="text-gray-500">Also consider:</span> ${ch.secondary}</p>
+
+                <div class="flex items-center gap-1.5 mb-2">${ch.colors.map(c=>`<div class="w-6 h-6 rounded-md border border-white/10 cursor-pointer hover:scale-110 transition-transform" style="background:${c}" title="${c}"></div>`).join('')}<span class="text-[10px] text-gray-600 ml-1">${ch.colors.length} colors</span></div>
+                <p class="text-[11px] text-gray-500 mb-4 leading-relaxed">${ch.colorNote}</p>
+
+                <div class="grid grid-cols-2 gap-2 mb-3 text-[11px]">
+                    <div class="bg-white/[0.03] rounded-lg px-3 py-2 border border-white/5">
+                        <span class="text-gray-500">Perf:</span> <span class="${perfColor} font-medium">${ch.perf}</span>
+                    </div>
+                    <div class="bg-white/[0.03] rounded-lg px-3 py-2 border border-white/5">
+                        <span class="text-gray-500">Interactive:</span> <span class="text-white font-medium">${ch.interact}</span>
+                    </div>
+                </div>
+                <div class="bg-white/[0.03] rounded-lg px-3 py-2 border border-white/5 mb-3">
+                    <p class="text-[11px] text-gray-500"><span class="text-gray-400">A11y:</span> ${ch.a11y}</p>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 mb-3">${ch.libs.split(', ').map(l=>`<span class="px-2 py-0.5 text-[10px] rounded-md font-medium bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">${l}</span>`).join('')}</div>
+
+                ${hasExpandable?`<button onclick="toggleExpand(this)" class="w-full flex items-center justify-center gap-1.5 py-2 text-[11px] text-gray-500 hover:text-indigo-400 rounded-lg border border-white/5 hover:border-indigo-500/20 transition-all"><span>Code &amp; Data</span><svg class="w-3.5 h-3.5 expand-toggle" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="expand-section">${dataShapeHtml}${codeHtml}</div>`:''}
+            </div>
+        </div>`
+    }).join('');
+    document.getElementById('count').textContent=list.length+' charts';
+    document.getElementById('empty').classList.toggle('hidden',list.length>0);
+}
+
+let activeF='all';
+document.getElementById('filters').addEventListener('click',e=>{
+    const btn=e.target.closest('.filter-btn');
+    if(!btn)return;
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    activeF=btn.dataset.f;
+    applyFilters();
+});
+
+document.getElementById('search').addEventListener('input',applyFilters);
+
+function applyFilters(){
+    const q=document.getElementById('search').value.toLowerCase().trim();
+    const cards=document.querySelectorAll('.chart-card');
+    let n=0;
+    cards.forEach(c=>{
+        const matchCat=activeF==='all'||c.dataset.cat===activeF;
+        const matchSearch=!q||c.dataset.search.includes(q);
+        c.classList.toggle('hidden-card',!(matchCat&&matchSearch));
+        if(matchCat&&matchSearch)n++;
+    });
+    document.getElementById('count').textContent=n+' charts';
+    document.getElementById('empty').classList.toggle('hidden',n>0);
+}
+
+renderCharts(charts);
+
+// URL param support
+const urlParams = new URLSearchParams(window.location.search);
+const qParam = urlParams.get('q');
+if (qParam) {
+    document.getElementById('search').value = qParam;
+    applyFilters();
+}
+
+// --- Expand / Tab / Copy helpers ---
+function toggleExpand(btn){
+    const section=btn.nextElementSibling;
+    section.classList.toggle('expanded');
+    btn.querySelector('.expand-toggle').classList.toggle('rotated');
+}
+function switchTab(btn,uid,tab){
+    btn.parentElement.querySelectorAll('.code-tab').forEach(t=>t.classList.remove('active-tab'));
+    btn.classList.add('active-tab');
+    const card=document.getElementById(uid)||btn.closest('.chart-card');
+    card.querySelectorAll('.code-panel').forEach(p=>p.classList.remove('active-panel'));
+    const panel=document.getElementById(uid+'-'+tab);
+    if(panel)panel.classList.add('active-panel');
+}
+function copyCode(btn){
+    const code=btn.parentElement.querySelector('code').textContent;
+    navigator.clipboard.writeText(code).then(()=>{
+        btn.textContent='Copied!';btn.classList.add('copied');
+        setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied')},1500);
+    });
+}
+
+// --- Decision Guide ---
+const dgTree = {
+    q: "What are you showing?",
+    options: [
+        { label: "Comparison", next: {
+            q: "How many items?",
+            options: [
+                { label: "Few items", result: ["Bar Chart"], desc: "Vertical bars compare a small number of categories clearly." },
+                { label: "Many items", result: ["Bar Chart"], desc: "Use horizontal bars when you have many category labels." },
+                { label: "Over time", result: ["Line Chart"], desc: "Line or area charts show how comparisons shift across time." }
+            ]
+        }},
+        { label: "Trend", next: {
+            q: "How many series?",
+            options: [
+                { label: "Single series", result: ["Line Chart"], desc: "A single line chart is the clearest way to show one trend." },
+                { label: "Multiple series", result: ["Line Chart"], desc: "Multi-line charts compare several trends simultaneously." },
+                { label: "Parts of whole", result: ["Streaming Area"], desc: "Stacked area charts show how composition changes over time." }
+            ]
+        }},
+        { label: "Composition", next: {
+            q: "Static or changing over time?",
+            options: [
+                { label: "At a point in time", result: ["Pie / Donut Chart","Waffle Chart"], desc: "Pie/donut or waffle charts show how parts make up a whole at one moment." },
+                { label: "Over time", result: ["Bar Chart","Streaming Area"], desc: "Stacked bar or stacked area charts show composition changes over time." }
+            ]
+        }},
+        { label: "Distribution", next: {
+            q: "How many variables?",
+            options: [
+                { label: "One variable", result: ["Box Plot"], desc: "Histograms or box plots show how a single variable is distributed." },
+                { label: "Two variables", result: ["Scatter Plot"], desc: "Scatter plots reveal the joint distribution of two variables." },
+                { label: "Many variables", result: ["Heat Map"], desc: "Heatmaps visualize density or intensity across a matrix." }
+            ]
+        }},
+        { label: "Relationship", next: {
+            q: "How many variables?",
+            options: [
+                { label: "Two variables", result: ["Scatter Plot"], desc: "Scatter plots show correlation between two variables." },
+                { label: "Three variables", result: ["Scatter Plot"], desc: "Bubble charts (scatter with size) add a third dimension." },
+                { label: "Network", result: ["Network Graph","Sankey Diagram"], desc: "Force graphs or Sankey diagrams show interconnected relationships." }
+            ]
+        }}
+    ]
+};
+
+function renderDGStep1(){
+    const el=document.getElementById('dg-step');
+    el.innerHTML=`<p class="text-sm text-gray-300 font-medium mb-4">${dgTree.q}</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
+            ${dgTree.options.map((o,i)=>`<button class="dg-btn px-3 py-2.5 text-sm rounded-xl border border-white/10 bg-white/[0.03] text-gray-300 font-medium" onclick="dgStep2(${i})">${o.label}</button>`).join('')}
+        </div>`;
+}
+
+function dgStep2(idx){
+    const branch=dgTree.options[idx].next;
+    const el=document.getElementById('dg-step');
+    el.innerHTML=`<p class="text-xs text-gray-500 mb-1"><span class="text-indigo-400">${dgTree.options[idx].label}</span> &rarr;</p>
+        <p class="text-sm text-gray-300 font-medium mb-4">${branch.q}</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            ${branch.options.map((o,j)=>`<button class="dg-btn px-3 py-2.5 text-sm rounded-xl border border-white/10 bg-white/[0.03] text-gray-300 font-medium" onclick="dgResult(${idx},${j})">${o.label}</button>`).join('')}
+        </div>
+        <button onclick="renderDGStep1()" class="mt-4 text-xs text-gray-500 hover:text-indigo-400 transition-colors">&larr; Start Over</button>`;
+}
+
+function dgResult(idx,jdx){
+    const branch=dgTree.options[idx].next;
+    const opt=branch.options[jdx];
+    const el=document.getElementById('dg-step');
+    el.innerHTML=`<p class="text-xs text-gray-500 mb-1"><span class="text-indigo-400">${dgTree.options[idx].label}</span> &rarr; <span class="text-indigo-400">${opt.label}</span></p>
+        <div class="mt-2 p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/20">
+            <p class="text-sm text-gray-300 mb-2">${opt.desc}</p>
+            <p class="text-xs text-gray-500 mb-3">Recommended:</p>
+            <div class="flex flex-wrap gap-2">
+                ${opt.result.map(r=>`<button onclick="scrollToChart('${r}')" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 font-medium hover:bg-indigo-500/20 transition-all"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>${r}</button>`).join('')}
+            </div>
+        </div>
+        <button onclick="renderDGStep1()" class="mt-4 text-xs text-gray-500 hover:text-indigo-400 transition-colors">&larr; Start Over</button>`;
+}
+
+function scrollToChart(name){
+    const card=document.querySelector(`.chart-card[data-name="${name}"]`);
+    if(!card)return;
+    // Reset filters to show all
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector('.filter-btn[data-f="all"]').classList.add('active');
+    activeF='all';
+    document.getElementById('search').value='';
+    applyFilters();
+    // Scroll and highlight
+    setTimeout(()=>{
+        card.scrollIntoView({behavior:'smooth',block:'center'});
+        card.classList.add('highlight-card');
+        setTimeout(()=>card.classList.remove('highlight-card'),2500);
+    },100);
+}
+
+renderDGStep1();
+</script>
+<script>document.addEventListener('click',e=>{if(!e.target.closest('#more-menu')&&!e.target.closest('[onclick*="more-menu"]')){document.getElementById('more-menu')?.classList.add('hidden')}})</script>
+</body>
+</html>
