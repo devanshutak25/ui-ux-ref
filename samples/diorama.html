@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diorama / Tilt-Shift</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --sky: #b8d8e8;
+    --grass: #7cb668;
+    --sand: #f2e6c9;
+    --roof: #d4654a;
+    --wood: #a0785a;
+    --text: #3a3226;
+    --paper: #faf6ef;
+  }
+  body { background: linear-gradient(180deg, var(--sky) 0%, #d4e8f0 40%, var(--sand) 100%); color: var(--text); font-family: 'Nunito', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+  /* Tilt-shift blur bands */
+  body::before, body::after {
+    content: ''; position: fixed; left: 0; width: 100%; height: 80px; z-index: 10; pointer-events: none;
+  }
+  body::before { top: 0; background: linear-gradient(to bottom, rgba(184,216,232,.9), transparent); filter: blur(2px); }
+  body::after { bottom: 0; background: linear-gradient(to top, rgba(242,230,201,.9), transparent); filter: blur(2px); }
+
+  /* Paper cutout layers */
+  .scene { position: relative; height: 380px; overflow: hidden; }
+  .layer { position: absolute; left: 0; width: 100%; }
+  .layer-sky { top: 0; height: 160px; background: linear-gradient(180deg, #a5cee0, #c8dfe8); }
+  .layer-hills {
+    top: 100px; height: 120px;
+    background: var(--grass);
+    border-radius: 80% 60% 0 0 / 100% 100% 0 0;
+    box-shadow: 0 -4px 0 rgba(0,0,0,.05);
+    filter: blur(0.5px);
+  }
+  .layer-ground { bottom: 0; height: 160px; background: var(--sand); box-shadow: inset 0 4px 12px rgba(0,0,0,.06); }
+
+  /* Mini buildings */
+  .buildings { position: absolute; bottom: 140px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 3; }
+  .building { position: relative; filter: drop-shadow(0 4px 6px rgba(0,0,0,.15)); }
+  .building-body { border-radius: 3px 3px 0 0; }
+  .b1 .building-body { width: 40px; height: 55px; background: var(--paper); }
+  .b1::before { content: ''; position: absolute; top: -14px; left: -4px; width: 0; height: 0; border-left: 24px solid transparent; border-right: 24px solid transparent; border-bottom: 16px solid var(--roof); }
+  .b2 .building-body { width: 50px; height: 40px; background: #e8dcc8; }
+  .b2::before { content: ''; position: absolute; top: -10px; left: 0; width: 50px; height: 12px; background: var(--roof); border-radius: 2px; }
+  .b3 .building-body { width: 35px; height: 65px; background: var(--paper); border-radius: 2px; }
+  .b3::before { content: ''; position: absolute; top: -8px; left: 5px; width: 25px; height: 10px; background: #8ab87a; border-radius: 2px; }
+
+  /* Tiny trees */
+  .trees { position: absolute; bottom: 135px; left: 20px; display: flex; gap: 14px; z-index: 2; }
+  .tree { width: 16px; height: 16px; background: #5a9e4a; border-radius: 50%; position: relative; filter: drop-shadow(0 3px 4px rgba(0,0,0,.12)); }
+  .tree::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 3px; height: 10px; background: var(--wood); border-radius: 1px; }
+
+  nav {
+    position: relative; z-index: 5; display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 24px; background: rgba(250,246,239,.7); backdrop-filter: blur(8px);
+    border-bottom: 2px solid rgba(160,120,90,.15);
+  }
+  .logo { font-weight: 800; font-size: 16px; color: var(--roof); }
+  nav ul { list-style: none; display: flex; gap: 16px; }
+  nav a { color: var(--text); text-decoration: none; font-size: 12px; font-weight: 600; opacity: .7; transition: opacity .3s; }
+  nav a:hover { opacity: 1; }
+
+  .hero {
+    position: absolute; z-index: 5; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    text-align: center; padding: 28px 32px;
+    background: rgba(250,246,239,.85); backdrop-filter: blur(6px);
+    border-radius: 16px; border: 2px solid rgba(160,120,90,.12);
+    box-shadow: 0 8px 32px rgba(0,0,0,.08);
+  }
+  .hero h1 { font-size: 26px; font-weight: 800; color: var(--roof); margin-bottom: 8px; }
+  .hero p { font-size: 13px; opacity: .6; margin-bottom: 20px; line-height: 1.6; }
+  .cta { display: inline-block; padding: 10px 28px; background: var(--roof); color: #fff; border-radius: 50px; text-decoration: none; font-size: 13px; font-weight: 700; transition: transform .3s, box-shadow .3s; }
+  .cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,101,74,.3); }
+
+  .components { position: relative; z-index: 5; padding: 40px 24px; background: var(--paper); }
+  .section-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; opacity: .4; margin-bottom: 20px; font-weight: 800; }
+
+  .buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+  .btn { padding: 10px 20px; border-radius: 50px; font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; transition: all .3s; border: none; }
+  .btn-primary { background: var(--roof); color: #fff; box-shadow: 0 3px 10px rgba(212,101,74,.2); }
+  .btn-secondary { background: var(--grass); color: #fff; box-shadow: 0 3px 10px rgba(124,182,104,.2); }
+  .btn-ghost { background: transparent; border: 2px solid var(--wood); color: var(--wood); }
+
+  .card { background: #fff; border-radius: 14px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(0,0,0,.06); border: 1px solid rgba(160,120,90,.08); }
+  .card h3 { font-size: 15px; font-weight: 800; color: var(--roof); margin-bottom: 6px; }
+  .card p { font-size: 12px; opacity: .6; line-height: 1.6; }
+
+  .input-group { margin-bottom: 24px; }
+  .input-group label { display: block; font-size: 11px; font-weight: 700; opacity: .5; margin-bottom: 6px; }
+  .input-group input { width: 100%; padding: 11px 16px; background: #fff; border: 2px solid rgba(160,120,90,.15); border-radius: 10px; color: var(--text); font-family: 'Nunito', sans-serif; font-size: 13px; outline: none; transition: border-color .3s; }
+  .input-group input:focus { border-color: var(--roof); }
+
+  .palette { display: flex; gap: 8px; flex-wrap: wrap; }
+  .swatch { width: 48px; height: 48px; border-radius: 10px; position: relative; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+  .swatch span { position: absolute; bottom: -18px; left: 0; font-size: 8px; opacity: .4; width: 48px; text-align: center; font-weight: 700; }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Diorama</div>
+    <ul><li><a href="#">Village</a></li><li><a href="#">Craft</a></li><li><a href="#">Scale</a></li></ul>
+  </nav>
+  <div class="scene">
+    <div class="layer layer-sky"></div>
+    <div class="layer layer-hills"></div>
+    <div class="layer layer-ground"></div>
+    <div class="trees"><div class="tree"></div><div class="tree"></div><div class="tree"></div></div>
+    <div class="buildings">
+      <div class="building b1"><div class="building-body"></div></div>
+      <div class="building b2"><div class="building-body"></div></div>
+      <div class="building b3"><div class="building-body"></div></div>
+    </div>
+    <div class="hero">
+      <h1>Tiny Worlds</h1>
+      <p>Miniature-scale layered paper cutouts with tilt-shift depth.</p>
+      <a href="#" class="cta">Explore Village</a>
+    </div>
+  </div>
+  <section class="components">
+    <div class="section-label">Components</div>
+    <div class="buttons">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-ghost">Ghost</button>
+    </div>
+    <div class="card">
+      <h3>Paper Layer</h3>
+      <p>Each plane stacks at a different depth, creating parallax and miniature-world charm.</p>
+    </div>
+    <div class="input-group">
+      <label>Location Name</label>
+      <input type="text" placeholder="Enter village name...">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#b8d8e8"><span>#B8D8E8</span></div>
+      <div class="swatch" style="background:#7cb668"><span>#7CB668</span></div>
+      <div class="swatch" style="background:#d4654a"><span>#D4654A</span></div>
+      <div class="swatch" style="background:#f2e6c9"><span>#F2E6C9</span></div>
+      <div class="swatch" style="background:#a0785a"><span>#A0785A</span></div>
+    </div>
+  </section>
+</body>
+</html>

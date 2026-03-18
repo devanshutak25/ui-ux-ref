@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cassette Futurism</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Courier New', monospace; background: #0a0a0a; color: #FFB000; overflow-x: hidden; }
+
+  /* CRT glow & scanlines */
+  body::after {
+    content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 3px);
+  }
+
+  .hero {
+    min-height: 55vh; display: flex; flex-direction: column;
+    background: #0a0a0a; border: 3px solid #333; margin: 8px; border-radius: 8px;
+    position: relative; overflow: hidden;
+    box-shadow: inset 0 0 60px rgba(255,176,0,0.03), 0 0 1px #FFB000;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(255,176,0,0.06) 0%, transparent 70%);
+  }
+
+  /* Bezel top bar */
+  .bezel-bar { background: #1a1a1a; padding: 0.5rem 1rem; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 2px solid #333; }
+  .bezel-bar .model { font-size: 0.65rem; color: #666; letter-spacing: 2px; }
+  .bezel-bar .indicators { display: flex; gap: 0.5rem; }
+  .bezel-bar .led { width: 8px; height: 8px; border-radius: 50%; }
+  .led-red { background: #ff3333; box-shadow: 0 0 6px #ff3333; }
+  .led-green { background: #33ff33; box-shadow: 0 0 6px #33ff33; }
+  .led-amber { background: #FFB000; box-shadow: 0 0 6px #FFB000; animation: blink 2s infinite; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1.2rem; border-bottom: 1px solid #222; }
+  nav .logo { font-size: 1rem; font-weight: bold; color: #FFB000; text-shadow: 0 0 10px rgba(255,176,0,0.5); letter-spacing: 3px; }
+  nav ul { list-style: none; display: flex; gap: 1rem; }
+  nav a { color: #888; text-decoration: none; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
+  nav a:hover { color: #FFB000; text-shadow: 0 0 8px rgba(255,176,0,0.5); }
+
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; position: relative; z-index: 2; }
+
+  h1 { font-size: 2rem; font-weight: bold; color: #FFB000; text-shadow: 0 0 20px rgba(255,176,0,0.4), 0 0 40px rgba(255,176,0,0.1); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .subtitle { font-size: 0.75rem; color: #888; max-width: 380px; line-height: 1.8; margin-bottom: 1.5rem; letter-spacing: 1px; }
+  .cta { display: inline-block; padding: 0.7rem 2rem; background: #1a1a1a; color: #FFB000;
+    border: 2px solid #FFB000; font-family: inherit; font-size: 0.75rem; font-weight: bold;
+    letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.3s;
+    box-shadow: 0 0 10px rgba(255,176,0,0.1); }
+  .cta:hover { background: #FFB000; color: #0a0a0a; box-shadow: 0 0 25px rgba(255,176,0,0.4); }
+
+  /* VU Meter decoration */
+  .vu-meter { display: flex; gap: 3px; margin-bottom: 1.5rem; align-items: flex-end; }
+  .vu-bar { width: 6px; background: #FFB000; border-radius: 1px; animation: vuPulse 1.5s ease-in-out infinite alternate; }
+  .vu-bar:nth-child(1) { height: 12px; animation-delay: 0s; }
+  .vu-bar:nth-child(2) { height: 20px; animation-delay: 0.1s; }
+  .vu-bar:nth-child(3) { height: 28px; animation-delay: 0.2s; }
+  .vu-bar:nth-child(4) { height: 35px; animation-delay: 0.3s; }
+  .vu-bar:nth-child(5) { height: 25px; animation-delay: 0.4s; }
+  .vu-bar:nth-child(6) { height: 30px; animation-delay: 0.5s; background: #ff6600; }
+  .vu-bar:nth-child(7) { height: 18px; animation-delay: 0.6s; background: #ff3333; }
+  @keyframes vuPulse { to { opacity: 0.5; height: 8px; } }
+
+  /* Components */
+  .components { padding: 2rem; margin: 0 8px 8px; background: #0d0d0d; border: 2px solid #333; border-radius: 0 0 8px 8px; }
+  .components h2 { font-size: 0.9rem; margin-bottom: 1.5rem; color: #FFB000; letter-spacing: 3px; text-transform: uppercase; text-shadow: 0 0 10px rgba(255,176,0,0.3); }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+  .btn { font-family: inherit; padding: 0.5rem 1.2rem; font-size: 0.7rem; font-weight: bold; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s; }
+  .btn-primary { background: #FFB000; color: #0a0a0a; border: 2px solid #FFB000; }
+  .btn-primary:hover { box-shadow: 0 0 20px rgba(255,176,0,0.5); }
+  .btn-outline { background: transparent; border: 2px solid #33ff33; color: #33ff33; }
+  .btn-outline:hover { background: #33ff33; color: #0a0a0a; }
+  .btn-danger { background: transparent; border: 2px solid #ff3333; color: #ff3333; }
+  .btn-danger:hover { background: #ff3333; color: #0a0a0a; }
+
+  .card {
+    background: #111; border: 1px solid #333; padding: 1.2rem; margin-bottom: 2rem; position: relative;
+  }
+  .card::before { content: 'REC ●'; position: absolute; top: 0.5rem; right: 0.8rem; font-size: 0.55rem; color: #ff3333; animation: blink 1s infinite; }
+  .card h3 { font-size: 0.8rem; color: #FFB000; margin-bottom: 0.5rem; letter-spacing: 2px; text-transform: uppercase; }
+  .card p { font-size: 0.7rem; color: #666; line-height: 1.7; }
+
+  .input-group { margin-bottom: 2rem; }
+  .input-group input {
+    width: 100%; padding: 0.65rem 1rem; background: #111; border: 2px solid #333;
+    color: #FFB000; font-family: inherit; font-size: 0.75rem; outline: none; letter-spacing: 1px; transition: border-color 0.3s;
+  }
+  .input-group input:focus { border-color: #FFB000; box-shadow: 0 0 10px rgba(255,176,0,0.15); }
+  .input-group input::placeholder { color: #444; }
+
+  .palette { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .swatch { width: 48px; height: 48px; border: 2px solid #333; position: relative; transition: transform 0.3s; cursor: pointer; }
+  .swatch:hover { transform: scale(1.1); border-color: #FFB000; }
+  .swatch span { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 0.5rem; color: #555; white-space: nowrap; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="bezel-bar">
+      <span class="model">MODEL CRT-7800</span>
+      <div class="indicators"><div class="led led-green"></div><div class="led led-amber"></div><div class="led led-red"></div></div>
+    </div>
+    <nav>
+      <div class="logo">DATADEK</div>
+      <ul><li><a href="#">System</a></li><li><a href="#">Config</a></li><li><a href="#">Log</a></li></ul>
+    </nav>
+    <div class="hero-content">
+      <div class="vu-meter">
+        <div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div>
+        <div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div>
+      </div>
+      <h1>Analog Core</h1>
+      <p class="subtitle">Magnetic tape systems. Cathode ray interfaces. The warmth of analog in a digital world.</p>
+      <button class="cta">Initialize</button>
+    </div>
+  </section>
+  <section class="components">
+    <h2>Components</h2>
+    <div class="btn-row">
+      <button class="btn btn-primary">Execute</button>
+      <button class="btn btn-outline">Confirm</button>
+      <button class="btn btn-danger">Abort</button>
+    </div>
+    <div class="card">
+      <h3>Tape Module A-12</h3>
+      <p>Reel-to-reel magnetic storage operating at 9600 baud. Data integrity maintained through analog redundancy protocols.</p>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="> ENTER COMMAND_">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#FFB000"><span>#FFB000</span></div>
+      <div class="swatch" style="background:#33ff33"><span>#33FF33</span></div>
+      <div class="swatch" style="background:#ff3333"><span>#FF3333</span></div>
+      <div class="swatch" style="background:#1a1a1a"><span>#1A1A1A</span></div>
+      <div class="swatch" style="background:#333"><span>#333333</span></div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Switchboard / Node Editor</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #1a1a22;
+    --panel: #222230;
+    --border: #333345;
+    --text: #c8c8d4;
+    --dim: #666680;
+    --red: #ff4444;
+    --green: #44cc66;
+    --blue: #4488ff;
+    --yellow: #ffcc33;
+    --purple: #aa66ff;
+    --orange: #ff8844;
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'Space Mono', monospace; overflow-x: hidden; }
+
+  /* Rack mount lines */
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.02) 39px, rgba(255,255,255,.02) 40px);
+  }
+
+  nav {
+    position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 20px; background: var(--panel); border-bottom: 2px solid var(--border);
+  }
+  .logo { font-weight: 700; font-size: 12px; letter-spacing: 2px; color: var(--green); }
+  .logo::before { content: '[ '; color: var(--dim); }
+  .logo::after { content: ' ]'; color: var(--dim); }
+  nav ul { list-style: none; display: flex; gap: 14px; }
+  nav a { color: var(--dim); text-decoration: none; font-size: 10px; transition: color .3s; }
+  nav a:hover { color: var(--text); }
+
+  /* Status LEDs in nav */
+  .status-leds { display: flex; gap: 6px; align-items: center; }
+  .led { width: 8px; height: 8px; border-radius: 50%; }
+  .led-on { box-shadow: 0 0 6px currentColor; }
+
+  .hero { position: relative; z-index: 2; padding: 30px 20px; }
+
+  /* Node graph */
+  .node-graph { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+  .node {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 6px;
+    overflow: hidden; position: relative;
+  }
+  .node-header {
+    padding: 8px 12px; font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px;
+  }
+  .node-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .node-body { padding: 10px 12px; display: flex; justify-content: space-between; }
+  .node-ports { display: flex; flex-direction: column; gap: 6px; }
+  .port { display: flex; align-items: center; gap: 6px; font-size: 9px; color: var(--dim); }
+  .port-jack {
+    width: 12px; height: 12px; border-radius: 50%; border: 2px solid;
+    background: var(--bg); flex-shrink: 0;
+  }
+  .port-jack.connected { background: currentColor; box-shadow: 0 0 6px currentColor; }
+
+  /* Patch cables (decorative lines) */
+  .cables {
+    position: relative; height: 24px; margin: -6px 0;
+  }
+  .cable {
+    position: absolute; height: 3px; border-radius: 2px; opacity: .6;
+  }
+  .cable-1 { top: 6px; left: 40px; width: 120px; background: var(--red); transform: rotate(3deg); }
+  .cable-2 { top: 14px; left: 80px; width: 100px; background: var(--blue); transform: rotate(-2deg); }
+
+  .hero h1 { font-size: 22px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
+  .hero h1 span { color: var(--yellow); }
+  .hero p { font-size: 11px; color: var(--dim); line-height: 1.7; margin-bottom: 20px; max-width: 380px; }
+  .cta {
+    display: inline-block; padding: 10px 24px; background: var(--green); color: var(--bg);
+    text-decoration: none; font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    border-radius: 4px; transition: all .3s;
+  }
+  .cta:hover { box-shadow: 0 0 20px rgba(68,204,102,.3); }
+
+  .components { position: relative; z-index: 2; padding: 28px 20px; border-top: 2px solid var(--border); }
+  .section-label { font-size: 9px; letter-spacing: 3px; color: var(--dim); margin-bottom: 18px; }
+
+  .buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .btn {
+    padding: 8px 16px; font-family: 'Space Mono', monospace; font-size: 10px;
+    font-weight: 700; cursor: pointer; border-radius: 4px; transition: all .3s;
+    background: var(--panel); border: 1px solid var(--border);
+  }
+  .btn-primary { border-color: var(--green); color: var(--green); }
+  .btn-primary:hover { background: rgba(68,204,102,.1); box-shadow: 0 0 10px rgba(68,204,102,.2); }
+  .btn-secondary { border-color: var(--blue); color: var(--blue); }
+  .btn-ghost { color: var(--dim); }
+
+  .card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 6px;
+    padding: 14px; margin-bottom: 18px;
+  }
+  .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .card h3 { font-size: 12px; font-weight: 700; }
+  .card p { font-size: 10px; color: var(--dim); line-height: 1.6; }
+
+  /* Knob control */
+  .knobs { display: flex; gap: 16px; margin-bottom: 20px; }
+  .knob { text-align: center; }
+  .knob-dial {
+    width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--border);
+    background: var(--panel); margin: 0 auto 6px; position: relative;
+  }
+  .knob-dial::after {
+    content: ''; position: absolute; top: 4px; left: 50%; width: 2px; height: 12px;
+    background: var(--text); transform: translateX(-50%);
+  }
+  .knob-label { font-size: 8px; color: var(--dim); letter-spacing: 1px; }
+
+  .input-group { margin-bottom: 20px; }
+  .input-group label { display: block; font-size: 9px; letter-spacing: 1px; color: var(--dim); margin-bottom: 6px; }
+  .input-group input {
+    width: 100%; padding: 8px 12px; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 4px; color: var(--text); font-family: 'Space Mono', monospace;
+    font-size: 11px; outline: none; transition: border-color .3s;
+  }
+  .input-group input:focus { border-color: var(--green); }
+  .input-group input::placeholder { color: #444; }
+
+  .palette { display: flex; gap: 6px; flex-wrap: wrap; }
+  .swatch {
+    width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--border); position: relative;
+  }
+  .swatch span { position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%); font-size: 7px; color: var(--dim); white-space: nowrap; }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo">PATCH</div>
+    <div class="status-leds">
+      <div class="led led-on" style="background:var(--green);color:var(--green)"></div>
+      <div class="led led-on" style="background:var(--yellow);color:var(--yellow)"></div>
+      <div class="led" style="background:var(--dim)"></div>
+    </div>
+    <ul><li><a href="#">nodes</a></li><li><a href="#">rack</a></li></ul>
+  </nav>
+  <section class="hero">
+    <div class="node-graph">
+      <div class="node">
+        <div class="node-header"><div class="node-dot" style="background:var(--red)"></div>OSC-1</div>
+        <div class="node-body">
+          <div class="node-ports">
+            <div class="port"><div class="port-jack connected" style="color:var(--red);border-color:var(--red)"></div>FREQ</div>
+            <div class="port"><div class="port-jack" style="border-color:var(--dim)"></div>WAVE</div>
+          </div>
+          <div class="node-ports">
+            <div class="port">OUT<div class="port-jack connected" style="color:var(--blue);border-color:var(--blue)"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="cables"><div class="cable cable-1"></div><div class="cable cable-2"></div></div>
+      <div class="node">
+        <div class="node-header"><div class="node-dot" style="background:var(--blue)"></div>FLT-1</div>
+        <div class="node-body">
+          <div class="node-ports">
+            <div class="port"><div class="port-jack connected" style="color:var(--blue);border-color:var(--blue)"></div>IN</div>
+          </div>
+          <div class="node-ports">
+            <div class="port">OUT<div class="port-jack connected" style="color:var(--green);border-color:var(--green)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h1>Modular <span>Patch</span></h1>
+    <p>Jack-socket nodes with patch-cable connections. Rack-mount framing for signal routing.</p>
+    <a href="#" class="cta">CONNECT</a>
+  </section>
+  <section class="components">
+    <div class="section-label">COMPONENTS</div>
+    <div class="buttons">
+      <button class="btn btn-primary">PRIMARY</button>
+      <button class="btn btn-secondary">SECONDARY</button>
+      <button class="btn btn-ghost">GHOST</button>
+    </div>
+    <div class="knobs">
+      <div class="knob"><div class="knob-dial"></div><div class="knob-label">FREQ</div></div>
+      <div class="knob"><div class="knob-dial" style="transform:rotate(120deg)"></div><div class="knob-label">RES</div></div>
+      <div class="knob"><div class="knob-dial" style="transform:rotate(240deg)"></div><div class="knob-label">MIX</div></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="node-dot" style="background:var(--purple);width:8px;height:8px;border-radius:50%"></div><h3>AMP Module</h3></div>
+      <p>Voltage-controlled amplifier. Gain range: -inf to +12dB. CV input accepts 0-5V.</p>
+    </div>
+    <div class="input-group">
+      <label>CV VALUE</label>
+      <input type="text" placeholder="0.000 V">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:var(--red)"><span>#FF4444</span></div>
+      <div class="swatch" style="background:var(--green)"><span>#44CC66</span></div>
+      <div class="swatch" style="background:var(--blue)"><span>#4488FF</span></div>
+      <div class="swatch" style="background:var(--yellow)"><span>#FFCC33</span></div>
+      <div class="swatch" style="background:var(--purple)"><span>#AA66FF</span></div>
+    </div>
+  </section>
+</body>
+</html>

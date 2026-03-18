@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retrocomputing / DOS Shell</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Courier New', monospace; background: #000; color: #0f0; overflow-x: hidden;
+    font-size: 14px; line-height: 1.4; }
+
+  /* CRT effect */
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.2) 0px, rgba(0,0,0,0.2) 1px, transparent 1px, transparent 2px);
+  }
+  body::after {
+    content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.5) 100%);
+  }
+
+  .hero {
+    min-height: 55vh; display: flex; flex-direction: column; padding: 0.5rem;
+    position: relative;
+    text-shadow: 0 0 5px rgba(0,255,0,0.5);
+  }
+
+  /* Blinking cursor */
+  .cursor { display: inline-block; width: 8px; height: 14px; background: #0f0; animation: cursorBlink 1s step-end infinite; vertical-align: middle; margin-left: 2px; }
+  @keyframes cursorBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  nav { padding: 0.5rem; border-bottom: 1px solid #0a0; margin-bottom: 0.5rem; }
+  .nav-bar { display: flex; gap: 0; background: #0a0; color: #000; padding: 0; }
+  .nav-bar a { color: #000; background: #0a0; text-decoration: none; padding: 0.15rem 1rem; font-size: 0.8rem; font-weight: bold; }
+  .nav-bar a:hover { background: #0f0; }
+  .nav-bar .active { background: #000; color: #0f0; }
+
+  .hero-content { flex: 1; padding: 0.5rem; }
+
+  .prompt { color: #0f0; margin-bottom: 0.3rem; }
+  .prompt-path { color: #0a0; }
+  .typed-text { overflow: hidden; white-space: nowrap; animation: typing 2s steps(40) forwards; }
+  @keyframes typing { from { width: 0; } to { width: 100%; } }
+
+  h1 { font-size: 0.9rem; font-weight: normal; color: #0f0; margin-bottom: 0.5rem; white-space: pre; line-height: 1.2; }
+
+  .ascii-box { border: 1px solid #0a0; padding: 0.8rem; margin: 0.8rem 0; }
+  .ascii-box .title { color: #0f0; font-weight: bold; margin-bottom: 0.3rem; }
+  .ascii-box p { color: #0a0; font-size: 0.8rem; line-height: 1.5; }
+
+  .cta { display: inline-block; padding: 0.3rem 1rem; background: #0f0; color: #000;
+    font-family: inherit; font-size: 0.8rem; font-weight: bold; cursor: pointer;
+    border: none; margin-top: 0.5rem; transition: all 0.2s;
+  }
+  .cta:hover { background: #0a0; color: #0f0; outline: 1px solid #0f0; }
+
+  /* Directory tree */
+  .dir-tree { margin: 0.5rem 0; font-size: 0.8rem; color: #0a0; }
+  .dir-tree .folder { color: #0f0; }
+  .dir-tree .file { color: #0a0; }
+
+  /* System info bar */
+  .sys-bar { display: flex; justify-content: space-between; padding: 0.3rem 0.5rem; border-top: 1px solid #0a0; font-size: 0.7rem; color: #0a0; margin-top: auto; }
+
+  /* Components */
+  .components { padding: 1rem 0.5rem; border-top: 1px double #0a0; }
+  .components h2 { font-size: 0.85rem; color: #0f0; margin-bottom: 1rem; font-weight: normal; }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .btn { font-family: inherit; padding: 0.3rem 1rem; font-size: 0.75rem; cursor: pointer; transition: all 0.2s; }
+  .btn-green { background: #0f0; color: #000; border: none; font-weight: bold; }
+  .btn-green:hover { background: #0a0; }
+  .btn-outline { background: #000; border: 1px solid #0f0; color: #0f0; }
+  .btn-outline:hover { background: #0f0; color: #000; }
+  .btn-amber { background: #FFB000; color: #000; border: none; font-weight: bold; }
+  .btn-amber:hover { background: #cc8d00; }
+
+  .card {
+    border: 1px solid #0a0; padding: 0.8rem; margin-bottom: 1.5rem; position: relative;
+  }
+  .card::before { content: '[i]'; position: absolute; top: -0.5rem; left: 0.5rem; background: #000; color: #0f0; padding: 0 0.3rem; font-size: 0.7rem; }
+  .card h3 { font-size: 0.8rem; color: #0f0; margin-bottom: 0.3rem; font-weight: normal; text-transform: uppercase; }
+  .card p { font-size: 0.75rem; color: #0a0; line-height: 1.5; }
+
+  .input-group { margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.3rem; }
+  .input-group label { color: #0f0; font-size: 0.8rem; white-space: nowrap; }
+  .input-group input {
+    flex: 1; padding: 0.3rem 0.5rem; background: #000; border: 1px solid #0a0;
+    color: #0f0; font-family: inherit; font-size: 0.8rem; outline: none;
+    text-shadow: 0 0 5px rgba(0,255,0,0.3);
+  }
+  .input-group input:focus { border-color: #0f0; }
+  .input-group input::placeholder { color: #050; }
+
+  .palette { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .swatch { width: 48px; height: 48px; border: 1px solid #0a0; position: relative; cursor: pointer; transition: border-color 0.2s; }
+  .swatch:hover { border-color: #0f0; }
+  .swatch span { position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%); font-size: 0.5rem; color: #0a0; white-space: nowrap; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <div class="nav-bar">
+        <a class="active">File</a><a href="#">Edit</a><a href="#">View</a><a href="#">Help</a>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <div class="prompt"><span class="prompt-path">C:\RETRO></span> dir /w</div>
+      <div class="dir-tree">
+        <div><span class="folder">[.]</span>  <span class="folder">[..]</span>  <span class="folder">[SYSTEM]</span>  <span class="folder">[CONFIG]</span></div>
+        <div><span class="file">AUTOEXEC.BAT</span>  <span class="file">CONFIG.SYS</span>  <span class="file">README.TXT</span></div>
+      </div>
+      <div class="prompt" style="margin-top: 0.5rem;"><span class="prompt-path">C:\RETRO></span> type WELCOME.TXT</div>
+<h1>
+ ____  _____ _____ ____   ___
+|  _ \| ____|_   _|  _ \ / _ \
+| |_) |  _|   | | | |_) | | | |
+|  _ <| |___  | | |  _ <| |_| |
+|_| \_\_____| |_| |_| \_\\___/
+</h1>
+      <div class="ascii-box">
+        <div class="title">SYSTEM STATUS: OPERATIONAL</div>
+        <p>Welcome to RetroShell v3.2. Your command-line interface to the golden age of personal computing. 640K ought to be enough.</p>
+      </div>
+      <div class="prompt"><span class="prompt-path">C:\RETRO></span> run LAUNCH.EXE<span class="cursor"></span></div>
+      <button class="cta">[EXECUTE]</button>
+    </div>
+    <div class="sys-bar">
+      <span>MEM: 640K/640K FREE</span>
+      <span>DISK: 20MB</span>
+      <span>COM1: OK</span>
+    </div>
+  </section>
+  <section class="components">
+    <h2>--- COMPONENT LIBRARY ---</h2>
+    <div class="btn-row">
+      <button class="btn btn-green">[OK]</button>
+      <button class="btn btn-outline">[CANCEL]</button>
+      <button class="btn btn-amber">[WARN]</button>
+    </div>
+    <div class="card">
+      <h3>System Information</h3>
+      <p>Processor: Intel 8086 @ 4.77MHz | Memory: 640KB Conventional | Display: CGA 80x25 text mode</p>
+    </div>
+    <div class="input-group">
+      <label>C:\></label>
+      <input type="text" placeholder="ENTER COMMAND">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#0f0"><span>#00FF00</span></div>
+      <div class="swatch" style="background:#0a0"><span>#00AA00</span></div>
+      <div class="swatch" style="background:#FFB000"><span>#FFB000</span></div>
+      <div class="swatch" style="background:#333"><span>#333333</span></div>
+      <div class="swatch" style="background:#000;border-color:#0f0"><span>#000000</span></div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subway / Transit Diagram</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #f5f3ee;
+    --ink: #1d1d1b;
+    --red: #e4002b;
+    --blue: #0057b8;
+    --green: #00843d;
+    --yellow: #ffc72c;
+    --orange: #ed8b00;
+    --purple: #6d2077;
+    --dim: #888;
+  }
+  body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 24px; border-bottom: 3px solid var(--ink);
+  }
+  .logo { font-weight: 700; font-size: 18px; display: flex; align-items: center; gap: 8px; }
+  .logo-circle { width: 24px; height: 24px; border-radius: 50%; background: var(--red); display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; }
+  nav ul { list-style: none; display: flex; gap: 14px; }
+  nav a { color: var(--ink); text-decoration: none; font-size: 12px; font-weight: 500; opacity: .6; transition: opacity .3s; }
+  nav a:hover { opacity: 1; }
+
+  .hero { position: relative; padding: 40px 24px 30px; }
+
+  /* Transit map illustration */
+  .transit-map {
+    position: relative; height: 180px; margin-bottom: 24px; overflow: hidden;
+  }
+  .route {
+    position: absolute; border-radius: 0;
+  }
+  /* Red line - horizontal */
+  .route-red { top: 40px; left: 20px; width: 260px; height: 6px; background: var(--red); }
+  .route-red::after { content: ''; position: absolute; right: -60px; top: 0; width: 80px; height: 6px; background: var(--red); transform: rotate(45deg); transform-origin: left center; }
+  /* Blue line - diagonal */
+  .route-blue { top: 80px; left: 60px; width: 200px; height: 6px; background: var(--blue); transform: rotate(-30deg); transform-origin: left center; }
+  /* Green line - vertical */
+  .route-green { top: 20px; left: 180px; width: 6px; height: 150px; background: var(--green); }
+
+  /* Station dots */
+  .station {
+    position: absolute; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--bg); border: 3px solid var(--ink); z-index: 2;
+  }
+  .station.interchange { width: 20px; height: 20px; border-width: 4px; }
+  .station-label { position: absolute; font-size: 9px; font-weight: 500; white-space: nowrap; }
+  .s1 { top: 34px; left: 50px; } .s1 .station-label { top: -16px; left: -4px; }
+  .s2 { top: 34px; left: 120px; } .s2 .station-label { top: -16px; left: -4px; }
+  .s3 { top: 34px; left: 178px; } .s3 .station-label { top: -16px; left: -4px; }
+  .s3.interchange { top: 32px; left: 174px; }
+  .s4 { top: 90px; left: 174px; } .s4 .station-label { left: 22px; top: 0; }
+  .s5 { top: 140px; left: 174px; } .s5 .station-label { left: 22px; top: 0; }
+
+  .hero h1 { font-size: 28px; font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
+  .hero p { font-size: 13px; color: var(--dim); max-width: 400px; line-height: 1.6; margin-bottom: 24px; }
+  .cta {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px;
+    background: var(--red); color: #fff; text-decoration: none; font-size: 13px;
+    font-weight: 700; border-radius: 50px; transition: all .3s;
+  }
+  .cta:hover { background: #c8001f; transform: translateY(-1px); }
+
+  /* Route badges */
+  .route-badges { display: flex; gap: 8px; margin-bottom: 24px; }
+  .badge {
+    width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; color: #fff; font-size: 11px; font-weight: 700;
+  }
+
+  .components { padding: 32px 24px; border-top: 3px solid var(--ink); }
+  .section-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--dim); margin-bottom: 20px; font-weight: 700; }
+
+  .buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+  .btn {
+    padding: 10px 22px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700;
+    cursor: pointer; border-radius: 50px; transition: all .3s; border: none;
+  }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-primary:hover { background: #004494; }
+  .btn-secondary { background: transparent; color: var(--ink); border: 2.5px solid var(--ink); }
+  .btn-ghost { background: transparent; color: var(--dim); border: 2px solid #ddd; }
+
+  .card {
+    border: 2.5px solid var(--ink); border-radius: 12px; padding: 18px; margin-bottom: 20px;
+    position: relative;
+  }
+  .card::before {
+    content: ''; position: absolute; top: 14px; left: -8px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--green); border: 3px solid var(--bg);
+  }
+  .card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; margin-left: 14px; }
+  .card p { font-size: 12px; color: var(--dim); line-height: 1.6; }
+
+  .input-group { margin-bottom: 24px; }
+  .input-group label { display: block; font-size: 11px; font-weight: 700; margin-bottom: 6px; }
+  .input-group input {
+    width: 100%; padding: 11px 16px; background: #fff; border: 2.5px solid var(--ink);
+    border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px;
+    color: var(--ink); outline: none; transition: border-color .3s;
+  }
+  .input-group input:focus { border-color: var(--blue); }
+  .input-group input::placeholder { color: #ccc; }
+
+  .palette { display: flex; gap: 8px; flex-wrap: wrap; }
+  .swatch { width: 44px; height: 44px; border-radius: 50%; position: relative; border: 3px solid var(--bg); box-shadow: 0 0 0 2px var(--ink); }
+  .swatch span { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 7px; color: var(--dim); white-space: nowrap; }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo"><span class="logo-circle">T</span>Transit</div>
+    <ul><li><a href="#">Map</a></li><li><a href="#">Lines</a></li><li><a href="#">Plan</a></li></ul>
+  </nav>
+  <section class="hero">
+    <div class="transit-map">
+      <div class="route route-red"></div>
+      <div class="route route-blue"></div>
+      <div class="route route-green"></div>
+      <div class="station s1"><div class="station-label">Central</div></div>
+      <div class="station s2"><div class="station-label">Market</div></div>
+      <div class="station interchange s3"><div class="station-label">Junction</div></div>
+      <div class="station s4"><div class="station-label">Park</div></div>
+      <div class="station s5"><div class="station-label">South</div></div>
+    </div>
+    <div class="route-badges">
+      <div class="badge" style="background:var(--red)">R</div>
+      <div class="badge" style="background:var(--blue)">B</div>
+      <div class="badge" style="background:var(--green)">G</div>
+      <div class="badge" style="background:var(--orange)">O</div>
+      <div class="badge" style="background:var(--purple)">P</div>
+    </div>
+    <h1>Navigate the<br>Network</h1>
+    <p>Beck-style schematic topology. Colored routes, interchange nodes, simplified geography.</p>
+    <a href="#" class="cta">Plan Journey</a>
+  </section>
+  <section class="components">
+    <div class="section-label">Components</div>
+    <div class="buttons">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-ghost">Ghost</button>
+    </div>
+    <div class="card">
+      <h3>Junction Station</h3>
+      <p>Interchange between Red and Green lines. Average wait: 3 min. Accessibility: Step-free.</p>
+    </div>
+    <div class="input-group">
+      <label>Destination</label>
+      <input type="text" placeholder="Search stations...">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:var(--red)"><span>#E4002B</span></div>
+      <div class="swatch" style="background:var(--blue)"><span>#0057B8</span></div>
+      <div class="swatch" style="background:var(--green)"><span>#00843D</span></div>
+      <div class="swatch" style="background:var(--yellow)"><span>#FFC72C</span></div>
+      <div class="swatch" style="background:var(--purple)"><span>#6D2077</span></div>
+    </div>
+  </section>
+</body>
+</html>

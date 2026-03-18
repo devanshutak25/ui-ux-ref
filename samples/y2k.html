@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Y2K Aesthetic</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Quicksand', sans-serif; background: linear-gradient(135deg, #E6E6FA, #87CEEB, #FFB6C1); color: #333; overflow-x: hidden; min-height: 100vh; }
+
+  .hero {
+    min-height: 55vh; display: flex; flex-direction: column; position: relative; overflow: hidden;
+    background: linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(135,206,235,0.3) 50%, rgba(255,182,193,0.3) 100%);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Holographic shimmer */
+  .hero::before {
+    content: ''; position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(45deg, rgba(255,182,193,0.2), rgba(135,206,235,0.2), rgba(230,230,250,0.3), rgba(0,206,209,0.2), rgba(255,182,193,0.2));
+    background-size: 400% 400%; animation: holoShift 8s ease infinite;
+  }
+  @keyframes holoShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+  /* Chrome bubble decorations */
+  .bubble { position: absolute; border-radius: 50%; background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(192,192,192,0.3), rgba(135,206,235,0.4)); z-index: 1; }
+  .bubble-1 { width: 80px; height: 80px; top: 15%; right: 10%; animation: float 6s ease-in-out infinite; }
+  .bubble-2 { width: 50px; height: 50px; bottom: 20%; left: 8%; animation: float 8s ease-in-out infinite reverse; }
+  .bubble-3 { width: 35px; height: 35px; top: 40%; left: 20%; animation: float 5s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-15px)} }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; position: relative; z-index: 5; }
+  nav .logo { font-weight: 700; font-size: 1.2rem;
+    background: linear-gradient(90deg, #FFB6C1, #87CEEB, #E6E6FA, #00CED1);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  nav ul { list-style: none; display: flex; gap: 1.2rem; }
+  nav a { color: rgba(100,100,150,0.8); text-decoration: none; font-size: 0.8rem; font-weight: 600; transition: color 0.3s; }
+  nav a:hover { color: #FF69B4; }
+
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; position: relative; z-index: 3; }
+
+  h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, #C0C0C0 0%, #fff 20%, #87CEEB 40%, #FFB6C1 60%, #E6E6FA 80%, #C0C0C0 100%);
+    background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    animation: chromeText 4s linear infinite; text-shadow: none;
+  }
+  @keyframes chromeText { to { background-position: 200% center; } }
+
+  .subtitle { font-size: 0.9rem; color: rgba(80,80,120,0.8); max-width: 380px; margin-bottom: 1.5rem; line-height: 1.6; }
+  .cta { display: inline-block; padding: 0.8rem 2.2rem;
+    background: linear-gradient(135deg, #FFB6C1, #87CEEB, #E6E6FA);
+    color: #fff; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 0.85rem;
+    border: none; cursor: pointer; transition: all 0.3s; text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(255,182,193,0.4), 0 4px 15px rgba(135,206,235,0.2);
+  }
+  .cta:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 8px 30px rgba(255,182,193,0.5); }
+
+  /* Star decoration */
+  .star { position: absolute; z-index: 2; }
+  .star::before { content: ''; font-size: 1.5rem; }
+
+  /* Components */
+  .components { padding: 2rem; background: linear-gradient(180deg, rgba(230,230,250,0.5), rgba(255,255,255,0.8)); }
+  .components h2 { font-size: 1.2rem; margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, #FF69B4, #00CED1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+  .btn { padding: 0.6rem 1.4rem; border: none; border-radius: 50px; font-family: inherit; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: all 0.3s; }
+  .btn-primary { background: linear-gradient(135deg, #FFB6C1, #FF69B4); color: #fff; box-shadow: 0 3px 12px rgba(255,105,180,0.3); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 5px 20px rgba(255,105,180,0.5); }
+  .btn-secondary { background: linear-gradient(135deg, #87CEEB, #00CED1); color: #fff; box-shadow: 0 3px 12px rgba(0,206,209,0.3); }
+  .btn-chrome { background: linear-gradient(180deg, #f0f0f0, #C0C0C0, #d0d0d0); color: #666; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+  .card {
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);
+    border-radius: 20px; padding: 1.5rem; margin-bottom: 2rem;
+    border: 1px solid rgba(255,255,255,0.8);
+    box-shadow: 0 8px 32px rgba(135,206,235,0.15);
+  }
+  .card h3 { font-size: 1rem; margin-bottom: 0.5rem; color: #FF69B4; }
+  .card p { font-size: 0.8rem; color: rgba(80,80,120,0.7); line-height: 1.6; }
+
+  .input-group { margin-bottom: 2rem; }
+  .input-group input {
+    width: 100%; padding: 0.75rem 1.2rem; background: rgba(255,255,255,0.7);
+    border: 2px solid rgba(135,206,235,0.4); border-radius: 50px; color: #555;
+    font-family: inherit; font-size: 0.85rem; outline: none; backdrop-filter: blur(5px); transition: border-color 0.3s;
+  }
+  .input-group input:focus { border-color: #FF69B4; box-shadow: 0 0 15px rgba(255,105,180,0.15); }
+  .input-group input::placeholder { color: rgba(150,150,200,0.6); }
+
+  .palette { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .swatch { width: 48px; height: 48px; border-radius: 50%; position: relative; transition: transform 0.3s; cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1); border: 2px solid rgba(255,255,255,0.8); }
+  .swatch:hover { transform: scale(1.2); }
+  .swatch span { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 0.5rem; color: rgba(100,100,150,0.5); white-space: nowrap; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+    <div class="bubble bubble-3"></div>
+    <nav>
+      <div class="logo">CYBER*GLAM</div>
+      <ul><li><a href="#">Vibes</a></li><li><a href="#">Gallery</a></li><li><a href="#">Enter</a></li></ul>
+    </nav>
+    <div class="hero-content">
+      <h1>Future Is Now</h1>
+      <p class="subtitle">Chrome dreams and digital butterflies. Where millennium optimism meets holographic beauty.</p>
+      <button class="cta">Enter the Matrix</button>
+    </div>
+  </section>
+  <section class="components">
+    <h2>Components</h2>
+    <div class="btn-row">
+      <button class="btn btn-primary">Bubblegum</button>
+      <button class="btn btn-secondary">Aqua</button>
+      <button class="btn btn-chrome">Chrome</button>
+    </div>
+    <div class="card">
+      <h3>Holographic Dreams</h3>
+      <p>Iridescent surfaces and metallic reflections define the techno-optimistic era of the early millennium.</p>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="Search the future...">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#C0C0C0"><span>#C0C0C0</span></div>
+      <div class="swatch" style="background:#87CEEB"><span>#87CEEB</span></div>
+      <div class="swatch" style="background:#FFB6C1"><span>#FFB6C1</span></div>
+      <div class="swatch" style="background:#E6E6FA"><span>#E6E6FA</span></div>
+      <div class="swatch" style="background:#00CED1"><span>#00CED1</span></div>
+    </div>
+  </section>
+</body>
+</html>

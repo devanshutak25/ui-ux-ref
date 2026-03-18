@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motion-Driven Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #FAFAFA;
+    color: #111;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.15); opacity: 1; }
+  }
+  @keyframes slideIn {
+    0% { transform: translateX(-30px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+  @keyframes slideUp {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(99,102,241,0.15); }
+    50% { transform: scale(1.03); box-shadow: 0 8px 32px rgba(99,102,241,0.25); }
+  }
+  @keyframes shimmerBar {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+  }
+  @keyframes orbit {
+    0% { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+  }
+  @keyframes fadeInStagger1 { 0% { opacity: 0; transform: translateY(16px); } 100% { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeInStagger2 { 0%, 20% { opacity: 0; transform: translateY(16px); } 100% { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeInStagger3 { 0%, 40% { opacity: 0; transform: translateY(16px); } 100% { opacity: 1; transform: translateY(0); } }
+
+  /* HERO */
+  .hero {
+    min-height: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 48px 24px;
+    position: relative;
+    background: #fff;
+    overflow: hidden;
+  }
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.4;
+  }
+  .orb-1 { width: 200px; height: 200px; background: #6366F1; top: 20%; left: -40px; animation: float 6s ease-in-out infinite; }
+  .orb-2 { width: 150px; height: 150px; background: #EC4899; bottom: 10%; right: -30px; animation: float 8s ease-in-out infinite 1s; }
+  .orb-3 { width: 100px; height: 100px; background: #06B6D4; top: 10%; right: 20%; animation: pulse 4s ease-in-out infinite; }
+
+  .orbit-ring {
+    position: absolute;
+    width: 180px; height: 180px;
+    border: 1px dashed rgba(99,102,241,0.2);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    margin-top: -90px; margin-left: -90px;
+  }
+  .orbit-dot {
+    width: 10px; height: 10px;
+    background: #6366F1;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%; left: 50%;
+    margin: -5px;
+    animation: orbit 10s linear infinite;
+  }
+
+  nav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    z-index: 10;
+    animation: slideIn 0.8s ease-out;
+  }
+  nav .logo { font-weight: 800; font-size: 18px; }
+  nav ul { list-style: none; display: flex; gap: 20px; }
+  nav a { color: #666; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.3s; }
+  nav a:hover { color: #6366F1; }
+
+  .hero-content { position: relative; z-index: 5; }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 14px;
+    animation: slideUp 1s ease-out;
+  }
+  .hero h1 span { color: #6366F1; }
+  .hero p {
+    font-size: 15px;
+    color: #666;
+    max-width: 360px;
+    margin: 0 auto 28px;
+    line-height: 1.6;
+    animation: slideUp 1s ease-out 0.2s both;
+  }
+  .cta {
+    display: inline-block;
+    padding: 14px 32px;
+    background: #6366F1;
+    color: #fff;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 1s ease-out 0.4s both;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .cta::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shimmerBar 2.5s ease-in-out infinite;
+  }
+  .cta:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 32px rgba(99,102,241,0.3); }
+
+  /* COMPONENTS */
+  .components {
+    padding: 40px 24px;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .comp-title {
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 28px;
+    animation: slideUp 0.8s ease-out;
+  }
+  .section-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #999;
+    font-weight: 600;
+    margin: 28px 0 12px;
+  }
+
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn {
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .btn:hover { transform: translateY(-3px) scale(1.05); }
+  .btn:active { transform: translateY(0) scale(0.98); }
+  .btn-primary {
+    background: #6366F1;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(99,102,241,0.3);
+    animation: fadeInStagger1 0.8s ease-out both;
+  }
+  .btn-primary:hover { box-shadow: 0 8px 28px rgba(99,102,241,0.4); }
+  .btn-pink {
+    background: #EC4899;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(236,72,153,0.3);
+    animation: fadeInStagger2 0.8s ease-out both;
+  }
+  .btn-cyan {
+    background: #06B6D4;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(6,182,212,0.3);
+    animation: fadeInStagger3 0.8s ease-out both;
+  }
+
+  .card {
+    margin-top: 12px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    animation: breathe 4s ease-in-out infinite;
+    transition: transform 0.3s;
+  }
+  .card:hover { transform: scale(1.02); }
+  .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .card h3 span { color: #6366F1; }
+  .card p { font-size: 13px; color: #777; line-height: 1.6; }
+
+  .spinner {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid #ddd;
+    border-top-color: #6366F1;
+    border-radius: 50%;
+    animation: rotate 0.8s linear infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  .input-wrap { position: relative; margin-top: 12px; }
+  .input-field {
+    width: 100%;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #111;
+    outline: none;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .input-field:focus {
+    border-color: #6366F1;
+    box-shadow: 0 0 0 4px rgba(99,102,241,0.1);
+    transform: scale(1.01);
+  }
+  .input-field::placeholder { color: #bbb; }
+
+  .palette { display: flex; gap: 10px; margin-top: 12px; }
+  .swatch-wrap { text-align: center; }
+  .swatch {
+    width: 46px; height: 46px;
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+  }
+  .swatch:hover { transform: scale(1.2) rotate(5deg); border-radius: 16px; }
+  .swatch-name { font-size: 9px; color: #999; margin-top: 4px; font-weight: 500; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orbit-ring">
+      <div class="orbit-dot"></div>
+    </div>
+    <nav>
+      <div class="logo">Motion</div>
+      <ul>
+        <li><a href="#">Animate</a></li>
+        <li><a href="#">Design</a></li>
+        <li><a href="#">Build</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>Design That<br><span>Moves</span> You</h1>
+      <p>Every element breathes, pulses, and responds. Motion is the language of our interface.</p>
+      <a class="cta" href="#">Start Animating</a>
+    </div>
+  </section>
+
+  <section class="components">
+    <div class="comp-title">Components</div>
+
+    <div class="section-label">Buttons</div>
+    <div class="btn-row">
+      <button class="btn btn-primary">Indigo</button>
+      <button class="btn btn-pink">Rose</button>
+      <button class="btn btn-cyan">Cyan</button>
+    </div>
+
+    <div class="section-label">Card (Breathing)</div>
+    <div class="card">
+      <h3><span class="spinner"></span>Always <span>Alive</span></h3>
+      <p>This card subtly breathes with a scaling animation. Hover to see interactive spring-based transitions on every element.</p>
+    </div>
+
+    <div class="section-label">Input</div>
+    <div class="input-wrap">
+      <input class="input-field" type="text" placeholder="Type and watch it respond...">
+    </div>
+
+    <div class="section-label">Palette (Hover to Animate)</div>
+    <div class="palette">
+      <div class="swatch-wrap"><div class="swatch" style="background:#6366F1;"></div><div class="swatch-name">Indigo</div></div>
+      <div class="swatch-wrap"><div class="swatch" style="background:#EC4899;"></div><div class="swatch-name">Rose</div></div>
+      <div class="swatch-wrap"><div class="swatch" style="background:#06B6D4;"></div><div class="swatch-name">Cyan</div></div>
+      <div class="swatch-wrap"><div class="swatch" style="background:#111;"></div><div class="swatch-name">Dark</div></div>
+      <div class="swatch-wrap"><div class="swatch" style="background:#FAFAFA; border:1px solid #ddd;"></div><div class="swatch-name">Light</div></div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neumorphism - Sample</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Inter', sans-serif; background: #E0E5EC; color: #4A5568; line-height: 1.6; }
+
+  .neu-raised {
+    background: #E0E5EC;
+    border-radius: 16px;
+    box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff;
+  }
+  .neu-inset {
+    background: #E0E5EC;
+    border-radius: 16px;
+    box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 70vh;
+    padding: 1.5rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #4A5568;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #6B7FD7;
+    box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+    border-radius: 10px;
+  }
+  .nav-links { display: flex; gap: 0.75rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: #6B7280;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover {
+    box-shadow: inset 2px 2px 5px #a3b1c6, inset -2px -2px 5px #ffffff;
+  }
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 460px; }
+  .hero-content h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    color: #2D3748;
+  }
+  .hero-content p {
+    font-size: 0.95rem;
+    color: #718096;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+  .hero-content button {
+    align-self: flex-start;
+    background: #E0E5EC;
+    color: #6B7FD7;
+    border: none;
+    padding: 0.85rem 2rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff;
+    transition: all 0.15s;
+  }
+  .hero-content button:hover {
+    box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+  }
+  .hero-content button:active {
+    box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff;
+  }
+
+  /* Neu progress bar */
+  .progress-container {
+    margin-top: 2rem;
+    padding: 1.25rem;
+    border-radius: 16px;
+    box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff;
+  }
+  .progress-label { font-size: 0.8rem; color: #718096; margin-bottom: 0.75rem; font-weight: 500; }
+  .progress-track {
+    height: 12px;
+    border-radius: 6px;
+    box-shadow: inset 3px 3px 6px #a3b1c6, inset -3px -3px 6px #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 68%;
+    background: linear-gradient(135deg, #6B7FD7, #9B8FE7);
+    border-radius: 6px;
+  }
+
+  /* COMPONENTS */
+  .components {
+    padding: 2rem;
+  }
+  .components > h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #2D3748;
+  }
+  .component-group { margin-bottom: 2.5rem; }
+  .component-group h3 {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #A0AEC0;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Buttons */
+  .btn-primary, .btn-secondary, .btn-outline {
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.65rem 1.4rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.15s;
+    background: #E0E5EC;
+  }
+  .btn-primary {
+    color: #6B7FD7;
+    box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+  }
+  .btn-primary:active { box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff; }
+  .btn-secondary {
+    color: #718096;
+    box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+  }
+  .btn-secondary:active { box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff; }
+  .btn-outline {
+    color: #6B7FD7;
+    box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff;
+  }
+  .btn-outline:active { box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff; }
+
+  /* Card */
+  .card {
+    max-width: 320px;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 8px 8px 16px #a3b1c6, -8px -8px 16px #ffffff;
+  }
+  .card-header {
+    height: 100px;
+    background: linear-gradient(135deg, #CBD5E0 0%, #E0E5EC 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-header::after {
+    content: '';
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: #E0E5EC;
+    box-shadow: inset 3px 3px 6px #a3b1c6, inset -3px -3px 6px #ffffff;
+  }
+  .card h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 1rem 1.25rem 0.3rem;
+    color: #2D3748;
+  }
+  .card p {
+    font-size: 0.85rem;
+    color: #718096;
+    padding: 0 1.25rem 1.25rem;
+    line-height: 1.6;
+  }
+
+  /* Input */
+  .component-group input[type="text"] {
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 12px;
+    outline: none;
+    width: 100%;
+    max-width: 320px;
+    background: #E0E5EC;
+    color: #4A5568;
+    box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff;
+    transition: all 0.2s;
+  }
+  .component-group input[type="text"]:focus {
+    box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff;
+  }
+  .component-group input[type="text"]::placeholder { color: #A0AEC0; }
+
+  /* Palette */
+  .palette { display: flex; gap: 0.75rem; }
+  .swatch {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+  }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <div class="logo">
+        <div class="logo-icon">N</div>
+        <span>Soft UI</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Design</a></li>
+        <li><a href="#">Docs</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>Interfaces that feel touchable.</h1>
+      <p>Neumorphism creates soft, extruded shapes from the background itself. Light and shadow give form to flatness.</p>
+      <button>Get Started</button>
+    </div>
+    <div class="progress-container">
+      <div class="progress-label">Project progress</div>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="components">
+    <h2>Components</h2>
+
+    <div class="component-group">
+      <h3>Buttons</h3>
+      <button class="btn-primary">Primary</button>
+      <button class="btn-secondary">Secondary</button>
+      <button class="btn-outline">Outline</button>
+    </div>
+
+    <div class="component-group">
+      <h3>Card</h3>
+      <div class="card">
+        <div class="card-header"></div>
+        <h4>Card Title</h4>
+        <p>Card description text goes here with some details about this item.</p>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <h3>Input</h3>
+      <input type="text" placeholder="Enter something..." />
+    </div>
+
+    <div class="component-group">
+      <h3>Palette</h3>
+      <div class="palette">
+        <div class="swatch" style="background:#E0E5EC"></div>
+        <div class="swatch" style="background:#a3b1c6"></div>
+        <div class="swatch" style="background:#6B7FD7"></div>
+        <div class="swatch" style="background:#9B8FE7"></div>
+        <div class="swatch" style="background:#ffffff"></div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

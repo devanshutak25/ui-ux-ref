@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinematic / Film Noir</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --black: #0a0a0a; --dark: #1a1a1a; --gray: #888; --light: #ccc; --red: #c41e3a; }
+  body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--light); font-weight: 300; overflow-x: hidden; }
+  /* film grain */
+  body::after { content: ''; position: fixed; inset: 0; opacity: .06; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); pointer-events: none; z-index: 999; }
+  /* venetian blinds */
+  .hero { position: relative; padding: 48px 32px 56px; text-align: center; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(180deg, transparent, transparent 18px, rgba(0,0,0,.5) 18px, rgba(0,0,0,.5) 24px); pointer-events: none; opacity: .4; }
+  .hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 30%, rgba(255,255,255,.06), transparent 70%); pointer-events: none; }
+  .hero nav { display: flex; justify-content: center; gap: 28px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 48px; position: relative; z-index: 1; }
+  .hero nav a { color: var(--gray); text-decoration: none; transition: color .3s; }
+  .hero nav a:hover { color: var(--red); }
+  h1 { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: #fff; margin-bottom: 12px; position: relative; z-index: 1; text-shadow: 0 2px 40px rgba(0,0,0,.8); }
+  h1 em { font-weight: 400; color: var(--red); }
+  .subtitle { font-size: 13px; color: var(--gray); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 32px; position: relative; z-index: 1; }
+  .cta { display: inline-block; padding: 12px 36px; border: 1px solid var(--gray); color: #fff; text-transform: uppercase; letter-spacing: 3px; font-size: 11px; font-family: inherit; background: transparent; cursor: pointer; position: relative; z-index: 1; transition: all .3s; }
+  .cta:hover { border-color: var(--red); background: var(--red); }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--gray), transparent); opacity: .2; }
+  .components { padding: 32px; }
+  .section-label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gray); margin-bottom: 16px; }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+  .btn { padding: 10px 24px; font-family: inherit; font-size: 11px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border: 1px solid #444; background: transparent; color: var(--light); transition: all .25s; }
+  .btn:hover { border-color: #fff; color: #fff; }
+  .btn.accent { border-color: var(--red); color: var(--red); }
+  .btn.accent:hover { background: var(--red); color: #fff; }
+  .btn.filled { background: #fff; color: var(--black); border-color: #fff; }
+  .card { border: 1px solid #222; padding: 24px; margin-bottom: 32px; background: linear-gradient(135deg, var(--dark), var(--black)); position: relative; overflow: hidden; }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--red), transparent); }
+  .card h3 { font-family: 'Playfair Display', serif; font-size: 18px; color: #fff; margin-bottom: 8px; }
+  .card p { font-size: 13px; color: var(--gray); line-height: 1.7; }
+  .input-group { margin-bottom: 32px; }
+  .input-group label { display: block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+  .input-group input { width: 100%; padding: 12px 16px; background: var(--dark); border: 1px solid #333; color: var(--light); font-family: inherit; font-size: 13px; font-weight: 300; outline: none; transition: border-color .2s; }
+  .input-group input:focus { border-color: var(--red); }
+  .palette { display: flex; gap: 10px; }
+  .swatch { width: 48px; height: 48px; position: relative; }
+  .swatch span { position: absolute; bottom: -18px; left: 0; font-size: 9px; color: var(--gray); }
+  .swatch.s1 { background: var(--black); border: 1px solid #333; }
+  .swatch.s2 { background: var(--dark); border: 1px solid #333; }
+  .swatch.s3 { background: var(--gray); }
+  .swatch.s4 { background: var(--red); }
+  .swatch.s5 { background: #fff; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <a href="#">Prologue</a>
+      <a href="#">Scenes</a>
+      <a href="#">Cast</a>
+      <a href="#">Credits</a>
+    </nav>
+    <h1>The Last <em>Shadow</em></h1>
+    <p class="subtitle">A story told in darkness</p>
+    <button class="cta">Watch Now</button>
+  </section>
+  <div class="divider"></div>
+  <section class="components">
+    <p class="section-label">Buttons</p>
+    <div class="btn-row">
+      <button class="btn">Default</button>
+      <button class="btn accent">Accent</button>
+      <button class="btn filled">Solid</button>
+    </div>
+    <p class="section-label">Card</p>
+    <div class="card">
+      <h3>Act III: The Reckoning</h3>
+      <p>The city breathes in monochrome. Rain falls like static across the frame, each drop a confession that never reaches the ground.</p>
+    </div>
+    <p class="section-label">Input</p>
+    <div class="input-group">
+      <label>Your Alias</label>
+      <input type="text" placeholder="Enter the darkness...">
+    </div>
+    <p class="section-label">Color Palette</p>
+    <div class="palette">
+      <div class="swatch s1"><span>#0A0A0A</span></div>
+      <div class="swatch s2"><span>#1A1A1A</span></div>
+      <div class="swatch s3"><span>#888888</span></div>
+      <div class="swatch s4"><span>#C41E3A</span></div>
+      <div class="swatch s5"><span>#FFFFFF</span></div>
+    </div>
+  </section>
+</body>
+</html>

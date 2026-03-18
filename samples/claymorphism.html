@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claymorphism - Sample</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Nunito', sans-serif; background: #F0E6FF; color: #3D2C5E; line-height: 1.6; }
+
+  .clay {
+    background: linear-gradient(145deg, #F5EDFF 0%, #E8D8FF 100%);
+    border-radius: 24px;
+    box-shadow:
+      inset 0 -4px 6px rgba(0,0,0,0.06),
+      inset 0 4px 6px rgba(255,255,255,0.6),
+      8px 8px 20px rgba(100,70,150,0.15),
+      -4px -4px 12px rgba(255,255,255,0.7);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 70vh;
+    padding: 1.5rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: #6B3FA0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .logo-blob {
+    width: 34px; height: 34px;
+    background: linear-gradient(145deg, #FFB8D0, #FF9A9E);
+    border-radius: 12px;
+    box-shadow:
+      inset 0 -3px 5px rgba(0,0,0,0.08),
+      inset 0 3px 5px rgba(255,255,255,0.5),
+      4px 4px 10px rgba(255,130,150,0.25);
+    display: flex; align-items: center; justify-content: center;
+    color: #FFF;
+    font-size: 0.85rem;
+    font-weight: 800;
+  }
+  .nav-links { display: flex; gap: 1rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: #7B5EA7;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #4A2D78; }
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 460px; }
+  .hero-content h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    color: #3D2C5E;
+  }
+  .hero-content h1 span { color: #FF7EB3; }
+  .hero-content p {
+    font-size: 0.95rem;
+    color: #7B5EA7;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+  .hero-content button {
+    align-self: flex-start;
+    background: linear-gradient(145deg, #D4BBFF, #C5A3FF);
+    color: #3D2C5E;
+    border: none;
+    padding: 0.85rem 2.2rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 800;
+    border-radius: 16px;
+    cursor: pointer;
+    box-shadow:
+      inset 0 -3px 6px rgba(0,0,0,0.08),
+      inset 0 3px 6px rgba(255,255,255,0.5),
+      6px 6px 14px rgba(100,70,150,0.2);
+    transition: all 0.2s;
+  }
+  .hero-content button:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 -3px 6px rgba(0,0,0,0.08),
+      inset 0 3px 6px rgba(255,255,255,0.5),
+      8px 10px 18px rgba(100,70,150,0.25);
+  }
+
+  /* Clay blobs decoration */
+  .clay-blobs {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .blob {
+    width: 56px; height: 56px;
+    border-radius: 18px;
+    box-shadow:
+      inset 0 -3px 5px rgba(0,0,0,0.06),
+      inset 0 3px 5px rgba(255,255,255,0.5),
+      5px 5px 12px rgba(100,70,150,0.15);
+  }
+  .blob-1 { background: linear-gradient(145deg, #FFB8D0, #FF9A9E); }
+  .blob-2 { background: linear-gradient(145deg, #B8F0C8, #82E89E); border-radius: 50%; }
+  .blob-3 { background: linear-gradient(145deg, #B8D8FF, #82B4FF); }
+  .blob-4 { background: linear-gradient(145deg, #FFEAB8, #FFD682); border-radius: 50%; width: 42px; height: 42px; align-self: center; }
+
+  /* COMPONENTS */
+  .components {
+    padding: 2rem;
+  }
+  .components > h2 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: #3D2C5E;
+  }
+  .component-group { margin-bottom: 2.5rem; }
+  .component-group h3 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9B7FC4;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Buttons */
+  .btn-primary, .btn-secondary, .btn-outline {
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.65rem 1.4rem;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: linear-gradient(145deg, #D4BBFF, #C5A3FF);
+    color: #3D2C5E;
+    box-shadow:
+      inset 0 -3px 5px rgba(0,0,0,0.06),
+      inset 0 3px 5px rgba(255,255,255,0.5),
+      5px 5px 12px rgba(100,70,150,0.18);
+  }
+  .btn-secondary {
+    background: linear-gradient(145deg, #FFB8D0, #FFA5C0);
+    color: #5E2C3D;
+    box-shadow:
+      inset 0 -3px 5px rgba(0,0,0,0.06),
+      inset 0 3px 5px rgba(255,255,255,0.5),
+      5px 5px 12px rgba(150,70,100,0.15);
+  }
+  .btn-outline {
+    background: linear-gradient(145deg, #F5EDFF, #E8D8FF);
+    color: #6B3FA0;
+    box-shadow:
+      inset 0 -3px 5px rgba(0,0,0,0.06),
+      inset 0 3px 5px rgba(255,255,255,0.5),
+      5px 5px 12px rgba(100,70,150,0.12);
+  }
+  .btn-primary:hover, .btn-secondary:hover, .btn-outline:hover { transform: translateY(-1px); }
+
+  /* Card */
+  .card {
+    max-width: 320px;
+    overflow: hidden;
+  }
+  .card-header {
+    height: 100px;
+    background: linear-gradient(145deg, #FFD6E8, #FFC2D8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-header::after {
+    content: '';
+    width: 48px; height: 48px;
+    background: linear-gradient(145deg, #FFF5E6, #FFE8C8);
+    border-radius: 14px;
+    box-shadow:
+      inset 0 -2px 4px rgba(0,0,0,0.06),
+      inset 0 2px 4px rgba(255,255,255,0.5);
+  }
+  .card h4 {
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 1rem 1.25rem 0.3rem;
+    color: #3D2C5E;
+  }
+  .card p {
+    font-size: 0.85rem;
+    color: #7B5EA7;
+    padding: 0 1.25rem 1.25rem;
+    line-height: 1.6;
+  }
+
+  /* Input */
+  .component-group input[type="text"] {
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 14px;
+    outline: none;
+    width: 100%;
+    max-width: 320px;
+    background: linear-gradient(145deg, #F5EDFF, #E8D8FF);
+    color: #3D2C5E;
+    box-shadow:
+      inset 0 2px 4px rgba(0,0,0,0.06),
+      inset 0 -2px 4px rgba(255,255,255,0.5),
+      3px 3px 8px rgba(100,70,150,0.1);
+    transition: all 0.2s;
+  }
+  .component-group input[type="text"]:focus {
+    box-shadow:
+      inset 0 2px 6px rgba(100,70,150,0.12),
+      inset 0 -2px 4px rgba(255,255,255,0.5),
+      3px 3px 8px rgba(100,70,150,0.15);
+  }
+  .component-group input[type="text"]::placeholder { color: #B8A0D4; }
+
+  /* Palette */
+  .palette { display: flex; gap: 0.75rem; }
+  .swatch {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    box-shadow:
+      inset 0 -2px 4px rgba(0,0,0,0.06),
+      inset 0 2px 4px rgba(255,255,255,0.3),
+      4px 4px 10px rgba(100,70,150,0.12);
+  }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <div class="logo">
+        <div class="logo-blob">C</div>
+        <span>Claykit</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Learn</a></li>
+        <li><a href="#">Play</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>Soft, squishy, and <span>delightful.</span></h1>
+      <p>Claymorphism brings 3D playfulness into flat interfaces. Inner shadows and pastels create a tangible, clay-like depth.</p>
+      <button>Start Creating</button>
+    </div>
+    <div class="clay-blobs">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="blob blob-4"></div>
+    </div>
+  </section>
+
+  <section class="components">
+    <h2>Components</h2>
+
+    <div class="component-group">
+      <h3>Buttons</h3>
+      <button class="btn-primary">Primary</button>
+      <button class="btn-secondary">Secondary</button>
+      <button class="btn-outline">Outline</button>
+    </div>
+
+    <div class="component-group">
+      <h3>Card</h3>
+      <div class="card clay">
+        <div class="card-header"></div>
+        <h4>Card Title</h4>
+        <p>Card description text goes here with some details about this item.</p>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <h3>Input</h3>
+      <input type="text" placeholder="Enter something..." />
+    </div>
+
+    <div class="component-group">
+      <h3>Palette</h3>
+      <div class="palette">
+        <div class="swatch" style="background:#F0E6FF"></div>
+        <div class="swatch" style="background:#D4BBFF"></div>
+        <div class="swatch" style="background:#FF9A9E"></div>
+        <div class="swatch" style="background:#82E89E"></div>
+        <div class="swatch" style="background:#FFD682"></div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

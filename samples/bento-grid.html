@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bento Box Grid</title>
+<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #F5F5F7;
+    color: #1D1D1F;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* HERO */
+  .hero {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 48px 24px 56px;
+    position: relative;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 48px;
+  }
+  nav .logo { font-weight: 700; font-size: 20px; letter-spacing: -0.5px; }
+  nav ul { list-style: none; display: flex; gap: 24px; }
+  nav a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; font-weight: 500; }
+  nav a:hover { color: #fff; }
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 1.05;
+    margin-bottom: 12px;
+  }
+  .hero .subtitle {
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 28px;
+  }
+  .cta {
+    display: inline-block;
+    padding: 12px 28px;
+    background: #0071E3;
+    color: #fff;
+    border-radius: 980px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .cta:hover { background: #0077ED; }
+  .cta-link {
+    display: inline-block;
+    margin-left: 16px;
+    color: #2997FF;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .cta-link:hover { text-decoration: underline; }
+
+  /* BENTO GRID */
+  .components {
+    padding: 32px 20px;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .section-title {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    text-align: center;
+    margin-bottom: 24px;
+    color: #1D1D1F;
+  }
+  .bento {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 12px;
+  }
+  .bento-item {
+    background: #fff;
+    border-radius: 20px;
+    padding: 24px;
+    overflow: hidden;
+    transition: transform 0.25s ease;
+  }
+  .bento-item:hover { transform: scale(1.02); }
+  .bento-item.wide { grid-column: 1 / -1; }
+  .bento-item.dark { background: #1D1D1F; color: #fff; }
+  .bento-item.blue { background: #0071E3; color: #fff; }
+  .bento-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.5;
+    margin-bottom: 8px;
+  }
+  .bento-value {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+  }
+  .bento-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    opacity: 0.7;
+    margin-top: 6px;
+  }
+
+  /* COMPONENT SECTION */
+  .comp-section {
+    margin-top: 28px;
+  }
+  .comp-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #86868B;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn {
+    padding: 10px 22px;
+    border-radius: 980px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: #0071E3; color: #fff; }
+  .btn-primary:hover { background: #0077ED; }
+  .btn-secondary { background: #E8E8ED; color: #1D1D1F; }
+  .btn-secondary:hover { background: #D2D2D7; }
+  .btn-text { background: none; color: #0071E3; }
+  .btn-text:hover { background: rgba(0,113,227,0.06); }
+
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 24px;
+    margin-top: 12px;
+  }
+  .card h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 6px; }
+  .card p { font-size: 13px; color: #86868B; line-height: 1.5; }
+
+  .input-field {
+    width: 100%;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1.5px solid #D2D2D7;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: inherit;
+    color: #1D1D1F;
+    outline: none;
+    margin-top: 12px;
+    transition: border-color 0.2s;
+  }
+  .input-field:focus { border-color: #0071E3; }
+  .input-field::placeholder { color: #86868B; }
+
+  .palette { display: flex; gap: 10px; margin-top: 12px; }
+  .swatch-wrap { text-align: center; }
+  .swatch {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .swatch-name { font-size: 10px; color: #86868B; margin-top: 4px; font-weight: 500; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <div class="logo">bento.</div>
+      <ul>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Solutions</a></li>
+        <li><a href="#">Pricing</a></li>
+      </ul>
+    </nav>
+    <h1>Design that<br>just works.</h1>
+    <p class="subtitle">Modular. Clean. Purposeful.</p>
+    <a class="cta" href="#">Get started</a>
+    <a class="cta-link" href="#">Learn more &rsaquo;</a>
+  </section>
+
+  <section class="components">
+    <div class="section-title">Components</div>
+
+    <div class="bento">
+      <div class="bento-item dark">
+        <div class="bento-label">Performance</div>
+        <div class="bento-value">2x</div>
+        <div class="bento-desc">Faster than ever before</div>
+      </div>
+      <div class="bento-item">
+        <div class="bento-label">Uptime</div>
+        <div class="bento-value">99.9%</div>
+        <div class="bento-desc">Always reliable</div>
+      </div>
+      <div class="bento-item wide blue">
+        <div class="bento-label">Built for scale</div>
+        <div class="bento-value">Infinite<br>possibilities.</div>
+      </div>
+      <div class="bento-item">
+        <div class="bento-label">Integrations</div>
+        <div class="bento-value" style="font-size:24px;">200+</div>
+      </div>
+      <div class="bento-item dark">
+        <div class="bento-label">Security</div>
+        <div class="bento-value" style="font-size:24px;">E2E</div>
+      </div>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">Buttons</div>
+      <div class="btn-row">
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <button class="btn btn-text">Text Link</button>
+      </div>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">Card</div>
+      <div class="card">
+        <h3>Thoughtful Design</h3>
+        <p>Every element is crafted with intention. No excess, no compromise. Just the essentials, beautifully arranged.</p>
+      </div>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">Input</div>
+      <input class="input-field" type="text" placeholder="Search for anything...">
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">Palette</div>
+      <div class="palette">
+        <div class="swatch-wrap"><div class="swatch" style="background:#F5F5F7;"></div><div class="swatch-name">Silver</div></div>
+        <div class="swatch-wrap"><div class="swatch" style="background:#1D1D1F;"></div><div class="swatch-name">Dark</div></div>
+        <div class="swatch-wrap"><div class="swatch" style="background:#0071E3;"></div><div class="swatch-name">Blue</div></div>
+        <div class="swatch-wrap"><div class="swatch" style="background:#86868B;"></div><div class="swatch-name">Gray</div></div>
+        <div class="swatch-wrap"><div class="swatch" style="background:#fff; border:1.5px solid #D2D2D7;"></div><div class="swatch-name">White</div></div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

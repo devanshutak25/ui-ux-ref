@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astrological / Celestial</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --navy: #0B0E2A; --indigo: #1A1F4E; --gold: #D4A847; --star: #F0E6C8; --dim: rgba(212,168,71,.15); }
+  body { font-family: 'Josefin Sans', sans-serif; background: var(--navy); color: var(--star); font-weight: 300; overflow-x: hidden; }
+  /* stars */
+  body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(1px 1px at 20% 30%, var(--star), transparent),
+    radial-gradient(1px 1px at 70% 15%, var(--star), transparent),
+    radial-gradient(1px 1px at 40% 70%, rgba(240,230,200,.5), transparent),
+    radial-gradient(1px 1px at 85% 55%, var(--star), transparent),
+    radial-gradient(1px 1px at 10% 80%, rgba(240,230,200,.4), transparent),
+    radial-gradient(1px 1px at 55% 45%, var(--star), transparent),
+    radial-gradient(1.5px 1.5px at 30% 90%, var(--star), transparent),
+    radial-gradient(1px 1px at 90% 85%, rgba(240,230,200,.6), transparent); pointer-events: none; z-index: 0; }
+  .hero { position: relative; padding: 40px 28px 48px; text-align: center; z-index: 1; }
+  .hero nav { display: flex; justify-content: center; gap: 24px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 40px; }
+  .hero nav a { color: var(--gold); text-decoration: none; opacity: .6; transition: opacity .2s; }
+  .hero nav a:hover { opacity: 1; }
+  .zodiac-ring { width: 130px; height: 130px; margin: 0 auto 28px; border: 1px solid var(--gold); border-radius: 50%; position: relative; box-shadow: 0 0 40px var(--dim); animation: spin 60s linear infinite; }
+  .zodiac-ring::before { content: ''; position: absolute; inset: 12px; border: 1px solid rgba(212,168,71,.3); border-radius: 50%; }
+  .zodiac-ring::after { content: ''; position: absolute; inset: 24px; border: 1px dashed rgba(212,168,71,.2); border-radius: 50%; }
+  .sun-center { position: absolute; top: 50%; left: 50%; width: 16px; height: 16px; transform: translate(-50%,-50%); background: var(--gold); border-radius: 50%; box-shadow: 0 0 20px var(--gold), 0 0 40px rgba(212,168,71,.4); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--star); margin-bottom: 8px; letter-spacing: 4px; }
+  .subtitle { font-size: 12px; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 28px; opacity: .7; }
+  .cta { display: inline-block; padding: 12px 32px; border: 1px solid var(--gold); color: var(--gold); text-transform: uppercase; letter-spacing: 3px; font-size: 11px; font-family: inherit; background: transparent; cursor: pointer; border-radius: 24px; transition: all .3s; }
+  .cta:hover { background: var(--gold); color: var(--navy); box-shadow: 0 0 30px var(--dim); }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: .2; margin: 0 28px; }
+  .components { padding: 32px 28px; position: relative; z-index: 1; }
+  .section-label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; opacity: .6; }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+  .btn { padding: 10px 22px; font-family: inherit; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border: 1px solid var(--gold); background: transparent; color: var(--gold); border-radius: 20px; transition: all .25s; font-weight: 300; }
+  .btn:hover { background: var(--gold); color: var(--navy); }
+  .btn.filled { background: var(--gold); color: var(--navy); }
+  .btn.ghost { border-color: rgba(212,168,71,.3); color: var(--star); }
+  .card { border: 1px solid rgba(212,168,71,.25); border-radius: 16px; padding: 24px; margin-bottom: 28px; background: rgba(26,31,78,.5); backdrop-filter: blur(4px); }
+  .card h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--star); margin-bottom: 8px; }
+  .card p { font-size: 12px; color: rgba(240,230,200,.5); line-height: 1.7; }
+  .constellation { display: flex; gap: 4px; margin-top: 10px; }
+  .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); opacity: .6; }
+  .dot:nth-child(2) { margin-top: 6px; }
+  .dot:nth-child(4) { margin-top: -4px; }
+  .input-group { margin-bottom: 28px; }
+  .input-group label { display: block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; opacity: .6; }
+  .input-group input { width: 100%; padding: 12px 16px; background: rgba(26,31,78,.6); border: 1px solid rgba(212,168,71,.2); border-radius: 10px; color: var(--star); font-family: inherit; font-size: 13px; font-weight: 300; outline: none; transition: border-color .2s; }
+  .input-group input:focus { border-color: var(--gold); box-shadow: 0 0 16px var(--dim); }
+  .palette { display: flex; gap: 10px; }
+  .swatch { width: 44px; height: 44px; border-radius: 50%; position: relative; border: 1px solid rgba(212,168,71,.2); }
+  .swatch span { position: absolute; bottom: -18px; left: -4px; font-size: 8px; color: rgba(240,230,200,.4); white-space: nowrap; }
+  .swatch.s1 { background: var(--navy); }
+  .swatch.s2 { background: var(--indigo); }
+  .swatch.s3 { background: var(--gold); }
+  .swatch.s4 { background: var(--star); }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <a href="#">Chart</a>
+      <a href="#">Houses</a>
+      <a href="#">Transit</a>
+      <a href="#">Oracle</a>
+    </nav>
+    <div class="zodiac-ring"><div class="sun-center"></div></div>
+    <h1>Celestia</h1>
+    <p class="subtitle">Read the stars within</p>
+    <button class="cta">Cast Your Chart</button>
+  </section>
+  <div class="divider"></div>
+  <section class="components">
+    <p class="section-label">Buttons</p>
+    <div class="btn-row">
+      <button class="btn filled">Primary</button>
+      <button class="btn">Outline</button>
+      <button class="btn ghost">Ghost</button>
+    </div>
+    <p class="section-label">Card</p>
+    <div class="card">
+      <h3>Mercury in Retrograde</h3>
+      <p>Communication channels shift as Mercury traces its illusory backward arc through your third house of expression and thought.</p>
+      <div class="constellation"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    </div>
+    <p class="section-label">Input</p>
+    <div class="input-group">
+      <label>Birth Date</label>
+      <input type="text" placeholder="Enter your birth date...">
+    </div>
+    <p class="section-label">Color Palette</p>
+    <div class="palette">
+      <div class="swatch s1"><span>#0B0E2A</span></div>
+      <div class="swatch s2"><span>#1A1F4E</span></div>
+      <div class="swatch s3"><span>#D4A847</span></div>
+      <div class="swatch s4"><span>#F0E6C8</span></div>
+    </div>
+  </section>
+</body>
+</html>

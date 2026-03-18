@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixel Art</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Press Start 2P', monospace; background: #2C2137; color: #F0C674; overflow-x: hidden;
+    image-rendering: pixelated; }
+
+  .hero {
+    min-height: 55vh; display: flex; flex-direction: column; position: relative; overflow: hidden;
+    background: #2C2137;
+  }
+
+  /* Pixel sky with stars using box-shadow */
+  .pixel-stars {
+    position: absolute; inset: 0; z-index: 0;
+  }
+  .pixel-stars::before {
+    content: ''; position: absolute; width: 2px; height: 2px; background: #F0C674;
+    box-shadow:
+      20px 15px 0 #F0C674, 80px 30px 0 #F0C674, 150px 20px 0 #446176,
+      200px 45px 0 #F0C674, 300px 10px 0 #F0C674, 350px 55px 0 #446176,
+      50px 70px 0 #446176, 120px 80px 0 #F0C674, 250px 65px 0 #F0C674,
+      400px 25px 0 #446176, 450px 50px 0 #F0C674, 500px 15px 0 #F0C674,
+      30px 100px 0 #F0C674, 180px 110px 0 #446176, 320px 95px 0 #F0C674,
+      420px 75px 0 #F0C674, 550px 40px 0 #446176;
+    animation: twinkle 3s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle { from { opacity: 1; } to { opacity: 0.5; } }
+
+  /* Pixel ground */
+  .pixel-ground {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 40px; z-index: 1;
+    background: #3FAA5E;
+    box-shadow: 0 -8px 0 #2C8A4E;
+  }
+  .pixel-ground::before {
+    content: ''; position: absolute; top: -8px; left: 20px; width: 8px; height: 8px; background: #3FAA5E;
+    box-shadow: 60px 0 0 #3FAA5E, 130px 0 0 #3FAA5E, 200px 0 0 #3FAA5E, 300px 0 0 #3FAA5E,
+      350px -8px 0 #3FAA5E, 350px 0 0 #3FAA5E, 420px 0 0 #3FAA5E, 500px 0 0 #3FAA5E;
+  }
+
+  /* Pixel tree */
+  .pixel-tree { position: absolute; bottom: 32px; right: 60px; z-index: 2; width: 8px; height: 8px; background: #6B4226;
+    box-shadow:
+      0 -8px 0 #6B4226, 0 -16px 0 #3FAA5E, -8px -16px 0 #3FAA5E, 8px -16px 0 #3FAA5E,
+      0 -24px 0 #3FAA5E, -8px -24px 0 #3FAA5E, 8px -24px 0 #3FAA5E,
+      0 -32px 0 #2C8A4E, -8px -32px 0 #3FAA5E, 8px -32px 0 #3FAA5E,
+      0 -40px 0 #2C8A4E;
+  }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; position: relative; z-index: 5; }
+  nav .logo { font-size: 0.6rem; color: #CD4631; text-shadow: 2px 2px 0 #000; }
+  nav ul { list-style: none; display: flex; gap: 1rem; }
+  nav a { color: #446176; text-decoration: none; font-size: 0.5rem; transition: color 0.3s; }
+  nav a:hover { color: #F0C674; }
+
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; position: relative; z-index: 3; }
+
+  /* Pixel heart icon */
+  .pixel-heart { width: 8px; height: 8px; background: #CD4631; margin-bottom: 1.2rem;
+    box-shadow:
+      8px 0 0 #CD4631, -8px 0 0 #CD4631, 16px 0 0 #CD4631, -16px 0 0 #CD4631,
+      -24px -8px 0 #CD4631, -16px -8px 0 #CD4631, -8px -8px 0 #CD4631, 0 -8px 0 #CD4631,
+      8px -8px 0 #CD4631, 16px -8px 0 #CD4631, 24px -8px 0 #CD4631,
+      -24px -16px 0 #CD4631, -16px -16px 0 #ff6b5b, -8px -16px 0 #CD4631, 0 -16px 0 #CD4631,
+      8px -16px 0 #CD4631, 16px -16px 0 #CD4631, 24px -16px 0 #CD4631,
+      -16px -24px 0 #CD4631, -8px -24px 0 #CD4631, 0 -24px 0 #CD4631, 8px -24px 0 #CD4631, 16px -24px 0 #CD4631,
+      8px -32px 0 #CD4631, 0 -32px 0 #CD4631, -8px -32px 0 #CD4631;
+  }
+
+  h1 { font-size: 1.2rem; color: #F0C674; text-shadow: 3px 3px 0 #000; margin-bottom: 0.75rem; letter-spacing: 2px; }
+  .subtitle { font-size: 0.5rem; color: #446176; max-width: 350px; margin-bottom: 1.5rem; line-height: 2; }
+  .cta { display: inline-block; padding: 0.7rem 1.5rem; background: #CD4631; color: #fff;
+    font-family: inherit; font-size: 0.55rem; cursor: pointer; transition: all 0.1s;
+    border: none; box-shadow: 4px 4px 0 #000; text-shadow: 1px 1px 0 #000;
+  }
+  .cta:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #000; }
+  .cta:active { transform: translate(4px, 4px); box-shadow: 0 0 0 #000; }
+
+  /* Components */
+  .components { padding: 2rem; background: #1a1525; border-top: 4px solid #446176; }
+  .components h2 { font-size: 0.6rem; margin-bottom: 1.5rem; color: #3FAA5E; text-shadow: 2px 2px 0 #000; letter-spacing: 2px; }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+  .btn { font-family: inherit; padding: 0.5rem 1rem; font-size: 0.5rem; cursor: pointer; transition: all 0.1s; border: none; box-shadow: 3px 3px 0 #000; }
+  .btn-fire { background: #CD4631; color: #fff; text-shadow: 1px 1px 0 #000; }
+  .btn-fire:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 #000; }
+  .btn-forest { background: #3FAA5E; color: #1a1525; }
+  .btn-forest:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 #000; }
+  .btn-gold { background: #F0C674; color: #2C2137; }
+  .btn-gold:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 #000; }
+
+  .card {
+    background: #2C2137; border: 3px solid #446176; padding: 1.2rem; margin-bottom: 2rem;
+    box-shadow: 4px 4px 0 #000;
+  }
+  .card h3 { font-size: 0.55rem; margin-bottom: 0.5rem; color: #CD4631; text-shadow: 1px 1px 0 #000; }
+  .card p { font-size: 0.5rem; color: #446176; line-height: 2; }
+
+  .input-group { margin-bottom: 2rem; }
+  .input-group input {
+    width: 100%; padding: 0.6rem 0.8rem; background: #2C2137;
+    border: 3px solid #446176; color: #F0C674; font-family: inherit; font-size: 0.5rem;
+    outline: none; box-shadow: 3px 3px 0 #000;
+  }
+  .input-group input:focus { border-color: #F0C674; }
+  .input-group input::placeholder { color: #446176; }
+
+  .palette { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .swatch { width: 48px; height: 48px; border: 3px solid #000; position: relative; transition: transform 0.1s; cursor: pointer; }
+  .swatch:hover { transform: scale(1.1); }
+  .swatch span { position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); font-size: 0.35rem; color: #446176; white-space: nowrap; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="pixel-stars"></div>
+    <div class="pixel-ground"></div>
+    <div class="pixel-tree"></div>
+    <nav>
+      <div class="logo">PIXELQUEST</div>
+      <ul><li><a href="#">Play</a></li><li><a href="#">Score</a></li><li><a href="#">Map</a></li></ul>
+    </nav>
+    <div class="hero-content">
+      <div class="pixel-heart"></div>
+      <h1>PIXEL WORLD</h1>
+      <p class="subtitle">8-bit adventures in a handcrafted world. Every pixel placed with love.</p>
+      <button class="cta">START GAME</button>
+    </div>
+  </section>
+  <section class="components">
+    <h2>Components</h2>
+    <div class="btn-row">
+      <button class="btn btn-fire">Attack</button>
+      <button class="btn btn-forest">Heal</button>
+      <button class="btn btn-gold">Loot</button>
+    </div>
+    <div class="card">
+      <h3>Inventory Slot</h3>
+      <p>Your pixel adventure awaits. Collect items, defeat bosses, and save the kingdom one pixel at a time.</p>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="ENTER NAME_">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#2C2137"><span>#2C2137</span></div>
+      <div class="swatch" style="background:#446176"><span>#446176</span></div>
+      <div class="swatch" style="background:#3FAA5E"><span>#3FAA5E</span></div>
+      <div class="swatch" style="background:#F0C674"><span>#F0C674</span></div>
+      <div class="swatch" style="background:#CD4631"><span>#CD4631</span></div>
+    </div>
+  </section>
+</body>
+</html>

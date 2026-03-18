@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaporwave</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #1a0a2e; color: #fff; overflow-x: hidden; }
+
+  .hero {
+    min-height: 58vh; display: flex; flex-direction: column; position: relative; overflow: hidden;
+    background: linear-gradient(180deg, #0d0221 0%, #1a0a2e 30%, #2d1b69 50%, #e94590 70%, #ff6b9d 85%, #ffb347 100%);
+  }
+
+  /* Perspective grid */
+  .grid-floor {
+    position: absolute; bottom: 0; left: -20%; right: -20%; height: 45%;
+    background:
+      linear-gradient(90deg, rgba(0,212,255,0.3) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(0,212,255,0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
+    transform: perspective(400px) rotateX(60deg);
+    transform-origin: bottom center;
+    animation: gridScroll 4s linear infinite;
+  }
+  @keyframes gridScroll { to { background-position: 0 40px; } }
+
+  /* Sun */
+  .sun {
+    position: absolute; bottom: 25%; left: 50%; transform: translateX(-50%);
+    width: 180px; height: 180px; border-radius: 50%;
+    background: linear-gradient(180deg, #ff6b9d 0%, #ffb347 50%, #ff6b9d 100%);
+    box-shadow: 0 0 60px rgba(255,107,157,0.5), 0 0 120px rgba(255,107,157,0.2);
+    overflow: hidden;
+  }
+  .sun .line { position: absolute; width: 100%; height: 4px; background: #1a0a2e; left: 0; }
+  .sun .line:nth-child(1) { bottom: 20%; }
+  .sun .line:nth-child(2) { bottom: 30%; height: 6px; }
+  .sun .line:nth-child(3) { bottom: 38%; height: 8px; }
+  .sun .line:nth-child(4) { bottom: 44%; height: 12px; }
+  .sun .line:nth-child(5) { bottom: 0; height: 36%; }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; position: relative; z-index: 5; }
+  nav .logo { font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: #01CDFE;
+    text-shadow: 0 0 10px #01CDFE, 0 0 20px #01CDFE; }
+  nav ul { list-style: none; display: flex; gap: 1.2rem; }
+  nav a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.75rem; transition: color 0.3s; }
+  nav a:hover { color: #FF71CE; text-shadow: 0 0 10px #FF71CE; }
+
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; position: relative; z-index: 3; }
+  h1 { font-family: 'Press Start 2P', monospace; font-size: 1.4rem; line-height: 1.6; margin-bottom: 1rem;
+    background: linear-gradient(180deg, #FF71CE 0%, #01CDFE 50%, #FF71CE 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    text-shadow: none; filter: drop-shadow(0 0 15px rgba(255,113,206,0.4));
+  }
+  .subtitle { font-size: 0.85rem; color: rgba(255,255,255,0.5); max-width: 380px; margin-bottom: 1.5rem; line-height: 1.6; font-style: italic; }
+  .cta { display: inline-block; padding: 0.7rem 2rem; background: transparent;
+    color: #01CDFE; border: 2px solid #01CDFE; font-family: 'Press Start 2P', monospace; font-size: 0.55rem;
+    cursor: pointer; transition: all 0.3s; letter-spacing: 1px;
+    box-shadow: 0 0 10px rgba(1,205,254,0.3), inset 0 0 10px rgba(1,205,254,0.1);
+  }
+  .cta:hover { background: #01CDFE; color: #1a0a2e; box-shadow: 0 0 30px rgba(1,205,254,0.6); }
+
+  /* Components */
+  .components { padding: 2rem; background: linear-gradient(180deg, #1a0a2e, #0d0221); }
+  .components h2 { font-family: 'Press Start 2P', monospace; font-size: 0.7rem; margin-bottom: 1.5rem; color: #FF71CE;
+    text-shadow: 0 0 10px rgba(255,113,206,0.5); letter-spacing: 2px; }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+  .btn { padding: 0.55rem 1.2rem; font-family: inherit; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.3s; border-radius: 2px; }
+  .btn-neon { background: transparent; border: 2px solid #FF71CE; color: #FF71CE; text-shadow: 0 0 8px #FF71CE; }
+  .btn-neon:hover { background: #FF71CE; color: #1a0a2e; text-shadow: none; }
+  .btn-cyan { background: transparent; border: 2px solid #01CDFE; color: #01CDFE; text-shadow: 0 0 8px #01CDFE; }
+  .btn-cyan:hover { background: #01CDFE; color: #1a0a2e; }
+  .btn-sunset { background: linear-gradient(135deg, #ff6b9d, #ffb347); border: none; color: #1a0a2e; font-weight: 700; }
+
+  .card {
+    background: rgba(45,27,105,0.5); border: 1px solid rgba(1,205,254,0.2);
+    border-radius: 4px; padding: 1.5rem; margin-bottom: 2rem; position: relative;
+    box-shadow: 0 0 15px rgba(1,205,254,0.05);
+  }
+  .card h3 { font-size: 0.9rem; margin-bottom: 0.5rem; color: #FF71CE; }
+  .card p { font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.6; font-style: italic; }
+
+  .input-group { margin-bottom: 2rem; }
+  .input-group input {
+    width: 100%; padding: 0.7rem 1rem; background: rgba(45,27,105,0.5);
+    border: 2px solid rgba(255,113,206,0.3); border-radius: 3px; color: #FF71CE;
+    font-family: inherit; font-size: 0.8rem; outline: none; transition: border-color 0.3s;
+  }
+  .input-group input:focus { border-color: #FF71CE; box-shadow: 0 0 15px rgba(255,113,206,0.2); }
+  .input-group input::placeholder { color: rgba(255,113,206,0.3); font-style: italic; }
+
+  .palette { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .swatch { width: 48px; height: 48px; border-radius: 4px; position: relative; transition: transform 0.3s; cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3); }
+  .swatch:hover { transform: scale(1.15); }
+  .swatch span { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 0.5rem; color: rgba(255,255,255,0.3); white-space: nowrap; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="sun">
+      <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+    </div>
+    <div class="grid-floor"></div>
+    <nav>
+      <div class="logo">VAPOR.EXE</div>
+      <ul><li><a href="#">Dreams</a></li><li><a href="#">Plaza</a></li><li><a href="#">FM</a></li></ul>
+    </nav>
+    <div class="hero-content">
+      <h1>DIGITAL SUNSET</h1>
+      <p class="subtitle">A e s t h e t i c s beyond the horizon. Where nostalgia meets the infinite grid.</p>
+      <button class="cta">ENTER PLAZA</button>
+    </div>
+  </section>
+  <section class="components">
+    <h2>Components</h2>
+    <div class="btn-row">
+      <button class="btn btn-neon">Neon</button>
+      <button class="btn btn-cyan">Cyber</button>
+      <button class="btn btn-sunset">Sunset</button>
+    </div>
+    <div class="card">
+      <h3>Late Night Mall</h3>
+      <p>Echoes of smooth jazz drift through empty corridors of marble and chrome. The fountain still plays.</p>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="Search the plaza...">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#9B59B6"><span>#9B59B6</span></div>
+      <div class="swatch" style="background:#FF6B9D"><span>#FF6B9D</span></div>
+      <div class="swatch" style="background:#00D4FF"><span>#00D4FF</span></div>
+      <div class="swatch" style="background:#FF71CE"><span>#FF71CE</span></div>
+      <div class="swatch" style="background:#01CDFE"><span>#01CDFE</span></div>
+    </div>
+  </section>
+</body>
+</html>

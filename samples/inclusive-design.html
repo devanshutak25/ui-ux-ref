@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inclusive Design - Sample</title>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Atkinson Hyperlegible', sans-serif; background: #FFFFFF; color: #1A1A2E; line-height: 1.7; font-size: 18px; }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    background: #1A1A2E;
+    color: #FFF;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 6px 6px;
+    z-index: 100;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .skip-link:focus { top: 0; }
+
+  /* HERO */
+  .hero {
+    background: #1A1A2E;
+    color: #FFFFFF;
+    padding: 1.5rem 2rem 3rem;
+    min-height: 65vh;
+    display: flex;
+    flex-direction: column;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .logo-icon {
+    width: 32px; height: 32px;
+    background: #E8B931;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #1A1A2E;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    transition: all 0.15s;
+  }
+  .nav-links a:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+  .nav-links a:focus-visible {
+    outline: 3px solid #E8B931;
+    outline-offset: 3px;
+  }
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 480px; }
+  .hero-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .hero-content h1 span { color: #E8B931; }
+  .hero-content p {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+  .hero-content button {
+    align-self: flex-start;
+    background: #E8B931;
+    color: #1A1A2E;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    min-height: 48px;
+  }
+  .hero-content button:hover { background: #D4A520; }
+  .hero-content button:focus-visible {
+    outline: 3px solid #FFF;
+    outline-offset: 3px;
+  }
+
+  /* COMPONENTS */
+  .components {
+    padding: 2rem;
+  }
+  .components > h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .components > .section-desc {
+    color: #555;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  .component-group { margin-bottom: 2.5rem; }
+  .component-group h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #555;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Buttons */
+  .btn-primary, .btn-secondary, .btn-outline {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.75rem 1.6rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.15s;
+    min-height: 48px;
+    min-width: 48px;
+  }
+  .btn-primary { background: #1A1A2E; color: #FFF; }
+  .btn-primary:hover { background: #2D2D4E; }
+  .btn-secondary { background: #0E6BA8; color: #FFF; }
+  .btn-secondary:hover { background: #0A5A8F; }
+  .btn-outline { background: transparent; color: #1A1A2E; border: 3px solid #1A1A2E; }
+  .btn-outline:hover { background: #1A1A2E; color: #FFF; }
+  .btn-primary:focus-visible, .btn-secondary:focus-visible, .btn-outline:focus-visible {
+    outline: 3px solid #E8B931;
+    outline-offset: 3px;
+  }
+
+  /* Card */
+  .card {
+    background: #F8F8FA;
+    border: 2px solid #D0D0D8;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 340px;
+  }
+  .card-header {
+    height: 110px;
+    background: #0E6BA8;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+  }
+  .card-header::after {
+    content: 'Image description placeholder';
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+  .card h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    padding: 1rem 1.25rem 0.3rem;
+  }
+  .card p {
+    font-size: 1rem;
+    color: #444;
+    padding: 0 1.25rem 1.25rem;
+    line-height: 1.6;
+  }
+
+  /* Input */
+  .input-wrapper { max-width: 340px; }
+  .input-wrapper label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+  }
+  .component-group input[type="text"] {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+    border: 3px solid #555;
+    border-radius: 8px;
+    outline: none;
+    width: 100%;
+    max-width: 340px;
+    background: #FFF;
+    transition: border-color 0.15s;
+    min-height: 48px;
+  }
+  .component-group input[type="text"]:focus {
+    border-color: #0E6BA8;
+    box-shadow: 0 0 0 3px rgba(14,107,168,0.25);
+  }
+  .component-group input[type="text"]::placeholder { color: #777; }
+
+  /* Palette */
+  .palette { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .swatch {
+    width: 56px; height: 56px;
+    border-radius: 8px;
+    border: 2px solid #D0D0D8;
+    position: relative;
+  }
+  .swatch-label {
+    font-size: 0.65rem;
+    color: #555;
+    text-align: center;
+    margin-top: 0.25rem;
+    font-weight: 700;
+  }
+  .swatch-item { display: flex; flex-direction: column; align-items: center; }
+</style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <section class="hero">
+    <nav aria-label="Main navigation">
+      <div class="logo">
+        <div class="logo-icon" aria-hidden="true">A</div>
+        <span>AccessUI</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Guide</a></li>
+        <li><a href="#">Tools</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>Design for <span>everyone</span>, not just some.</h1>
+      <p>Inclusive design ensures every user can perceive, navigate, and interact with confidence. Accessibility is not optional.</p>
+      <button type="button">Start Building</button>
+    </div>
+  </section>
+
+  <section class="components" id="main" role="main">
+    <h2>Components</h2>
+    <p class="section-desc">All components meet WCAG 2.1 AA with 4.5:1+ contrast and 48px touch targets.</p>
+
+    <div class="component-group">
+      <h3>Buttons</h3>
+      <button class="btn-primary">Primary</button>
+      <button class="btn-secondary">Secondary</button>
+      <button class="btn-outline">Outline</button>
+    </div>
+
+    <div class="component-group">
+      <h3>Card</h3>
+      <div class="card">
+        <div class="card-header" role="img" aria-label="Decorative header image"></div>
+        <h4>Card Title</h4>
+        <p>Card description text goes here with some details about this item.</p>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <h3>Input</h3>
+      <div class="input-wrapper">
+        <label for="demo-input">Your name</label>
+        <input type="text" id="demo-input" placeholder="Enter something..." autocomplete="name" />
+      </div>
+    </div>
+
+    <div class="component-group">
+      <h3>Palette</h3>
+      <div class="palette">
+        <div class="swatch-item"><div class="swatch" style="background:#1A1A2E"></div><div class="swatch-label">7:1</div></div>
+        <div class="swatch-item"><div class="swatch" style="background:#0E6BA8"></div><div class="swatch-label">4.7:1</div></div>
+        <div class="swatch-item"><div class="swatch" style="background:#E8B931"></div><div class="swatch-label">Accent</div></div>
+        <div class="swatch-item"><div class="swatch" style="background:#D32F2F"></div><div class="swatch-label">Error</div></div>
+        <div class="swatch-item"><div class="swatch" style="background:#F8F8FA"></div><div class="swatch-label">Surface</div></div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

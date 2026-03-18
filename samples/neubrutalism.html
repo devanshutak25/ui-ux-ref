@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neubrutalism</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --black: #000; --white: #FFF; --pink: #FF6B6B; --teal: #4ECDC4; --yellow: #FFE66D; --bg: #F5F0EB; --shadow: 5px 5px 0 var(--black); }
+  body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--black); }
+  .hero { padding: 32px 24px 40px; text-align: center; }
+  .hero nav { display: flex; justify-content: center; gap: 8px; margin-bottom: 32px; }
+  .hero nav a { padding: 8px 16px; font-size: 12px; font-weight: 600; text-decoration: none; color: var(--black); border: 3px solid var(--black); border-radius: 8px; background: var(--white); box-shadow: 3px 3px 0 var(--black); transition: all .1s; }
+  .hero nav a:hover { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--black); }
+  .hero nav a:first-child { background: var(--yellow); }
+  .badge { display: inline-block; padding: 8px 20px; border: 3px solid var(--black); border-radius: 50px; background: var(--teal); box-shadow: var(--shadow); font-size: 13px; font-weight: 700; margin-bottom: 20px; transform: rotate(-2deg); }
+  h1 { font-size: 44px; font-weight: 700; line-height: 1.05; margin-bottom: 12px; }
+  h1 span { display: inline; background: var(--yellow); padding: 0 6px; border: 3px solid var(--black); margin-left: 4px; }
+  .subtitle { font-size: 14px; font-weight: 400; color: #555; margin-bottom: 28px; line-height: 1.5; }
+  .cta { display: inline-block; padding: 14px 36px; border: 3px solid var(--black); border-radius: 12px; background: var(--pink); color: var(--black); font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: var(--shadow); transition: all .1s; }
+  .cta:hover { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--black); }
+  .cta:active { transform: translate(5px, 5px); box-shadow: none; }
+  .components { padding: 28px 24px; }
+  .section-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; padding: 6px 12px; background: var(--teal); border: 3px solid var(--black); box-shadow: 3px 3px 0 var(--black); display: inline-block; border-radius: 6px; }
+  .section-wrap { margin-bottom: 28px; }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+  .btn { padding: 10px 20px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; border: 3px solid var(--black); border-radius: 10px; box-shadow: 4px 4px 0 var(--black); transition: all .1s; background: var(--white); color: var(--black); }
+  .btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--black); }
+  .btn.pink { background: var(--pink); }
+  .btn.teal { background: var(--teal); }
+  .btn.yellow { background: var(--yellow); }
+  .card { border: 3px solid var(--black); border-radius: 16px; padding: 20px; background: var(--white); box-shadow: var(--shadow); margin-top: 14px; overflow: hidden; }
+  .card-banner { height: 8px; margin: -20px -20px 16px; background: repeating-linear-gradient(90deg, var(--pink) 0, var(--pink) 33%, var(--teal) 33%, var(--teal) 66%, var(--yellow) 66%, var(--yellow) 100%); border-bottom: 3px solid var(--black); }
+  .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .card p { font-size: 13px; color: #555; line-height: 1.6; }
+  .card-tag { display: inline-block; padding: 4px 10px; border: 2px solid var(--black); border-radius: 6px; background: var(--yellow); font-size: 11px; font-weight: 600; margin-top: 10px; }
+  .input-group { margin-top: 14px; }
+  .input-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+  .input-group input { width: 100%; padding: 12px 16px; background: var(--white); border: 3px solid var(--black); border-radius: 10px; color: var(--black); font-family: inherit; font-size: 14px; outline: none; box-shadow: 3px 3px 0 var(--black); transition: all .1s; }
+  .input-group input:focus { box-shadow: 1px 1px 0 var(--black); transform: translate(2px, 2px); }
+  .palette { display: flex; gap: 10px; margin-top: 14px; }
+  .swatch { width: 48px; height: 48px; border: 3px solid var(--black); border-radius: 10px; box-shadow: 3px 3px 0 var(--black); position: relative; }
+  .swatch span { position: absolute; bottom: -20px; left: -2px; font-size: 9px; font-weight: 600; }
+  .swatch.s1 { background: var(--black); }
+  .swatch.s1 span { color: var(--black); }
+  .swatch.s2 { background: var(--pink); }
+  .swatch.s3 { background: var(--teal); }
+  .swatch.s4 { background: var(--yellow); }
+  .swatch.s5 { background: var(--white); }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Work</a>
+      <a href="#">Blog</a>
+    </nav>
+    <div class="badge">NEW IN 2024</div>
+    <h1>Bold ideas,<br><span>raw edges</span></h1>
+    <p class="subtitle">Design that refuses to blend in. Playfully brutal, unapologetically bold.</p>
+    <button class="cta">Get Started</button>
+  </section>
+  <section class="components">
+    <div class="section-wrap">
+      <span class="section-label">Buttons</span>
+      <div class="btn-row">
+        <button class="btn pink">Primary</button>
+        <button class="btn teal">Accent</button>
+        <button class="btn yellow">Warn</button>
+        <button class="btn">Ghost</button>
+      </div>
+    </div>
+    <div class="section-wrap">
+      <span class="section-label">Card</span>
+      <div class="card">
+        <div class="card-banner"></div>
+        <h3>Playful Structure</h3>
+        <p>Bold borders meet bright fills. Offset shadows give depth without pretending to be something they're not.</p>
+        <span class="card-tag">Design System</span>
+      </div>
+    </div>
+    <div class="section-wrap">
+      <span class="section-label">Input</span>
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@example.com">
+      </div>
+    </div>
+    <div class="section-wrap">
+      <span class="section-label">Colors</span>
+      <div class="palette">
+        <div class="swatch s1"><span>#000000</span></div>
+        <div class="swatch s2"><span>#FF6B6B</span></div>
+        <div class="swatch s3"><span>#4ECDC4</span></div>
+        <div class="swatch s4"><span>#FFE66D</span></div>
+        <div class="swatch s5"><span>#FFFFFF</span></div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

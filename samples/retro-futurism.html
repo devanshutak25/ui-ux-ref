@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retro-Futurism</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Space Mono', monospace; background: #1A1A2E; color: #F0F0F0; overflow-x: hidden; }
+
+  .hero {
+    min-height: 55vh; position: relative; overflow: hidden;
+    background: radial-gradient(ellipse at center, #004E64 0%, #1A1A2E 70%);
+    display: flex; flex-direction: column;
+  }
+
+  /* Starburst background */
+  .starburst {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 500px; height: 500px; z-index: 0;
+  }
+  .starburst::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-conic-gradient(from 0deg, rgba(240,165,0,0.08) 0deg 10deg, transparent 10deg 20deg);
+    border-radius: 50%; animation: rotateSlow 30s linear infinite;
+  }
+  @keyframes rotateSlow { to { transform: rotate(360deg); } }
+
+  /* Orbit rings */
+  .orbit { position: absolute; border: 1px solid rgba(192,192,192,0.15); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .orbit-1 { width: 200px; height: 200px; }
+  .orbit-2 { width: 320px; height: 320px; }
+  .orbit-3 { width: 440px; height: 440px; }
+  .orbit .dot {
+    position: absolute; width: 8px; height: 8px; background: #FF6B35; border-radius: 50;
+    top: -4px; left: 50%; transform: translateX(-50%); border-radius: 50%;
+    box-shadow: 0 0 10px #FF6B35; animation: orbitDot 8s linear infinite;
+  }
+  .orbit-2 .dot { background: #F0A500; box-shadow: 0 0 10px #F0A500; animation-duration: 12s; }
+  .orbit-3 .dot { background: #C0C0C0; box-shadow: 0 0 10px #C0C0C0; animation-duration: 18s; }
+  @keyframes orbitDot { to { transform: translateX(-50%) rotate(360deg); } }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; position: relative; z-index: 5; }
+  nav .logo { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.1rem; color: #F0A500; letter-spacing: 4px; }
+  nav ul { list-style: none; display: flex; gap: 1.5rem; }
+  nav a { color: #C0C0C0; text-decoration: none; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; transition: color 0.3s; }
+  nav a:hover { color: #FF6B35; }
+
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; position: relative; z-index: 3; }
+  h1 { font-family: 'Orbitron', sans-serif; font-size: 2.2rem; font-weight: 900; color: #F0A500; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(240,165,0,0.3); }
+  .subtitle { font-size: 0.8rem; color: #C0C0C0; letter-spacing: 3px; max-width: 400px; line-height: 1.8; margin-bottom: 1.5rem; text-transform: uppercase; }
+  .cta { font-family: 'Orbitron', sans-serif; display: inline-block; padding: 0.8rem 2.5rem;
+    background: linear-gradient(135deg, #FF6B35, #F0A500); color: #1A1A2E; text-decoration: none;
+    font-weight: 700; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
+    border: none; cursor: pointer; border-radius: 50px; transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(255,107,53,0.3);
+  }
+  .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 35px rgba(255,107,53,0.5); }
+
+  /* Atomic decoration */
+  .atom-icon { width: 60px; height: 60px; margin-bottom: 1.5rem; position: relative; }
+  .atom-icon .nucleus { width: 12px; height: 12px; background: #FF6B35; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 15px #FF6B35; }
+  .atom-icon .electron-ring { position: absolute; inset: 0; border: 1.5px solid rgba(240,165,0,0.5); border-radius: 50%; }
+  .atom-icon .electron-ring:nth-child(2) { transform: rotateX(60deg); }
+  .atom-icon .electron-ring:nth-child(3) { transform: rotateY(60deg); }
+
+  /* Components */
+  .components { padding: 2rem; background: #12122a; }
+  .components h2 { font-family: 'Orbitron', sans-serif; font-size: 1rem; margin-bottom: 1.5rem; color: #F0A500; letter-spacing: 4px; text-transform: uppercase; }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+  .btn { font-family: 'Orbitron', sans-serif; padding: 0.6rem 1.4rem; border: none; font-weight: 700; font-size: 0.65rem; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s; }
+  .btn-primary { background: linear-gradient(135deg, #FF6B35, #F0A500); color: #1A1A2E; border-radius: 50px; }
+  .btn-primary:hover { box-shadow: 0 4px 20px rgba(255,107,53,0.5); }
+  .btn-outline { background: transparent; border: 2px solid #F0A500; color: #F0A500; border-radius: 50px; }
+  .btn-outline:hover { background: #F0A500; color: #1A1A2E; }
+  .btn-chrome { background: linear-gradient(180deg, #e0e0e0, #C0C0C0, #a0a0a0); color: #1A1A2E; border-radius: 50px; }
+
+  .card {
+    background: linear-gradient(145deg, #1A1A2E, #004E64); border-radius: 16px; padding: 1.5rem;
+    margin-bottom: 2rem; border: 1px solid rgba(240,165,0,0.2); position: relative; overflow: hidden;
+  }
+  .card::before { content: ''; position: absolute; top: -30px; right: -30px; width: 80px; height: 80px;
+    background: radial-gradient(circle, rgba(255,107,53,0.15), transparent 70%); border-radius: 50%; }
+  .card h3 { font-family: 'Orbitron', sans-serif; font-size: 0.8rem; margin-bottom: 0.5rem; color: #F0A500; letter-spacing: 2px; }
+  .card p { font-size: 0.75rem; color: #C0C0C0; line-height: 1.6; }
+
+  .input-group { margin-bottom: 2rem; }
+  .input-group input {
+    width: 100%; padding: 0.75rem 1rem; background: rgba(0,78,100,0.3);
+    border: 2px solid rgba(240,165,0,0.3); border-radius: 50px; color: #F0F0F0;
+    font-family: 'Space Mono', monospace; font-size: 0.8rem; outline: none; letter-spacing: 1px; transition: border-color 0.3s;
+  }
+  .input-group input:focus { border-color: #F0A500; }
+  .input-group input::placeholder { color: rgba(192,192,192,0.4); }
+
+  .palette { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .swatch { width: 48px; height: 48px; border-radius: 50%; position: relative; transition: transform 0.3s; cursor: pointer; border: 2px solid rgba(255,255,255,0.1); }
+  .swatch:hover { transform: scale(1.2); }
+  .swatch span { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 0.5rem; color: rgba(192,192,192,0.5); white-space: nowrap; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="starburst"></div>
+    <div class="orbit orbit-1"><div class="dot"></div></div>
+    <div class="orbit orbit-2"><div class="dot"></div></div>
+    <div class="orbit orbit-3"><div class="dot"></div></div>
+    <nav>
+      <div class="logo">ATOMICA</div>
+      <ul><li><a href="#">Mission</a></li><li><a href="#">Labs</a></li><li><a href="#">Launch</a></li></ul>
+    </nav>
+    <div class="hero-content">
+      <div class="atom-icon">
+        <div class="electron-ring"></div>
+        <div class="electron-ring"></div>
+        <div class="electron-ring"></div>
+        <div class="nucleus"></div>
+      </div>
+      <h1>Tomorrow's Vision</h1>
+      <p class="subtitle">Where atomic-age optimism meets space-age design. The future was never brighter.</p>
+      <button class="cta">Engage Thrusters</button>
+    </div>
+  </section>
+  <section class="components">
+    <h2>Components</h2>
+    <div class="btn-row">
+      <button class="btn btn-primary">Launch</button>
+      <button class="btn btn-outline">Orbit</button>
+      <button class="btn btn-chrome">Chrome</button>
+    </div>
+    <div class="card">
+      <h3>Space Station Alpha</h3>
+      <p>Orbital research platform equipped with mid-century modern living quarters and panoramic star-viewing lounges.</p>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="Enter coordinates...">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#FF6B35"><span>#FF6B35</span></div>
+      <div class="swatch" style="background:#004E64"><span>#004E64</span></div>
+      <div class="swatch" style="background:#F0A500"><span>#F0A500</span></div>
+      <div class="swatch" style="background:#1A1A2E"><span>#1A1A2E</span></div>
+      <div class="swatch" style="background:#C0C0C0"><span>#C0C0C0</span></div>
+    </div>
+  </section>
+</body>
+</html>

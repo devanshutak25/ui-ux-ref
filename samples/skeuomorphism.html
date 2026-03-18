@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skeuomorphism - Sample</title>
+<link href="https://fonts.googleapis.com/css2?family=Georgia&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: #8B7355;
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+      );
+    color: #2C1810;
+    line-height: 1.6;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 70vh;
+    padding: 1.5rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #5A4A3A 0%, #3D2E22 100%);
+    border-bottom: 3px solid #1A120B;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #D4B896;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+  .logo-metal {
+    width: 34px; height: 34px;
+    background: linear-gradient(145deg, #C0C0C0, #808080);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #333;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+    box-shadow:
+      0 1px 3px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.4),
+      inset 0 -1px 0 rgba(0,0,0,0.2);
+    border: 1px solid #666;
+  }
+  .nav-links { display: flex; gap: 0.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: #C4A87C;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0.1) 100%);
+    border: 1px solid rgba(255,255,255,0.08);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    transition: all 0.2s;
+  }
+  .nav-links a:hover {
+    background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(0,0,0,0.05) 100%);
+  }
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 460px; }
+  .hero-content h1 {
+    font-family: Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: #E8D5BA;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+  .hero-content p {
+    font-size: 0.95rem;
+    color: #B09A7C;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  }
+  .hero-content button {
+    align-self: flex-start;
+    background: linear-gradient(180deg, #C0A060 0%, #8B7340 50%, #A08850 100%);
+    color: #FFF;
+    border: 1px solid #6B5530;
+    padding: 0.8rem 2rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.3);
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.4),
+      inset 0 1px 0 rgba(255,255,255,0.25);
+    transition: all 0.15s;
+  }
+  .hero-content button:hover {
+    background: linear-gradient(180deg, #D0B070 0%, #9B8350 50%, #B09860 100%);
+  }
+  .hero-content button:active {
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  /* Leather strip */
+  .leather-strip {
+    margin-top: 2rem;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(180deg, #6B4226 0%, #5A3520 50%, #4D2A18 100%);
+    border-radius: 8px;
+    border: 1px solid #3A1F10;
+    box-shadow:
+      0 2px 6px rgba(0,0,0,0.4),
+      inset 0 1px 0 rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .stitch {
+    flex: 1;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, #8B6847 0px, #8B6847 6px, transparent 6px, transparent 12px);
+    opacity: 0.6;
+  }
+  .leather-text { color: #C4A87C; font-size: 0.8rem; font-weight: 500; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap; }
+
+  /* COMPONENTS */
+  .components {
+    padding: 2rem;
+    background: linear-gradient(180deg, #D4C4A8 0%, #C8B898 100%);
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,0,0,0.02) 1px, rgba(0,0,0,0.02) 2px);
+  }
+  .components > h2 {
+    font-family: Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #3D2E22;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+  }
+  .component-group { margin-bottom: 2.5rem; }
+  .component-group h3 {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #7A6B55;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+  }
+
+  /* Buttons */
+  .btn-primary, .btn-secondary, .btn-outline {
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.6rem 1.4rem;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.15s;
+  }
+  .btn-primary {
+    background: linear-gradient(180deg, #6090D0 0%, #4070B0 50%, #5080C0 100%);
+    color: #FFF;
+    border: 1px solid #305080;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+  .btn-primary:active { box-shadow: inset 0 2px 4px rgba(0,0,0,0.3); }
+  .btn-secondary {
+    background: linear-gradient(180deg, #EAEAEA 0%, #C8C8C8 50%, #DADADA 100%);
+    color: #444;
+    border: 1px solid #999;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.6);
+  }
+  .btn-outline {
+    background: transparent;
+    color: #5A4A3A;
+    border: 2px solid #8B7A65;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+  }
+  .btn-outline:hover { background: rgba(0,0,0,0.05); }
+
+  /* Card */
+  .card {
+    max-width: 320px;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #F0E8D8;
+    border: 1px solid #B8A88A;
+    box-shadow:
+      0 3px 8px rgba(0,0,0,0.25),
+      inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+  .card-header {
+    height: 100px;
+    background: linear-gradient(180deg, #A09080 0%, #887868 100%);
+    border-bottom: 1px solid #706050;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-header::after {
+    content: '';
+    width: 48px; height: 48px;
+    background: linear-gradient(145deg, #C0C0C0, #909090);
+    border-radius: 50%;
+    border: 2px solid #707070;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+  .card h4 {
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 1rem 1.25rem 0.3rem;
+    color: #3D2E22;
+  }
+  .card p {
+    font-size: 0.85rem;
+    color: #6B5F4D;
+    padding: 0 1.25rem 1.25rem;
+    line-height: 1.6;
+  }
+
+  /* Input */
+  .component-group input[type="text"] {
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid #999;
+    border-radius: 6px;
+    outline: none;
+    width: 100%;
+    max-width: 320px;
+    background: linear-gradient(180deg, #F8F4EE 0%, #FFFFFF 100%);
+    color: #3D2E22;
+    box-shadow:
+      inset 0 2px 4px rgba(0,0,0,0.12),
+      0 1px 0 rgba(255,255,255,0.4);
+    transition: all 0.2s;
+  }
+  .component-group input[type="text"]:focus {
+    border-color: #6090D0;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.12), 0 0 0 2px rgba(96,144,208,0.3);
+  }
+  .component-group input[type="text"]::placeholder { color: #A09888; }
+
+  /* Palette */
+  .palette { display: flex; gap: 0.5rem; }
+  .swatch {
+    width: 48px; height: 48px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <div class="logo">
+        <div class="logo-metal">S</div>
+        <span>Realcraft</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Toolbox</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+    <div class="hero-content">
+      <h1>Crafted to feel real.</h1>
+      <p>Skeuomorphism simulates physical materials &mdash; leather, metal, wood &mdash; giving digital interfaces the warmth of tangible objects.</p>
+      <button>Open Workshop</button>
+    </div>
+    <div class="leather-strip">
+      <div class="stitch"></div>
+      <div class="leather-text">Hand-stitched since 2008</div>
+      <div class="stitch"></div>
+    </div>
+  </section>
+
+  <section class="components">
+    <h2>Components</h2>
+
+    <div class="component-group">
+      <h3>Buttons</h3>
+      <button class="btn-primary">Primary</button>
+      <button class="btn-secondary">Secondary</button>
+      <button class="btn-outline">Outline</button>
+    </div>
+
+    <div class="component-group">
+      <h3>Card</h3>
+      <div class="card">
+        <div class="card-header"></div>
+        <h4>Card Title</h4>
+        <p>Card description text goes here with some details about this item.</p>
+      </div>
+    </div>
+
+    <div class="component-group">
+      <h3>Input</h3>
+      <input type="text" placeholder="Enter something..." />
+    </div>
+
+    <div class="component-group">
+      <h3>Palette</h3>
+      <div class="palette">
+        <div class="swatch" style="background:linear-gradient(145deg,#6B4226,#4D2A18)"></div>
+        <div class="swatch" style="background:linear-gradient(145deg,#C0C0C0,#808080)"></div>
+        <div class="swatch" style="background:linear-gradient(145deg,#D4C4A8,#B8A88A)"></div>
+        <div class="swatch" style="background:linear-gradient(145deg,#C0A060,#8B7340)"></div>
+        <div class="swatch" style="background:linear-gradient(145deg,#5A4A3A,#3D2E22)"></div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagrammatic</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #ffffff;
+    --ink: #1a1a1a;
+    --dim: #999;
+    --line: #ccc;
+    --accent: #e63946;
+    --blue: #457b9d;
+  }
+  body { background: var(--bg); color: var(--ink); font-family: 'IBM Plex Mono', monospace; overflow-x: hidden; }
+
+  /* Dimension grid */
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none;
+    background: linear-gradient(90deg, rgba(0,0,0,.03) 1px, transparent 1px),
+      linear-gradient(rgba(0,0,0,.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 24px; border-bottom: 0.5px solid var(--line);
+    position: relative; z-index: 2;
+  }
+  .logo { font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 1px; }
+  nav ul { list-style: none; display: flex; gap: 18px; }
+  nav a { color: var(--dim); text-decoration: none; font-size: 10px; letter-spacing: 1px; transition: color .3s; }
+  nav a:hover { color: var(--ink); }
+
+  .hero {
+    position: relative; z-index: 2; padding: 60px 24px 50px;
+  }
+
+  /* Annotation callout */
+  .callout {
+    position: relative; margin-bottom: 24px; padding-left: 20px;
+    border-left: 0.5px solid var(--accent);
+  }
+  .callout::before {
+    content: ''; position: absolute; left: -4px; top: 0;
+    width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+  }
+  .callout-label { font-size: 9px; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; margin-bottom: 4px; }
+
+  .hero h1 {
+    font-family: 'IBM Plex Sans', sans-serif; font-size: 30px; font-weight: 600;
+    line-height: 1.2; margin-bottom: 12px;
+  }
+  .hero p { font-size: 12px; color: var(--dim); max-width: 380px; line-height: 1.8; margin-bottom: 8px; }
+
+  /* Dimension line */
+  .dim-line {
+    display: flex; align-items: center; gap: 8px; margin: 20px 0;
+    font-size: 9px; color: var(--dim); letter-spacing: 1px;
+  }
+  .dim-line::before, .dim-line::after {
+    content: ''; flex: 1; height: 0; border-top: 0.5px solid var(--dim);
+    position: relative;
+  }
+  .dim-line::before::after { content: ''; position: absolute; left: 0; top: -3px; width: 0.5px; height: 6px; background: var(--dim); }
+
+  .cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 24px; border: 0.5px solid var(--ink); color: var(--ink);
+    text-decoration: none; font-size: 10px; letter-spacing: 2px;
+    transition: all .3s; margin-top: 12px;
+  }
+  .cta:hover { background: var(--ink); color: #fff; }
+
+  /* Exploded view diagram */
+  .exploded {
+    position: relative; margin: 0 24px 30px; padding: 24px; border: 0.5px solid var(--line);
+  }
+  .exploded-title { font-size: 9px; letter-spacing: 2px; color: var(--dim); text-transform: uppercase; margin-bottom: 16px; }
+  .exploded-parts { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .part {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .part-box { width: 40px; height: 20px; border: 0.5px solid var(--ink); position: relative; }
+  .part-box::after {
+    content: ''; position: absolute; right: -12px; top: 50%; width: 12px; height: 0;
+    border-top: 0.5px dashed var(--dim);
+  }
+  .part-label { font-size: 10px; color: var(--dim); }
+  .part-num { font-size: 9px; color: var(--accent); font-weight: 500; margin-right: 4px; }
+
+  .components { padding: 32px 24px; border-top: 0.5px solid var(--line); position: relative; z-index: 2; }
+  .section-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--dim); margin-bottom: 20px; }
+
+  .buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+  .btn {
+    padding: 9px 18px; font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+    letter-spacing: 1px; cursor: pointer; transition: all .3s;
+  }
+  .btn-primary { background: var(--ink); color: #fff; border: 0.5px solid var(--ink); }
+  .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+  .btn-secondary { background: transparent; color: var(--ink); border: 0.5px solid var(--ink); }
+  .btn-ghost { background: transparent; color: var(--dim); border: 0.5px solid var(--line); }
+
+  .card {
+    border: 0.5px solid var(--line); padding: 18px; margin-bottom: 20px; position: relative;
+  }
+  .card::before {
+    content: 'A'; position: absolute; top: -8px; right: 12px; background: #fff; padding: 0 6px;
+    font-size: 9px; color: var(--accent); border: 0.5px solid var(--accent); border-radius: 50%;
+    width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;
+  }
+  .card h3 { font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .card p { font-size: 11px; color: var(--dim); line-height: 1.7; }
+
+  .input-group { margin-bottom: 24px; }
+  .input-group label { display: block; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); margin-bottom: 6px; }
+  .input-group input {
+    width: 100%; padding: 10px 12px; background: transparent; border: 0.5px solid var(--line);
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink); outline: none;
+    transition: border-color .3s;
+  }
+  .input-group input:focus { border-color: var(--accent); }
+  .input-group input::placeholder { color: #ddd; }
+
+  .palette { display: flex; gap: 8px; flex-wrap: wrap; }
+  .swatch { width: 48px; height: 48px; border: 0.5px solid var(--line); position: relative; }
+  .swatch span { position: absolute; bottom: -18px; left: 0; font-size: 7px; color: var(--dim); width: 48px; text-align: center; }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo">DIAGRAM</div>
+    <ul><li><a href="#">SPEC</a></li><li><a href="#">VIEWS</a></li><li><a href="#">DETAIL</a></li></ul>
+  </nav>
+  <section class="hero">
+    <div class="callout">
+      <div class="callout-label">Detail A - Rev. 03</div>
+    </div>
+    <h1>Technical<br>Illustration</h1>
+    <p>Everything as drawings: exploded views, annotation callouts, and dimension lines.</p>
+    <div class="dim-line">580 px</div>
+    <a href="#" class="cta">VIEW SPEC</a>
+  </section>
+  <div class="exploded">
+    <div class="exploded-title">Exploded View</div>
+    <div class="exploded-parts">
+      <div class="part"><div class="part-box"></div><span><span class="part-num">01</span><span class="part-label">Header Module</span></span></div>
+      <div class="part"><div class="part-box" style="width:60px; height:30px;"></div><span><span class="part-num">02</span><span class="part-label">Content Block</span></span></div>
+      <div class="part"><div class="part-box" style="width:30px;"></div><span><span class="part-num">03</span><span class="part-label">Action Unit</span></span></div>
+    </div>
+  </div>
+  <section class="components">
+    <div class="section-label">Components</div>
+    <div class="buttons">
+      <button class="btn btn-primary">PRIMARY</button>
+      <button class="btn btn-secondary">SECONDARY</button>
+      <button class="btn btn-ghost">GHOST</button>
+    </div>
+    <div class="card">
+      <h3>Assembly Note</h3>
+      <p>Cross-reference Fig. 2 for tolerance specifications. All dimensions in pixels.</p>
+    </div>
+    <div class="input-group">
+      <label>Dimension Input</label>
+      <input type="text" placeholder="0.00 px">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#1a1a1a"><span>#1A1A1A</span></div>
+      <div class="swatch" style="background:#e63946"><span>#E63946</span></div>
+      <div class="swatch" style="background:#457b9d"><span>#457B9D</span></div>
+      <div class="swatch" style="background:#999"><span>#999999</span></div>
+      <div class="swatch" style="background:#fff; border-color:#ccc"><span>#FFFFFF</span></div>
+    </div>
+  </section>
+</body>
+</html>

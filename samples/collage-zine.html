@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collage Zine</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Archivo+Black&family=Inter:wght@400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --paper: #F2EDE4; --kraft: #C4A97D; --ink: #1A1A1A; --red-tape: #CC3333; --blue-ink: #2244AA; }
+  body { font-family: 'Inter', sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; }
+  /* paper texture */
+  body::before { content: ''; position: fixed; inset: 0; opacity: .04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); pointer-events: none; }
+  .hero { padding: 32px 20px 40px; position: relative; }
+  .tape { position: absolute; width: 80px; height: 22px; background: rgba(200,190,160,.5); transform: rotate(-35deg); top: 16px; right: 20px; border-top: 1px dashed rgba(0,0,0,.1); border-bottom: 1px dashed rgba(0,0,0,.1); }
+  .hero nav { display: flex; gap: 6px; margin-bottom: 28px; flex-wrap: wrap; }
+  .hero nav a { font-family: 'Special Elite', cursive; font-size: 11px; text-decoration: none; color: var(--ink); padding: 4px 10px; background: #fff; border: 1px solid #ccc; transform: rotate(var(--r)); display: inline-block; transition: transform .15s; }
+  .hero nav a:nth-child(1) { --r: -2deg; }
+  .hero nav a:nth-child(2) { --r: 1deg; }
+  .hero nav a:nth-child(3) { --r: -1deg; background: var(--red-tape); color: #fff; border-color: var(--red-tape); }
+  .hero nav a:nth-child(4) { --r: 2deg; }
+  .hero nav a:hover { transform: rotate(0deg) scale(1.05); }
+  .ransom { margin-bottom: 8px; }
+  .ransom span { display: inline-block; padding: 2px 6px; margin: 2px; font-weight: 700; }
+  .ransom .r1 { font-family: 'Archivo Black', sans-serif; font-size: 28px; background: var(--ink); color: var(--paper); transform: rotate(-1deg); }
+  .ransom .r2 { font-family: 'Special Elite', cursive; font-size: 24px; border: 2px solid var(--ink); transform: rotate(2deg); }
+  .ransom .r3 { font-family: 'Archivo Black', sans-serif; font-size: 32px; background: var(--red-tape); color: #fff; transform: rotate(-2deg); }
+  .ransom .r4 { font-family: 'Special Elite', cursive; font-size: 22px; color: var(--blue-ink); text-decoration: underline; }
+  .subtitle { font-family: 'Special Elite', cursive; font-size: 13px; color: #777; margin-bottom: 24px; border-bottom: 2px solid var(--ink); display: inline-block; padding-bottom: 2px; }
+  .cta { display: inline-block; padding: 10px 24px; border: 2px solid var(--ink); background: var(--ink); color: var(--paper); font-family: 'Archivo Black', sans-serif; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transform: rotate(-1deg); transition: all .15s; }
+  .cta:hover { background: var(--red-tape); border-color: var(--red-tape); transform: rotate(0deg); }
+  .torn-edge { height: 16px; background: linear-gradient(135deg, var(--paper) 33.33%, transparent 33.33%) 0 0, linear-gradient(225deg, var(--paper) 33.33%, transparent 33.33%) 0 0; background-size: 12px 16px; background-color: var(--kraft); margin-top: 20px; }
+  .components { padding: 24px 20px; background: linear-gradient(180deg, rgba(196,169,125,.08), transparent); }
+  .section-label { font-family: 'Special Elite', cursive; font-size: 14px; margin-bottom: 12px; display: inline-block; background: var(--ink); color: var(--paper); padding: 3px 10px; transform: rotate(-1deg); }
+  .section-wrap { margin-bottom: 24px; }
+  .btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .btn { padding: 8px 16px; font-family: 'Special Elite', cursive; font-size: 13px; cursor: pointer; border: 2px solid var(--ink); transition: all .15s; }
+  .btn.paper { background: var(--paper); color: var(--ink); }
+  .btn.dark { background: var(--ink); color: var(--paper); }
+  .btn.red { background: var(--red-tape); color: #fff; border-color: var(--red-tape); }
+  .btn:hover { transform: rotate(-1deg) translateY(-2px); }
+  .card { border: 2px solid var(--ink); padding: 16px; margin-top: 10px; background: #fff; position: relative; transform: rotate(0.5deg); box-shadow: 4px 4px 0 rgba(0,0,0,.1); }
+  .card::before { content: ''; position: absolute; top: -8px; left: 24px; width: 48px; height: 16px; background: rgba(200,190,160,.5); border-top: 1px dashed rgba(0,0,0,.1); border-bottom: 1px dashed rgba(0,0,0,.1); }
+  .card::after { content: 'CUT HERE ------'; position: absolute; bottom: -12px; right: 8px; font-family: 'Special Elite', cursive; font-size: 8px; color: #aaa; letter-spacing: 1px; }
+  .card h3 { font-family: 'Archivo Black', sans-serif; font-size: 16px; margin-bottom: 6px; }
+  .card p { font-family: 'Special Elite', cursive; font-size: 13px; color: #555; line-height: 1.7; }
+  .stamp { display: inline-block; margin-top: 8px; border: 2px solid var(--red-tape); color: var(--red-tape); padding: 2px 8px; font-family: 'Archivo Black', sans-serif; font-size: 9px; text-transform: uppercase; transform: rotate(-4deg); letter-spacing: 2px; }
+  .input-group { margin-top: 10px; }
+  .input-group label { display: block; font-family: 'Special Elite', cursive; font-size: 12px; margin-bottom: 6px; color: #777; }
+  .input-group input { width: 100%; padding: 10px 12px; background: #fff; border: 2px solid #ccc; border-bottom: 3px solid var(--ink); font-family: 'Special Elite', cursive; font-size: 14px; color: var(--ink); outline: none; }
+  .input-group input:focus { border-color: var(--ink); }
+  .palette { display: flex; gap: 8px; margin-top: 10px; }
+  .swatch { width: 42px; height: 42px; border: 2px solid var(--ink); position: relative; transform: rotate(var(--r)); }
+  .swatch:nth-child(1) { --r: -2deg; }
+  .swatch:nth-child(2) { --r: 1deg; }
+  .swatch:nth-child(3) { --r: -1deg; }
+  .swatch:nth-child(4) { --r: 3deg; }
+  .swatch span { position: absolute; bottom: -18px; left: -2px; font-size: 8px; color: #999; font-family: 'Special Elite', cursive; }
+  .swatch.s1 { background: var(--ink); }
+  .swatch.s2 { background: var(--paper); }
+  .swatch.s3 { background: var(--kraft); }
+  .swatch.s4 { background: var(--red-tape); }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="tape"></div>
+    <nav>
+      <a href="#">Manifesto</a>
+      <a href="#">Cuts</a>
+      <a href="#">Issue 01</a>
+      <a href="#">Submit</a>
+    </nav>
+    <div class="ransom">
+      <span class="r1">CUT</span>
+      <span class="r2">paste</span>
+      <span class="r3">CREATE</span>
+      <span class="r4">repeat</span>
+    </div>
+    <p class="subtitle">A zine for the analog soul</p>
+    <button class="cta">Read Issue</button>
+    <div class="torn-edge"></div>
+  </section>
+  <section class="components">
+    <div class="section-wrap">
+      <span class="section-label">Buttons</span>
+      <div class="btn-row">
+        <button class="btn dark">Submit</button>
+        <button class="btn paper">Cancel</button>
+        <button class="btn red">Urgent</button>
+      </div>
+    </div>
+    <div class="section-wrap">
+      <span class="section-label">Card</span>
+      <div class="card">
+        <h3>Issue #47</h3>
+        <p>Photocopied dreams and hand-cut rebellion. Every imperfection is a feature, every smudge a signature.</p>
+        <div class="stamp">Approved</div>
+      </div>
+    </div>
+    <div class="section-wrap">
+      <span class="section-label">Input</span>
+      <div class="input-group">
+        <label>Your message to the editors:</label>
+        <input type="text" placeholder="type something raw...">
+      </div>
+    </div>
+    <div class="section-wrap">
+      <span class="section-label">Colors</span>
+      <div class="palette">
+        <div class="swatch s1"><span>#1A1A1A</span></div>
+        <div class="swatch s2"><span>#F2EDE4</span></div>
+        <div class="swatch s3"><span>#C4A97D</span></div>
+        <div class="swatch s4"><span>#CC3333</span></div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

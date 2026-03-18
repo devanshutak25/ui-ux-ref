@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solarpunk</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito', sans-serif; background: #F7F3E3; color: #2D4A22; overflow-x: hidden; }
+
+  .hero {
+    min-height: 55vh; display: flex; flex-direction: column; position: relative; overflow: hidden;
+    background: linear-gradient(170deg, #87CEEB 0%, #B8E6C8 35%, #D4E8B0 60%, #F7F3E3 100%);
+  }
+
+  /* Sun rays */
+  .sun-rays {
+    position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; z-index: 0;
+  }
+  .sun-rays::before {
+    content: ''; position: absolute; inset: 30px; border-radius: 50%;
+    background: radial-gradient(circle, #FFD700 0%, #FFA500 60%, transparent 70%);
+    box-shadow: 0 0 40px rgba(255,215,0,0.4), 0 0 80px rgba(255,165,0,0.2);
+  }
+  .sun-rays::after {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-conic-gradient(from 0deg, rgba(255,215,0,0.08) 0deg 15deg, transparent 15deg 30deg);
+    border-radius: 50%; animation: sunSpin 60s linear infinite;
+  }
+  @keyframes sunSpin { to { transform: rotate(360deg); } }
+
+  /* Leaf decorations */
+  .leaf { position: absolute; z-index: 1; width: 30px; height: 50px;
+    background: #6BBF59; border-radius: 0 70% 0 70%; opacity: 0.3; }
+  .leaf-1 { top: 20%; left: 5%; transform: rotate(-30deg); }
+  .leaf-2 { bottom: 10%; right: 8%; transform: rotate(45deg); background: #4A9E3F; width: 25px; height: 40px; }
+  .leaf-3 { top: 50%; left: 15%; transform: rotate(15deg); width: 20px; height: 35px; background: #8BC34A; }
+
+  /* Vine line */
+  .vine { position: absolute; left: 0; top: 0; bottom: 0; width: 3px; z-index: 1;
+    background: linear-gradient(180deg, transparent, #6BBF59, #4A9E3F, transparent); }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; position: relative; z-index: 5; }
+  nav .logo { font-weight: 800; font-size: 1.1rem; color: #2D6A1E;
+    background: linear-gradient(135deg, #2D6A1E, #FFB300); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  nav ul { list-style: none; display: flex; gap: 1.2rem; }
+  nav a { color: #4A7C40; text-decoration: none; font-size: 0.8rem; font-weight: 600; transition: color 0.3s; }
+  nav a:hover { color: #FFB300; }
+
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; position: relative; z-index: 3; }
+
+  /* Cooperative icon */
+  .coop-icon { width: 50px; height: 50px; margin-bottom: 1rem; position: relative; }
+  .coop-icon::before { content: ''; position: absolute; inset: 5px; border: 3px solid #FFB300; border-radius: 50%; }
+  .coop-icon::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 16px; height: 16px; background: #6BBF59; border-radius: 50%; }
+
+  h1 { font-size: 2.4rem; font-weight: 800; color: #2D4A22; margin-bottom: 0.75rem; line-height: 1.1; }
+  h1 span { color: #FFB300; }
+  .subtitle { font-size: 0.9rem; color: #5A7D4F; max-width: 380px; margin-bottom: 1.5rem; line-height: 1.7; }
+  .cta { display: inline-block; padding: 0.75rem 2rem;
+    background: linear-gradient(135deg, #6BBF59, #4A9E3F); color: #fff;
+    font-family: inherit; font-weight: 700; font-size: 0.85rem; border: none; border-radius: 50px;
+    cursor: pointer; transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(107,191,89,0.3);
+  }
+  .cta:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(107,191,89,0.45); background: linear-gradient(135deg, #4A9E3F, #2D6A1E); }
+
+  /* Components */
+  .components { padding: 2rem; background: #F7F3E3; }
+  .components h2 { font-size: 1.2rem; font-weight: 800; margin-bottom: 1.5rem; color: #2D6A1E; }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+  .btn { font-family: inherit; padding: 0.55rem 1.3rem; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: all 0.3s; border-radius: 50px; }
+  .btn-green { background: linear-gradient(135deg, #6BBF59, #4A9E3F); color: #fff; border: none; }
+  .btn-green:hover { box-shadow: 0 4px 15px rgba(107,191,89,0.4); }
+  .btn-gold { background: linear-gradient(135deg, #FFB300, #FF8F00); color: #fff; border: none; }
+  .btn-gold:hover { box-shadow: 0 4px 15px rgba(255,179,0,0.4); }
+  .btn-outline { background: transparent; border: 2px solid #6BBF59; color: #4A9E3F; }
+  .btn-outline:hover { background: #6BBF59; color: #fff; }
+
+  .card {
+    background: rgba(255,255,255,0.8); border-radius: 16px; padding: 1.5rem; margin-bottom: 2rem;
+    border: 1px solid rgba(107,191,89,0.2); box-shadow: 0 4px 20px rgba(45,74,34,0.05);
+    position: relative; overflow: hidden;
+  }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, #6BBF59, #FFB300, #87CEEB); }
+  .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: #2D6A1E; }
+  .card p { font-size: 0.8rem; color: #5A7D4F; line-height: 1.6; }
+
+  .input-group { margin-bottom: 2rem; }
+  .input-group input {
+    width: 100%; padding: 0.7rem 1.2rem; background: rgba(255,255,255,0.8);
+    border: 2px solid rgba(107,191,89,0.3); border-radius: 50px; color: #2D4A22;
+    font-family: inherit; font-size: 0.85rem; outline: none; transition: border-color 0.3s;
+  }
+  .input-group input:focus { border-color: #6BBF59; box-shadow: 0 0 10px rgba(107,191,89,0.15); }
+  .input-group input::placeholder { color: #A0B890; }
+
+  .palette { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .swatch { width: 48px; height: 48px; border-radius: 50%; position: relative; transition: transform 0.3s; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .swatch:hover { transform: scale(1.15); }
+  .swatch span { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 0.5rem; color: #8BA87E; white-space: nowrap; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="sun-rays"></div>
+    <div class="vine"></div>
+    <div class="leaf leaf-1"></div>
+    <div class="leaf leaf-2"></div>
+    <div class="leaf leaf-3"></div>
+    <nav>
+      <div class="logo">SOLARIS</div>
+      <ul><li><a href="#">Garden</a></li><li><a href="#">Build</a></li><li><a href="#">Share</a></li></ul>
+    </nav>
+    <div class="hero-content">
+      <div class="coop-icon"></div>
+      <h1>Grow the <span>Future</span></h1>
+      <p class="subtitle">Where technology nurtures nature and communities thrive in sun-drenched harmony. A brighter world is growing.</p>
+      <button class="cta">Join the Collective</button>
+    </div>
+  </section>
+  <section class="components">
+    <h2>Components</h2>
+    <div class="btn-row">
+      <button class="btn btn-green">Cultivate</button>
+      <button class="btn btn-gold">Harvest</button>
+      <button class="btn btn-outline">Connect</button>
+    </div>
+    <div class="card">
+      <h3>Community Solar Array</h3>
+      <p>Shared energy infrastructure powering neighborhood workshops, vertical farms, and maker spaces. Cooperative ownership, collective benefit.</p>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="Search the garden network...">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#6BBF59"><span>#6BBF59</span></div>
+      <div class="swatch" style="background:#FFB300"><span>#FFB300</span></div>
+      <div class="swatch" style="background:#87CEEB"><span>#87CEEB</span></div>
+      <div class="swatch" style="background:#2D6A1E"><span>#2D6A1E</span></div>
+      <div class="swatch" style="background:#F7F3E3"><span>#F7F3E3</span></div>
+    </div>
+  </section>
+</body>
+</html>

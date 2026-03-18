@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organic Biophilic</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #F4E9D8; color: #3A2F1F; overflow-x: hidden; }
+
+  .hero {
+    min-height: 55vh; display: flex; flex-direction: column; position: relative; overflow: hidden;
+    background: linear-gradient(160deg, #F4E9D8 0%, #E8D9C0 40%, #D4C4A0 100%);
+  }
+
+  /* Organic blob shapes */
+  .blob { position: absolute; z-index: 0; opacity: 0.12; }
+  .blob-1 { top: -10%; right: -10%; width: 250px; height: 250px; background: #4A7C59;
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+  .blob-2 { bottom: -5%; left: -8%; width: 180px; height: 180px; background: #2D5016;
+    border-radius: 40% 60% 50% 50% / 55% 45% 55% 45%; }
+  .blob-3 { top: 40%; right: 15%; width: 100px; height: 100px; background: #8B4513;
+    border-radius: 50% 50% 40% 60% / 60% 40% 50% 50%; opacity: 0.08; }
+
+  /* Root/vine line decoration */
+  .root-line { position: absolute; bottom: 0; left: 10%; width: 2px; height: 60%; z-index: 1;
+    background: linear-gradient(180deg, transparent, rgba(139,69,19,0.15), rgba(45,80,22,0.2)); }
+  .root-line::before { content: ''; position: absolute; bottom: 20%; left: 0; width: 30px; height: 2px;
+    background: linear-gradient(90deg, rgba(139,69,19,0.15), transparent); }
+  .root-line::after { content: ''; position: absolute; bottom: 40%; left: 0; width: 20px; height: 2px;
+    background: linear-gradient(90deg, rgba(139,69,19,0.1), transparent); transform: rotate(-20deg); }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; position: relative; z-index: 5; }
+  nav .logo { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: #2D5016; }
+  nav ul { list-style: none; display: flex; gap: 1.5rem; }
+  nav a { color: #8B7355; text-decoration: none; font-size: 0.8rem; font-weight: 500; transition: color 0.3s; }
+  nav a:hover { color: #2D5016; }
+
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; position: relative; z-index: 3; }
+
+  /* Leaf icon */
+  .leaf-icon { width: 40px; height: 55px; margin-bottom: 1rem; position: relative;
+    background: linear-gradient(135deg, #4A7C59, #6B9E6A);
+    border-radius: 5% 80% 5% 80%; transform: rotate(-15deg);
+    box-shadow: 0 4px 15px rgba(74,124,89,0.2);
+  }
+  .leaf-icon::after { content: ''; position: absolute; bottom: 10%; left: 45%; width: 1.5px; height: 60%;
+    background: rgba(255,255,255,0.3); transform: rotate(5deg); }
+
+  h1 { font-family: 'DM Serif Display', serif; font-size: 2.3rem; color: #2D5016; margin-bottom: 0.75rem; line-height: 1.15; }
+  .subtitle { font-size: 0.85rem; color: #8B7355; max-width: 380px; margin-bottom: 1.5rem; line-height: 1.7; }
+  .cta { display: inline-block; padding: 0.75rem 2rem;
+    background: #4A7C59; color: #F4E9D8; font-family: inherit; font-weight: 700; font-size: 0.85rem;
+    border: none; cursor: pointer; transition: all 0.3s;
+    border-radius: 30% 70% 70% 30% / 60% 40% 60% 40%;
+    box-shadow: 0 4px 15px rgba(74,124,89,0.25);
+  }
+  .cta:hover { background: #2D5016; border-radius: 50%;
+    box-shadow: 0 6px 25px rgba(45,80,22,0.35); transform: translateY(-2px); }
+
+  /* Components */
+  .components { padding: 2rem; background: #F4E9D8; }
+  .components h2 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 1.5rem; color: #2D5016; }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+  .btn { font-family: inherit; padding: 0.55rem 1.3rem; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: all 0.3s; }
+  .btn-earth { background: #4A7C59; color: #F4E9D8; border: none;
+    border-radius: 40% 60% 55% 45% / 55% 45% 55% 45%; }
+  .btn-earth:hover { background: #2D5016; border-radius: 50%; }
+  .btn-bark { background: #8B4513; color: #F4E9D8; border: none;
+    border-radius: 55% 45% 50% 50% / 45% 55% 45% 55%; }
+  .btn-bark:hover { background: #6B3510; border-radius: 50%; }
+  .btn-sand { background: #DEB887; color: #3A2F1F; border: none;
+    border-radius: 45% 55% 45% 55% / 55% 45% 55% 45%; }
+  .btn-sand:hover { background: #C4A06A; border-radius: 50%; }
+
+  .card {
+    background: rgba(255,255,255,0.5); padding: 1.5rem; margin-bottom: 2rem;
+    border-radius: 20px 60px 20px 60px; border: 1px solid rgba(74,124,89,0.15);
+    box-shadow: 0 4px 20px rgba(58,47,31,0.05); position: relative; overflow: hidden;
+  }
+  .card::before { content: ''; position: absolute; top: -20px; right: -20px; width: 60px; height: 60px;
+    background: rgba(74,124,89,0.06); border-radius: 50%; }
+  .card h3 { font-family: 'DM Serif Display', serif; font-size: 1.05rem; margin-bottom: 0.5rem; color: #2D5016; }
+  .card p { font-size: 0.8rem; color: #8B7355; line-height: 1.7; }
+
+  .input-group { margin-bottom: 2rem; }
+  .input-group input {
+    width: 100%; padding: 0.7rem 1.2rem; background: rgba(255,255,255,0.5);
+    border: 1.5px solid rgba(74,124,89,0.25); color: #3A2F1F;
+    font-family: inherit; font-size: 0.85rem; outline: none; transition: all 0.3s;
+    border-radius: 20px 40px 20px 40px;
+  }
+  .input-group input:focus { border-color: #4A7C59; box-shadow: 0 0 10px rgba(74,124,89,0.12); }
+  .input-group input::placeholder { color: #BEA890; }
+
+  .palette { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .swatch { width: 48px; height: 48px; position: relative; transition: transform 0.3s; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .swatch:nth-child(1) { border-radius: 40% 60% 55% 45% / 50% 60% 40% 50%; }
+  .swatch:nth-child(2) { border-radius: 55% 45% 50% 50% / 45% 55% 50% 50%; }
+  .swatch:nth-child(3) { border-radius: 50% 50% 40% 60% / 60% 40% 55% 45%; }
+  .swatch:nth-child(4) { border-radius: 45% 55% 55% 45% / 55% 45% 50% 50%; }
+  .swatch:nth-child(5) { border-radius: 60% 40% 45% 55% / 50% 55% 45% 50%; }
+  .swatch:hover { transform: scale(1.15); }
+  .swatch span { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 0.5rem; color: #BEA890; white-space: nowrap; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="root-line"></div>
+    <nav>
+      <div class="logo">Botanica</div>
+      <ul><li><a href="#">Roots</a></li><li><a href="#">Grow</a></li><li><a href="#">Bloom</a></li></ul>
+    </nav>
+    <div class="hero-content">
+      <div class="leaf-icon"></div>
+      <h1>Rooted in Nature</h1>
+      <p class="subtitle">Design inspired by the organic rhythms of the natural world. Where earth tones meet living forms.</p>
+      <button class="cta">Explore Growth</button>
+    </div>
+  </section>
+  <section class="components">
+    <h2>Components</h2>
+    <div class="btn-row">
+      <button class="btn btn-earth">Forest</button>
+      <button class="btn btn-bark">Timber</button>
+      <button class="btn btn-sand">Desert</button>
+    </div>
+    <div class="card">
+      <h3>Living Architecture</h3>
+      <p>Structures that breathe with living walls, root-inspired foundations, and materials drawn from the earth beneath our feet.</p>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="Search the botanical index...">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#2D5016"><span>#2D5016</span></div>
+      <div class="swatch" style="background:#8B4513"><span>#8B4513</span></div>
+      <div class="swatch" style="background:#F4E9D8"><span>#F4E9D8</span></div>
+      <div class="swatch" style="background:#4A7C59"><span>#4A7C59</span></div>
+      <div class="swatch" style="background:#DEB887"><span>#DEB887</span></div>
+    </div>
+  </section>
+</body>
+</html>

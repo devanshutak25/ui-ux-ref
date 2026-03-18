@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gen Z Chaos / Maximalism</title>
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Space+Grotesk:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --magenta: #FF00FF; --lime: #00FF00; --yellow: #FFFF00; --hot-pink: #FF3366; --cyan: #00CCFF; --dark: #1A0A2E; }
+  body { font-family: 'Space Grotesk', sans-serif; background: var(--dark); color: #fff; overflow-x: hidden; }
+  /* chaotic bg */
+  body::before { content: ''; position: fixed; inset: 0; background:
+    radial-gradient(circle at 20% 80%, rgba(255,0,255,.15), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(0,255,0,.1), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(0,204,255,.08), transparent 50%); pointer-events: none; }
+  .hero { padding: 28px 20px 36px; text-align: center; position: relative; }
+  .hero nav { display: flex; justify-content: center; gap: 6px; margin-bottom: 28px; flex-wrap: wrap; }
+  .hero nav a { padding: 6px 14px; font-size: 11px; font-weight: 700; text-decoration: none; color: var(--dark); border-radius: 20px; transition: transform .15s; display: inline-block; }
+  .hero nav a:nth-child(1) { background: var(--magenta); transform: rotate(-3deg); }
+  .hero nav a:nth-child(2) { background: var(--lime); transform: rotate(2deg); }
+  .hero nav a:nth-child(3) { background: var(--yellow); transform: rotate(-1deg); }
+  .hero nav a:nth-child(4) { background: var(--cyan); transform: rotate(3deg); }
+  .hero nav a:hover { transform: scale(1.15) rotate(0deg); }
+  .sticker { display: inline-block; padding: 6px 16px; background: var(--hot-pink); color: #fff; font-family: 'Permanent Marker', cursive; font-size: 14px; border-radius: 4px; transform: rotate(-5deg); margin-bottom: 12px; box-shadow: 0 0 20px rgba(255,51,102,.5); }
+  h1 { font-family: 'Bungee Shade', cursive; font-size: 32px; line-height: 1.1; margin-bottom: 8px; background: linear-gradient(135deg, var(--magenta), var(--cyan), var(--lime), var(--yellow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .subtitle { font-size: 14px; font-weight: 400; color: rgba(255,255,255,.6); margin-bottom: 24px; }
+  .subtitle span { color: var(--yellow); font-weight: 700; }
+  .cta { display: inline-block; padding: 14px 32px; border: none; border-radius: 50px; background: linear-gradient(135deg, var(--magenta), var(--hot-pink)); color: #fff; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 0 30px rgba(255,0,255,.4); transition: all .2s; animation: pulse 2s infinite; }
+  .cta:hover { transform: scale(1.08); box-shadow: 0 0 50px rgba(255,0,255,.6); }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 20px rgba(255,0,255,.3); } 50% { box-shadow: 0 0 40px rgba(255,0,255,.6); } }
+  .floating { position: absolute; font-size: 24px; pointer-events: none; animation: float 4s ease-in-out infinite; }
+  .floating:nth-child(1) { top: 20%; left: 5%; animation-delay: 0s; }
+  .floating:nth-child(2) { top: 40%; right: 5%; animation-delay: 1s; }
+  .floating:nth-child(3) { bottom: 15%; left: 10%; animation-delay: 2s; }
+  @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(10deg); } }
+  .components { padding: 24px 20px; position: relative; z-index: 1; }
+  .section-label { font-family: 'Permanent Marker', cursive; font-size: 16px; color: var(--lime); margin-bottom: 12px; text-shadow: 0 0 10px rgba(0,255,0,.4); }
+  .btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .btn { padding: 10px 18px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; border: 2px solid transparent; border-radius: 50px; transition: all .15s; }
+  .btn:hover { transform: scale(1.1) rotate(-2deg); }
+  .btn.mag { background: var(--magenta); color: #fff; box-shadow: 0 0 15px rgba(255,0,255,.4); }
+  .btn.lim { background: var(--lime); color: var(--dark); box-shadow: 0 0 15px rgba(0,255,0,.3); }
+  .btn.yel { background: var(--yellow); color: var(--dark); }
+  .btn.cyn { background: var(--cyan); color: var(--dark); box-shadow: 0 0 15px rgba(0,204,255,.3); }
+  .card { border: 2px solid var(--magenta); border-radius: 20px; padding: 20px; margin-bottom: 24px; background: rgba(255,0,255,.05); position: relative; overflow: hidden; }
+  .card::before { content: 'FIRE'; position: absolute; top: -4px; right: 12px; font-family: 'Permanent Marker', cursive; font-size: 10px; padding: 4px 10px; background: var(--hot-pink); color: #fff; border-radius: 0 0 8px 8px; }
+  .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--cyan); }
+  .card p { font-size: 12px; color: rgba(255,255,255,.5); line-height: 1.6; }
+  .emoji-row { margin-top: 8px; font-size: 18px; letter-spacing: 4px; }
+  .input-group { margin-bottom: 24px; }
+  .input-group label { display: block; font-family: 'Permanent Marker', cursive; font-size: 14px; color: var(--yellow); margin-bottom: 8px; }
+  .input-group input { width: 100%; padding: 12px 16px; background: rgba(255,255,255,.05); border: 2px solid var(--cyan); border-radius: 14px; color: #fff; font-family: inherit; font-size: 13px; outline: none; transition: all .2s; }
+  .input-group input:focus { border-color: var(--magenta); box-shadow: 0 0 20px rgba(255,0,255,.3); }
+  .palette { display: flex; gap: 8px; flex-wrap: wrap; }
+  .swatch { width: 44px; height: 44px; border-radius: 12px; position: relative; border: 2px solid rgba(255,255,255,.2); }
+  .swatch span { position: absolute; bottom: -18px; left: -2px; font-size: 8px; color: rgba(255,255,255,.4); }
+  .swatch.s1 { background: var(--magenta); box-shadow: 0 0 10px rgba(255,0,255,.4); }
+  .swatch.s2 { background: var(--lime); box-shadow: 0 0 10px rgba(0,255,0,.3); }
+  .swatch.s3 { background: var(--yellow); }
+  .swatch.s4 { background: var(--hot-pink); }
+  .swatch.s5 { background: var(--cyan); box-shadow: 0 0 10px rgba(0,204,255,.3); }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <span class="floating">&#x2728;</span>
+    <span class="floating">&#x1F525;</span>
+    <span class="floating">&#x1F680;</span>
+    <nav>
+      <a href="#">Vibes</a>
+      <a href="#">Chaos</a>
+      <a href="#">Drop</a>
+      <a href="#">Slay</a>
+    </nav>
+    <div class="sticker">no cap fr fr</div>
+    <h1>MAIN<br>CHARACTER<br>ENERGY</h1>
+    <p class="subtitle">the internet is <span>unhinged</span> and we love it</p>
+    <button class="cta">SLAY</button>
+  </section>
+  <section class="components">
+    <p class="section-label">Buttons</p>
+    <div class="btn-row">
+      <button class="btn mag">Slay</button>
+      <button class="btn lim">Vibe</button>
+      <button class="btn yel">Fire</button>
+      <button class="btn cyn">Based</button>
+    </div>
+    <p class="section-label">Card</p>
+    <div class="card">
+      <h3>This hits different</h3>
+      <p>When the design slaps harder than your morning coffee. No thoughts, just vibes and gradients.</p>
+      <div class="emoji-row">&#x1F525;&#x1F4AF;&#x2728;&#x1F680;&#x1F49C;</div>
+    </div>
+    <p class="section-label">Input</p>
+    <div class="input-group">
+      <label>drop your handle</label>
+      <input type="text" placeholder="@your_vibe_here">
+    </div>
+    <p class="section-label">Colors</p>
+    <div class="palette">
+      <div class="swatch s1"><span>#FF00FF</span></div>
+      <div class="swatch s2"><span>#00FF00</span></div>
+      <div class="swatch s3"><span>#FFFF00</span></div>
+      <div class="swatch s4"><span>#FF3366</span></div>
+      <div class="swatch s5"><span>#00CCFF</span></div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blueprint / Cyanotype</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #1B3A5C;
+    --bg-dark: #12283f;
+    --line: rgba(255,255,255,.75);
+    --line-dim: rgba(255,255,255,.15);
+    --cyan: #5ec4d4;
+    --text: rgba(255,255,255,.9);
+    --text-dim: rgba(255,255,255,.45);
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; overflow-x: hidden; }
+
+  /* Blueprint grid */
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      linear-gradient(90deg, var(--line-dim) 1px, transparent 1px),
+      linear-gradient(var(--line-dim) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+  }
+
+  nav {
+    position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 24px; border-bottom: 1px solid var(--line-dim);
+  }
+  .logo { font-weight: 600; font-size: 13px; letter-spacing: 3px; color: var(--cyan); }
+  nav ul { list-style: none; display: flex; gap: 16px; }
+  nav a { color: var(--text-dim); text-decoration: none; font-size: 10px; letter-spacing: 1px; transition: color .3s; }
+  nav a:hover { color: var(--text); }
+
+  .hero { position: relative; z-index: 2; padding: 50px 24px 40px; }
+
+  /* Floorplan illustration */
+  .floorplan {
+    position: relative; height: 160px; margin-bottom: 28px;
+    border: 1px solid var(--line); padding: 12px;
+  }
+  .room { position: absolute; border: 1px solid var(--line); }
+  .room-a { top: 12px; left: 12px; width: 55%; height: 60%; }
+  .room-b { top: 12px; right: 12px; width: 35%; height: 40%; }
+  .room-c { bottom: 12px; right: 12px; width: 35%; height: 45%; }
+  .room-label { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 8px; color: var(--text-dim); letter-spacing: 1px; }
+
+  /* Dimension annotations */
+  .dim { position: absolute; font-size: 7px; color: var(--cyan); display: flex; align-items: center; }
+  .dim-h { bottom: -18px; left: 12px; width: 55%; }
+  .dim-h::before { content: ''; flex: 1; border-top: 0.5px solid var(--cyan); }
+  .dim-h::after { content: '24\'-6\"'; padding-left: 6px; white-space: nowrap; }
+  .dim-v { top: 12px; right: -40px; height: 60%; writing-mode: vertical-rl; }
+  .dim-v::before { content: ''; flex: 1; border-left: 0.5px solid var(--cyan); }
+  .dim-v::after { content: '18\'-0\"'; padding-top: 6px; white-space: nowrap; }
+
+  .hero h1 { font-size: 28px; font-weight: 600; letter-spacing: 2px; line-height: 1.3; margin-bottom: 12px; }
+  .hero h1 span { color: var(--cyan); }
+  .hero p { font-size: 11px; color: var(--text-dim); max-width: 400px; line-height: 1.8; margin-bottom: 24px; }
+  .cta {
+    display: inline-block; padding: 10px 28px; border: 1px solid var(--line);
+    color: var(--text); text-decoration: none; font-size: 10px; letter-spacing: 2px;
+    transition: all .3s;
+  }
+  .cta:hover { background: rgba(94,196,212,.1); border-color: var(--cyan); color: var(--cyan); }
+
+  .components { position: relative; z-index: 2; padding: 36px 24px; border-top: 1px solid var(--line-dim); }
+  .section-label { font-size: 9px; letter-spacing: 3px; color: var(--text-dim); margin-bottom: 20px; }
+
+  .buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+  .btn {
+    padding: 9px 18px; font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 1px; cursor: pointer; transition: all .3s; background: transparent;
+  }
+  .btn-primary { border: 1px solid var(--cyan); color: var(--cyan); }
+  .btn-primary:hover { background: rgba(94,196,212,.15); }
+  .btn-secondary { border: 1px solid var(--line); color: var(--text); }
+  .btn-secondary:hover { background: rgba(255,255,255,.05); }
+  .btn-ghost { border: 1px solid var(--line-dim); color: var(--text-dim); }
+
+  .card {
+    border: 1px solid var(--line-dim); padding: 18px; margin-bottom: 20px;
+    background: rgba(255,255,255,.02); position: relative;
+  }
+  .card::before {
+    content: 'DETAIL A'; position: absolute; top: -8px; left: 12px;
+    background: var(--bg); padding: 0 8px; font-size: 8px; letter-spacing: 2px; color: var(--cyan);
+  }
+  .card h3 { font-size: 13px; font-weight: 600; margin-bottom: 6px; letter-spacing: 1px; }
+  .card p { font-size: 11px; color: var(--text-dim); line-height: 1.7; }
+
+  .input-group { margin-bottom: 24px; }
+  .input-group label { display: block; font-size: 9px; letter-spacing: 2px; color: var(--text-dim); margin-bottom: 6px; }
+  .input-group input {
+    width: 100%; padding: 10px 12px; background: rgba(255,255,255,.04);
+    border: 1px solid var(--line-dim); color: var(--text);
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; outline: none;
+    transition: border-color .3s;
+  }
+  .input-group input:focus { border-color: var(--cyan); }
+  .input-group input::placeholder { color: rgba(255,255,255,.15); }
+
+  .palette { display: flex; gap: 8px; flex-wrap: wrap; }
+  .swatch { width: 48px; height: 48px; border: 1px solid var(--line-dim); position: relative; }
+  .swatch span { position: absolute; bottom: -18px; left: 0; font-size: 7px; color: var(--text-dim); width: 48px; text-align: center; }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo">BLUEPRINT</div>
+    <ul><li><a href="#">PLAN</a></li><li><a href="#">ELEV</a></li><li><a href="#">SECT</a></li></ul>
+  </nav>
+  <section class="hero">
+    <div class="floorplan">
+      <div class="room room-a"><div class="room-label">MAIN HALL</div></div>
+      <div class="room room-b"><div class="room-label">OFFICE</div></div>
+      <div class="room room-c"><div class="room-label">UTILITY</div></div>
+      <div class="dim dim-h"></div>
+      <div class="dim dim-v"></div>
+    </div>
+    <h1>ARCHITECTURAL<br><span>PRECISION</span></h1>
+    <p>White lines on cyanotype blue. Technical drawings with dimension annotations and engineering clarity.</p>
+    <a href="#" class="cta">VIEW PLANS</a>
+  </section>
+  <section class="components">
+    <div class="section-label">COMPONENTS</div>
+    <div class="buttons">
+      <button class="btn btn-primary">PRIMARY</button>
+      <button class="btn btn-secondary">SECONDARY</button>
+      <button class="btn btn-ghost">GHOST</button>
+    </div>
+    <div class="card">
+      <h3>SECTION VIEW</h3>
+      <p>Cut through axis A-A. Scale 1:48. All dimensions in feet and inches.</p>
+    </div>
+    <div class="input-group">
+      <label>SCALE FACTOR</label>
+      <input type="text" placeholder="1:48">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#1B3A5C"><span>#1B3A5C</span></div>
+      <div class="swatch" style="background:#12283f"><span>#12283F</span></div>
+      <div class="swatch" style="background:#5ec4d4"><span>#5EC4D4</span></div>
+      <div class="swatch" style="background:rgba(255,255,255,.9)"><span>#FFFFFF</span></div>
+      <div class="swatch" style="background:rgba(255,255,255,.15)"><span>15% WHT</span></div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newspaper Classified / Dense Type</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    background: #F4F1EA;
+    color: #1a1a1a;
+    -webkit-font-smoothing: auto;
+  }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+
+  .thin-rule { border: none; border-top: 1px solid #000; margin: 0; }
+  .thick-rule { border: none; border-top: 3px double #000; margin: 0; }
+
+  /* HERO */
+  .hero {
+    background: #F4F1EA;
+    padding: 0;
+    border-bottom: 3px double #000;
+  }
+  .masthead {
+    text-align: center;
+    padding: 16px 20px 12px;
+    border-bottom: 1px solid #000;
+  }
+  .masthead-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #666;
+    margin-bottom: 6px;
+  }
+  .masthead-title {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .masthead-motto {
+    font-size: 10px;
+    font-style: italic;
+    color: #666;
+    letter-spacing: 2px;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 8px 20px;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    background: rgba(0,0,0,0.02);
+  }
+  nav a {
+    color: #333;
+    text-decoration: none;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+  nav a:hover { text-decoration: underline; }
+
+  .hero-columns {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    border-bottom: 1px solid #000;
+  }
+  .hero-main {
+    padding: 20px;
+    border-right: 1px solid #ccc;
+  }
+  .hero-main h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .hero-main .byline {
+    font-size: 10px;
+    font-style: italic;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  .hero-main p {
+    font-size: 12px;
+    line-height: 1.7;
+    column-count: 2;
+    column-gap: 16px;
+    column-rule: 1px solid #ddd;
+    text-align: justify;
+    hyphens: auto;
+  }
+  .hero-sidebar {
+    padding: 16px;
+    font-size: 11px;
+  }
+  .sidebar-headline {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ccc;
+  }
+  .sidebar-item {
+    font-size: 11px;
+    line-height: 1.5;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    color: #444;
+  }
+  .cta-banner {
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: #000;
+    color: #F4F1EA;
+  }
+
+  /* CLASSIFIEDS / COMPONENTS */
+  .components {
+    padding: 24px 20px;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .comp-title {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    padding-bottom: 8px;
+    border-bottom: 3px double #000;
+    margin-bottom: 20px;
+  }
+  .section-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: #666;
+    margin: 20px 0 8px;
+    padding: 4px 0;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+  }
+
+  .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn {
+    padding: 8px 18px;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .btn-primary { background: #000; color: #F4F1EA; border: 1px solid #000; }
+  .btn-primary:hover { background: #333; }
+  .btn-outline { background: transparent; color: #000; border: 1px solid #000; }
+  .btn-outline:hover { background: #000; color: #F4F1EA; }
+  .btn-classified {
+    background: #F4F1EA;
+    color: #000;
+    border: 1px dashed #000;
+    font-style: italic;
+  }
+
+  .card {
+    margin-top: 8px;
+    border: 1px solid #000;
+    padding: 0;
+  }
+  .card-head {
+    padding: 8px 12px;
+    background: #000;
+    color: #F4F1EA;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .card-content {
+    padding: 14px;
+    font-size: 12px;
+    line-height: 1.6;
+    text-align: justify;
+    columns: 2;
+    column-gap: 14px;
+    column-rule: 1px solid #ddd;
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 10px 12px;
+    background: #fff;
+    border: 1px solid #000;
+    font-size: 12px;
+    font-family: 'Libre Baskerville', serif;
+    color: #000;
+    outline: none;
+    margin-top: 8px;
+  }
+  .input-field:focus { box-shadow: inset 0 0 0 1px #000; }
+  .input-field::placeholder { color: #999; font-style: italic; }
+
+  .palette { display: flex; gap: 8px; margin-top: 8px; }
+  .swatch-wrap { text-align: center; }
+  .swatch { width: 44px; height: 44px; border: 1px solid #000; }
+  .swatch-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8px;
+    color: #666;
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="masthead">
+      <div class="masthead-date">Wednesday, March 18, 2026 &bull; Final Edition</div>
+      <div class="masthead-title">The Daily Record</div>
+      <div class="masthead-motto">&ldquo;All the Type That Fits&rdquo;</div>
+    </div>
+    <nav>
+      <a href="#">Front Page</a>
+      <a href="#">Classifieds</a>
+      <a href="#">Opinion</a>
+      <a href="#">Obits</a>
+    </nav>
+    <div class="hero-columns">
+      <div class="hero-main">
+        <h1>Dense Typography Returns To Digital Interfaces</h1>
+        <div class="byline">By the Editorial Board &bull; 12 min read</div>
+        <p>The art of newspaper design, long thought relegated to print archives, has found new life in digital interfaces. Designers are rediscovering the power of dense, information-rich layouts that respect the reader's intelligence and time. Narrow columns, thin rule dividers, and careful typographic hierarchy create a reading experience that is both efficient and elegant. The classified section, once the financial backbone of print journalism, now inspires modular UI components that pack maximum information into minimum space.</p>
+      </div>
+      <div class="hero-sidebar">
+        <div class="sidebar-headline">Breaking: Design Trends Shift Toward Print Traditions</div>
+        <div class="sidebar-item">Serif typefaces see 200% increase in web usage over past year</div>
+        <div class="sidebar-item">Column layouts outperform single-column designs in readability studies</div>
+        <div class="sidebar-item">Dense type advocates cite information density as key advantage</div>
+      </div>
+    </div>
+    <div class="cta-banner">Subscribe Today &mdash; First Month Free</div>
+  </section>
+
+  <section class="components">
+    <div class="comp-title">Components</div>
+
+    <div class="section-label">Buttons</div>
+    <div class="btn-row">
+      <button class="btn btn-primary">Subscribe</button>
+      <button class="btn btn-outline">Read More</button>
+      <button class="btn btn-classified">Post Ad</button>
+    </div>
+
+    <div class="section-label">Card</div>
+    <div class="card">
+      <div class="card-head">Classified Advertisement</div>
+      <div class="card-content">
+        FOR SALE: Vintage typesetting equipment in excellent condition. Complete Linotype collection including matrices, spacebands, and magazines. Perfect for print enthusiasts or museum display. Serious inquiries only. Contact the classified desk for pricing and arrangement details.
+      </div>
+    </div>
+
+    <div class="section-label">Input</div>
+    <input class="input-field" type="text" placeholder="Search the archives...">
+
+    <div class="section-label">Palette</div>
+    <div class="palette">
+      <div class="swatch-wrap"><div class="swatch" style="background:#F4F1EA;"></div><div class="swatch-name">Paper</div></div>
+      <div class="swatch-wrap"><div class="swatch" style="background:#000;"></div><div class="swatch-name">Ink</div></div>
+      <div class="swatch-wrap"><div class="swatch" style="background:#666;"></div><div class="swatch-name">Lead</div></div>
+      <div class="swatch-wrap"><div class="swatch" style="background:#ccc;"></div><div class="swatch-name">Rule</div></div>
+      <div class="swatch-wrap"><div class="swatch" style="background:#fff;"></div><div class="swatch-name">Stock</div></div>
+    </div>
+  </section>
+</body>
+</html>

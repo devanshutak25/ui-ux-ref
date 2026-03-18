@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soviet Constructivism</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --red: #CC0000;
+    --black: #000;
+    --cream: #F5E6CC;
+    --dark-cream: #e0cba6;
+    --ink: #1a1410;
+  }
+  body { background: var(--cream); color: var(--black); font-family: 'Oswald', sans-serif; overflow-x: hidden; }
+
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 24px; background: var(--black); color: var(--cream);
+  }
+  .logo { font-family: 'Roboto Condensed', sans-serif; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 4px; }
+  nav ul { list-style: none; display: flex; gap: 16px; }
+  nav a { color: var(--cream); text-decoration: none; font-size: 11px; letter-spacing: 2px; opacity: .6; transition: opacity .3s; text-transform: uppercase; }
+  nav a:hover { opacity: 1; }
+
+  .hero { padding: 0; position: relative; overflow: hidden; }
+
+  /* Diagonal red bar */
+  .diagonal-bar {
+    position: absolute; top: -20px; right: -40px; width: 250px; height: 600px;
+    background: var(--red); transform: rotate(-15deg); z-index: 0;
+  }
+
+  /* Geometric shapes */
+  .geo-circle {
+    position: absolute; top: 30px; right: 80px; width: 100px; height: 100px;
+    border-radius: 50%; border: 6px solid var(--black); z-index: 1;
+  }
+  .geo-triangle {
+    position: absolute; top: 160px; right: 40px; z-index: 1;
+    width: 0; height: 0;
+    border-left: 40px solid transparent; border-right: 40px solid transparent;
+    border-bottom: 70px solid var(--black);
+  }
+
+  .hero-content {
+    position: relative; z-index: 2; padding: 50px 24px 40px;
+  }
+  .hero-tag {
+    display: inline-block; background: var(--red); color: var(--cream);
+    padding: 4px 12px; font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 16px; font-weight: 700;
+  }
+  .hero h1 {
+    font-family: 'Roboto Condensed', sans-serif; font-size: 42px; font-weight: 700;
+    line-height: 0.95; text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 14px; max-width: 300px;
+  }
+  .hero h1 span { color: var(--red); }
+  .hero p {
+    font-size: 13px; font-weight: 400; max-width: 320px; line-height: 1.6;
+    margin-bottom: 24px; opacity: .7;
+  }
+  .cta {
+    display: inline-block; padding: 14px 36px; background: var(--red); color: var(--cream);
+    text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; transition: all .3s; position: relative;
+  }
+  .cta::after {
+    content: ''; position: absolute; bottom: -4px; left: 4px; width: 100%; height: 100%;
+    border: 2px solid var(--black); z-index: -1;
+  }
+  .cta:hover { background: var(--black); }
+
+  /* Bold divider */
+  .divider {
+    height: 8px; background: repeating-linear-gradient(
+      -45deg, var(--black), var(--black) 8px, var(--red) 8px, var(--red) 16px
+    );
+  }
+
+  .components { padding: 32px 24px; position: relative; z-index: 2; }
+  .section-label {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    margin-bottom: 20px; font-weight: 700; color: var(--red);
+  }
+
+  .buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+  .btn {
+    padding: 12px 24px; font-family: 'Oswald', sans-serif; font-size: 13px;
+    font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; transition: all .3s; border: none;
+  }
+  .btn-primary { background: var(--red); color: var(--cream); }
+  .btn-primary:hover { background: #a00; }
+  .btn-secondary { background: var(--black); color: var(--cream); }
+  .btn-ghost { background: transparent; border: 3px solid var(--black); color: var(--black); }
+
+  .card {
+    border: 3px solid var(--black); padding: 20px; margin-bottom: 20px;
+    position: relative; background: var(--cream);
+  }
+  .card::before {
+    content: ''; position: absolute; top: -3px; left: -3px; width: 8px; height: 100%;
+    background: var(--red);
+  }
+  .card h3 {
+    font-family: 'Roboto Condensed', sans-serif; font-size: 16px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; padding-left: 12px;
+  }
+  .card p { font-size: 12px; opacity: .6; line-height: 1.6; padding-left: 12px; }
+
+  .input-group { margin-bottom: 24px; }
+  .input-group label {
+    display: block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 700; margin-bottom: 6px;
+  }
+  .input-group input {
+    width: 100%; padding: 12px 14px; background: var(--cream);
+    border: 3px solid var(--black); font-family: 'Oswald', sans-serif;
+    font-size: 14px; color: var(--black); outline: none; transition: border-color .3s;
+  }
+  .input-group input:focus { border-color: var(--red); }
+  .input-group input::placeholder { color: var(--dark-cream); }
+
+  .palette { display: flex; gap: 10px; flex-wrap: wrap; }
+  .swatch { width: 48px; height: 48px; border: 3px solid var(--black); position: relative; }
+  .swatch span { position: absolute; bottom: -20px; left: 0; font-size: 8px; width: 48px; text-align: center; font-weight: 700; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Construct</div>
+    <ul><li><a href="#">Form</a></li><li><a href="#">Build</a></li><li><a href="#">Act</a></li></ul>
+  </nav>
+  <section class="hero">
+    <div class="diagonal-bar"></div>
+    <div class="geo-circle"></div>
+    <div class="geo-triangle"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Manifesto No. 7</div>
+      <h1>Design for<br>the <span>Masses</span></h1>
+      <p>Diagonal compositions, bold geometry, and revolutionary typography. Art serves the collective.</p>
+      <a href="#" class="cta">Forward</a>
+    </div>
+  </section>
+  <div class="divider"></div>
+  <section class="components">
+    <div class="section-label">Components</div>
+    <div class="buttons">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-ghost">Ghost</button>
+    </div>
+    <div class="card">
+      <h3>Collective Unit</h3>
+      <p>Production quotas exceeded. Output metrics indicate 140% efficiency gain through unified design.</p>
+    </div>
+    <div class="input-group">
+      <label>Directive</label>
+      <input type="text" placeholder="Enter mandate...">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#CC0000"><span>#CC0000</span></div>
+      <div class="swatch" style="background:#000"><span>#000000</span></div>
+      <div class="swatch" style="background:#F5E6CC"><span>#F5E6CC</span></div>
+      <div class="swatch" style="background:#1a1410"><span>#1A1410</span></div>
+      <div class="swatch" style="background:#e0cba6"><span>#E0CBA6</span></div>
+    </div>
+  </section>
+</body>
+</html>

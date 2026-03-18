@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vintage Analog / Retro Film</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Serif 4', serif; background: #F5EFE0; color: #4A3F35; overflow-x: hidden; }
+
+  .hero {
+    min-height: 55vh; display: flex; flex-direction: column; position: relative; overflow: hidden;
+    background: linear-gradient(180deg, #E8D5B7 0%, #F5EFE0 60%, #F0E6D0 100%);
+  }
+
+  /* Film grain overlay */
+  .hero::before {
+    content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 150px 150px;
+  }
+
+  /* Light leak */
+  .hero::after {
+    content: ''; position: absolute; top: 0; right: -10%; width: 50%; height: 100%; z-index: 1; pointer-events: none;
+    background: radial-gradient(ellipse at 70% 30%, rgba(255,180,100,0.2) 0%, rgba(255,120,80,0.08) 40%, transparent 70%);
+  }
+
+  /* Vignette */
+  .vignette {
+    position: absolute; inset: 0; z-index: 3; pointer-events: none;
+    box-shadow: inset 0 0 120px rgba(74,63,53,0.25);
+  }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; position: relative; z-index: 5; }
+  nav .logo { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; color: #8B6F47; letter-spacing: 3px; text-transform: uppercase; }
+  nav ul { list-style: none; display: flex; gap: 1.5rem; }
+  nav a { color: #8B7355; text-decoration: none; font-size: 0.8rem; font-style: italic; transition: color 0.3s; }
+  nav a:hover { color: #4A3F35; }
+
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; position: relative; z-index: 4; }
+
+  /* Instant photo frame */
+  .photo-frame { width: 120px; padding: 8px 8px 30px; background: #fff; margin-bottom: 1.5rem;
+    box-shadow: 0 4px 20px rgba(74,63,53,0.15); transform: rotate(-3deg); }
+  .photo-frame .photo { width: 100%; height: 90px;
+    background: linear-gradient(135deg, #C4A882, #D4B896, #A08060);
+    filter: sepia(30%) contrast(90%) brightness(105%); }
+
+  h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: #4A3F35;
+    margin-bottom: 0.75rem; font-style: italic; }
+  .subtitle { font-size: 0.85rem; color: #8B7355; max-width: 380px; margin-bottom: 1.5rem; line-height: 1.7; font-style: italic; }
+  .cta { display: inline-block; padding: 0.7rem 2rem; background: #8B6F47; color: #F5EFE0;
+    font-family: 'Playfair Display', serif; font-size: 0.85rem; font-style: italic;
+    border: none; cursor: pointer; transition: all 0.3s; letter-spacing: 1px;
+    box-shadow: 0 3px 10px rgba(139,111,71,0.2);
+  }
+  .cta:hover { background: #6B5237; transform: translateY(-1px); box-shadow: 0 5px 18px rgba(139,111,71,0.3); }
+
+  /* Components */
+  .components { padding: 2rem; background: #F5EFE0; position: relative; }
+  .components::before {
+    content: ''; position: absolute; top: 0; left: 2rem; right: 2rem; height: 1px;
+    background: linear-gradient(90deg, transparent, #C4A882, transparent);
+  }
+  .components h2 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 1.5rem; color: #8B6F47; font-style: italic; }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+  .btn { padding: 0.55rem 1.3rem; font-family: 'Source Serif 4', serif; font-size: 0.8rem; cursor: pointer; transition: all 0.3s; }
+  .btn-warm { background: #8B6F47; color: #F5EFE0; border: none; }
+  .btn-warm:hover { background: #6B5237; }
+  .btn-outline { background: transparent; border: 1.5px solid #8B6F47; color: #8B6F47; }
+  .btn-outline:hover { background: #8B6F47; color: #F5EFE0; }
+  .btn-faded { background: #E8D5B7; color: #8B7355; border: none; }
+  .btn-faded:hover { background: #D4C4A8; }
+
+  .card {
+    background: #fff; padding: 1.5rem; margin-bottom: 2rem; position: relative;
+    box-shadow: 0 2px 15px rgba(74,63,53,0.08); border-left: 3px solid #C4A882;
+    filter: sepia(5%);
+  }
+  .card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 0.5rem; color: #4A3F35; font-style: italic; }
+  .card p { font-size: 0.8rem; color: #8B7355; line-height: 1.7; }
+
+  .input-group { margin-bottom: 2rem; }
+  .input-group input {
+    width: 100%; padding: 0.7rem 1rem; background: rgba(255,255,255,0.7);
+    border: 1.5px solid #C4A882; color: #4A3F35; font-family: 'Source Serif 4', serif;
+    font-size: 0.85rem; outline: none; transition: border-color 0.3s;
+  }
+  .input-group input:focus { border-color: #8B6F47; }
+  .input-group input::placeholder { color: #C4A882; font-style: italic; }
+
+  .palette { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .swatch { width: 48px; height: 48px; border-radius: 4px; position: relative; transition: transform 0.3s; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(74,63,53,0.1); filter: saturate(85%); }
+  .swatch:hover { transform: scale(1.1); filter: saturate(100%); }
+  .swatch span { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 0.5rem; color: #B8A080; white-space: nowrap; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="vignette"></div>
+    <nav>
+      <div class="logo">Analog</div>
+      <ul><li><a href="#">Stories</a></li><li><a href="#">Gallery</a></li><li><a href="#">About</a></li></ul>
+    </nav>
+    <div class="hero-content">
+      <div class="photo-frame"><div class="photo"></div></div>
+      <h1>Captured in Time</h1>
+      <p class="subtitle">The warmth of film grain, the softness of faded memories. Every frame holds a moment worth preserving.</p>
+      <button class="cta">View Collection</button>
+    </div>
+  </section>
+  <section class="components">
+    <h2>Components</h2>
+    <div class="btn-row">
+      <button class="btn btn-warm">Develop</button>
+      <button class="btn btn-outline">Archive</button>
+      <button class="btn btn-faded">Print</button>
+    </div>
+    <div class="card">
+      <h3>Roll 24, Frame 18</h3>
+      <p>Shot on Kodak Portra 400. The afternoon light caught the dust particles dancing through the window, turning ordinary into extraordinary.</p>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="Search the archive...">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#8B6F47"><span>#8B6F47</span></div>
+      <div class="swatch" style="background:#C4A882"><span>#C4A882</span></div>
+      <div class="swatch" style="background:#F5EFE0"><span>#F5EFE0</span></div>
+      <div class="swatch" style="background:#E8D5B7"><span>#E8D5B7</span></div>
+      <div class="swatch" style="background:#4A3F35"><span>#4A3F35</span></div>
+    </div>
+  </section>
+</body>
+</html>

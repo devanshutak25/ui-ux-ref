@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whiteboard / Collaborative Canvas</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --board: #F8F7F4; --marker-blue: #2D5BD7; --marker-red: #E8453C; --marker-green: #2DA562; --marker-purple: #8B5CF6; --marker-black: #333; --sticky-yellow: #FFF59D; --sticky-pink: #F8BBD0; --sticky-blue: #B3E5FC; --tape: rgba(200,195,170,.5); }
+  body { font-family: 'Inter', sans-serif; background: var(--board); color: var(--marker-black); overflow-x: hidden; }
+  /* dot grid */
+  body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(circle, #ccc 1px, transparent 1px); background-size: 24px 24px; opacity: .3; pointer-events: none; }
+  .hero { padding: 36px 24px 40px; text-align: center; position: relative; }
+  .hero nav { display: flex; justify-content: center; gap: 20px; font-size: 12px; font-weight: 500; margin-bottom: 32px; }
+  .hero nav a { color: var(--marker-blue); text-decoration: none; padding: 4px 10px; border-radius: 4px; transition: background .2s; }
+  .hero nav a:hover { background: rgba(45,91,215,.1); }
+  .sketch-box { width: 140px; height: 90px; margin: 0 auto 20px; border: 2px solid var(--marker-black); border-radius: 6px; position: relative; display: flex; align-items: center; justify-content: center; background: #fff; transform: rotate(-1deg); }
+  .sketch-box::before { content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%); width: 40px; height: 14px; background: var(--tape); border-radius: 2px; }
+  .sketch-box span { font-family: 'Caveat', cursive; font-size: 16px; color: var(--marker-blue); }
+  h1 { font-family: 'Caveat', cursive; font-size: 40px; font-weight: 600; color: var(--marker-black); margin-bottom: 4px; }
+  .subtitle { font-family: 'Caveat', cursive; font-size: 18px; color: var(--marker-blue); margin-bottom: 24px; }
+  .cta { display: inline-block; padding: 10px 28px; border: 2px solid var(--marker-blue); color: var(--marker-blue); border-radius: 8px; font-family: 'Caveat', cursive; font-size: 18px; background: #fff; cursor: pointer; transition: all .2s; transform: rotate(1deg); }
+  .cta:hover { background: var(--marker-blue); color: #fff; transform: rotate(0deg); }
+  .underline { width: 120px; height: 4px; margin: 0 auto; background: var(--marker-red); border-radius: 2px; opacity: .6; transform: rotate(-0.5deg); margin-top: -18px; margin-bottom: 24px; }
+  .components { padding: 28px 24px; }
+  .section-label { font-family: 'Caveat', cursive; font-size: 18px; color: var(--marker-purple); margin-bottom: 12px; padding-left: 4px; border-left: 3px solid var(--marker-purple); }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+  .btn { padding: 8px 18px; font-family: 'Caveat', cursive; font-size: 16px; cursor: pointer; border: 2px solid var(--marker-black); background: #fff; color: var(--marker-black); border-radius: 6px; transition: all .15s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 2px 3px 0 var(--marker-black); }
+  .btn.blue { border-color: var(--marker-blue); color: var(--marker-blue); }
+  .btn.red { border-color: var(--marker-red); color: var(--marker-red); }
+  .btn.green { background: var(--marker-green); border-color: var(--marker-green); color: #fff; }
+  .sticky-row { display: flex; gap: 12px; margin-bottom: 28px; }
+  .sticky { flex: 1; padding: 16px 14px; font-family: 'Caveat', cursive; font-size: 15px; line-height: 1.5; box-shadow: 2px 3px 6px rgba(0,0,0,.1); position: relative; min-height: 90px; }
+  .sticky::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 32px; height: 10px; background: var(--tape); border-radius: 1px; }
+  .sticky.yellow { background: var(--sticky-yellow); transform: rotate(-1.5deg); }
+  .sticky.pink { background: var(--sticky-pink); transform: rotate(1deg); }
+  .sticky.blue { background: var(--sticky-blue); transform: rotate(-0.5deg); }
+  .input-group { margin-bottom: 28px; }
+  .input-group label { display: block; font-family: 'Caveat', cursive; font-size: 16px; color: var(--marker-purple); margin-bottom: 6px; }
+  .input-group input { width: 100%; padding: 10px 14px; background: #fff; border: 2px dashed #ccc; border-radius: 6px; color: var(--marker-black); font-family: 'Caveat', cursive; font-size: 16px; outline: none; transition: border-color .2s; }
+  .input-group input:focus { border-color: var(--marker-blue); border-style: solid; }
+  .palette { display: flex; gap: 10px; }
+  .swatch { width: 40px; height: 40px; border-radius: 50%; position: relative; box-shadow: 1px 2px 4px rgba(0,0,0,.1); }
+  .swatch span { position: absolute; bottom: -18px; left: -4px; font-size: 8px; color: #999; font-family: 'Inter', sans-serif; }
+  .swatch.s1 { background: var(--marker-blue); }
+  .swatch.s2 { background: var(--marker-red); }
+  .swatch.s3 { background: var(--marker-green); }
+  .swatch.s4 { background: var(--marker-purple); }
+  .swatch.s5 { background: var(--sticky-yellow); border: 1px solid #ddd; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <a href="#">Board</a>
+      <a href="#">Team</a>
+      <a href="#">Notes</a>
+      <a href="#">Share</a>
+    </nav>
+    <div class="sketch-box"><span>idea!</span></div>
+    <h1>ThinkBoard</h1>
+    <div class="underline"></div>
+    <p class="subtitle">Where ideas come together</p>
+    <button class="cta">Start Collaborating</button>
+  </section>
+  <section class="components">
+    <p class="section-label">Buttons</p>
+    <div class="btn-row">
+      <button class="btn green">Action</button>
+      <button class="btn blue">Info</button>
+      <button class="btn red">Urgent</button>
+      <button class="btn">Default</button>
+    </div>
+    <p class="section-label">Sticky Notes</p>
+    <div class="sticky-row">
+      <div class="sticky yellow">Ship the MVP by Friday!</div>
+      <div class="sticky pink">User research findings go here</div>
+      <div class="sticky blue">Revisit color scheme</div>
+    </div>
+    <p class="section-label">Input</p>
+    <div class="input-group">
+      <label>Add a note...</label>
+      <input type="text" placeholder="Type your idea here...">
+    </div>
+    <p class="section-label">Colors</p>
+    <div class="palette">
+      <div class="swatch s1"><span>#2D5BD7</span></div>
+      <div class="swatch s2"><span>#E8453C</span></div>
+      <div class="swatch s3"><span>#2DA562</span></div>
+      <div class="swatch s4"><span>#8B5CF6</span></div>
+      <div class="swatch s5"><span>#FFF59D</span></div>
+    </div>
+  </section>
+</body>
+</html>

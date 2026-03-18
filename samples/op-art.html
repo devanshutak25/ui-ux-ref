@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Op Art</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --black: #000; --white: #FFF; --accent: #FF3300; }
+  body { font-family: 'Space Grotesk', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
+  .hero { padding: 32px 24px 40px; text-align: center; position: relative; overflow: hidden; }
+  /* concentric circle op art */
+  .op-circle { width: 160px; height: 160px; margin: 0 auto 24px; border-radius: 50%; position: relative; background:
+    repeating-radial-gradient(circle, var(--black) 0, var(--black) 6px, var(--white) 6px, var(--white) 12px);
+    animation: op-pulse 8s ease-in-out infinite; }
+  @keyframes op-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+  .op-circle::after { content: ''; position: absolute; inset: 30%; border-radius: 50%; background:
+    repeating-radial-gradient(circle, var(--white) 0, var(--white) 4px, var(--black) 4px, var(--black) 8px); }
+  .hero nav { display: flex; justify-content: center; gap: 20px; font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 28px; }
+  .hero nav a { color: var(--black); text-decoration: none; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: border-color .2s; }
+  .hero nav a:hover { border-color: var(--black); }
+  h1 { font-size: 48px; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 8px; }
+  h1 span { display: inline-block; animation: vibrate 0.1s infinite; }
+  @keyframes vibrate { 0% { transform: translate(0); } 25% { transform: translate(0.5px, -0.5px); } 50% { transform: translate(-0.5px, 0.5px); } 75% { transform: translate(0.5px, 0.5px); } 100% { transform: translate(0); } }
+  .subtitle { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #666; margin-bottom: 28px; }
+  .cta { display: inline-block; padding: 12px 32px; border: 3px solid var(--black); background: var(--black); color: var(--white); font-family: inherit; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: all .15s; }
+  .cta:hover { background: var(--white); color: var(--black); }
+  /* stripe divider */
+  .stripe-div { height: 24px; background: repeating-linear-gradient(45deg, var(--black) 0, var(--black) 8px, var(--white) 8px, var(--white) 16px); }
+  .components { padding: 28px 24px; }
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; position: relative; padding-left: 20px; }
+  .section-label::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; border-radius: 50%; background: repeating-radial-gradient(circle, var(--black) 0, var(--black) 2px, var(--white) 2px, var(--white) 4px); border: 1px solid var(--black); }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+  .btn { padding: 10px 20px; font-family: inherit; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: all .15s; border: 3px solid var(--black); }
+  .btn.filled { background: var(--black); color: var(--white); }
+  .btn.filled:hover { background: var(--white); color: var(--black); }
+  .btn.outline { background: var(--white); color: var(--black); }
+  .btn.outline:hover { background: var(--black); color: var(--white); }
+  .btn.accent { background: var(--accent); color: var(--white); border-color: var(--accent); }
+  .btn.accent:hover { background: var(--white); color: var(--accent); }
+  .card { border: 3px solid var(--black); padding: 20px; margin-bottom: 28px; position: relative; overflow: hidden; }
+  .card::before { content: ''; position: absolute; top: -2px; right: -2px; width: 60px; height: 60px; background: repeating-linear-gradient(45deg, var(--black) 0, var(--black) 4px, var(--white) 4px, var(--white) 8px); opacity: .15; }
+  .card h3 { font-size: 18px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
+  .card p { font-size: 12px; color: #444; line-height: 1.7; }
+  .wave-pattern { height: 12px; margin-top: 12px; background: repeating-linear-gradient(90deg, var(--black) 0, var(--black) 3px, transparent 3px, transparent 6px); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='12'%3E%3Cpath d='M0 6 Q15 0 30 6 T60 6' fill='none' stroke='black' stroke-width='12'/%3E%3C/svg%3E"); mask-size: 60px 12px; -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='12'%3E%3Cpath d='M0 6 Q15 0 30 6 T60 6' fill='none' stroke='black' stroke-width='12'/%3E%3C/svg%3E"); -webkit-mask-size: 60px 12px; }
+  .input-group { margin-bottom: 28px; }
+  .input-group label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .input-group input { width: 100%; padding: 12px 16px; background: var(--white); border: 3px solid var(--black); color: var(--black); font-family: inherit; font-size: 14px; outline: none; }
+  .input-group input:focus { box-shadow: 4px 4px 0 var(--black); }
+  .palette { display: flex; gap: 0; border: 3px solid var(--black); }
+  .swatch { flex: 1; height: 52px; position: relative; border-right: 3px solid var(--black); }
+  .swatch:last-child { border-right: none; }
+  .swatch span { position: absolute; bottom: 4px; left: 4px; font-size: 8px; font-weight: 700; }
+  .swatch.s1 { background: var(--black); }
+  .swatch.s1 span { color: var(--white); }
+  .swatch.s2 { background: var(--white); }
+  .swatch.s3 { background: #888; }
+  .swatch.s3 span { color: var(--white); }
+  .swatch.s4 { background: var(--accent); }
+  .swatch.s4 span { color: var(--white); }
+  /* checkerboard pattern */
+  .checker-bar { height: 16px; background: repeating-conic-gradient(var(--black) 0% 25%, var(--white) 0% 50%) 0 0 / 16px 16px; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <a href="#">Gallery</a>
+      <a href="#">Motion</a>
+      <a href="#">Theory</a>
+      <a href="#">Shop</a>
+    </nav>
+    <div class="op-circle"></div>
+    <h1>O<span>P</span>TICAL</h1>
+    <p class="subtitle">Perception is participation</p>
+    <button class="cta">Enter Gallery</button>
+  </section>
+  <div class="stripe-div"></div>
+  <section class="components">
+    <p class="section-label">Buttons</p>
+    <div class="btn-row">
+      <button class="btn filled">Solid</button>
+      <button class="btn outline">Outline</button>
+      <button class="btn accent">Accent</button>
+    </div>
+    <p class="section-label">Card</p>
+    <div class="card">
+      <h3>Bridget Riley Study</h3>
+      <p>The eye creates movement where none exists. Systematic repetition of form generates kinetic energy trapped in static media.</p>
+      <div class="wave-pattern"></div>
+    </div>
+    <div class="checker-bar"></div>
+    <br>
+    <p class="section-label">Input</p>
+    <div class="input-group">
+      <label>Your Response</label>
+      <input type="text" placeholder="What do you see?">
+    </div>
+    <p class="section-label">Color Palette</p>
+    <div class="palette">
+      <div class="swatch s1"><span>#000</span></div>
+      <div class="swatch s2"><span>#FFF</span></div>
+      <div class="swatch s3"><span>#888</span></div>
+      <div class="swatch s4"><span>#F30</span></div>
+    </div>
+  </section>
+</body>
+</html>

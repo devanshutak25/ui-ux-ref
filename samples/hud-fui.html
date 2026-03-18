@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUD / Sci-Fi FUI</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --bg: #000D1A; --cyan: #00F0FF; --teal: #003844; --red: #FF3333; --dim: #00F0FF33; }
+  body { font-family: 'Share Tech Mono', monospace; background: var(--bg); color: var(--cyan); overflow-x: hidden; }
+  /* grid overlay */
+  body::before { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 39px, var(--dim) 39px, var(--dim) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, var(--dim) 39px, var(--dim) 40px); pointer-events: none; z-index: 0; opacity: .3; }
+  /* scanline */
+  body::after { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(transparent, transparent 2px, rgba(0,0,0,.15) 2px, rgba(0,0,0,.15) 4px); pointer-events: none; z-index: 999; }
+  .hero { position: relative; padding: 40px 24px 48px; text-align: center; border-bottom: 1px solid var(--teal); }
+  .hero nav { display: flex; justify-content: center; gap: 24px; font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 32px; }
+  .hero nav a { color: var(--cyan); text-decoration: none; opacity: .7; transition: opacity .2s; }
+  .hero nav a:hover { opacity: 1; }
+  .radar { width: 120px; height: 120px; border: 1px solid var(--cyan); border-radius: 50%; margin: 0 auto 24px; position: relative; box-shadow: 0 0 30px var(--dim), inset 0 0 30px var(--dim); }
+  .radar::before { content: ''; position: absolute; top: 50%; left: 50%; width: 50%; height: 1px; background: var(--cyan); transform-origin: left center; animation: sweep 3s linear infinite; }
+  .radar::after { content: ''; position: absolute; inset: 25%; border: 1px solid var(--teal); border-radius: 50%; }
+  @keyframes sweep { to { transform: rotate(360deg); } }
+  .crosshair { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 10px; height: 10px; border: 1px solid var(--red); border-radius: 50%; box-shadow: 0 0 8px var(--red); }
+  h1 { font-size: 28px; text-transform: uppercase; letter-spacing: 8px; text-shadow: 0 0 20px var(--cyan), 0 0 60px rgba(0,240,255,.3); margin-bottom: 8px; }
+  .subtitle { font-size: 12px; color: var(--teal); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 24px; }
+  .cta { display: inline-block; padding: 10px 32px; border: 1px solid var(--cyan); color: var(--cyan); text-transform: uppercase; letter-spacing: 3px; font-size: 12px; font-family: inherit; background: transparent; cursor: pointer; position: relative; transition: all .3s; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); }
+  .cta:hover { background: var(--cyan); color: var(--bg); box-shadow: 0 0 30px var(--dim); }
+  .components { padding: 32px 24px; }
+  .section-label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; border-left: 2px solid var(--cyan); padding-left: 8px; }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+  .btn { padding: 8px 20px; font-family: inherit; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border: 1px solid var(--cyan); background: transparent; color: var(--cyan); clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%); transition: all .2s; }
+  .btn:hover { background: var(--cyan); color: var(--bg); }
+  .btn.danger { border-color: var(--red); color: var(--red); }
+  .btn.danger:hover { background: var(--red); color: #fff; }
+  .btn.filled { background: var(--teal); border-color: var(--teal); }
+  .card { border: 1px solid var(--teal); padding: 20px; margin-bottom: 28px; position: relative; background: rgba(0,56,68,.1); }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; width: 20px; height: 20px; border-top: 2px solid var(--cyan); border-left: 2px solid var(--cyan); }
+  .card::after { content: ''; position: absolute; bottom: 0; right: 0; width: 20px; height: 20px; border-bottom: 2px solid var(--cyan); border-right: 2px solid var(--cyan); }
+  .card h3 { font-size: 13px; letter-spacing: 2px; margin-bottom: 8px; text-transform: uppercase; }
+  .card p { font-size: 11px; color: var(--teal); line-height: 1.6; }
+  .input-group { margin-bottom: 28px; }
+  .input-group label { display: block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+  .input-group input { width: 100%; padding: 10px 12px; background: rgba(0,240,255,.05); border: 1px solid var(--teal); color: var(--cyan); font-family: inherit; font-size: 12px; outline: none; transition: border-color .2s; }
+  .input-group input:focus { border-color: var(--cyan); box-shadow: 0 0 12px var(--dim); }
+  .palette { display: flex; gap: 8px; }
+  .swatch { width: 48px; height: 48px; border: 1px solid var(--teal); position: relative; }
+  .swatch span { position: absolute; bottom: -18px; left: 0; font-size: 9px; color: var(--teal); }
+  .swatch.s1 { background: var(--bg); }
+  .swatch.s2 { background: var(--cyan); }
+  .swatch.s3 { background: var(--teal); }
+  .swatch.s4 { background: var(--red); }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <a href="#">Systems</a>
+      <a href="#">Targets</a>
+      <a href="#">Comms</a>
+      <a href="#">Intel</a>
+    </nav>
+    <div class="radar"><div class="crosshair"></div></div>
+    <h1>Nexus HUD</h1>
+    <p class="subtitle">Tactical Interface System v4.2</p>
+    <button class="cta">Initialize</button>
+  </section>
+  <section class="components">
+    <p class="section-label">Buttons</p>
+    <div class="btn-row">
+      <button class="btn">Primary</button>
+      <button class="btn filled">Secondary</button>
+      <button class="btn danger">Alert</button>
+    </div>
+    <p class="section-label">Data Card</p>
+    <div class="card">
+      <h3>Signal Intercept</h3>
+      <p>Encrypted telemetry packet detected at grid ref 47.2N 122.3W. Signal strength nominal. Decryption in progress...</p>
+    </div>
+    <p class="section-label">Input</p>
+    <div class="input-group">
+      <label>Authorization Code</label>
+      <input type="text" placeholder="Enter access credentials...">
+    </div>
+    <p class="section-label">Color Palette</p>
+    <div class="palette">
+      <div class="swatch s1"><span>#000D1A</span></div>
+      <div class="swatch s2"><span>#00F0FF</span></div>
+      <div class="swatch s3"><span>#003844</span></div>
+      <div class="swatch s4"><span>#FF3333</span></div>
+    </div>
+  </section>
+</body>
+</html>

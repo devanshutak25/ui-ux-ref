@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Receipt / Thermal Print</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Mono', 'Courier New', monospace; background: #e8e4de; color: #2a2a2a; overflow-x: hidden;
+    display: flex; justify-content: center; }
+
+  .receipt-wrapper {
+    width: 100%; max-width: 380px; background: #faf8f4; position: relative;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+  }
+
+  /* Torn top edge */
+  .receipt-wrapper::before {
+    content: ''; position: absolute; top: -8px; left: 0; right: 0; height: 16px; z-index: 2;
+    background: linear-gradient(135deg, #faf8f4 33.33%, transparent 33.33%) 0 0,
+      linear-gradient(225deg, #faf8f4 33.33%, transparent 33.33%) 0 0;
+    background-size: 12px 16px; background-position: top;
+    background-repeat: repeat-x; background-color: transparent;
+  }
+
+  /* Faded edges */
+  .receipt-wrapper::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+    box-shadow: inset 8px 0 12px -8px rgba(0,0,0,0.06), inset -8px 0 12px -8px rgba(0,0,0,0.06);
+  }
+
+  .hero { padding: 2rem 1.5rem 1rem; position: relative; }
+
+  /* Thermal print fade effect */
+  .fade-text { opacity: 0.65; }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.8rem;
+    border-bottom: 1px dashed #bbb; margin-bottom: 1rem; }
+  nav .logo { font-weight: 600; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; }
+  nav ul { list-style: none; display: flex; gap: 0.8rem; }
+  nav a { color: #888; text-decoration: none; font-size: 0.6rem; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+  nav a:hover { color: #2a2a2a; }
+
+  .store-header { text-align: center; margin-bottom: 1rem; }
+  .store-header h1 { font-size: 1.3rem; font-weight: 600; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .store-header .addr { font-size: 0.6rem; color: #888; letter-spacing: 1px; }
+
+  .divider { border: none; border-top: 1px dashed #bbb; margin: 0.8rem 0; }
+  .divider-double { border: none; border-top: 2px double #bbb; margin: 0.8rem 0; }
+
+  .line-item { display: flex; justify-content: space-between; font-size: 0.7rem; padding: 0.15rem 0; }
+  .line-item .desc { flex: 1; }
+  .line-item .price { text-align: right; min-width: 60px; }
+
+  .total-line { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0; }
+
+  .subtitle { font-size: 0.65rem; color: #888; text-align: center; margin: 0.8rem 0; line-height: 1.6; }
+
+  .cta { display: block; width: 100%; padding: 0.6rem; background: #2a2a2a; color: #faf8f4;
+    font-family: inherit; font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    border: none; cursor: pointer; transition: background 0.3s; text-align: center; margin-top: 0.8rem; }
+  .cta:hover { background: #444; }
+
+  /* Barcode */
+  .barcode { display: flex; justify-content: center; gap: 1px; margin: 1rem 0 0.5rem; }
+  .barcode span { display: block; height: 30px; background: #2a2a2a; }
+  .barcode-num { text-align: center; font-size: 0.55rem; color: #888; letter-spacing: 3px; }
+
+  /* Timestamp */
+  .timestamp { text-align: center; font-size: 0.55rem; color: #aaa; margin-top: 0.5rem; }
+
+  /* Components Section */
+  .components { padding: 1rem 1.5rem 2rem; }
+  .components h2 { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem;
+    text-align: center; color: #888; }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; justify-content: center; }
+  .btn { font-family: inherit; padding: 0.4rem 1rem; font-size: 0.65rem; cursor: pointer; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; }
+  .btn-dark { background: #2a2a2a; color: #faf8f4; border: none; }
+  .btn-dark:hover { background: #444; }
+  .btn-outline { background: transparent; border: 1px solid #2a2a2a; color: #2a2a2a; }
+  .btn-outline:hover { background: #2a2a2a; color: #faf8f4; }
+  .btn-faded { background: #e8e4de; color: #888; border: none; }
+  .btn-faded:hover { background: #d8d4ce; }
+
+  .card {
+    border: 1px dashed #bbb; padding: 1rem; margin-bottom: 1.5rem;
+  }
+  .card h3 { font-size: 0.7rem; font-weight: 600; margin-bottom: 0.3rem; letter-spacing: 2px; text-transform: uppercase; }
+  .card p { font-size: 0.65rem; color: #888; line-height: 1.6; }
+
+  .input-group { margin-bottom: 1.5rem; }
+  .input-group input {
+    width: 100%; padding: 0.5rem 0.8rem; background: transparent;
+    border: none; border-bottom: 1px solid #bbb; color: #2a2a2a;
+    font-family: inherit; font-size: 0.7rem; outline: none; letter-spacing: 1px; transition: border-color 0.3s;
+  }
+  .input-group input:focus { border-bottom-color: #2a2a2a; }
+  .input-group input::placeholder { color: #ccc; }
+
+  .palette { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+  .swatch { width: 40px; height: 40px; border: 1px solid #ddd; position: relative; cursor: pointer; transition: transform 0.3s; }
+  .swatch:hover { transform: scale(1.1); }
+  .swatch span { position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%); font-size: 0.45rem; color: #aaa; white-space: nowrap; }
+
+  .receipt-footer { text-align: center; font-size: 0.55rem; color: #bbb; padding: 1rem 0 0.5rem; letter-spacing: 2px; }
+</style>
+</head>
+<body>
+  <div class="receipt-wrapper">
+    <section class="hero">
+      <nav>
+        <div class="logo">RECEIPT.CO</div>
+        <ul><li><a href="#">Log</a></li><li><a href="#">Scan</a></li></ul>
+      </nav>
+      <div class="store-header">
+        <h1>The Print Shop</h1>
+        <div class="addr">123 THERMAL AVE, PAPER CITY</div>
+        <div class="addr">TEL: (555) 012-3456</div>
+      </div>
+      <hr class="divider-double">
+      <div class="line-item"><span class="desc">DESIGN SYSTEM</span><span class="price">$42.00</span></div>
+      <div class="line-item"><span class="desc">UI COMPONENTS x2</span><span class="price">$18.00</span></div>
+      <div class="line-item"><span class="desc">COLOR PALETTE</span><span class="price">$12.00</span></div>
+      <div class="line-item fade-text"><span class="desc">DISCOUNT (MEMBER)</span><span class="price">-$7.20</span></div>
+      <hr class="divider">
+      <div class="total-line"><span>TOTAL</span><span>$64.80</span></div>
+      <div class="line-item fade-text"><span class="desc">VISA ****4821</span><span class="price">$64.80</span></div>
+      <hr class="divider">
+      <p class="subtitle">Thank you for shopping with us.<br>Design beautifully. Print thermally.</p>
+      <button class="cta">Print Another</button>
+      <div class="barcode">
+        <span style="width:2px"></span><span style="width:1px"></span><span style="width:3px"></span>
+        <span style="width:1px"></span><span style="width:2px"></span><span style="width:1px"></span>
+        <span style="width:3px"></span><span style="width:2px"></span><span style="width:1px"></span>
+        <span style="width:1px"></span><span style="width:3px"></span><span style="width:1px"></span>
+        <span style="width:2px"></span><span style="width:1px"></span><span style="width:2px"></span>
+        <span style="width:3px"></span><span style="width:1px"></span><span style="width:2px"></span>
+        <span style="width:1px"></span><span style="width:3px"></span><span style="width:1px"></span>
+        <span style="width:2px"></span><span style="width:1px"></span><span style="width:1px"></span>
+        <span style="width:3px"></span><span style="width:2px"></span>
+      </div>
+      <div class="barcode-num">4 820156 038241</div>
+      <div class="timestamp">2026-03-18 14:32:07 | TXN #00847</div>
+    </section>
+    <hr class="divider" style="margin: 0 1.5rem;">
+    <section class="components">
+      <h2>--- Components ---</h2>
+      <div class="btn-row">
+        <button class="btn btn-dark">Confirm</button>
+        <button class="btn btn-outline">Void</button>
+        <button class="btn btn-faded">Reprint</button>
+      </div>
+      <div class="card">
+        <h3>Transaction Log</h3>
+        <p>Each receipt tells a story of exchange. Clean, minimal, and ephemeral by nature.</p>
+      </div>
+      <div class="input-group">
+        <input type="text" placeholder="Enter item or SKU...">
+      </div>
+      <div class="palette">
+        <div class="swatch" style="background:#2a2a2a"><span>#2A2A2A</span></div>
+        <div class="swatch" style="background:#888"><span>#888888</span></div>
+        <div class="swatch" style="background:#bbb"><span>#BBBBBB</span></div>
+        <div class="swatch" style="background:#e8e4de"><span>#E8E4DE</span></div>
+        <div class="swatch" style="background:#faf8f4"><span>#FAF8F4</span></div>
+      </div>
+      <div class="receipt-footer">*** END OF RECEIPT ***</div>
+    </section>
+  </div>
+</body>
+</html>

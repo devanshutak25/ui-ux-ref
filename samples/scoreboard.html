@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scoreboard / Instrument Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Russo+One&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #111;
+    --panel: #1a1a1a;
+    --border: #2a2a2a;
+    --amber: #ff9500;
+    --red: #ff2020;
+    --green: #00dd44;
+    --text: #ccc;
+    --dim: #555;
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'VT323', monospace; overflow-x: hidden; }
+
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 20px; background: var(--panel); border-bottom: 3px solid var(--border);
+  }
+  .logo { font-family: 'Russo One', sans-serif; font-size: 16px; color: var(--amber); text-shadow: 0 0 10px rgba(255,149,0,.4); }
+  nav ul { list-style: none; display: flex; gap: 14px; }
+  nav a { color: var(--dim); text-decoration: none; font-size: 14px; transition: color .3s; }
+  nav a:hover { color: var(--amber); }
+
+  .hero { padding: 24px 20px; }
+
+  /* Main scoreboard display */
+  .scoreboard {
+    background: var(--panel); border: 3px solid var(--border); border-radius: 8px;
+    padding: 20px; margin-bottom: 20px; text-align: center;
+  }
+  .score-header { font-size: 14px; color: var(--dim); letter-spacing: 4px; margin-bottom: 12px; }
+  .score-display { display: flex; justify-content: center; align-items: center; gap: 16px; margin-bottom: 12px; }
+  .score-team { text-align: center; }
+  .team-name { font-family: 'Russo One', sans-serif; font-size: 14px; color: var(--text); margin-bottom: 4px; }
+  .team-score {
+    font-size: 64px; color: var(--amber); text-shadow: 0 0 20px rgba(255,149,0,.5);
+    line-height: 1;
+  }
+  .score-sep { font-size: 48px; color: var(--dim); }
+  .score-time {
+    font-size: 28px; color: var(--red); text-shadow: 0 0 12px rgba(255,32,32,.4);
+    margin-top: 8px; letter-spacing: 3px;
+  }
+  .score-period { font-size: 14px; color: var(--dim); margin-top: 4px; letter-spacing: 2px; }
+
+  /* Stat ticker */
+  .stat-ticker {
+    background: var(--panel); border: 2px solid var(--border); border-radius: 6px;
+    padding: 10px 14px; margin-bottom: 16px; overflow: hidden;
+  }
+  .ticker-row { display: flex; justify-content: space-between; font-size: 16px; }
+  .ticker-label { color: var(--dim); }
+  .ticker-val { color: var(--amber); text-shadow: 0 0 8px rgba(255,149,0,.3); }
+
+  /* Gauges row */
+  .gauges { display: flex; gap: 12px; margin-bottom: 20px; }
+  .gauge {
+    flex: 1; background: var(--panel); border: 2px solid var(--border); border-radius: 8px;
+    padding: 12px; text-align: center;
+  }
+  .gauge-bar { height: 8px; background: var(--border); border-radius: 4px; margin: 8px 0; overflow: hidden; }
+  .gauge-fill { height: 100%; border-radius: 4px; }
+  .gauge-label { font-size: 12px; color: var(--dim); letter-spacing: 1px; }
+  .gauge-val { font-size: 22px; color: var(--amber); text-shadow: 0 0 8px rgba(255,149,0,.3); }
+
+  /* Indicator lights */
+  .indicators { display: flex; gap: 8px; margin-bottom: 20px; justify-content: center; }
+  .indicator {
+    width: 14px; height: 14px; border-radius: 50%; border: 1px solid var(--border);
+  }
+  .indicator.on { box-shadow: 0 0 8px currentColor, inset 0 0 4px rgba(255,255,255,.3); }
+
+  .hero h1 { font-family: 'Russo One', sans-serif; font-size: 24px; color: var(--amber); text-shadow: 0 0 15px rgba(255,149,0,.3); margin-bottom: 8px; }
+  .hero p { font-size: 16px; color: var(--dim); max-width: 400px; line-height: 1.5; margin-bottom: 20px; }
+  .cta {
+    display: inline-block; padding: 10px 28px; background: var(--red); color: #fff;
+    text-decoration: none; font-family: 'Russo One', sans-serif; font-size: 14px;
+    border-radius: 4px; text-shadow: 0 0 8px rgba(255,32,32,.5); transition: all .3s;
+  }
+  .cta:hover { box-shadow: 0 0 24px rgba(255,32,32,.4); }
+
+  .components { padding: 24px 20px; border-top: 3px solid var(--border); }
+  .section-label { font-size: 14px; letter-spacing: 4px; color: var(--dim); margin-bottom: 16px; }
+
+  .buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .btn {
+    padding: 8px 18px; font-family: 'VT323', monospace; font-size: 16px;
+    cursor: pointer; border-radius: 4px; transition: all .3s; border: 2px solid;
+    background: var(--panel);
+  }
+  .btn-primary { border-color: var(--amber); color: var(--amber); }
+  .btn-primary:hover { background: rgba(255,149,0,.1); box-shadow: 0 0 12px rgba(255,149,0,.2); }
+  .btn-secondary { border-color: var(--red); color: var(--red); }
+  .btn-ghost { border-color: var(--border); color: var(--dim); }
+
+  .card {
+    background: var(--panel); border: 2px solid var(--border); border-radius: 6px;
+    padding: 14px; margin-bottom: 16px;
+  }
+  .card h3 { font-family: 'Russo One', sans-serif; font-size: 14px; color: var(--amber); margin-bottom: 6px; }
+  .card p { font-size: 14px; color: var(--dim); line-height: 1.5; }
+
+  .input-group { margin-bottom: 20px; }
+  .input-group label { display: block; font-size: 14px; color: var(--dim); margin-bottom: 4px; letter-spacing: 2px; }
+  .input-group input {
+    width: 100%; padding: 8px 12px; background: var(--bg); border: 2px solid var(--border);
+    border-radius: 4px; color: var(--amber); font-family: 'VT323', monospace;
+    font-size: 18px; outline: none; transition: border-color .3s;
+    text-shadow: 0 0 6px rgba(255,149,0,.3);
+  }
+  .input-group input:focus { border-color: var(--amber); }
+  .input-group input::placeholder { color: #333; text-shadow: none; }
+
+  .palette { display: flex; gap: 8px; flex-wrap: wrap; }
+  .swatch { width: 44px; height: 44px; border-radius: 4px; border: 2px solid var(--border); position: relative; }
+  .swatch span { position: absolute; bottom: -18px; left: 0; font-size: 12px; color: var(--dim); width: 44px; text-align: center; }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo">SCOREBOARD</div>
+    <ul><li><a href="#">LIVE</a></li><li><a href="#">STATS</a></li></ul>
+  </nav>
+  <section class="hero">
+    <div class="scoreboard">
+      <div class="score-header">CHAMPIONSHIP</div>
+      <div class="score-display">
+        <div class="score-team">
+          <div class="team-name">HOME</div>
+          <div class="team-score">87</div>
+        </div>
+        <div class="score-sep">:</div>
+        <div class="score-team">
+          <div class="team-name">AWAY</div>
+          <div class="team-score">82</div>
+        </div>
+      </div>
+      <div class="score-time">04:23</div>
+      <div class="score-period">QTR 4</div>
+    </div>
+    <div class="indicators">
+      <div class="indicator on" style="background:var(--green);color:var(--green)"></div>
+      <div class="indicator on" style="background:var(--amber);color:var(--amber)"></div>
+      <div class="indicator on" style="background:var(--amber);color:var(--amber)"></div>
+      <div class="indicator" style="background:var(--border)"></div>
+      <div class="indicator" style="background:var(--border)"></div>
+    </div>
+    <div class="gauges">
+      <div class="gauge">
+        <div class="gauge-label">FG%</div>
+        <div class="gauge-val">54.2</div>
+        <div class="gauge-bar"><div class="gauge-fill" style="width:54%;background:var(--green)"></div></div>
+      </div>
+      <div class="gauge">
+        <div class="gauge-label">3PT%</div>
+        <div class="gauge-val">38.1</div>
+        <div class="gauge-bar"><div class="gauge-fill" style="width:38%;background:var(--amber)"></div></div>
+      </div>
+      <div class="gauge">
+        <div class="gauge-label">FT%</div>
+        <div class="gauge-val">91.7</div>
+        <div class="gauge-bar"><div class="gauge-fill" style="width:92%;background:var(--red)"></div></div>
+      </div>
+    </div>
+    <h1>INSTRUMENT PANEL</h1>
+    <p>LED dot-matrix displays, stat tickers, amber on dark. Dense readouts and indicator lights.</p>
+    <a href="#" class="cta">LIVE FEED</a>
+  </section>
+  <section class="components">
+    <div class="section-label">COMPONENTS</div>
+    <div class="buttons">
+      <button class="btn btn-primary">PRIMARY</button>
+      <button class="btn btn-secondary">SECONDARY</button>
+      <button class="btn btn-ghost">GHOST</button>
+    </div>
+    <div class="card">
+      <h3>STAT READOUT</h3>
+      <p>Real-time telemetry from sensor array. Refresh rate: 60Hz. Latency: 12ms.</p>
+    </div>
+    <div class="input-group">
+      <label>CHANNEL ID</label>
+      <input type="text" placeholder="CH-000">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#ff9500"><span>#FF9500</span></div>
+      <div class="swatch" style="background:#ff2020"><span>#FF2020</span></div>
+      <div class="swatch" style="background:#00dd44"><span>#00DD44</span></div>
+      <div class="swatch" style="background:#111"><span>#111111</span></div>
+      <div class="swatch" style="background:#1a1a1a"><span>#1A1A1A</span></div>
+    </div>
+  </section>
+</body>
+</html>

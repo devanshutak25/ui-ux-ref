@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pharmaceutical / Clinical</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --white: #FAFCFF; --blue: #0066CC; --light-blue: #E8F2FF; --clinical: #F0F4F8; --gray: #8899AA; --dark: #1A2B3C; --pill: #D4E5F7; }
+  body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--dark); font-weight: 400; }
+  .hero { padding: 40px 28px 44px; text-align: center; background: linear-gradient(180deg, var(--light-blue), var(--white)); border-bottom: 1px solid #D4E5F7; }
+  .hero nav { display: flex; justify-content: center; gap: 24px; font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 36px; }
+  .hero nav a { color: var(--gray); text-decoration: none; transition: color .2s; }
+  .hero nav a:hover { color: var(--blue); }
+  .pill-icon { width: 56px; height: 56px; margin: 0 auto 20px; border-radius: 28px; background: linear-gradient(135deg, var(--blue), #3399FF); display: flex; align-items: center; justify-content: center; }
+  .pill-icon::before { content: '+'; color: #fff; font-size: 24px; font-weight: 300; }
+  h1 { font-size: 28px; font-weight: 600; color: var(--dark); margin-bottom: 8px; letter-spacing: -0.5px; }
+  .subtitle { font-size: 13px; color: var(--gray); font-weight: 300; margin-bottom: 28px; line-height: 1.6; }
+  .cta { display: inline-block; padding: 12px 32px; border-radius: 28px; border: none; background: var(--blue); color: #fff; font-family: inherit; font-size: 13px; font-weight: 500; letter-spacing: .5px; cursor: pointer; transition: all .2s; }
+  .cta:hover { background: #0055AA; box-shadow: 0 4px 16px rgba(0,102,204,.3); }
+  .blister-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 200px; margin: 20px auto 0; }
+  .blister-cell { width: 100%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #fff, var(--pill)); border: 1px solid #c8d8e8; }
+  .components { padding: 28px; }
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid #E8EEF4; }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+  .btn { padding: 10px 22px; font-family: inherit; font-size: 12px; font-weight: 500; letter-spacing: .3px; cursor: pointer; border-radius: 24px; transition: all .2s; border: 1px solid var(--blue); background: transparent; color: var(--blue); }
+  .btn:hover { background: var(--light-blue); }
+  .btn.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .btn.primary:hover { background: #0055AA; }
+  .btn.muted { border-color: #D4E5F7; color: var(--gray); }
+  .card { border: 1px solid #D4E5F7; border-radius: 12px; padding: 20px; margin-bottom: 28px; background: #fff; }
+  .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .card-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+  .card h3 { font-size: 15px; font-weight: 600; }
+  .card p { font-size: 12px; color: var(--gray); line-height: 1.7; font-weight: 300; }
+  .dosage { display: inline-block; padding: 3px 10px; border-radius: 10px; background: var(--light-blue); color: var(--blue); font-size: 10px; font-weight: 600; margin-top: 8px; }
+  .input-group { margin-bottom: 28px; }
+  .input-group label { display: block; font-size: 11px; font-weight: 500; color: var(--dark); margin-bottom: 6px; }
+  .input-group input { width: 100%; padding: 11px 16px; background: var(--clinical); border: 1px solid #D4E5F7; border-radius: 8px; color: var(--dark); font-family: inherit; font-size: 13px; font-weight: 300; outline: none; transition: border-color .2s; }
+  .input-group input:focus { border-color: var(--blue); background: #fff; box-shadow: 0 0 0 3px rgba(0,102,204,.1); }
+  .palette { display: flex; gap: 10px; }
+  .swatch { width: 44px; height: 44px; border-radius: 10px; position: relative; border: 1px solid #E8EEF4; }
+  .swatch span { position: absolute; bottom: -18px; left: 0; font-size: 8px; color: var(--gray); font-weight: 500; }
+  .swatch.s1 { background: var(--white); }
+  .swatch.s2 { background: var(--light-blue); }
+  .swatch.s3 { background: var(--blue); border-color: var(--blue); }
+  .swatch.s4 { background: var(--dark); border-color: var(--dark); }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <a href="#">Products</a>
+      <a href="#">Research</a>
+      <a href="#">Safety</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="pill-icon"></div>
+    <h1>MedaCure Clinical</h1>
+    <p class="subtitle">Precision therapeutics backed by<br>evidence-based formulations</p>
+    <button class="cta">View Monograph</button>
+    <div class="blister-grid">
+      <div class="blister-cell"></div><div class="blister-cell"></div><div class="blister-cell"></div><div class="blister-cell"></div>
+      <div class="blister-cell"></div><div class="blister-cell"></div><div class="blister-cell"></div><div class="blister-cell"></div>
+    </div>
+  </section>
+  <section class="components">
+    <p class="section-label">Buttons</p>
+    <div class="btn-row">
+      <button class="btn primary">Primary</button>
+      <button class="btn">Outline</button>
+      <button class="btn muted">Muted</button>
+    </div>
+    <p class="section-label">Product Card</p>
+    <div class="card">
+      <div class="card-header"><div class="card-dot"></div><h3>Azitrex 250mg</h3></div>
+      <p>Film-coated tablets for oral administration. Each tablet contains azithromycin dihydrate equivalent to 250mg azithromycin.</p>
+      <span class="dosage">250 mg / tablet</span>
+    </div>
+    <p class="section-label">Input</p>
+    <div class="input-group">
+      <label>Patient ID</label>
+      <input type="text" placeholder="Enter patient identifier...">
+    </div>
+    <p class="section-label">Color Palette</p>
+    <div class="palette">
+      <div class="swatch s1"><span>#FAFCFF</span></div>
+      <div class="swatch s2"><span>#E8F2FF</span></div>
+      <div class="swatch s3"><span>#0066CC</span></div>
+      <div class="swatch s4"><span>#1A2B3C</span></div>
+    </div>
+  </section>
+</body>
+</html>

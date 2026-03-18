@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brutalism</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --black: #000; --white: #FFF; --raw-red: #FF0000; --raw-blue: #0000FF; }
+  body { font-family: 'Space Mono', monospace; background: var(--white); color: var(--black); }
+  .hero { padding: 0; border-bottom: 4px solid var(--black); }
+  .hero nav { display: flex; border-bottom: 4px solid var(--black); }
+  .hero nav a { flex: 1; padding: 14px 8px; text-align: center; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--black); text-decoration: none; border-right: 4px solid var(--black); transition: background .1s; }
+  .hero nav a:last-child { border-right: none; }
+  .hero nav a:hover { background: var(--black); color: var(--white); }
+  .hero-content { padding: 40px 24px 44px; }
+  h1 { font-size: 48px; font-weight: 700; text-transform: uppercase; line-height: .95; letter-spacing: -2px; margin-bottom: 12px; }
+  h1 span { display: block; color: var(--raw-red); }
+  .subtitle { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 28px; border-left: 4px solid var(--black); padding-left: 12px; }
+  .cta { display: block; width: 100%; padding: 16px; border: 4px solid var(--black); background: var(--black); color: var(--white); font-family: inherit; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: all .1s; }
+  .cta:hover { background: var(--white); color: var(--black); }
+  .grid-marker { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; color: #999; margin-top: 16px; }
+  .components { padding: 0; }
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 12px 24px; border-bottom: 2px solid var(--black); border-top: 4px solid var(--black); background: #F0F0F0; }
+  .btn-row { display: flex; flex-wrap: wrap; border-bottom: 4px solid var(--black); }
+  .btn { flex: 1; padding: 14px 12px; font-family: inherit; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; border: none; border-right: 4px solid var(--black); background: var(--white); color: var(--black); transition: all .1s; min-width: 33%; }
+  .btn:last-child { border-right: none; }
+  .btn:hover { background: var(--black); color: var(--white); }
+  .btn.red { background: var(--raw-red); color: var(--white); }
+  .btn.red:hover { background: #CC0000; }
+  .btn.blue { background: var(--raw-blue); color: var(--white); }
+  .btn.blue:hover { background: #0000CC; }
+  .card { padding: 24px; border-bottom: 4px solid var(--black); }
+  .card h3 { font-size: 18px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
+  .card p { font-size: 12px; line-height: 1.7; }
+  .card-meta { margin-top: 10px; font-size: 9px; text-transform: uppercase; letter-spacing: 2px; color: #999; }
+  .input-group { padding: 24px; border-bottom: 4px solid var(--black); }
+  .input-group label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .input-group input { width: 100%; padding: 14px; background: var(--white); border: 4px solid var(--black); color: var(--black); font-family: inherit; font-size: 14px; outline: none; }
+  .input-group input:focus { background: #F0F0F0; }
+  .palette-section { padding: 24px; }
+  .palette { display: flex; gap: 0; }
+  .swatch { flex: 1; height: 56px; position: relative; border-right: 4px solid var(--black); }
+  .swatch:last-child { border-right: none; }
+  .swatch span { position: absolute; bottom: 4px; left: 4px; font-size: 8px; font-weight: 700; }
+  .swatch.s1 { background: var(--black); }
+  .swatch.s1 span { color: var(--white); }
+  .swatch.s2 { background: var(--white); border-top: 4px solid var(--black); border-bottom: 4px solid var(--black); }
+  .swatch.s3 { background: var(--raw-red); }
+  .swatch.s3 span { color: var(--white); }
+  .swatch.s4 { background: var(--raw-blue); }
+  .swatch.s4 span { color: var(--white); }
+  .counter { font-size: 72px; font-weight: 700; line-height: 1; color: #F0F0F0; position: absolute; right: 24px; top: 12px; pointer-events: none; }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <nav>
+      <a href="#">Work</a>
+      <a href="#">Info</a>
+      <a href="#">Lab</a>
+      <a href="#">Etc</a>
+    </nav>
+    <div class="hero-content" style="position:relative;">
+      <div class="counter">01</div>
+      <h1>Raw<span>Design</span></h1>
+      <p class="subtitle">No decoration. No pretense. Structure exposed.</p>
+      <button class="cta">Enter</button>
+      <p class="grid-marker">Col 1 / Row 1 / Grid 12</p>
+    </div>
+  </section>
+  <section class="components">
+    <p class="section-label">Buttons</p>
+    <div class="btn-row">
+      <button class="btn">Default</button>
+      <button class="btn red">Alert</button>
+      <button class="btn blue">Info</button>
+    </div>
+    <p class="section-label">Card</p>
+    <div class="card">
+      <h3>Concrete Form</h3>
+      <p>Structure is the ornament. The grid is visible. The system is the aesthetic. Nothing is hidden behind polish or veneer.</p>
+      <p class="card-meta">Published 2024 / Category: Architecture</p>
+    </div>
+    <p class="section-label">Input</p>
+    <div class="input-group">
+      <label>Your Message</label>
+      <input type="text" placeholder="TYPE HERE">
+    </div>
+    <p class="section-label">Color Palette</p>
+    <div class="palette-section">
+      <div class="palette">
+        <div class="swatch s1"><span>#000</span></div>
+        <div class="swatch s2"><span>#FFF</span></div>
+        <div class="swatch s3"><span>#F00</span></div>
+        <div class="swatch s4"><span>#00F</span></div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

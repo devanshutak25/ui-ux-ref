@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lenticular / Angle-Shift</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #0d0d0d; color: #fff; overflow-x: hidden; }
+
+  /* Lenticular stripe overlay */
+  .lenticular-stripe {
+    position: relative; overflow: hidden;
+  }
+  .lenticular-stripe::after {
+    content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background: repeating-linear-gradient(90deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 3px, transparent 3px, transparent 6px);
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 55vh; display: flex; flex-direction: column;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    position: relative; overflow: hidden; perspective: 600px;
+  }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; position: relative; z-index: 5; }
+  nav .logo { font-weight: 900; font-size: 1.2rem; letter-spacing: 2px; }
+  nav ul { list-style: none; display: flex; gap: 1.5rem; }
+  nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+  nav a:hover { color: #fff; }
+
+  .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem; position: relative; z-index: 3; }
+
+  /* Tilt reveal card */
+  .tilt-card {
+    position: relative; transform-style: preserve-3d; transition: transform 0.5s ease;
+  }
+  .tilt-card:hover { transform: rotateY(8deg) rotateX(-3deg); }
+  .tilt-card .front, .tilt-card .back {
+    transition: opacity 0.5s ease;
+  }
+  .tilt-card .back { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; }
+  .tilt-card:hover .front { opacity: 0.3; }
+  .tilt-card:hover .back { opacity: 1; }
+
+  h1 { font-size: 2.8rem; font-weight: 900; line-height: 1.1; margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, #e94560, #533483, #0f3460);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .subtitle { font-size: 1rem; color: rgba(255,255,255,0.6); max-width: 400px; margin-bottom: 1.5rem; }
+  .cta { display: inline-block; padding: 0.75rem 2rem; background: linear-gradient(135deg, #e94560, #533483);
+    color: #fff; text-decoration: none; border-radius: 6px; font-weight: 700; font-size: 0.9rem;
+    transition: transform 0.3s, box-shadow 0.3s; border: none; cursor: pointer;
+  }
+  .cta:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 8px 30px rgba(233,69,96,0.4); }
+
+  /* Shift bands — decorative */
+  .shift-bands { position: absolute; inset: 0; z-index: 1; overflow: hidden; }
+  .shift-bands span {
+    position: absolute; height: 100%; width: 4px; background: rgba(233,69,96,0.1);
+    animation: shiftSlide 6s ease-in-out infinite alternate;
+  }
+  .shift-bands span:nth-child(1) { left: 10%; animation-delay: 0s; }
+  .shift-bands span:nth-child(2) { left: 25%; animation-delay: 0.5s; background: rgba(83,52,131,0.1); }
+  .shift-bands span:nth-child(3) { left: 50%; animation-delay: 1s; }
+  .shift-bands span:nth-child(4) { left: 70%; animation-delay: 1.5s; background: rgba(15,52,96,0.15); }
+  .shift-bands span:nth-child(5) { left: 88%; animation-delay: 2s; }
+  @keyframes shiftSlide { from { transform: translateY(-10%); opacity: 0.5; } to { transform: translateY(10%); opacity: 1; } }
+
+  /* Components Section */
+  .components { padding: 2rem; background: #111; }
+  .components h2 { font-size: 1.3rem; margin-bottom: 1.5rem; color: #e94560; letter-spacing: 1px; }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+  .btn { padding: 0.6rem 1.4rem; border: none; border-radius: 5px; font-family: inherit; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: all 0.3s; }
+  .btn-primary { background: linear-gradient(135deg, #e94560, #533483); color: #fff; }
+  .btn-primary:hover { box-shadow: 0 4px 20px rgba(233,69,96,0.5); transform: translateY(-1px); }
+  .btn-outline { background: transparent; border: 2px solid #e94560; color: #e94560; }
+  .btn-outline:hover { background: #e94560; color: #fff; }
+  .btn-ghost { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.7); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+  .card { background: linear-gradient(145deg, #1a1a2e, #16213e); border-radius: 10px; padding: 1.5rem;
+    margin-bottom: 2rem; position: relative; overflow: hidden; transition: transform 0.4s;
+  }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, #e94560, #533483, #0f3460); }
+  .card:hover { transform: perspective(500px) rotateY(3deg); }
+  .card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+  .card p { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+  .input-group { margin-bottom: 2rem; }
+  .input-group input {
+    width: 100%; padding: 0.75rem 1rem; background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(233,69,96,0.3); border-radius: 6px; color: #fff;
+    font-family: inherit; font-size: 0.85rem; outline: none; transition: border-color 0.3s;
+  }
+  .input-group input:focus { border-color: #e94560; }
+  .input-group input::placeholder { color: rgba(255,255,255,0.3); }
+
+  .palette { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .swatch { width: 48px; height: 48px; border-radius: 8px; position: relative; transition: transform 0.3s; cursor: pointer; }
+  .swatch:hover { transform: scale(1.15) rotateZ(5deg); }
+  .swatch span { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 0.55rem; color: rgba(255,255,255,0.4); white-space: nowrap; }
+</style>
+</head>
+<body>
+  <section class="hero lenticular-stripe">
+    <div class="shift-bands"><span></span><span></span><span></span><span></span><span></span></div>
+    <nav>
+      <div class="logo">LENTIK</div>
+      <ul><li><a href="#">Work</a></li><li><a href="#">About</a></li><li><a href="#">Contact</a></li></ul>
+    </nav>
+    <div class="hero-content tilt-card">
+      <div class="front">
+        <h1>Shift Your Perspective</h1>
+        <p class="subtitle">Interactive surfaces that reveal hidden layers as you explore. Design that moves with intention.</p>
+        <button class="cta">Explore Angles</button>
+      </div>
+      <div class="back">
+        <h1>See What's Hidden</h1>
+        <p class="subtitle">Every angle tells a different story. Hover to discover the layers beneath.</p>
+        <button class="cta">Go Deeper</button>
+      </div>
+    </div>
+  </section>
+  <section class="components">
+    <h2>Components</h2>
+    <div class="btn-row">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-outline">Outline</button>
+      <button class="btn btn-ghost">Ghost</button>
+    </div>
+    <div class="card">
+      <h3>Angle-Shift Card</h3>
+      <p>Hover to experience the lenticular tilt effect. Content reveals itself through perspective and motion.</p>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="Enter your viewing angle...">
+    </div>
+    <div class="palette">
+      <div class="swatch" style="background:#e94560"><span>#E94560</span></div>
+      <div class="swatch" style="background:#533483"><span>#533483</span></div>
+      <div class="swatch" style="background:#0f3460"><span>#0F3460</span></div>
+      <div class="swatch" style="background:#16213e"><span>#16213E</span></div>
+      <div class="swatch" style="background:#1a1a2e"><span>#1A1A2E</span></div>
+    </div>
+  </section>
+</body>
+</html>
