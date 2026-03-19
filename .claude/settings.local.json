@@ -8,7 +8,21 @@
       "Bash(for f:*)",
       "Bash(do grep:*)",
       "Bash(sed -i 's|<meta charset=\"\"UTF-8\"\">|<meta charset=\"\"UTF-8\"\">\\\\n    <link rel=\"\"icon\"\" type=\"\"image/svg+xml\"\" href=\"\"favicon.svg\"\">|' \"$f\")",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(python3 _generate_bsides.py)",
+      "Bash(do echo:*)",
+      "Read(//g/Personal/ui-ux-ref/samples/**)",
+      "Bash(python3 -c \":*)",
+      "Bash(grep -l \"side-toggle\" samples/*.html)",
+      "Bash(grep -l \"class=\"\"b-side\"\"\" samples/*.html)",
+      "Bash(grep -l \"class=\"\"a-side\"\"\" samples/*.html)",
+      "Bash(grep -l \"bs-footer\" samples/*.html)",
+      "Bash(python3 _gen_v2.py)",
+      "Bash(grep -l \"background:;color:\" samples/*.html)",
+      "Bash(python3 _run.py)",
+      "Bash(grep -rl \"background:;\" samples/*.html)",
+      "Bash(grep -rl \"side-toggle\" samples/*.html)",
+      "Bash(grep -rl 'class=\"\"\"\"b-side\"\"\"\"' samples/*.html)"
     ]
   }
 }

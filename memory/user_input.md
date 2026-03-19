@@ -21,3 +21,7 @@ Important context, goals, and instructions provided by the user across sessions.
 ## 2026-03-18 — Batch 5 of sample HTML pages
 **Input:** Created 12 new sample HTML files: art-deco, watercolor-ui, psychedelic, paper-cut, bauhaus, isometric-ui, single-color, wabi-sabi, whitespace-maximalism, mono-space, stained-glass, hyperrealism
 **Context:** Same self-contained HTML pattern. Mix of art movements (Art Deco, Bauhaus, Wabi-Sabi), design techniques (paper-cut layering, isometric 3D, monochromatic system), and visual styles (psychedelic, stained glass, hyperrealism).
+
+## 2026-03-19 — 100 Styles Visual DNA Reference Document
+**Input:** User requested comprehensive research document covering all 100 styles with must-have visual elements, layout patterns, CSS techniques, and real-world examples. Created `100-styles-visual-dna.md` at project root.
+**Context:** This reference document serves as the technical specification for each style, identifying what makes each one distinct. Includes a differentiation matrix comparing similar styles. Useful for validating sample HTML pages against their intended aesthetic.
