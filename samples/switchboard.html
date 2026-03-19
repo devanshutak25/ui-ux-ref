@@ -149,51 +149,57 @@
 body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
 /* B-Side: Switchboard / Node Editor */
-.b-side{background:#1A1A2E;color:#E0E0E0;font-family:'Inter',system-ui,sans-serif;line-height:1.6;background:repeating-linear-gradient(0deg,rgba(78,205,196,.01) 0px,transparent 1px,transparent 20px),repeating-linear-gradient(90deg,rgba(78,205,196,.01) 0px,transparent 1px,transparent 20px),#1A1A2E}
+@keyframes dataFlow{from{stroke-dashoffset:20}to{stroke-dashoffset:0}}
+.b-side{background:#1A1A2E;color:#E0E0E0;font-family:'Space Mono',monospace;line-height:1.6;background-image:radial-gradient(circle,rgba(78,205,196,.08) 1px,transparent 1px);background-size:20px 20px}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
-.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid rgba(78,205,196,.08);position:sticky;top:0;z-index:100;background:#1A1A2E;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#4ECDC4;;;}
+.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid rgba(78,205,196,.12);position:sticky;top:0;z-index:100;background:rgba(26,26,46,.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.bh .logo{font-weight:700;font-size:1rem;color:#4ECDC4;letter-spacing:2px}
+.bh .logo::before{content:'[ ';color:rgba(78,205,196,.4)}
+.bh .logo::after{content:' ]';color:rgba(78,205,196,.4)}
 .bh nav{display:flex;gap:1.5rem}
-.bh nav a{color:#888888;text-decoration:none;font-size:.85rem;transition:color .2s;}
+.bh nav a{color:#A0A0A0;text-decoration:none;font-size:.8rem;transition:color .2s;font-family:'Space Mono',monospace}
 .bh nav a:hover{color:#4ECDC4}
 .bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
 .bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#4ECDC4;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Inter',system-ui,sans-serif}
-.bhero p{font-size:1.05rem;color:#888888;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.bhero-tag{font-size:.8rem;color:#4ECDC4;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:700;font-family:'Space Mono',monospace}
+.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:700;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.02em;font-family:'Space Mono',monospace}
+.bhero p{font-size:1rem;color:#A0A0A0;max-width:480px;margin:0 auto 2rem;line-height:1.7}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-.bbtn{font-family:'Inter',system-ui,sans-serif;padding:.8rem 2rem;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
-.bbtn-p{background:#4ECDC4;color:#1A1A2E;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#E0E0E0;border:1.5px solid #888888;}.bbtn-s:hover{border-color:#4ECDC4;color:#4ECDC4}
-.bsec{padding:5rem 2rem;border-top:1px solid rgba(78,205,196,.06)}
+.bbtn{font-family:'Space Mono',monospace;padding:.7rem 1.8rem;border-radius:6px;font-size:.85rem;font-weight:700;cursor:pointer;border:none;transition:all .2s}
+.bbtn-p{background:#4ECDC4;color:#1A1A2E;}.bbtn-p:hover{box-shadow:0 0 16px rgba(78,205,196,.4);transform:translateY(-1px)}
+.bbtn-s{background:transparent;color:#E0E0E0;border:1.5px solid #A0A0A0;}.bbtn-s:hover{border-color:#4ECDC4;color:#4ECDC4}
+.bsec{padding:5rem 2rem;border-top:1px solid rgba(78,205,196,.08)}
 .bcon{max-width:1100px;margin:0 auto}
-.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#4ECDC4;text-align:center;margin-bottom:.5rem;font-weight:600}
-.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Inter',system-ui,sans-serif}
-.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:#222240;border:1px solid rgba(78,205,196,.12);border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:transform .2s;}
-.bcard:hover{transform:translateY(-3px)}
-.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
-.bcard p{font-size:.88rem;color:#888888;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:8px;background:rgba(78,205,196,.08);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#4ECDC4}
+.bst{font-size:.7rem;text-transform:uppercase;letter-spacing:3px;color:#4ECDC4;text-align:center;margin-bottom:.5rem;font-weight:700;font-family:'Space Mono',monospace}
+.bsh{font-size:1.6rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.01em;font-family:'Space Mono',monospace}
+.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.bgrid-wrap{position:relative}
+.bnode-svg{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:visible}
+.bnode-svg path{fill:none;stroke-width:2;stroke-dasharray:10,10;animation:dataFlow .8s linear infinite}
+.bcard{background:#222240;border:1px solid rgba(78,205,196,.15);border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,.2);transition:transform .2s,border-color .2s;position:relative;z-index:2}
+.bcard:hover{transform:translateY(-3px);border-color:rgba(78,205,196,.35)}
+.bcard::before{content:"";position:absolute;top:50%;left:-5px;width:10px;height:10px;border-radius:50%;background:#4ECDC4;transform:translateY(-50%);box-shadow:0 0 6px #4ECDC4}
+.bcard::after{content:"";position:absolute;top:50%;right:-5px;width:10px;height:10px;border-radius:50%;background:#FF6B6B;transform:translateY(-50%);box-shadow:0 0 6px #FF6B6B}
+.bcard:nth-child(2)::before{background:#FFD700;box-shadow:0 0 6px #FFD700}
+.bcard:nth-child(3)::before{background:#FF6B6B;box-shadow:0 0 6px #FF6B6B}
+.bcard h3{font-size:1rem;margin-bottom:.5rem;font-weight:700;font-family:'Space Mono',monospace}
+.bcard p{font-size:.85rem;color:#A0A0A0;line-height:1.6}
+.bcard-icon{width:40px;height:40px;border-radius:8px;background:rgba(78,205,196,.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.1rem;color:#4ECDC4;border:1px solid rgba(78,205,196,.2)}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#4ECDC4;line-height:1;font-family:inherit;}
-.bmet-l{font-size:.78rem;color:#888888;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bmet-v{font-size:2.2rem;font-weight:700;color:#4ECDC4;line-height:1;font-family:'Space Mono',monospace}
+.bmet-l{font-size:.75rem;color:#A0A0A0;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px;font-family:'Space Mono',monospace}
 .bquote{max-width:580px;margin:0 auto;text-align:center}
-.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#E0E0E0;margin-bottom:.75rem;font-family:inherit;font-style:italic}
-.bquote cite{font-size:.85rem;color:#888888;font-style:normal}
-.bfoot{padding:2.5rem 2rem;border-top:1px solid rgba(78,205,196,.06);text-align:center}
-.bfoot .logo{font-weight:700;color:#4ECDC4;margin-bottom:.75rem;font-size:1.1rem}
+.bquote blockquote{font-size:1.05rem;line-height:1.7;color:#E0E0E0;margin-bottom:.75rem;font-family:'Space Mono',monospace;font-style:italic}
+.bquote cite{font-size:.8rem;color:#A0A0A0;font-style:normal;font-family:'Space Mono',monospace}
+.bfoot{padding:2.5rem 2rem;border-top:1px solid rgba(78,205,196,.08);text-align:center}
+.bfoot .logo{font-weight:700;color:#4ECDC4;margin-bottom:.75rem;font-size:1rem;letter-spacing:2px}
+.bfoot .logo::before{content:'[ ';color:rgba(78,205,196,.4)}
+.bfoot .logo::after{content:' ]';color:rgba(78,205,196,.4)}
 .bfoot nav{margin-bottom:.75rem}
-.bfoot nav a{color:#888888;text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a{color:#A0A0A0;text-decoration:none;font-size:.75rem;margin:0 .75rem;font-family:'Space Mono',monospace}
 .bfoot nav a:hover{color:#4ECDC4}
-.bfoot small{font-size:.75rem;color:#888888}
-.b-side{background-image:repeating-linear-gradient(0deg,rgba(78,205,196,0.015) 0px,transparent 1px,transparent 20px),repeating-linear-gradient(90deg,rgba(78,205,196,0.015) 0px,transparent 1px,transparent 20px)}
-.bcard{position:relative}
-.bcard::before{content:"";position:absolute;top:50%;left:-4px;width:8px;height:8px;border-radius:50%;background:#4ECDC4;transform:translateY(-50%)}
-.bcard::after{content:"";position:absolute;top:50%;right:-4px;width:8px;height:8px;border-radius:50%;background:#FF6B6B;transform:translateY(-50%)}
-.bcard:nth-child(2)::before{background:#FFD700}
-.bcard:nth-child(3)::before{background:#FF6B6B}
-@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
+.bfoot small{font-size:.7rem;color:#A0A0A0}
+@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}.bnode-svg{display:none}}
 
 
 </style>
@@ -273,7 +279,7 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 <div class="b-side">
 <header class="bh"><div class="logo">NodeFlow</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
 <section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Visual logic</p><h1>Connect<br>Everything.</h1><p>Processing nodes on a dark canvas. Smooth curved connections. Complex logic made visual.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Create Flow</button><button class="bbtn bbtn-s">Templates</button></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Node Blocks</h3><p>Dark rounded rectangles with colored I/O ports. Self-contained units.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Flow Lines</h3><p>Smooth bezier curves connecting outputs to inputs. Visible data flow.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Port System</h3><p>Color-coded connection points. Coral for data, teal for logic, gold for signals.</p></div></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">Node Types</p><h2 class="bsh">Core Modules</h2><div class="bgrid-wrap"><svg class="bnode-svg" viewBox="0 0 1100 220" preserveAspectRatio="none"><path d="M 355,110 C 430,110 430,110 505,110" stroke="#FF6B6B" /><path d="M 710,110 C 790,110 790,110 870,110" stroke="#FFD700" /></svg><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Transform</h3><p>Input processing and data normalization. Maps source values to output schema.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Filter</h3><p>Conditional routing based on threshold values. Passes or blocks signal flow.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Merge</h3><p>Combines multiple input streams into a single output. Conflict resolution built in.</p></div></div></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">&#8734;</div><div class="bmet-l">Nodes</div></div><div><div class="bmet-v">3</div><div class="bmet-l">Port Types</div></div><div><div class="bmet-v">0</div><div class="bmet-l">Conflicts</div></div><div><div class="bmet-v">Real-time</div><div class="bmet-l">Processing</div></div></div></div></section>
 <section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;Complex logic made beautifully tangible.&rdquo;</blockquote><cite>&mdash; Node-Based Design Forum</cite></div></div></section>
 <footer class="bfoot"><div class="logo">NodeFlow</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 NodeFlow. All rights reserved.</small></footer>

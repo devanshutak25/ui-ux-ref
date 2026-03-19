@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gen Z Chaos / Maximalism</title>
 <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Space+Grotesk:wght@400;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root { --magenta: #FF00FF; --lime: #00FF00; --yellow: #FFFF00; --hot-pink: #FF3366; --cyan: #00CCFF; --dark: #1A0A2E; }
@@ -120,10 +121,8 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 @keyframes chaosGlow{0%,100%{text-shadow:0 0 10px rgba(255,0,255,.4)}50%{text-shadow:0 0 20px rgba(0,255,0,.4),0 0 40px rgba(0,255,255,.2)}}
 .bhero h1{animation:chaosGlow 2s infinite}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bcard:nth-child(1){border-color:#FF00FF;box-shadow:6px 6px 0 #00CCFF} .bcard:nth-child(2){border-color:#FFFF00;box-shadow:6px 6px 0 #FF00FF} .bcard:nth-child(2) .bcard-icon{background:#00FF00;color:#000} .bcard:nth-child(3){border-color:#00CCFF;box-shadow:6px 6px 0 #00FF00} .bcard:nth-child(3) .bcard-icon{background:#FF3366;color:#000} .bbtn{border:3px solid #FF00FF} .bhero h1{font-size:clamp(3rem,10vw,6rem);font-weight:900}
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>

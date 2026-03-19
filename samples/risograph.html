@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Risograph / Overprint</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
@@ -139,55 +139,75 @@
 body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
 /* B-Side: Risograph / Overprint */
-.b-side{background:#F5F0E8;color:#333333;font-family:'Space Grotesk','Inter',sans-serif;line-height:1.6;}
+.b-side{background:#F5F0E8;color:#2a2a2a;font-family:'Space Grotesk','Inter',sans-serif;line-height:1.6;position:relative}
+/* Paper grain texture on B-side matching A-side */
+.b-side::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E")}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
-.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid #E5DDD0;position:sticky;top:0;z-index:100;background:#F5F0E8;}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#FF6B6B;;;}
+.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:2px solid #2a2a2a;position:sticky;top:0;z-index:100;background:#F5F0E8;}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#e8594f;position:relative}
+/* Misregistration on B-side logo */
+.bh .logo::after{content:"RISO";position:absolute;top:1px;left:2px;color:#3a5ba0;opacity:.4;z-index:-1}
 .bh nav{display:flex;gap:1.5rem}
-.bh nav a{color:#888888;text-decoration:none;font-size:.85rem;transition:color .2s;}
-.bh nav a:hover{color:#FF6B6B}
-.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
-.bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#FF6B6B;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Space Grotesk','Inter',sans-serif}
-.bhero p{font-size:1.05rem;color:#888888;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.bh nav a{color:#2a2a2a;text-decoration:none;font-size:.85rem;transition:opacity .3s;opacity:.5}
+.bh nav a:hover{opacity:1}
+.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+.bhero-inner{max-width:640px;position:relative;z-index:2}
+/* Overprint decoration circles in hero */
+.bhero::before{content:"";position:absolute;top:15%;right:8%;width:180px;height:180px;background:#e8594f;border-radius:50%;opacity:.5;mix-blend-mode:multiply;pointer-events:none;z-index:0}
+.bhero::after{content:"";position:absolute;top:22%;right:4%;width:180px;height:180px;background:#3a5ba0;border-radius:50%;opacity:.5;mix-blend-mode:multiply;pointer-events:none;z-index:0}
+.bhero-tag{font-size:.8rem;color:#e8594f;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
+.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:700;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Space Grotesk','Inter',sans-serif;position:relative}
+/* Misregistration on hero h1 */
+.bhero h1::after{content:attr(data-text);position:absolute;top:2px;left:3px;color:#e8594f;opacity:.4;z-index:-1;width:100%;text-align:center}
+.bhero p{font-size:1.05rem;color:#6E6E6E;max-width:480px;margin:0 auto 2rem;line-height:1.7}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-.bbtn{font-family:'Space Grotesk','Inter',sans-serif;padding:.8rem 2rem;border-radius:4px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
-.bbtn-p{background:#FF6B6B;color:#F5F0E8;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#333333;border:1.5px solid #888888;}.bbtn-s:hover{border-color:#FF6B6B;color:#FF6B6B}
-.bsec{padding:5rem 2rem;border-top:none}
+.bbtn{font-family:'Space Grotesk','Inter',sans-serif;padding:.8rem 2rem;border-radius:0;font-size:.9rem;font-weight:700;cursor:pointer;border:none;transition:all .3s;position:relative}
+.bbtn-p{background:#e8594f;color:#fff}.bbtn-p:hover{transform:translate(-1px,-1px)}
+/* CTA overprint shadow */
+.bbtn-p::after{content:"";position:absolute;top:3px;left:3px;width:100%;height:100%;background:#3a5ba0;opacity:.3;z-index:-1;mix-blend-mode:multiply}
+.bbtn-s{background:transparent;color:#2a2a2a;border:2px solid #2a2a2a}.bbtn-s:hover{border-color:#e8594f;color:#e8594f}
+.bsec{padding:5rem 2rem;border-top:2px solid #2a2a2a;position:relative;z-index:1}
 .bcon{max-width:1100px;margin:0 auto}
-.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#FF6B6B;text-align:center;margin-bottom:.5rem;font-weight:600}
+.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#e8594f;text-align:center;margin-bottom:.5rem;font-weight:700}
 .bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Space Grotesk','Inter',sans-serif}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:rgba(255,107,107,.06);border:none;border-radius:4px;padding:2rem;box-shadow:none;transition:transform .2s;}
+.bcard{background:rgba(255,255,255,.5);border:2px solid #2a2a2a;border-radius:0;padding:2rem;box-shadow:none;transition:transform .2s;position:relative}
 .bcard:hover{transform:translateY(-3px)}
-.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
-.bcard p{font-size:.88rem;color:#888888;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:4px;background:rgba(255,107,107,.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#FF6B6B}
+/* Misregistered card offset border */
+.bcard::before{content:"";position:absolute;top:4px;left:4px;width:100%;height:100%;border:2px solid #e8594f;opacity:.3;z-index:-1;mix-blend-mode:multiply}
+/* Halftone dot pattern on cards */
+.bcard::after{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(232,89,79,.08) 1px,transparent 1px);background-size:6px 6px;pointer-events:none;z-index:0}
+.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:700;color:#3a5ba0;position:relative;z-index:1}
+.bcard p{font-size:.88rem;color:#6E6E6E;line-height:1.6;position:relative;z-index:1}
+.bcard-icon{width:40px;height:40px;border-radius:0;background:rgba(232,89,79,.15);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#e8594f;position:relative;z-index:1}
+.bcard:nth-child(2) .bcard-icon{background:rgba(58,91,160,.15);color:#3a5ba0}
+.bcard:nth-child(2) h3{color:#e8594f}
+.bcard:nth-child(3) .bcard-icon{background:rgba(42,24,72,.15);color:#2a1848}
+.bcard:nth-child(3) h3{color:#2a1848}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#FF6B6B;line-height:1;font-family:inherit;}
-.bmet-l{font-size:.78rem;color:#888888;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
-.bquote{max-width:580px;margin:0 auto;text-align:center}
-.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#333333;margin-bottom:.75rem;font-family:inherit;font-style:italic}
-.bquote cite{font-size:.85rem;color:#888888;font-style:normal}
-.bfoot{padding:2.5rem 2rem;;text-align:center}
-.bfoot .logo{font-weight:700;color:#FF6B6B;margin-bottom:.75rem;font-size:1.1rem}
+.bmet-v{font-size:2.2rem;font-weight:700;color:#e8594f;line-height:1;font-family:inherit;}
+.bmet-l{font-size:.78rem;color:#6E6E6E;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+/* Alternate metric colors for two-ink feel */
+.bmets > div:nth-child(2) .bmet-v{color:#3a5ba0}
+.bmets > div:nth-child(4) .bmet-v{color:#3a5ba0}
+.bquote{max-width:580px;margin:0 auto;text-align:center;position:relative}
+/* Halftone dot accent behind quote */
+.bquote::before{content:"";position:absolute;top:-20px;left:-20px;width:80px;height:80px;background:radial-gradient(circle,#e8594f 1px,transparent 1px);background-size:6px 6px;opacity:.2;pointer-events:none}
+.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#2a2a2a;margin-bottom:.75rem;font-family:inherit;font-style:italic;position:relative;z-index:1}
+.bquote cite{font-size:.85rem;color:#6E6E6E;font-style:normal;position:relative;z-index:1}
+.bfoot{padding:2.5rem 2rem;border-top:2px solid #2a2a2a;text-align:center}
+.bfoot .logo{font-weight:700;color:#e8594f;margin-bottom:.75rem;font-size:1.1rem;position:relative;display:inline-block}
+.bfoot .logo::after{content:"RISO";position:absolute;top:1px;left:2px;color:#3a5ba0;opacity:.4;z-index:-1}
 .bfoot nav{margin-bottom:.75rem}
-.bfoot nav a{color:#888888;text-decoration:none;font-size:.8rem;margin:0 .75rem}
-.bfoot nav a:hover{color:#FF6B6B}
-.bfoot small{font-size:.75rem;color:#888888}
-.bcard:nth-child(2){background:rgba(65,105,225,.06)}
-.bcard:nth-child(2) .bcard-icon{background:rgba(65,105,225,.1);color:#4169E1}
-.bcard:nth-child(3){background:rgba(200,80,120,.06)}
-.bcard:nth-child(3) .bcard-icon{background:rgba(200,80,120,.1);color:#C85078}
-.bhero::after{content:"";position:absolute;top:0;left:2px;right:0;bottom:0;background:rgba(65,105,225,.02);mix-blend-mode:multiply;pointer-events:none}
-.bhero{position:relative;overflow:hidden}
-@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bcard:nth-child(2){background:rgba(65,105,225,.06)} .bcard:nth-child(2) .bcard-icon{background:rgba(65,105,225,.1);color:#4169E1} .bcard:nth-child(3){background:rgba(200,80,120,.06)} .bcard:nth-child(3) .bcard-icon{background:rgba(200,80,120,.1);color:#C85078}
+.bfoot nav a{color:#6E6E6E;text-decoration:none;font-size:.8rem;margin:0 .75rem;transition:opacity .3s}
+.bfoot nav a:hover{color:#e8594f}
+.bfoot small{font-size:.75rem;color:#6E6E6E}
+/* Halftone overlay on even sections */
+.bsec:nth-child(even)::after{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(58,91,160,.06) 1px,transparent 1px);background-size:8px 8px;pointer-events:none;z-index:0}
+.bsec:nth-child(even){position:relative}
+@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}.bhero::before,.bhero::after{width:120px;height:120px}}
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
@@ -229,7 +249,7 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 </div>
 <div class="b-side">
 <header class="bh"><div class="logo">RISO</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Two-color magic</p><h1>Happy<br>Accidents.</h1><p>Two inks — coral and royal blue. Multiply blend. Halftone dots. Misregistration. Print-studio charm.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Print</button><button class="bbtn bbtn-s">View Prints</button></div></div></section>
+<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Two-color magic</p><h1 data-text="Happy Accidents.">Happy<br>Accidents.</h1><p>Two inks — coral and royal blue. Multiply blend. Halftone dots. Misregistration. Print-studio charm.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Print</button><button class="bbtn bbtn-s">View Prints</button></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Coral Ink</h3><p>Warm vibrant red-pink. The first pass through the drum. Bold and confident.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Blue Ink</h3><p>Rich royal blue. The second pass. Where it overlaps coral, magic happens.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Misregistration</h3><p>Colors that don't quite align. The beautiful imperfection of two-pass printing.</p></div></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">2</div><div class="bmet-l">Inks</div></div><div><div class="bmet-v">&#215;</div><div class="bmet-l">Multiply</div></div><div><div class="bmet-v">&#8776;</div><div class="bmet-l">Offset</div></div><div><div class="bmet-v">&#9679;</div><div class="bmet-l">Halftone</div></div></div></div></section>
 <section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;Handmade, indie, artfully imperfect. Straight from a small-batch print studio.&rdquo;</blockquote><cite>&mdash; Riso Club</cite></div></div></section>

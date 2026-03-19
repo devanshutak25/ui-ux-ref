@@ -120,7 +120,6 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 @keyframes psychRotate{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}} .bhero-tag{animation:psychRotate 4s linear infinite} .bcard:nth-child(1){border-color:rgba(255,0,255,.3)} .bcard:nth-child(2){border-color:rgba(57,255,20,.3)} .bcard:nth-child(3){border-color:rgba(255,107,0,.3)}
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>

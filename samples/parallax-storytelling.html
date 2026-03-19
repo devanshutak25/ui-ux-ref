@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Parallax Storytelling</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -295,12 +296,73 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bsec:nth-child(odd){background:linear-gradient(180deg,rgba(255,255,255,.02),transparent)}
 .bhero h1{font-size:clamp(3rem,7vw,5rem)}
 .bquote blockquote{font-size:1.3rem}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}} .bcard{animation:fadeInUp .6s ease both} .bcard:nth-child(2){animation-delay:.15s} .bcard:nth-child(3){animation-delay:.3s}
-@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
+/* Staggered card entrance */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.bcard{animation:fadeInUp .6s ease both}
+.bcard:nth-child(2){animation-delay:.15s}
+.bcard:nth-child(3){animation-delay:.3s}
+
+/* Parallax depth layers */
+.b-depth{position:fixed;border-radius:50%;pointer-events:none;z-index:0;opacity:.06}
+.b-depth-1{width:400px;height:400px;background:#C77D3A;bottom:-120px;left:-100px;animation:bSlowDrift 22s ease-in-out infinite}
+.b-depth-2{width:250px;height:250px;background:rgba(255,255,255,.5);top:-60px;right:-80px;animation:bSlowDrift 17s ease-in-out infinite 4s}
+.b-depth-3{width:180px;height:180px;background:#C77D3A;top:45%;left:55%;animation:bParallaxFloat 10s ease-in-out infinite}
+
+@keyframes bSlowDrift{0%,100%{transform:translate(0,0)}33%{transform:translate(12px,-10px)}66%{transform:translate(-10px,6px)}}
+@keyframes bParallaxFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+
+/* Parallax sections with background-attachment:fixed */
+.b-side{position:relative;overflow-x:hidden}
+.bsec{position:relative;z-index:1}
+
+/* Parallax fixed backgrounds on alternating sections */
+.bsec:nth-child(odd)::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(199,125,58,.05) 0%,transparent 70%);background-attachment:fixed;pointer-events:none;z-index:-1}
+.bsec:nth-child(even)::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(255,255,255,.03) 0%,transparent 60%);background-attachment:fixed;pointer-events:none;z-index:-1}
+
+/* Sticky scene sections for storytelling */
+.bhero{position:relative}
+.bhero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 0%,rgba(199,125,58,.04) 50%,transparent 100%);background-attachment:fixed;pointer-events:none}
+
+/* Horizon line decorative element */
+.b-horizon{position:absolute;bottom:30%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(199,125,58,.25),transparent);pointer-events:none}
+
+/* Scroll-snap for scene-by-scene navigation */
+.b-side{scroll-snap-type:y proximity}
+.bhero,.bsec{scroll-snap-align:start}
+
+/* Warm accent color for atmosphere */
+.bhero-tag{color:#C77D3A}
+.bh .logo{color:#C77D3A}
+
+/* Hero cinematic entrance */
+@keyframes bCineReveal{from{opacity:0;transform:translateY(40px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes bCineFade{from{opacity:0}to{opacity:1}}
+.bhero-tag{animation:bCineFade 1.2s ease .3s both}
+.bhero h1{animation:bCineReveal 1.2s cubic-bezier(.22,1,.36,1) .5s both}
+.bhero p{animation:bCineReveal 1s ease .8s both}
+.bhero-btns{animation:bCineFade .8s ease 1.1s both}
+
+/* Chapter-style section reveals */
+@keyframes bChapterIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.bsec .bsh{animation:bChapterIn .8s ease both}
+.bsec .bst{animation:bChapterIn .6s ease .1s both}
+.bquote{animation:bChapterIn .8s ease .2s both}
+
+/* Enhanced section styling for storytelling scenes */
+.bsec{border-top:none;border-bottom:1px solid rgba(199,125,58,.08)}
+.bsec:nth-child(odd){background:linear-gradient(180deg,rgba(199,125,58,.03),transparent)}
+
+/* Quote section - prominent serif styling */
+.bquote blockquote{font-size:1.4rem;border-left:2px solid rgba(199,125,58,.3);padding-left:1.5rem;text-align:left}
+
+/* Footer accent */
+.bfoot .logo{color:#C77D3A}
+.bfoot{border-top:1px solid rgba(199,125,58,.1)}
+
+@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem;min-height:auto}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}.b-depth{display:none}.b-side{scroll-snap-type:none}}
 
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
@@ -359,8 +421,11 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
   </section>
 </div>
 <div class="b-side">
+<div class="b-depth b-depth-1"></div>
+<div class="b-depth b-depth-2"></div>
+<div class="b-depth b-depth-3"></div>
 <header class="bh"><div class="logo">Journey</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Scroll to discover</p><h1>Once Upon<br>a Scroll.</h1><p>Full-viewport chapters unfolding as you scroll. Each section a new scene. Each scroll a revelation.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Begin</button></div></div></section>
+<section class="bhero"><div class="b-horizon"></div><div class="bhero-inner"><p class="bhero-tag">Scroll to discover</p><h1>Once Upon<br>a Scroll.</h1><p>Full-viewport chapters unfolding as you scroll. Each section a new scene. Each scroll a revelation.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Begin</button></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Chapter One</h3><p>The story begins. A full-viewport moment setting the scene and drawing you in.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Chapter Two</h3><p>The journey deepens. Layered backgrounds create parallax depth.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Chapter Three</h3><p>The revelation. Large evocative headlines on atmospheric backdrops.</p></div></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">I</div><div class="bmet-l">Chapter</div></div><div><div class="bmet-v">II</div><div class="bmet-l">Chapter</div></div><div><div class="bmet-v">III</div><div class="bmet-l">Chapter</div></div><div><div class="bmet-v">FIN</div><div class="bmet-l">End</div></div></div></div></section>
 <section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;Every scroll reveals a new scene. Drawing the viewer deeper into the narrative.&rdquo;</blockquote><cite>&mdash; Storytelling Review</cite></div></div></section>

@@ -79,34 +79,39 @@
 body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
 /* B-Side: Stained Glass */
+@keyframes daylight{0%,100%{filter:brightness(1) saturate(1.4)}50%{filter:brightness(1.15) saturate(1.5)}}
+@keyframes glowPulse{0%,100%{box-shadow:inset 0 0 15px rgba(0,0,0,.3),0 0 8px rgba(218,165,32,.15)}50%{box-shadow:inset 0 0 20px rgba(0,0,0,.2),0 0 18px rgba(218,165,32,.3)}}
 .b-side{background:#1A1A1A;color:#F0E8D8;font-family:'Cinzel','Georgia',serif;line-height:1.6;}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
 .bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:2px solid #DAA520;position:sticky;top:0;z-index:100;background:#1A1A1A;}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#DAA520;;;}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#DAA520;}
 .bh nav{display:flex;gap:1.5rem}
 .bh nav a{color:#8B7B60;text-decoration:none;font-size:.85rem;transition:color .2s;}
 .bh nav a:hover{color:#DAA520}
-.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
-.bhero-inner{max-width:640px}
+.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
+.bhero::before{content:"";position:absolute;inset:0;opacity:.12;background:radial-gradient(ellipse at 20% 40%,rgba(30,58,95,.8) 0%,transparent 40%),radial-gradient(ellipse at 70% 30%,rgba(139,34,82,.7) 0%,transparent 35%),radial-gradient(ellipse at 50% 80%,rgba(46,139,87,.6) 0%,transparent 40%),radial-gradient(ellipse at 80% 70%,rgba(218,165,32,.5) 0%,transparent 30%);pointer-events:none}
+.bhero-inner{max-width:640px;position:relative;z-index:1}
 .bhero-tag{font-size:.8rem;color:#DAA520;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
 .bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Cinzel',serif}
 .bhero p{font-size:1.05rem;color:#8B7B60;max-width:480px;margin:0 auto 2rem;line-height:1.7}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-.bbtn{font-family:'Cinzel','Georgia',serif;padding:.8rem 2rem;border-radius:2px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
+.bbtn{font-family:'Cinzel','Georgia',serif;padding:.8rem 2rem;border-radius:2px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;}
 .bbtn-p{background:#DAA520;color:#1A1A1A;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
 .bbtn-s{background:transparent;color:#F0E8D8;border:1.5px solid #8B7B60;}.bbtn-s:hover{border-color:#DAA520;color:#DAA520}
 .bsec{padding:5rem 2rem;border-top:2px solid #DAA520}
 .bcon{max-width:1100px;margin:0 auto}
 .bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#DAA520;text-align:center;margin-bottom:.5rem;font-weight:600}
 .bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Cinzel',serif}
-.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:rgba(0,0,0,.02);border:3px solid #1A1A1A;border-radius:2px;padding:2rem;box-shadow:inset 0 0 15px rgba(0,0,0,.3);transition:transform .2s;}
+.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:6px;filter:saturate(1.4) brightness(1.1);animation:daylight 8s ease-in-out infinite}
+.bcard{background:rgba(0,0,0,.02);border:3px solid #1A1A22;border-radius:2px;padding:2rem;box-shadow:inset 0 0 15px rgba(0,0,0,.3);transition:transform .2s;animation:glowPulse 6s ease-in-out infinite}
+.bcard:nth-child(2){animation-delay:-2s}
+.bcard:nth-child(3){animation-delay:-4s}
 .bcard:hover{transform:translateY(-3px)}
 .bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
 .bcard p{font-size:.88rem;color:#8B7B60;line-height:1.6}
 .bcard-icon{width:40px;height:40px;border-radius:2px;background:rgba(218,165,32,.12);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#DAA520}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#DAA520;line-height:1;font-family:inherit;}
+.bmet-v{font-size:2.2rem;font-weight:800;color:#DAA520;line-height:1;font-family:inherit;clip-path:polygon(50% 0%,100% 40%,100% 100%,0% 100%,0% 40%)}
 .bmet-l{font-size:.78rem;color:#8B7B60;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
 .bquote{max-width:580px;margin:0 auto;text-align:center}
 .bquote blockquote{font-size:1.15rem;line-height:1.7;color:#F0E8D8;margin-bottom:.75rem;font-family:inherit;font-style:italic}
@@ -122,11 +127,22 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bcard:nth-child(3){background:rgba(46,139,87,.5)}
 .bcard{color:#F0E8D8}
 .bcard p{color:rgba(240,232,216,.7)}
-.bcard{position:relative}
-.bcard::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 30%,rgba(255,255,255,.08),transparent 70%);pointer-events:none;border-radius:2px}
-.bmet-v{clip-path:polygon(10% 0,90% 0,100% 50%,90% 100%,10% 100%,0 50%)}
-@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bcard:nth-child(1){background:rgba(30,58,95,.5)} .bcard:nth-child(2){background:rgba(139,34,82,.5)} .bcard:nth-child(3){background:rgba(46,139,87,.5)} .bcard{color:#F0E8D8} .bcard p{color:rgba(240,232,216,.7)}
+.bcard{position:relative;overflow:hidden}
+.bcard::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 30%,rgba(255,255,255,.12),transparent 70%);pointer-events:none;border-radius:2px}
+/* Rose Window radial layout */
+.brose{position:relative;width:320px;height:320px;margin:0 auto 2rem;border-radius:50%;border:4px solid #DAA520;overflow:hidden;box-shadow:0 0 30px rgba(218,165,32,.25),inset 0 0 30px rgba(0,0,0,.4)}
+.brose-petal{position:absolute;top:50%;left:50%;width:50%;height:50%;transform-origin:0 0}
+.brose-petal:nth-child(1){transform:rotate(0deg) skewY(15deg);background:rgba(30,58,95,.6)}
+.brose-petal:nth-child(2){transform:rotate(45deg) skewY(15deg);background:rgba(139,34,82,.6)}
+.brose-petal:nth-child(3){transform:rotate(90deg) skewY(15deg);background:rgba(46,139,87,.6)}
+.brose-petal:nth-child(4){transform:rotate(135deg) skewY(15deg);background:rgba(218,165,32,.6)}
+.brose-petal:nth-child(5){transform:rotate(180deg) skewY(15deg);background:rgba(30,58,95,.5)}
+.brose-petal:nth-child(6){transform:rotate(225deg) skewY(15deg);background:rgba(139,34,82,.5)}
+.brose-petal:nth-child(7){transform:rotate(270deg) skewY(15deg);background:rgba(46,139,87,.5)}
+.brose-petal:nth-child(8){transform:rotate(315deg) skewY(15deg);background:rgba(218,165,32,.5)}
+.brose-center{position:absolute;top:50%;left:50%;width:60px;height:60px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(218,165,32,.8),rgba(218,165,32,.2));border:3px solid #DAA520;z-index:2}
+.brose::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.1),transparent 60%);pointer-events:none}
+@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}.brose{width:240px;height:240px}}
 
 </style>
 </head>
@@ -177,6 +193,7 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 <div class="b-side">
 <header class="bh"><div class="logo">CATHEDRAL</div><nav><a href="#">Nave</a><a href="#">Gallery</a><a href="#">History</a><a href="#">Visit</a></nav></header>
 <section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Light through color</p><h1>Luminous<br>Reverence.</h1><p>Rich jewel tones separated by dark leading, glowing as if sunlight streams through from behind.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Enter</button><button class="bbtn bbtn-s">View Windows</button></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">The Rose Window</p><h2 class="bsh">Radiant Symmetry</h2><div class="brose"><div class="brose-petal"></div><div class="brose-petal"></div><div class="brose-petal"></div><div class="brose-petal"></div><div class="brose-petal"></div><div class="brose-petal"></div><div class="brose-petal"></div><div class="brose-petal"></div><div class="brose-center"></div></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Sapphire</h3><p>Deep blue panels evoking the midnight sky captured in glass. Cool, serene, infinite depth.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Ruby</h3><p>Warm crimson that pulses with inner light. The heart of every cathedral rose window.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Emerald</h3><p>Rich forest green bringing the peace of nature into sacred, luminous spaces.</p></div></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">XII</div><div class="bmet-l">Panels</div></div><div><div class="bmet-v">IV</div><div class="bmet-l">Jewel Tones</div></div><div><div class="bmet-v">I</div><div class="bmet-l">Light Source</div></div><div><div class="bmet-v">&#8734;</div><div class="bmet-l">Beauty</div></div></div></div></section>
 <section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;Standing in this light is like standing in a cathedral. Every color glows from within.&rdquo;</blockquote><cite>&mdash; Sacred Architecture Review</cite></div></div></section>

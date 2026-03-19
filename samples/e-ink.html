@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>E-Ink / Paper - Sample</title>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
@@ -227,53 +228,49 @@
 body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
 /* B-Side: E-Ink / Paper */
-.b-side{background:#FAF8F5;color:#2C2C2C;font-family:'Lora','Georgia',serif;line-height:1.6;}
+.b-side{background:#FAFAFA;color:#111111;font-family:'Lora','Georgia',serif;line-height:1.8;text-align:justify;-webkit-hyphens:auto;hyphens:auto;image-rendering:pixelated}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
-.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid #E5E0D8;position:sticky;top:0;z-index:100;background:#FAF8F5;}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#8B7355;;;}
+/* Stipple/dither texture overlay */
+.b-side::before{content:'';position:fixed;inset:0;background:repeating-conic-gradient(#000 0% 25%,transparent 0% 50%) 0 0/2px 2px;opacity:.03;pointer-events:none;z-index:0}
+.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid #DDD;position:sticky;top:0;z-index:100;background:#FAFAFA;}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#111}
 .bh nav{display:flex;gap:1.5rem}
-.bh nav a{color:#8B8178;text-decoration:none;font-size:.85rem;transition:color .2s;}
-.bh nav a:hover{color:#8B7355}
-.bhero{min-height:60vh;display:flex;align-items:center;;padding:4rem 2rem;}
+.bh nav a{color:#555;text-decoration:none;font-size:.85rem;transition:color .8s steps(3);}
+.bh nav a:hover{color:#111}
+.bhero{min-height:60vh;display:flex;align-items:center;padding:4rem 2rem;position:relative}
 .bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#8B7355;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Lora',Georgia,serif}
-.bhero p{font-size:1.05rem;color:#8B8178;max-width:480px;margin-bottom:2rem;line-height:1.7}
+.bhero-tag{font-size:.8rem;color:#333;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
+.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:700;line-height:1.15;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Lora',Georgia,serif;color:#111;text-align:left}
+.bhero p{font-size:1.05rem;color:#333;max-width:480px;margin-bottom:2rem;line-height:1.8;text-align:left}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;}
-.bbtn{font-family:'Lora','Georgia',serif;padding:.8rem 2rem;border-radius:2px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
-.bbtn-p{background:#8B7355;color:#FAF8F5;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#2C2C2C;border:1.5px solid #8B8178;}.bbtn-s:hover{border-color:#8B7355;color:#8B7355}
-.bsec{padding:5rem 2rem;border-top:1px solid #E5E0D8}
+.bbtn{font-family:'Lora','Georgia',serif;padding:.8rem 2rem;border-radius:0;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .8s steps(3)}
+.bbtn-p{background:#111;color:#FAFAFA;}.bbtn-p:hover{background:#333}
+.bbtn-s{background:transparent;color:#111;border:1.5px solid #555;}.bbtn-s:hover{border-color:#111;color:#111}
+.bsec{padding:3rem 2rem;border-top:1px solid #DDD}
 .bcon{max-width:65ch;margin:0 auto}
-.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#8B7355;margin-bottom:.5rem;font-weight:600}
-.bsh{font-size:1.8rem;font-weight:700;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Lora',Georgia,serif}
+.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#333;margin-bottom:.5rem;font-weight:600;text-align:center}
+.bsh{font-size:1.8rem;font-weight:700;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Lora',Georgia,serif;color:#111;text-align:center}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:#F0EDE8;border:1px solid #E5E0D8;border-radius:2px;padding:2rem;box-shadow:none;transition:transform .2s;}
-.bcard:hover{transform:translateY(-3px)}
-.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
-.bcard p{font-size:.88rem;color:#8B8178;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:2px;background:#E5E0D8;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#8B7355}
+.bcard{background:#F2F2F2;border:1px solid #DDD;border-radius:0;padding:2rem;box-shadow:none;transition:border-color .8s steps(3);filter:grayscale(1) contrast(1.05)}
+.bcard:hover{border-color:#111}
+.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600;color:#111;text-align:left}
+.bcard p{font-size:.88rem;color:#333;line-height:1.8}
+.bcard-icon{width:40px;height:40px;border-radius:0;background:#DDD;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#111;filter:grayscale(1) contrast(1.5)}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#8B7355;line-height:1;font-family:inherit;}
-.bmet-l{font-size:.78rem;color:#8B8178;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bmet-v{font-size:2.2rem;font-weight:700;color:#111;line-height:1;font-family:inherit}
+.bmet-l{font-size:.78rem;color:#555;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
 .bquote{max-width:580px;margin:0 auto;text-align:center}
-.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#2C2C2C;margin-bottom:.75rem;font-family:'Lora',Georgia,serif;font-style:italic}
-.bquote cite{font-size:.85rem;color:#8B8178;font-style:normal}
-.bfoot{padding:2.5rem 2rem;border-top:1px solid #E5E0D8;text-align:center}
-.bfoot .logo{font-weight:700;color:#8B7355;margin-bottom:.75rem;font-size:1.1rem}
+.bquote blockquote{font-size:1.1rem;line-height:1.8;color:#111;margin-bottom:.75rem;font-family:'Lora',Georgia,serif;font-style:italic}
+.bquote cite{font-size:.85rem;color:#555;font-style:normal}
+.bfoot{padding:2.5rem 2rem;border-top:1px solid #DDD;text-align:center}
+.bfoot .logo{font-weight:700;color:#111;margin-bottom:.75rem;font-size:1.1rem}
 .bfoot nav{margin-bottom:.75rem}
-.bfoot nav a{color:#8B8178;text-decoration:none;font-size:.8rem;margin:0 .75rem}
-.bfoot nav a:hover{color:#8B7355}
-.bfoot small{font-size:.75rem;color:#8B8178}
-.bhero p{line-height:1.8}
-.bcard p{line-height:1.8}
-.bquote blockquote{line-height:1.8;font-size:1.1rem}
-.bsec{padding:3rem 2rem}
+.bfoot nav a{color:#555;text-decoration:none;font-size:.8rem;margin:0 .75rem;transition:color .8s steps(3)}
+.bfoot nav a:hover{color:#111}
+.bfoot small{font-size:.75rem;color:#555}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bhero p{line-height:1.8} .bcard p{line-height:1.8} .bquote blockquote{line-height:1.8;font-size:1.1rem}
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>

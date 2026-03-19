@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HUD / Sci-Fi FUI</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root { --bg: #000D1A; --cyan: #00F0FF; --teal: #003844; --red: #FF3333; --dim: #00F0FF33; }
@@ -107,10 +107,8 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bcard::after{content:"";position:absolute;bottom:-1px;right:-1px;width:8px;height:8px;border-bottom:2px solid #00F0FF;border-right:2px solid #00F0FF}
 .bhero h1{text-shadow:0 0 20px rgba(0,240,255,0.5),0 0 40px rgba(0,240,255,0.2)} .bsh{text-shadow:0 0 12px rgba(0,240,255,0.3)}.bbtn-p{box-shadow:0 0 15px rgba(0,240,255,0.3)} .bbtn-p:hover{box-shadow:0 0 25px rgba(0,240,255,0.45)}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bhero h1{text-shadow:0 0 15px rgba(0,240,255,.4)} .bcard{position:relative} .bcard::before{content:"";position:absolute;top:-1px;left:-1px;width:8px;height:8px;border-top:2px solid #00F0FF;border-left:2px solid #00F0FF} .bcard::after{content:"";position:absolute;bottom:-1px;right:-1px;width:8px;height:8px;border-bottom:2px solid #00F0FF;border-right:2px solid #00F0FF}
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>

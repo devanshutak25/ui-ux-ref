@@ -286,11 +286,12 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bbtn-s{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.8)}
 .bbtn-s:hover{border-color:rgba(255,255,255,.4);color:#fff}
 .bquote{padding:2rem;background:rgba(255,255,255,.06);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-radius:20px}
-.b-side::before{content:"";position:fixed;top:-20%;left:-10%;width:350px;height:350px;background:radial-gradient(circle,rgba(102,126,234,.3),transparent 70%);border-radius:50%;pointer-events:none;z-index:0;filter:blur(40px)}
-.b-side::after{content:"";position:fixed;bottom:-10%;right:-10%;width:300px;height:300px;background:radial-gradient(circle,rgba(240,147,251,.25),transparent 70%);border-radius:50%;pointer-events:none;z-index:0;filter:blur(40px)}
+@keyframes drift{0%,100%{transform:translate(0,0)}25%{transform:translate(20px,-15px)}50%{transform:translate(-10px,20px)}75%{transform:translate(-20px,-10px)}}
+.b-side::before{content:"";position:fixed;top:-20%;left:-10%;width:350px;height:350px;background:radial-gradient(circle,rgba(102,126,234,.3),transparent 70%);border-radius:50%;pointer-events:none;z-index:0;filter:blur(40px);animation:drift 10s ease-in-out infinite}
+.b-side::after{content:"";position:fixed;bottom:-10%;right:-10%;width:300px;height:300px;background:radial-gradient(circle,rgba(240,147,251,.25),transparent 70%);border-radius:50%;pointer-events:none;z-index:0;filter:blur(40px);animation:drift 8s ease-in-out infinite reverse}
 .bh,.bhero,.bsec,.bfoot{position:relative;z-index:1}
+.bhero p,.bcard p,.bh nav a,.bfoot nav a,.bfoot small,.bmet-l,.bquote cite{text-shadow:0 0 8px rgba(0,0,0,.2)}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bbtn-p{background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25)} .bbtn-s{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.8)} .bbtn-s:hover{border-color:rgba(255,255,255,.4);color:#fff} .bquote{padding:2rem;background:rgba(255,255,255,.06);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-radius:20px}
 
 </style>
 </head>

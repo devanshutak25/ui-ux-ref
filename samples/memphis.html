@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Memphis Design</title>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Rubik', sans-serif; background: #FAFAFA; color: #222; overflow-x: hidden; }
@@ -159,10 +160,8 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bhero::after{content:"\25CF";position:absolute;bottom:20%;left:8%;font-size:4rem;color:rgba(108,92,231,.1);pointer-events:none}
 .bhero{position:relative;overflow:hidden}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bcard:nth-child(2){border-color:#FFD93D;box-shadow:6px 6px 0 #4ECDC4} .bcard:nth-child(2) .bcard-icon{background:#6C5CE7;color:#fff} .bcard:nth-child(3){border-color:#FF6B6B;box-shadow:6px 6px 0 #6C5CE7} .bcard:nth-child(3) .bcard-icon{background:#4ECDC4;color:#2D3436} .bbtn{border:3px solid #FFD93D} .bbtn:hover{transform:translate(3px,3px);box-shadow:none}
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>

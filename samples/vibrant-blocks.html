@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vibrant & Block-based - Sample</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family: 'Space Grotesk', sans-serif; background: #0D0D0D; color: #FFFFFF; line-height: 1.5; }
@@ -269,10 +269,8 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bcard:nth-child(3) p{color:rgba(0,0,0,.6)}
 .bhero{background:#FF6B35}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bcard:nth-child(2){background:#00A878} .bcard:nth-child(3){background:#FCBF49;color:#1A1A2E} .bcard:nth-child(3) .bcard-icon{color:#1A1A2E;background:rgba(0,0,0,.1)} .bcard p{color:rgba(255,255,255,.8)} .bcard:nth-child(3) p{color:rgba(0,0,0,.6)} .bhero{background:#FF6B35}
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>

@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Financial Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root { --bg: #0C0F1D; --surface: #141828; --border: #1E2640; --text: #E2E8F0; --dim: #64748B; --green: #22C55E; --red: #EF4444; --blue: #3B82F6; }
@@ -54,53 +55,56 @@
 body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
 /* B-Side: Financial Dashboard */
-.b-side{background:#0C0F1D;color:#F8FAFC;font-family:'Inter',system-ui,sans-serif;line-height:1.6;}
+@keyframes b-blink-dot{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes b-tick-flash{0%{background:rgba(0,200,83,.15)}100%{background:transparent}}
+.b-side{background:#0C0F1D;color:#F8FAFC;font-family:'Inter',system-ui,sans-serif;line-height:1.6;font-variant-numeric:tabular-nums}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
-.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid rgba(255,255,255,.05);position:sticky;top:0;z-index:100;background:#0C0F1D;}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#22C55E;;;}
+.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid rgba(255,255,255,.05);position:sticky;top:0;z-index:100;background:#0C0F1D}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#00C853}
+.bh .b-market-dot{width:7px;height:7px;background:#00C853;border-radius:50%;display:inline-block;margin-left:8px;animation:b-blink-dot 2s ease-in-out infinite}
 .bh nav{display:flex;gap:1.5rem}
-.bh nav a{color:#64748B;text-decoration:none;font-size:.85rem;transition:color .2s;}
-.bh nav a:hover{color:#22C55E}
-.bhero{min-height:50vh;display:flex;align-items:center;;padding:4rem 2rem;}
+.bh nav a{color:#64748B;text-decoration:none;font-size:.85rem;transition:color .2s}
+.bh nav a:hover{color:#00C853}
+.bhero{min-height:50vh;display:flex;align-items:center;padding:4rem 2rem}
 .bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#22C55E;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
+.bhero-tag{font-size:.8rem;color:#00C853;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
 .bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Inter',system-ui,sans-serif}
 .bhero p{font-size:1.05rem;color:#64748B;max-width:480px;margin-bottom:2rem;line-height:1.7}
-.bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;}
-.bbtn{font-family:'Inter',system-ui,sans-serif;padding:.8rem 2rem;border-radius:6px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
-.bbtn-p{background:#22C55E;color:#0C0F1D;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#F8FAFC;border:1.5px solid #64748B;}.bbtn-s:hover{border-color:#22C55E;color:#22C55E}
+.bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap}
+.bbtn{font-family:'Inter',system-ui,sans-serif;padding:.8rem 2rem;border-radius:6px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.bbtn-p{background:#00C853;color:#0C0F1D}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
+.bbtn-s{background:transparent;color:#F8FAFC;border:1.5px solid #64748B}.bbtn-s:hover{border-color:#00C853;color:#00C853}
 .bsec{padding:5rem 2rem;border-top:1px solid rgba(255,255,255,.04)}
 .bcon{max-width:1100px;margin:0 auto}
-.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#22C55E;margin-bottom:.5rem;font-weight:600}
+.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#00C853;margin-bottom:.5rem;font-weight:600}
 .bsh{font-size:1.8rem;font-weight:700;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Inter',system-ui,sans-serif}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:#141828;border:1px solid rgba(255,255,255,.05);border-radius:6px;padding:2rem;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:transform .2s;}
+.bcard{background:#141828;border:1px solid rgba(255,255,255,.05);border-radius:6px;padding:2rem;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:transform .2s}
 .bcard:hover{transform:translateY(-3px)}
 .bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
 .bcard p{font-size:.88rem;color:#64748B;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:6px;background:rgba(34,197,94,.08);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#22C55E}
+.bcard-icon{width:40px;height:40px;border-radius:6px;background:rgba(0,200,83,.08);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#00C853}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#22C55E;line-height:1;font-family:'JetBrains Mono',monospace;}
+.bmet-v{font-size:2.2rem;font-weight:800;color:#00C853;line-height:1;font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums}
 .bmet-l{font-size:.78rem;color:#64748B;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
 .bquote{max-width:580px;margin:0 auto;text-align:center}
 .bquote blockquote{font-size:1.15rem;line-height:1.7;color:#F8FAFC;margin-bottom:.75rem;font-family:inherit;font-style:italic}
 .bquote cite{font-size:.85rem;color:#64748B;font-style:normal}
 .bfoot{padding:2.5rem 2rem;border-top:1px solid rgba(255,255,255,.04);text-align:center}
-.bfoot .logo{font-weight:700;color:#22C55E;margin-bottom:.75rem;font-size:1.1rem}
+.bfoot .logo{font-weight:700;color:#00C853;margin-bottom:.75rem;font-size:1.1rem}
 .bfoot nav{margin-bottom:.75rem}
 .bfoot nav a{color:#64748B;text-decoration:none;font-size:.8rem;margin:0 .75rem}
-.bfoot nav a:hover{color:#22C55E}
+.bfoot nav a:hover{color:#00C853}
 .bfoot small{font-size:.75rem;color:#64748B}
-.bcard{border-left:3px solid #22C55E}
-.bcard:nth-child(2){border-left-color:#EF4444}
+.bcard{border-left:3px solid #00C853}
+.bcard:nth-child(2){border-left-color:#FF1744}
+.bcard:nth-child(2) .bcard-icon{background:rgba(255,23,68,.08);color:#FF1744}
 .bcard:nth-child(3){border-left-color:#3B82F6}
-.bmet-v:nth-child(1){color:#22C55E}
+.bcard:nth-child(3) .bcard-icon{background:rgba(59,130,246,.08);color:#3B82F6}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:50vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
@@ -152,7 +156,7 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
   <footer>ApexTrade · Data delayed 15 min · Not financial advice</footer>
 </div>
 <div class="b-side">
-<header class="bh"><div class="logo">TradeSynth</div><nav><a href="#">Portfolio</a><a href="#">Markets</a><a href="#">Analysis</a><a href="#">Settings</a></nav></header>
+<header class="bh"><div class="logo">TradeSynth<span class="b-market-dot"></span></div><nav><a href="#">Portfolio</a><a href="#">Markets</a><a href="#">Analysis</a><a href="#">Settings</a></nav></header>
 <section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Markets never sleep</p><h1>Trade<br>Smarter.</h1><p>Green for gains. Red for losses. Bloomberg meets modern dark UI.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Start Trading</button><button class="bbtn bbtn-s">Market Data</button></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Live Ticker</h3><p>Scrolling price data with real-time updates. Green up, red down.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Candlestick</h3><p>Open-high-low-close patterns in precise chart elements.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Portfolio View</h3><p>At-a-glance asset allocation with performance and risk.</p></div></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">+12.4%</div><div class="bmet-l">YTD Return</div></div><div><div class="bmet-v">$2.4M</div><div class="bmet-l">AUM</div></div><div><div class="bmet-v">0.3ms</div><div class="bmet-l">Execution</div></div><div><div class="bmet-v">24/7</div><div class="bmet-l">Markets</div></div></div></div></section>

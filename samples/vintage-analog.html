@@ -109,52 +109,55 @@
 body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
 /* B-Side: Vintage Analog / Retro Film */
-.b-side{background:#F5E6D3;color:#2C1810;font-family:'Playfair Display','Georgia',serif;line-height:1.6;background:radial-gradient(ellipse at center,#F5E6D3,#E8D5C0)}
+.b-side{background:#F5E6D3;color:#2C1810;font-family:'Playfair Display','Georgia',serif;line-height:1.6;background:radial-gradient(ellipse at center,#F5E6D3,#E8D5C0);position:relative;overflow:hidden}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
+/* Film grain overlay */
+.b-side>.b-grain{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:0.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:150px 150px}
+/* Light leak effect */
+.b-side>.b-leak{position:fixed;top:0;right:-10%;width:50%;height:100%;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 70% 30%,rgba(255,180,100,0.15) 0%,rgba(255,120,80,0.06) 40%,transparent 70%)}
+/* Vignette */
+.b-side::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:2;background:radial-gradient(ellipse at center,transparent 50%,rgba(44,24,16,.25) 100%)}
 .bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid #D4C4A8;position:sticky;top:0;z-index:100;background:#F5E6D3;}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#8B6914;;;}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#6B5010}
 .bh nav{display:flex;gap:1.5rem}
-.bh nav a{color:#8B6914;text-decoration:none;font-size:.85rem;transition:color .2s;}
-.bh nav a:hover{color:#8B6914}
+.bh nav a{color:#6B5010;text-decoration:none;font-size:.85rem;transition:color .2s;}
+.bh nav a:hover{color:#4A3F35}
 .bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
 .bhero-inner{max-width:640px}
 .bhero-tag{font-size:.8rem;color:#8B6914;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
 .bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Playfair Display',serif}
-.bhero p{font-size:1.05rem;color:#8B6914;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.bhero p{font-size:1.05rem;color:#6B5010;max-width:480px;margin:0 auto 2rem;line-height:1.7}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-.bbtn{font-family:'Playfair Display','Georgia',serif;padding:.8rem 2rem;border-radius:4px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
+.bbtn{font-family:'Playfair Display','Georgia',serif;padding:.8rem 2rem;border-radius:4px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;}
 .bbtn-p{background:#8B6914;color:#F5E6D3;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#2C1810;border:1.5px solid #8B6914;}.bbtn-s:hover{border-color:#8B6914;color:#8B6914}
+.bbtn-s{background:transparent;color:#2C1810;border:1.5px solid #8B6914;}.bbtn-s:hover{border-color:#6B5010;color:#6B5010}
 .bsec{padding:5rem 2rem;border-top:1px solid #D4C4A8}
 .bcon{max-width:1100px;margin:0 auto}
 .bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#8B6914;text-align:center;margin-bottom:.5rem;font-weight:600}
 .bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Playfair Display',serif}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:#EDD8C0;border:1px solid #D4C4A8;border-radius:4px;padding:2rem;box-shadow:none;transition:transform .2s;}
+.bcard{background:#EDD8C0;border:1px solid #D4C4A8;border-radius:4px;padding:2rem;box-shadow:0 2px 12px rgba(74,63,53,0.08);transition:transform .2s;filter:sepia(5%)}
 .bcard:hover{transform:translateY(-3px)}
 .bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
-.bcard p{font-size:.88rem;color:#8B6914;line-height:1.6}
+.bcard p{font-size:.88rem;color:#6B5010;line-height:1.6}
 .bcard-icon{width:40px;height:40px;border-radius:4px;background:#D4C4A8;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#8B6914}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
 .bmet-v{font-size:2.2rem;font-weight:800;color:#8B6914;line-height:1;font-family:inherit;}
-.bmet-l{font-size:.78rem;color:#8B6914;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bmet-l{font-size:.78rem;color:#6B5010;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
 .bquote{max-width:580px;margin:0 auto;text-align:center}
 .bquote blockquote{font-size:1.15rem;line-height:1.7;color:#2C1810;margin-bottom:.75rem;font-family:'Playfair Display',Georgia,serif;font-style:italic}
-.bquote cite{font-size:.85rem;color:#8B6914;font-style:normal}
+.bquote cite{font-size:.85rem;color:#6B5010;font-style:normal}
 .bfoot{padding:2.5rem 2rem;border-top:1px solid #D4C4A8;text-align:center}
-.bfoot .logo{font-weight:700;color:#8B6914;margin-bottom:.75rem;font-size:1.1rem}
+.bfoot .logo{font-weight:700;color:#6B5010;margin-bottom:.75rem;font-size:1.1rem}
 .bfoot nav{margin-bottom:.75rem}
-.bfoot nav a{color:#8B6914;text-decoration:none;font-size:.8rem;margin:0 .75rem}
-.bfoot nav a:hover{color:#8B6914}
-.bfoot small{font-size:.75rem;color:#8B6914}
-.b-side::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at center,transparent 60%,rgba(44,24,16,.15) 100%)}
-.bh,.bhero,.bsec,.bfoot{position:relative;z-index:1}
-.bquote blockquote{font-style:italic}
+.bfoot nav a{color:#6B5010;text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a:hover{color:#4A3F35}
+.bfoot small{font-size:.75rem;color:#6B5010}
+.bh,.bhero,.bsec,.bfoot{position:relative;z-index:3}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
@@ -196,6 +199,8 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
   </section>
 </div>
 <div class="b-side">
+<div class="b-grain"></div>
+<div class="b-leak"></div>
 <header class="bh"><div class="logo">Heirloom</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
 <section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Weathered with grace</p><h1>Time<br>Worn.</h1><p>Warm sepia tones and sun-faded paper. A design discovered in a beautiful antique trunk.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Discover</button><button class="bbtn bbtn-s">Our Story</button></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Sepia Warmth</h3><p>Golden amber tones evoking aged photographs and late afternoon sunlight.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Aged Paper</h3><p>Creamy parchment with the gentle yellowing of decades passed.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Vignette Edge</h3><p>Darkened corners drawing the eye inward, just like an old photograph.</p></div></div></div></section>

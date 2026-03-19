@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Split-Flap / Departure Board</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -309,50 +310,54 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .b-side{background:#0D0D0D;color:#F0E68C;font-family:'Share Tech Mono','Courier New',monospace;line-height:1.6;}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
 .bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid #333333;position:sticky;top:0;z-index:100;background:#0D0D0D;}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#F0E68C;;;}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#F0E68C;letter-spacing:3px;text-transform:uppercase}
 .bh nav{display:flex;gap:1.5rem}
 .bh nav a{color:#666666;text-decoration:none;font-size:.85rem;transition:color .2s;}
 .bh nav a:hover{color:#F0E68C}
 .bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
 .bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#F0E68C;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Share Tech Mono','Courier New',monospace}
-.bhero p{font-size:1.05rem;color:#666666;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.bhero-tag{font-size:.8rem;color:#F0E68C;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600;display:inline-block;background:#222;padding:4px 12px;border-radius:3px;position:relative}
+.bhero-tag::after{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(0,0,0,.5)}
+.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:.1em;font-family:'Share Tech Mono','Courier New',monospace;text-transform:uppercase}
+/* Flap character treatment on hero heading */
+.bhero h1 span.flap-char{display:inline-block;background:#222;padding:2px 6px;margin:2px 1px;border-radius:3px;position:relative;box-shadow:0 1px 2px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.05)}
+.bhero h1 span.flap-char::after{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(0,0,0,.5)}
+.bhero p{font-size:1.05rem;color:rgba(255,255,255,.55);max-width:480px;margin:0 auto 2rem;line-height:1.7}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-.bbtn{font-family:'Share Tech Mono','Courier New',monospace;padding:.8rem 2rem;border-radius:2px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
+.bbtn{font-family:'Share Tech Mono','Courier New',monospace;padding:.8rem 2rem;border-radius:2px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-transform:uppercase;letter-spacing:2px}
 .bbtn-p{background:#F0E68C;color:#0D0D0D;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
 .bbtn-s{background:transparent;color:#F0E68C;border:1.5px solid #666666;}.bbtn-s:hover{border-color:#F0E68C;color:#F0E68C}
 .bsec{padding:5rem 2rem;border-top:1px solid #333333}
 .bcon{max-width:1100px;margin:0 auto}
 .bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#F0E68C;text-align:center;margin-bottom:.5rem;font-weight:600}
-.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Share Tech Mono','Courier New',monospace}
+.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:.05em;font-family:'Share Tech Mono','Courier New',monospace;text-transform:uppercase}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:#1A1A1A;border:1px solid #333333;border-radius:2px;padding:2rem;box-shadow:none;transition:transform .2s;}
+.bcard{background:#1A1A1A;border:1px solid #333333;border-radius:2px;padding:2rem;box-shadow:none;transition:transform .2s;position:relative}
+.bcard::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(51,51,51,.8)}
 .bcard:hover{transform:translateY(-3px)}
-.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
-.bcard p{font-size:.88rem;color:#666666;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:2px;background:rgba(240,230,140,.06);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#F0E68C}
+.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.bcard p{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.6;letter-spacing:1px;text-transform:uppercase}
+.bcard-icon{width:40px;height:40px;border-radius:2px;background:#222;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#F0E68C;position:relative;box-shadow:0 1px 2px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.05)}
+.bcard-icon::after{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(0,0,0,.5)}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#F0E68C;line-height:1;font-family:inherit;}
-.bmet-l{font-size:.78rem;color:#666666;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+/* Metric values styled as individual flap panels */
+.bmet-v{font-size:2.2rem;font-weight:800;color:#F0E68C;line-height:1;font-family:'Share Tech Mono',monospace;letter-spacing:4px;background:#222;display:inline-block;padding:6px 12px;border-radius:3px;position:relative;box-shadow:0 1px 2px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.05)}
+.bmet-v::after{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(0,0,0,.5)}
+@keyframes flipChar{0%,80%{opacity:1}85%{opacity:.6;transform:scaleY(.98)}90%{opacity:.4}95%{opacity:.7;transform:scaleY(1)}100%{opacity:1}}
+.bmet-v{animation:flipChar 3s step-end infinite}
+.bmet-l{font-size:.78rem;color:rgba(255,255,255,.55);margin-top:.5rem;text-transform:uppercase;letter-spacing:2px}
 .bquote{max-width:580px;margin:0 auto;text-align:center}
 .bquote blockquote{font-size:1.15rem;line-height:1.7;color:#F0E68C;margin-bottom:.75rem;font-family:inherit;font-style:normal}
-.bquote cite{font-size:.85rem;color:#666666;font-style:normal}
+.bquote cite{font-size:.85rem;color:rgba(255,255,255,.55);font-style:normal}
 .bfoot{padding:2.5rem 2rem;border-top:1px solid #333333;text-align:center}
-.bfoot .logo{font-weight:700;color:#F0E68C;margin-bottom:.75rem;font-size:1.1rem}
+.bfoot .logo{font-weight:700;color:#F0E68C;margin-bottom:.75rem;font-size:1.1rem;letter-spacing:3px;text-transform:uppercase}
 .bfoot nav{margin-bottom:.75rem}
-.bfoot nav a{color:#666666;text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#F0E68C}
-.bfoot small{font-size:.75rem;color:#666666}
-.bcard{position:relative}
-.bcard::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#333}
-.bmet-v{font-family:"Share Tech Mono",monospace;letter-spacing:4px}
-@keyframes flipChar{0%,90%{opacity:1}95%{opacity:.5}100%{opacity:1}} .bmet-v{animation:flipChar 3s step-end infinite}
+.bfoot small{font-size:.75rem;color:rgba(255,255,255,.55)}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bcard{position:relative} .bcard::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#333}
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
@@ -438,7 +443,7 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 </div>
 <div class="b-side">
 <header class="bh"><div class="logo">DEPARTURES</div><nav><a href="#">Arrivals</a><a href="#">Departures</a><a href="#">Gates</a><a href="#">Status</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">NOW BOARDING</p><h1>FLIGHT<br>STATUS.</h1><p>Vintage Solari departure boards. Amber characters on dark panels. The clatter of flipping letters.</p><div class="bhero-btns"><button class="bbtn bbtn-p">CHECK</button><button class="bbtn bbtn-s">SCHEDULE</button></div></div></section>
+<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">NOW BOARDING</p><h1><span class="flap-char">F</span><span class="flap-char">L</span><span class="flap-char">I</span><span class="flap-char">G</span><span class="flap-char">H</span><span class="flap-char">T</span><br><span class="flap-char">S</span><span class="flap-char">T</span><span class="flap-char">A</span><span class="flap-char">T</span><span class="flap-char">U</span><span class="flap-char">S</span><span class="flap-char">.</span></h1><p>Vintage Solari departure boards. Amber characters on dark panels. The clatter of flipping letters.</p><div class="bhero-btns"><button class="bbtn bbtn-p">CHECK</button><button class="bbtn bbtn-s">SCHEDULE</button></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>GATE A1</h3><p>DEPARTURE: 14:30 / STATUS: ON TIME / DESTINATION: FUTURE</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>GATE B3</h3><p>DEPARTURE: 15:45 / STATUS: BOARDING / DESTINATION: INNOVATION</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>GATE C7</h3><p>DEPARTURE: 16:00 / STATUS: DELAYED / DESTINATION: PERFECTION</p></div></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">14:30</div><div class="bmet-l">Departure</div></div><div><div class="bmet-v">B3</div><div class="bmet-l">Gate</div></div><div><div class="bmet-v">ON TIME</div><div class="bmet-l">Status</div></div><div><div class="bmet-v">FWD</div><div class="bmet-l">Dest</div></div></div></div></section>
 <section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;The satisfying clatter of flipping panels. Mechanical precision meets charm.&rdquo;</blockquote><cite>&mdash; Airport Architecture Review</cite></div></div></section>

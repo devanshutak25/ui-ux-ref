@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wireframe Mesh</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
@@ -176,11 +177,34 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bcard{background:transparent}
 .bcard:hover{box-shadow:0 0 12px rgba(0,240,255,.08)}
 .bhero h1{text-shadow:0 0 20px rgba(0,240,255,0.4),0 0 40px rgba(0,240,255,0.2)} .bsh{text-shadow:0 0 12px rgba(0,240,255,0.3)}
-@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
+/* Wireframe sphere in hero */
+.wire-sphere{position:absolute;width:220px;height:220px;right:8%;top:50%;transform:translateY(-50%);opacity:.45;animation:wire-rotate 20s linear infinite}
+.wire-sphere .ring{position:absolute;inset:0;border:1px solid #00F0FF;border-radius:50%}
+.wire-sphere .ring:nth-child(1){transform:rotateY(0deg)}
+.wire-sphere .ring:nth-child(2){transform:rotateY(30deg)}
+.wire-sphere .ring:nth-child(3){transform:rotateY(60deg)}
+.wire-sphere .ring:nth-child(4){transform:rotateY(90deg)}
+.wire-sphere .ring:nth-child(5){transform:rotateX(90deg)}
+.wire-sphere .ring:nth-child(6){transform:rotateX(90deg) rotateY(45deg)}
+.wire-sphere .ring:nth-child(7){transform:rotateX(90deg) rotateY(90deg)}
+.wire-sphere .ring:nth-child(8){transform:rotateX(90deg) rotateY(135deg)}
+.wire-sphere .ring:nth-child(9){transform:rotateZ(45deg)}
+.wire-sphere .ring:nth-child(10){transform:rotateZ(135deg)}
+.bhero{position:relative;overflow:hidden}
+@keyframes wire-rotate{from{transform:translateY(-50%) rotateY(0deg) rotateX(0deg)}to{transform:translateY(-50%) rotateY(360deg) rotateX(15deg)}}
+.wire-sphere{transform-style:preserve-3d;perspective:600px}
+/* Connection lines between cards */
+.bgrid{position:relative}
+.bgrid::before{content:"";position:absolute;top:50%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,240,255,.15) 20%,rgba(0,240,255,.15) 80%,transparent);z-index:0}
+.bgrid::after{content:"";position:absolute;top:0;left:50%;width:1px;height:100%;background:linear-gradient(180deg,transparent,rgba(0,240,255,.1) 20%,rgba(0,240,255,.1) 80%,transparent);z-index:0}
+.bcard{position:relative;z-index:1}
+/* Vertex dots on card corners */
+.bcard::before{content:"";position:absolute;top:-3px;left:-3px;width:6px;height:6px;background:#00F0FF;border-radius:50%;box-shadow:0 0 6px #00F0FF}
+.bcard::after{content:"";position:absolute;bottom:-3px;right:-3px;width:6px;height:6px;background:#00F0FF;border-radius:50%;box-shadow:0 0 6px #00F0FF}
+@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}.wire-sphere{width:140px;height:140px;right:5%;opacity:.3}}
 
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
@@ -225,7 +249,7 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 </div>
 <div class="b-side">
 <header class="bh"><div class="logo">MESH-01</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Structure only</p><h1>Pure<br>Wireframe.</h1><p>No fills. Only luminous cyan edge lines tracing structure. Pure geometry in the void.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Render</button><button class="bbtn bbtn-s">Rotate</button></div></div></section>
+<section class="bhero"><div class="wire-sphere"><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div></div><div class="bhero-inner"><p class="bhero-tag">Structure only</p><h1>Pure<br>Wireframe.</h1><p>No fills. Only luminous cyan edge lines tracing structure. Pure geometry in the void.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Render</button><button class="bbtn bbtn-s">Rotate</button></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Edge Lines</h3><p>Glowing outlines tracing every structural element. No surface, only skeleton.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Grid Space</h3><p>A visible grid receding into infinite digital space. The foundation of form.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Transparency</h3><p>Every surface is see-through. Layers upon layers of visible, intersecting structure.</p></div></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">0</div><div class="bmet-l">Fills</div></div><div><div class="bmet-v">1px</div><div class="bmet-l">Stroke</div></div><div><div class="bmet-v">20px</div><div class="bmet-l">Grid</div></div><div><div class="bmet-v">&#8734;</div><div class="bmet-l">Depth</div></div></div></div></section>
 <section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;Like peering into a CAD viewport. Pure geometry, hauntingly beautiful.&rdquo;</blockquote><cite>&mdash; 3D World Magazine</cite></div></div></section>

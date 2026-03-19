@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Origami / Paper Fold</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;500;700&family=Josefin+Sans:wght@300;500;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root { --paper: #F5F0E8; --fold: #E8E0D5; --crease: #D4CCBE; --dark: #4A453D; --accent: #C67A4A; }
@@ -46,49 +46,49 @@
 body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
 /* B-Side: Origami / Paper Fold */
-.b-side{background:#F5F0E8;color:#5C4A3A;font-family:'Nunito','Inter',sans-serif;line-height:1.6;}
+.b-side{background:#F5F0E8;color:#5C4A3A;font-family:'Josefin Sans','Inter',sans-serif;line-height:1.6;position:relative}
+.b-side::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cpolygon points='0,0 200,0 100,100' fill='%23E8E0D5'/%3E%3Cpolygon points='200,0 400,0 300,100' fill='%23F5F0E8'/%3E%3Cpolygon points='200,0 300,100 100,100' fill='%23D4CCBE'/%3E%3Cpolygon points='0,0 100,100 0,200' fill='%23F5F0E8'/%3E%3Cpolygon points='400,0 400,200 300,100' fill='%23E8E0D5'/%3E%3Cpolygon points='100,100 200,200 0,200' fill='%23D4CCBE'/%3E%3Cpolygon points='300,100 400,200 200,200' fill='%23E8E0D5'/%3E%3Cpolygon points='100,100 300,100 200,200' fill='%23F5F0E8'/%3E%3Cpolygon points='0,200 200,200 100,300' fill='%23E8E0D5'/%3E%3Cpolygon points='200,200 400,200 300,300' fill='%23D4CCBE'/%3E%3Cpolygon points='200,200 300,300 100,300' fill='%23F5F0E8'/%3E%3Cpolygon points='0,200 100,300 0,400' fill='%23D4CCBE'/%3E%3Cpolygon points='400,200 400,400 300,300' fill='%23F5F0E8'/%3E%3Cpolygon points='100,300 200,400 0,400' fill='%23E8E0D5'/%3E%3Cpolygon points='300,300 400,400 200,400' fill='%23E8E0D5'/%3E%3Cpolygon points='100,300 300,300 200,400' fill='%23D4CCBE'/%3E%3C/svg%3E");background-repeat:repeat;background-size:400px 400px}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
 .bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid #E5DDD0;position:sticky;top:0;z-index:100;background:#F5F0E8;}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#C4956A;;;}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#C4956A;letter-spacing:1px}
 .bh nav{display:flex;gap:1.5rem}
-.bh nav a{color:#8B7B68;text-decoration:none;font-size:.85rem;transition:color .2s;}
+.bh nav a{color:#6B5A48;text-decoration:none;font-size:.85rem;transition:color .2s;}
 .bh nav a:hover{color:#C4956A}
-.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
+.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;z-index:1;clip-path:polygon(0 0,100% 0,100% 92%,85% 96%,70% 90%,50% 95%,30% 90%,15% 96%,0 92%)}
 .bhero-inner{max-width:640px}
 .bhero-tag{font-size:.8rem;color:#C4956A;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Nunito','Inter',sans-serif}
-.bhero p{font-size:1.05rem;color:#8B7B68;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:700;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.02em;font-family:'Josefin Sans',sans-serif}
+.bhero p{font-size:1.05rem;color:#6B5A48;max-width:480px;margin:0 auto 2rem;line-height:1.7}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-.bbtn{font-family:'Nunito','Inter',sans-serif;padding:.8rem 2rem;border-radius:4px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
+.bbtn{font-family:'Josefin Sans','Inter',sans-serif;padding:.8rem 2rem;border-radius:2px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;}
 .bbtn-p{background:#C4956A;color:#fff;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#5C4A3A;border:1.5px solid #8B7B68;}.bbtn-s:hover{border-color:#C4956A;color:#C4956A}
-.bsec{padding:5rem 2rem;border-top:1px solid #E5DDD0}
+.bbtn-s{background:transparent;color:#5C4A3A;border:1.5px solid #6B5A48;}.bbtn-s:hover{border-color:#C4956A;color:#C4956A}
+.bsec{padding:5rem 2rem;border-top:1px solid #E5DDD0;position:relative;z-index:1}
 .bcon{max-width:1100px;margin:0 auto}
 .bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#C4956A;text-align:center;margin-bottom:.5rem;font-weight:600}
-.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Nunito','Inter',sans-serif}
+.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Josefin Sans',sans-serif}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:#FFFFFF;border:none;border-radius:4px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:transform .2s;}
-.bcard:hover{transform:translateY(-3px)}
+.bcard{background:#FFFFFF;border:none;border-radius:2px;padding:2rem;box-shadow:2px 2px 8px rgba(0,0,0,.08);transition:transform .3s ease,box-shadow .3s ease;}
+.bcard:hover{transform:perspective(800px) rotateY(-2deg) translateY(-3px);box-shadow:4px 4px 12px rgba(0,0,0,.1)}
 .bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
-.bcard p{font-size:.88rem;color:#8B7B68;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:4px;background:#EBE4D8;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#C4956A}
+.bcard p{font-size:.88rem;color:#6B5A48;line-height:1.6}
+.bcard-icon{width:40px;height:40px;border-radius:2px;background:#EBE4D8;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#C4956A}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#C4956A;line-height:1;font-family:inherit;}
-.bmet-l{font-size:.78rem;color:#8B7B68;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bmet-v{font-size:2.2rem;font-weight:700;color:#C4956A;line-height:1;font-family:'Josefin Sans',sans-serif;}
+.bmet-l{font-size:.78rem;color:#6B5A48;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
 .bquote{max-width:580px;margin:0 auto;text-align:center}
 .bquote blockquote{font-size:1.15rem;line-height:1.7;color:#5C4A3A;margin-bottom:.75rem;font-family:inherit;font-style:italic}
-.bquote cite{font-size:.85rem;color:#8B7B68;font-style:normal}
-.bfoot{padding:2.5rem 2rem;border-top:1px solid #E5DDD0;text-align:center}
+.bquote cite{font-size:.85rem;color:#6B5A48;font-style:normal}
+.bfoot{padding:2.5rem 2rem;border-top:1px solid #E5DDD0;text-align:center;position:relative;z-index:1}
 .bfoot .logo{font-weight:700;color:#C4956A;margin-bottom:.75rem;font-size:1.1rem}
 .bfoot nav{margin-bottom:.75rem}
-.bfoot nav a{color:#8B7B68;text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a{color:#6B5A48;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#C4956A}
-.bfoot small{font-size:.75rem;color:#8B7B68}
+.bfoot small{font-size:.75rem;color:#6B5A48}
 .bcard{position:relative;overflow:hidden}
 .bcard::after{content:"";position:absolute;top:0;right:0;border-style:solid;border-width:0 24px 24px 0;border-color:transparent #F5F0E8 transparent transparent}
 .bcard::before{content:"";position:absolute;top:0;right:24px;width:0;height:0;border-style:solid;border-width:0 0 24px 1px;border-color:transparent transparent rgba(0,0,0,.05) transparent}
-@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bcard{position:relative;overflow:hidden} .bcard::after{content:"";position:absolute;top:0;right:0;border-style:solid;border-width:0 24px 24px 0;border-color:transparent #F5F0E8 transparent transparent}
+@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem;clip-path:polygon(0 0,100% 0,100% 95%,50% 100%,0 95%)}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 </style>
 </head>

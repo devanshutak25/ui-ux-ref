@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chromatic Aberration</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root { --bg: #0A0A0A; --red: #FF0000; --cyan: #00FFFF; --white: #F0F0F0; --dim: #555; }
@@ -52,20 +52,22 @@
 body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
 /* B-Side: Chromatic Aberration */
+@keyframes aberrationShift{0%,100%{text-shadow:-2px 0 #FF0000,2px 0 #00FFFF}50%{text-shadow:-4px 0 #FF0000,4px 0 #00FFFF,-1px 1px rgba(255,0,0,.4),1px -1px rgba(0,255,255,.4)}}
+@keyframes bGlitch{0%,100%{transform:translate(0)}20%{transform:translate(-1px,1px)}40%{transform:translate(1px,-1px)}60%{transform:translate(-1px,-1px)}80%{transform:translate(1px,1px)}}
 .b-side{background:#0A0A0A;color:#FFFFFF;font-family:'Space Grotesk','Inter',sans-serif;line-height:1.6;}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
 .bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid rgba(255,255,255,.05);position:sticky;top:0;z-index:100;background:#0A0A0A;}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#FFFFFF;;;}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#FFFFFF;text-shadow:-2px 0 #FF0000,2px 0 #00FFFF}
 .bh nav{display:flex;gap:1.5rem}
 .bh nav a{color:#666666;text-decoration:none;font-size:.85rem;transition:color .2s;}
-.bh nav a:hover{color:#FFFFFF}
+.bh nav a:hover{color:#FFFFFF;text-shadow:-1px 0 rgba(255,0,0,.4),1px 0 rgba(0,255,255,.4)}
 .bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
 .bhero-inner{max-width:640px}
 .bhero-tag{font-size:.8rem;color:#FFFFFF;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Space Grotesk','Inter',sans-serif}
+.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Space Grotesk','Inter',sans-serif;position:relative}
 .bhero p{font-size:1.05rem;color:#666666;max-width:480px;margin:0 auto 2rem;line-height:1.7}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-.bbtn{font-family:'Space Grotesk','Inter',sans-serif;padding:.8rem 2rem;border-radius:4px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
+.bbtn{font-family:'Space Grotesk','Inter',sans-serif;padding:.8rem 2rem;border-radius:4px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;}
 .bbtn-p{background:#FFFFFF;color:#0A0A0A;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
 .bbtn-s{background:transparent;color:#FFFFFF;border:1.5px solid #666666;}.bbtn-s:hover{border-color:#FFFFFF;color:#FFFFFF}
 .bsec{padding:5rem 2rem;border-top:1px solid rgba(255,255,255,.05)}
@@ -79,26 +81,28 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bcard p{font-size:.88rem;color:#666666;line-height:1.6}
 .bcard-icon{width:40px;height:40px;border-radius:4px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#FFFFFF}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#FFFFFF;line-height:1;font-family:inherit;}
+.bmet-v{font-size:2.2rem;font-weight:800;color:#FFFFFF;line-height:1;font-family:inherit;text-shadow:-2px 0 rgba(255,0,0,.35),2px 0 rgba(0,255,255,.35)}
 .bmet-l{font-size:.78rem;color:#666666;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
 .bquote{max-width:580px;margin:0 auto;text-align:center}
 .bquote blockquote{font-size:1.15rem;line-height:1.7;color:#FFFFFF;margin-bottom:.75rem;font-family:inherit;font-style:italic}
 .bquote cite{font-size:.85rem;color:#666666;font-style:normal}
 .bfoot{padding:2.5rem 2rem;border-top:1px solid rgba(255,255,255,.05);text-align:center}
-.bfoot .logo{font-weight:700;color:#FFFFFF;margin-bottom:.75rem;font-size:1.1rem}
+.bfoot .logo{font-weight:700;color:#FFFFFF;margin-bottom:.75rem;font-size:1.1rem;text-shadow:-2px 0 #FF0000,2px 0 #00FFFF}
 .bfoot nav{margin-bottom:.75rem}
 .bfoot nav a{color:#666666;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#FFFFFF}
 .bfoot small{font-size:.75rem;color:#666666}
-.bhero h1{text-shadow:-2px 0 #FF0000,2px 0 #00FFFF}
+/* Aberration hero: pseudo-element channel split + glitch animation */
+.bhero h1{text-shadow:-2px 0 #FF0000,2px 0 #00FFFF;animation:aberrationShift 3s ease-in-out infinite alternate,bGlitch 4s infinite}
+.bhero h1.aberration::before,.bhero h1.aberration::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;mix-blend-mode:screen}
+.bhero h1.aberration::before{color:#FF0000;clip-path:inset(0 0 0 0);transform:translate(-2px,1px);opacity:.7;z-index:-1}
+.bhero h1.aberration::after{color:#00FFFF;clip-path:inset(0 0 0 0);transform:translate(2px,-1px);opacity:.7;z-index:-1}
 .bsh{text-shadow:-1px 0 rgba(255,0,0,.4),1px 0 rgba(0,255,255,.4)}
 .bsec:nth-child(even)::before{content:"";display:block;height:1px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0px,rgba(255,255,255,.04) 2px,transparent 2px,transparent 6px);margin-bottom:2rem}
 .bcard:hover{text-shadow:-1px 0 rgba(255,0,0,.15),1px 0 rgba(0,255,255,.15)}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bhero h1{text-shadow:-2px 0 #FF0000,2px 0 #00FFFF} .bsh{text-shadow:-1px 0 rgba(255,0,0,.4),1px 0 rgba(0,255,255,.4)} .bsec{border-image:repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0px,rgba(255,255,255,.03) 1px,transparent 1px,transparent 3px) 1}
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
@@ -143,7 +147,7 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 </div>
 <div class="b-side">
 <header class="bh"><div class="logo">GLITCH</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Distorted reality</p><h1>Signal<br>Corruption.</h1><p>Text splits into red and cyan color channels. An optical flaw turned deliberate design statement.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Decode</button><button class="bbtn bbtn-s">View Source</button></div></div></section>
+<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Distorted reality</p><h1 class="aberration" data-text="Signal Corruption.">Signal<br>Corruption.</h1><p>Text splits into red and cyan color channels. An optical flaw turned deliberate design statement.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Decode</button><button class="bbtn bbtn-s">View Source</button></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>RGB Split</h3><p>Headings split into offset red and cyan shadows. Misaligned, deliberate, striking.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Scan Lines</h3><p>Faint horizontal dividers simulating the refresh lines of a degraded CRT display.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Distortion</h3><p>Visual glitches that turn imperfection into aesthetic. The beauty of broken signals.</p></div></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">-2px</div><div class="bmet-l">Red Offset</div></div><div><div class="bmet-v">+2px</div><div class="bmet-l">Cyan Offset</div></div><div><div class="bmet-v">1px</div><div class="bmet-l">Scan Gap</div></div><div><div class="bmet-v">RGB</div><div class="bmet-l">Split</div></div></div></div></section>
 <section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;The most striking portfolio site I have seen. The glitch effect is mesmerizing.&rdquo;</blockquote><cite>&mdash; Digital Arts Weekly</cite></div></div></section>

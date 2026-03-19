@@ -277,17 +277,17 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid rgba(129,140,248,.06);position:sticky;top:0;z-index:100;background:rgba(26,26,46,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .bh .logo{font-weight:700;font-size:1.15rem;color:#818CF8;;;}
 .bh nav{display:flex;gap:1.5rem}
-.bh nav a{color:#888888;text-decoration:none;font-size:.85rem;transition:color .2s;}
+.bh nav a{color:#A0A0A0;text-decoration:none;font-size:.85rem;transition:color .2s;}
 .bh nav a:hover{color:#818CF8}
 .bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
 .bhero-inner{max-width:640px}
 .bhero-tag{font-size:.8rem;color:#818CF8;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
 .bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Inter',system-ui,sans-serif}
-.bhero p{font-size:1.05rem;color:#888888;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.bhero p{font-size:1.05rem;color:#A0A0A0;max-width:480px;margin:0 auto 2rem;line-height:1.7}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
 .bbtn{font-family:'Inter',system-ui,sans-serif;padding:.8rem 2rem;border-radius:12px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
 .bbtn-p{background:#818CF8;color:#FFFFFF;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#F0F0F0;border:1.5px solid #888888;}.bbtn-s:hover{border-color:#818CF8;color:#818CF8}
+.bbtn-s{background:transparent;color:#F0F0F0;border:1.5px solid #A0A0A0;}.bbtn-s:hover{border-color:#818CF8;color:#818CF8}
 .bsec{padding:5rem 2rem;border-top:1px solid rgba(129,140,248,.06)}
 .bcon{max-width:1100px;margin:0 auto}
 .bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#818CF8;text-align:center;margin-bottom:.5rem;font-weight:600}
@@ -296,26 +296,82 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bcard{background:rgba(129,140,248,.04);border:1px solid rgba(129,140,248,.08);border-radius:12px;padding:2rem;box-shadow:0 4px 20px rgba(129,140,248,.06);transition:transform .2s;}
 .bcard:hover{transform:translateY(-3px)}
 .bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
-.bcard p{font-size:.88rem;color:#888888;line-height:1.6}
+.bcard p{font-size:.88rem;color:#A0A0A0;line-height:1.6}
 .bcard-icon{width:40px;height:40px;border-radius:12px;background:rgba(129,140,248,.08);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#818CF8}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
 .bmet-v{font-size:2.2rem;font-weight:800;color:#818CF8;line-height:1;font-family:inherit;}
-.bmet-l{font-size:.78rem;color:#888888;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bmet-l{font-size:.78rem;color:#A0A0A0;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
 .bquote{max-width:580px;margin:0 auto;text-align:center}
 .bquote blockquote{font-size:1.15rem;line-height:1.7;color:#F0F0F0;margin-bottom:.75rem;font-family:inherit;font-style:italic}
-.bquote cite{font-size:.85rem;color:#888888;font-style:normal}
+.bquote cite{font-size:.85rem;color:#A0A0A0;font-style:normal}
 .bfoot{padding:2.5rem 2rem;border-top:1px solid rgba(129,140,248,.06);text-align:center}
 .bfoot .logo{font-weight:700;color:#818CF8;margin-bottom:.75rem;font-size:1.1rem}
 .bfoot nav{margin-bottom:.75rem}
-.bfoot nav a{color:#888888;text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a{color:#A0A0A0;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#818CF8}
-.bfoot small{font-size:.75rem;color:#888888}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}} .bcard{animation:fadeInUp .6s ease both} .bcard:nth-child(2){animation-delay:.15s} .bcard:nth-child(3){animation-delay:.3s}
+.bfoot small{font-size:.75rem;color:#A0A0A0}
+/* Scroll progress indicator */
+.b-scroll-progress{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,#818CF8,#a78bfa,#818CF8);z-index:9999;transition:width .1s linear;box-shadow:0 0 8px rgba(129,140,248,.5)}
+
+/* Floating background orbs for depth */
+.b-side{position:relative;overflow-x:hidden}
+.b-orb{position:fixed;border-radius:50%;filter:blur(60px);opacity:.08;pointer-events:none;z-index:0}
+.b-orb-1{width:300px;height:300px;background:#818CF8;top:20%;left:-80px;animation:bOrbFloat 12s ease-in-out infinite}
+.b-orb-2{width:200px;height:200px;background:#a78bfa;bottom:15%;right:-60px;animation:bOrbFloat 16s ease-in-out infinite 3s}
+.b-orb-3{width:150px;height:150px;background:#6366F1;top:50%;left:40%;animation:bOrbPulse 8s ease-in-out infinite}
+
+@keyframes bOrbFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.1)}}
+@keyframes bOrbPulse{0%,100%{transform:scale(1);opacity:.06}50%{transform:scale(1.2);opacity:.12}}
+
+/* Scroll-triggered reveal animations using animation-timeline */
+@keyframes bRevealUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bRevealScale{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+@keyframes bRevealLeft{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes bRevealRight{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes bStaggerIn{from{opacity:0;transform:translateY(30px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* Staggered card entrances with scroll-linked timing */
+.bcard{animation:bStaggerIn .7s cubic-bezier(.34,1.56,.64,1) both;opacity:0}
+.bcard:nth-child(1){animation-delay:.1s}
+.bcard:nth-child(2){animation-delay:.25s}
+.bcard:nth-child(3){animation-delay:.4s}
+
+/* Section reveal on scroll */
+.bsec .bcon{animation:bRevealUp .8s ease both}
+.bsec .bsh{animation:bRevealScale .6s ease both;animation-delay:.1s}
+.bsec .bst{animation:bRevealLeft .5s ease both}
+
+/* Metric counters stagger */
+.bmets>div{animation:bStaggerIn .5s ease both}
+.bmets>div:nth-child(1){animation-delay:.1s}
+.bmets>div:nth-child(2){animation-delay:.2s}
+.bmets>div:nth-child(3){animation-delay:.3s}
+.bmets>div:nth-child(4){animation-delay:.4s}
+
+/* Quote reveal */
+.bquote{animation:bRevealUp .8s ease both;animation-delay:.15s}
+
+/* Hero entrance sequence */
+@keyframes bHeroTag{from{opacity:0;letter-spacing:8px}to{opacity:1;letter-spacing:3px}}
+@keyframes bHeroTitle{from{opacity:0;transform:translateY(30px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes bHeroFade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.bhero-tag{animation:bHeroTag .8s cubic-bezier(.34,1.56,.64,1) both}
+.bhero h1{animation:bHeroTitle 1s cubic-bezier(.22,1,.36,1) .2s both}
+.bhero p{animation:bHeroFade .8s ease .4s both}
+.bhero-btns{animation:bHeroFade .8s ease .6s both}
+
+/* Enhanced card hover with spring physics */
 .bbtn-p:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(129,140,248,.2)}
 .bcard{transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
 .bcard:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(129,140,248,.12)}
-@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}} .bcard{animation:fadeInUp .6s ease both} .bcard:nth-child(2){animation-delay:.1s} .bcard:nth-child(3){animation-delay:.2s} .bbtn-p:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(129,140,248,.2)}
+
+/* Continuous subtle breathing on metric values */
+@keyframes bBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.bmet-v{animation:bBreathe 3s ease-in-out infinite}
+
+/* Fix contrast: #888888 -> #A0A0A0 on dark bg for WCAG AA */
+
+@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}.b-orb{display:none}}
 
 </style>
 </head>
@@ -376,6 +432,10 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
   </section>
 </div>
 <div class="b-side">
+<div class="b-scroll-progress" id="bScrollProgress"></div>
+<div class="b-orb b-orb-1"></div>
+<div class="b-orb b-orb-2"></div>
+<div class="b-orb b-orb-3"></div>
 <header class="bh"><div class="logo">Kinesis</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
 <section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Everything moves</p><h1>Alive &<br>Responsive.</h1><p>Smooth transitions. Hover scaling. Staggered load animations. An interface that breathes.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Start Moving</button><button class="bbtn bbtn-s">See Motion</button></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Fluid Motion</h3><p>Every element transitions smoothly. Nothing jumps, nothing snaps. Pure choreography.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Hover Response</h3><p>Cards that lift gently on hover. Buttons that pulse with invitation.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Stagger Cascade</h3><p>Content entering the viewport in a choreographed wave of orchestrated attention.</p></div></div></div></section>
@@ -383,5 +443,16 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 <section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;The most responsive interface I have ever used. Everything feels alive.&rdquo;</blockquote><cite>&mdash; Motion Design Awards</cite></div></div></section>
 <footer class="bfoot"><div class="logo">Kinesis</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 Kinesis. All rights reserved.</small></footer>
 </div>
+<script>
+(function(){
+  var bar=document.getElementById('bScrollProgress');
+  if(!bar)return;
+  window.addEventListener('scroll',function(){
+    if(document.body.classList.contains('show-a')){bar.style.width='0%';return;}
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    bar.style.width=h>0?(window.scrollY/h*100)+'%':'0%';
+  },{passive:true});
+})();
+</script>
 </body>
 </html>

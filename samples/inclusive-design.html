@@ -243,52 +243,54 @@
 body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
 /* B-Side: Inclusive Design */
-.b-side{background:#F8FAFC;color:#0F172A;font-family:'Inter',system-ui,sans-serif;line-height:1.6;}
+.b-side{background:#F8FAFC;color:#0F172A;font-family:'Atkinson Hyperlegible',sans-serif;line-height:1.7;font-size:18px}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
+.b-skip-link{position:absolute;top:-100%;left:1rem;background:#0F172A;color:#FFF;padding:.5rem 1rem;border-radius:0 0 6px 6px;z-index:200;font-weight:700;text-decoration:none;font-size:1rem}
+.b-skip-link:focus{top:0}
 .bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:2px solid #E2E8F0;position:sticky;top:0;z-index:100;background:#FFFFFF;}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#2563EB;;;}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#1e40af}
 .bh nav{display:flex;gap:1.5rem}
-.bh nav a{color:#475569;text-decoration:none;font-size:.85rem;transition:color .2s;}
-.bh nav a:hover{color:#2563EB}
+.bh nav a{color:#475569;text-decoration:none;font-size:.95rem;transition:color .15s;padding:.25rem .5rem;border-radius:4px}
+.bh nav a:hover{color:#1e40af;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+.bh nav a:focus-visible{outline:3px solid #2563EB;outline-offset:2px}
 .bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
 .bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#2563EB;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:inherit}
-.bhero p{font-size:1.05rem;color:#475569;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.bhero-tag{font-size:.85rem;color:#1e40af;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:700}
+.bhero h1{font-size:clamp(2.5rem,6vw,3.5rem);font-weight:700;line-height:1.15;margin-bottom:1.5rem;letter-spacing:-.02em;font-family:inherit}
+.bhero p{font-size:1.1rem;color:#475569;max-width:480px;margin:0 auto 2rem;line-height:1.8}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-.bbtn{font-family:'Inter',system-ui,sans-serif;padding:.8rem 2rem;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
-.bbtn-p{background:#2563EB;color:#FFFFFF;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#0F172A;border:1.5px solid #475569;}.bbtn-s:hover{border-color:#2563EB;color:#2563EB}
+.bbtn{font-family:'Atkinson Hyperlegible',sans-serif;padding:.8rem 2rem;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;border:none;transition:background .15s,border-color .15s;min-height:48px;min-width:160px}
+.bbtn-p{background:#1e40af;color:#FFFFFF;}.bbtn-p:hover{background:#1a3690}
+.bbtn-s{background:transparent;color:#0F172A;border:2px solid #475569;}.bbtn-s:hover{border-color:#1e40af;color:#1e40af}
+.bbtn:focus-visible{outline:3px solid #E8B931;outline-offset:3px}
 .bsec{padding:5rem 2rem;border-top:2px solid #E2E8F0}
-.bcon{max-width:1100px;margin:0 auto}
-.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#2563EB;text-align:center;margin-bottom:.5rem;font-weight:600}
+.bcon{max-width:720px;margin:0 auto}
+.bst{font-size:.8rem;text-transform:uppercase;letter-spacing:3px;color:#1e40af;text-align:center;margin-bottom:.5rem;font-weight:700}
 .bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:inherit}
-.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:#FFFFFF;border:2px solid #E2E8F0;border-radius:8px;padding:2rem;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:transform .2s;}
-.bcard:hover{transform:translateY(-3px)}
-.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
-.bcard p{font-size:.88rem;color:#475569;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:8px;background:#DBEAFE;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#2563EB}
-.bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#2563EB;line-height:1;font-family:inherit;}
-.bmet-l{font-size:.78rem;color:#475569;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
-.bquote{max-width:580px;margin:0 auto;text-align:center}
-.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#0F172A;margin-bottom:.75rem;font-family:inherit;font-style:italic}
-.bquote cite{font-size:.85rem;color:#475569;font-style:normal}
-.bfoot{padding:2.5rem 2rem;border-top:2px solid #E2E8F0;text-align:center}
-.bfoot .logo{font-weight:700;color:#2563EB;margin-bottom:.75rem;font-size:1.1rem}
-.bfoot nav{margin-bottom:.75rem}
-.bfoot nav a{color:#475569;text-decoration:none;font-size:.8rem;margin:0 .75rem}
-.bfoot nav a:hover{color:#2563EB}
-.bfoot small{font-size:.75rem;color:#475569}
-.bbtn{min-height:48px;min-width:160px;font-size:1rem}
-.bbtn:focus-visible{outline:3px solid #2563EB;outline-offset:2px}
-.bh nav a:focus-visible{outline:3px solid #2563EB;outline-offset:2px}
-.bcard{border-width:2px}
+.bgrid{display:grid;grid-template-columns:1fr;gap:1.5rem}
+.bcard{background:#FFFFFF;border:2px solid #E2E8F0;border-radius:8px;padding:2rem;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:border-color .15s;}
+.bcard:hover{border-color:#1e40af}
 .bcard:focus-within{outline:3px solid #2563EB;outline-offset:2px}
+.bcard h3{font-size:1.1rem;margin-bottom:.5rem;font-weight:700}
+.bcard p{font-size:1rem;color:#475569;line-height:1.7}
+.bcard-icon{width:48px;height:48px;border-radius:8px;background:#DBEAFE;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.3rem;color:#1e40af}
+.bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
+.bmet-v{font-size:2.2rem;font-weight:700;color:#1e40af;line-height:1;font-family:inherit;}
+.bmet-l{font-size:.85rem;color:#475569;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bquote{max-width:580px;margin:0 auto;text-align:center}
+.bquote blockquote{font-size:1.15rem;line-height:1.8;color:#0F172A;margin-bottom:.75rem;font-family:inherit;font-style:italic}
+.bquote cite{font-size:.9rem;color:#475569;font-style:normal}
+.bfoot{padding:2.5rem 2rem;border-top:2px solid #E2E8F0;text-align:center}
+.bfoot .logo{font-weight:700;color:#1e40af;margin-bottom:.75rem;font-size:1.1rem}
+.bfoot nav{margin-bottom:.75rem}
+.bfoot nav a{color:#475569;text-decoration:none;font-size:.85rem;margin:0 .75rem;padding:.25rem .5rem;border-radius:4px}
+.bfoot nav a:hover{color:#1e40af}
+.bfoot nav a:focus-visible{outline:3px solid #2563EB;outline-offset:2px}
+.bfoot small{font-size:.8rem;color:#475569}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(prefers-contrast:more){.b-side{background:#FFFFFF;color:#000000}.bcard{border-color:#000000;border-width:3px}.bh{border-bottom-color:#000000;border-bottom-width:3px}.bsec{border-top-color:#000000}.bhero p,.bcard p,.bmet-l,.bquote cite,.bfoot small,.bfoot nav a,.bh nav a{color:#000000}.bmet-v,.bst,.bhero-tag,.bh .logo,.bfoot .logo{color:#000000}.bbtn-p{background:#000000}.bbtn-s{border-color:#000000;color:#000000}}
+@media(prefers-color-scheme:dark){.b-side{background:#0F172A;color:#E2E8F0}.bh{background:#1E293B;border-bottom-color:#334155}.bhero p,.bcard p,.bmet-l,.bquote cite,.bfoot small,.bfoot nav a,.bh nav a{color:#CBD5E1}.bcard{background:#1E293B;border-color:#334155}.bsec{border-top-color:#334155}.bfoot{border-top-color:#334155}.bmet-v,.bst,.bhero-tag,.bh .logo,.bfoot .logo{color:#93C5FD}.bbtn-p{background:#2563EB}.bbtn-s{border-color:#93C5FD;color:#E2E8F0}.bcard-icon{background:#1E3A5F;color:#93C5FD}.bhero h1{color:#F1F5F9}.bquote blockquote{color:#F1F5F9}}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bbtn{min-height:48px;min-width:160px;font-size:1rem} .bbtn:focus-visible{outline:3px solid #2563EB;outline-offset:2px} .bh nav a:focus-visible{outline:3px solid #2563EB;outline-offset:2px} .bcard{border-width:2px} .bcard:focus-within{outline:3px solid #2563EB;outline-offset:2px}
 
 </style>
 </head>
@@ -357,12 +359,15 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
   </section>
 </div>
 <div class="b-side">
-<header class="bh"><div class="logo">ClearPath</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Accessible to everyone</p><h1>Your Health,<br>Our Priority.</h1><p>Access reliable information and connect with certified professionals. Designed for every person, every ability, every device.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Get Started Free</button><button class="bbtn bbtn-s">Learn More</button></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Expert Guidance</h3><p>Connect with board-certified professionals who put your wellbeing first. Available 24/7.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Verified Content</h3><p>Every article reviewed and approved by medical experts. Triple-checked for accuracy.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Personal Plans</h3><p>Customized wellness programs tailored to your unique needs, goals, and preferences.</p></div></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">2M+</div><div class="bmet-l">Users</div></div><div><div class="bmet-v">98%</div><div class="bmet-l">Satisfaction</div></div><div><div class="bmet-v">50+</div><div class="bmet-l">Specialists</div></div><div><div class="bmet-v">24/7</div><div class="bmet-l">Support</div></div></div></div></section>
+<a href="#b-main" class="b-skip-link">Skip to main content</a>
+<header class="bh" role="banner"><div class="logo">ClearPath</div><nav aria-label="Main navigation"><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
+<main id="b-main" role="main">
+<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Accessible to everyone</p><h1>Your Health,<br>Our Priority.</h1><p>Access reliable information and connect with certified professionals. Designed for every person, every ability, every device.</p><div class="bhero-btns"><button class="bbtn bbtn-p" type="button">Get Started Free</button><button class="bbtn bbtn-s" type="button">Learn More</button></div></div></section>
+<section class="bsec" aria-labelledby="b-features-heading"><div class="bcon"><p class="bst">Accessibility</p><h2 class="bsh" id="b-features-heading">Designed for Everyone</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon" aria-hidden="true">&#9670;</div><h3>Expert Guidance</h3><p>Connect with board-certified professionals who put your wellbeing first. Available 24/7.</p></div><div class="bcard"><div class="bcard-icon" aria-hidden="true">&#9674;</div><h3>Verified Content</h3><p>Every article reviewed and approved by medical experts. Triple-checked for accuracy.</p></div><div class="bcard"><div class="bcard-icon" aria-hidden="true">&#10038;</div><h3>Personal Plans</h3><p>Customized wellness programs tailored to your unique needs, goals, and preferences.</p></div></div></div></section>
+<section class="bsec" aria-labelledby="b-metrics-heading"><div class="bcon"><p class="bst">Our Reach</p><h2 class="bsh" id="b-metrics-heading">Trusted by Millions</h2><div class="bmets"><div><div class="bmet-v">2M+</div><div class="bmet-l">Users</div></div><div><div class="bmet-v">98%</div><div class="bmet-l">Satisfaction</div></div><div><div class="bmet-v">50+</div><div class="bmet-l">Specialists</div></div><div><div class="bmet-v">24/7</div><div class="bmet-l">Support</div></div></div></div></section>
 <section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;Finally, a platform I can trust. The personalized approach makes all the difference.&rdquo;</blockquote><cite>&mdash; Maria Santos, Patient Advocate</cite></div></div></section>
-<footer class="bfoot"><div class="logo">ClearPath</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 ClearPath. All rights reserved.</small></footer>
+</main>
+<footer class="bfoot" role="contentinfo"><div class="logo">ClearPath</div><nav aria-label="Footer navigation"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 ClearPath. All rights reserved.</small></footer>
 </div>
 </body>
 </html>

@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Marble / Veined Stone</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root { --white: #F8F9FA; --gray: #DEE2E6; --dark-gray: #ADB5BD; --gold: #C9A84C; --gold-light: #E8D999; --text: #343A40; --dim: #868E96; }
@@ -55,10 +56,10 @@
 body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
 /* B-Side: Marble / Veined Stone */
-.b-side{background:#F8F9FA;color:#3D3D3D;font-family:'Cormorant Garamond','Georgia',serif;line-height:1.6;background:linear-gradient(135deg,#F8F9FA 20%,#EEF0F2 40%,#F8F9FA 60%,#E8EAED 80%,#F8F9FA)}
+.b-side{color:#3D3D3D;font-family:'Cormorant Garamond','Georgia',serif;line-height:1.6;background:linear-gradient(135deg,#F8F9FA 0%,#F1F3F5 20%,#E9ECEF 40%,#F8F9FA 50%,#DEE2E6 60%,#F1F3F5 80%,#F8F9FA 100%),repeating-linear-gradient(120deg,transparent,transparent 100px,rgba(173,181,189,.08) 100px,rgba(173,181,189,.08) 101px,transparent 101px,transparent 200px),repeating-linear-gradient(60deg,transparent,transparent 150px,rgba(173,181,189,.05) 150px,rgba(173,181,189,.05) 151px,transparent 151px,transparent 300px)}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
 .bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid #C9A84C;position:sticky;top:0;z-index:100;background:#F8F9FA;}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#C9A84C;;letter-spacing:2px;text-transform:uppercase}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#C9A84C;letter-spacing:2px;text-transform:uppercase}
 .bh nav{display:flex;gap:1.5rem}
 .bh nav a{color:#6C757D;text-decoration:none;font-size:.85rem;transition:color .2s;}
 .bh nav a:hover{color:#C9A84C}
@@ -75,6 +76,7 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bcon{max-width:1100px;margin:0 auto}
 .bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#C9A84C;text-align:center;margin-bottom:.5rem;font-weight:600}
 .bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Cormorant Garamond',serif}
+.bsh-marble{background:linear-gradient(135deg,#F8F9FA 0%,#E9ECEF 30%,#DEE2E6 50%,#F1F3F5 70%,#F8F9FA 100%),repeating-linear-gradient(120deg,transparent,transparent 40px,rgba(173,181,189,.12) 40px,rgba(173,181,189,.12) 41px,transparent 41px,transparent 80px);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:3rem;font-weight:700;letter-spacing:.02em;-webkit-text-stroke:0.5px rgba(173,181,189,.3)}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
 .bcard{background:#FFFFFF;border:1px solid rgba(201,168,76,.3);border-radius:2px;padding:2rem;box-shadow:none;transition:transform .2s;}
 .bcard:hover{transform:translateY(-3px)}
@@ -85,7 +87,7 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bmet-v{font-size:2.2rem;font-weight:800;color:#C9A84C;line-height:1;font-family:inherit;}
 .bmet-l{font-size:.78rem;color:#6C757D;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
 .bquote{max-width:580px;margin:0 auto;text-align:center}
-.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#3D3D3D;margin-bottom:.75rem;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.3rem}
+.bquote blockquote{font-size:1.3rem;line-height:1.7;color:#3D3D3D;margin-bottom:.75rem;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic}
 .bquote cite{font-size:.85rem;color:#6C757D;font-style:normal}
 .bfoot{padding:2.5rem 2rem;border-top:1px solid rgba(201,168,76,.3);text-align:center}
 .bfoot .logo{font-weight:700;color:#C9A84C;margin-bottom:.75rem;font-size:1.1rem}
@@ -95,13 +97,11 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot small{font-size:.75rem;color:#6C757D}
 .bcard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C9A84C,transparent)}
 .bcard{position:relative;overflow:hidden}
-.bquote blockquote{font-size:1.3rem}
 .bfoot::before{content:"";display:block;width:40px;height:1px;background:#C9A84C;margin:0 auto 1rem}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body class="marble-bg">
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
@@ -137,7 +137,7 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 <div class="b-side">
 <header class="bh"><div class="logo">AUREUM</div><nav><a href="#">Collection</a><a href="#">Atelier</a><a href="#">Heritage</a><a href="#">Contact</a></nav></header>
 <section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Refined luxury</p><h1>Polished<br>Perfection.</h1><p>The cool elegance of polished marble meets the warmth of gold. Every surface curated, every detail intentional.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Explore Collection</button><button class="bbtn bbtn-s">Our Heritage</button></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Marble Veining</h3><p>Subtle organic patterns that flow across surfaces like veins through polished Carrara stone.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Gold Accents</h3><p>Rich warm gold that catches light and adds opulence to every border and highlight.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Serif Elegance</h3><p>Old-world typography that speaks of tradition, craftsmanship, and timeless sophistication.</p></div></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh bsh-marble">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Marble Veining</h3><p>Subtle organic patterns that flow across surfaces like veins through polished Carrara stone.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Gold Accents</h3><p>Rich warm gold that catches light and adds opulence to every border and highlight.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Serif Elegance</h3><p>Old-world typography that speaks of tradition, craftsmanship, and timeless sophistication.</p></div></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">Est.</div><div class="bmet-l">1897</div></div><div><div class="bmet-v">100%</div><div class="bmet-l">Handcrafted</div></div><div><div class="bmet-v">Global</div><div class="bmet-l">Presence</div></div><div><div class="bmet-v">Eternal</div><div class="bmet-l">Quality</div></div></div></div></section>
 <section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;An unparalleled experience of luxury. Every detail speaks to their commitment to perfection.&rdquo;</blockquote><cite>&mdash; Luxury Living Magazine</cite></div></div></section>
 <footer class="bfoot"><div class="logo">AUREUM</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 AUREUM. All rights reserved.</small></footer>

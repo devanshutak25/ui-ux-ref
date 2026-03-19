@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kinetic Typography</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -322,13 +323,70 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bcard{text-align:center;padding:3rem 1rem}
 .bcard-icon{display:none}
 .bcard h3{font-size:2rem;font-weight:800}
-@keyframes slideIn{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
-.bhero-inner{animation:slideIn .8s ease}
+/* Hero text entrance - staggered per line */
+@keyframes bSlideIn{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes bTypeReveal{0%{clip-path:inset(0 100% 0 0)}100%{clip-path:inset(0 0 0 0)}}
+@keyframes bWeightShift{0%,100%{font-weight:400;letter-spacing:.08em}50%{font-weight:800;letter-spacing:-.02em}}
+@keyframes bLetterDance{0%,100%{transform:translateY(0)}25%{transform:translateY(-6px)}75%{transform:translateY(3px)}}
+@keyframes bGlitch{0%,90%,100%{transform:translate(0)}92%{transform:translate(-2px,1px)}94%{transform:translate(2px,-1px)}96%{transform:translate(-1px,-1px)}98%{transform:translate(1px,1px)}}
+@keyframes bFlashRed{0%,45%,55%,100%{color:#FFFFFF}50%{color:#FF4444}}
+@keyframes bMarquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes bScaleWord{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes bCharReveal{from{opacity:0;transform:translateY(100%) rotate(8deg)}to{opacity:1;transform:translateY(0) rotate(0deg)}}
+
+/* Hero headline: staggered letter entrance */
+.bhero h1{overflow:hidden}
+.bhero h1 .bchar{display:inline-block;animation:bCharReveal .6s cubic-bezier(.34,1.56,.64,1) both}
+.bhero h1 .bchar:nth-child(1){animation-delay:.05s}
+.bhero h1 .bchar:nth-child(2){animation-delay:.1s}
+.bhero h1 .bchar:nth-child(3){animation-delay:.15s}
+.bhero h1 .bchar:nth-child(4){animation-delay:.2s}
+.bhero h1 .bchar:nth-child(5){animation-delay:.25s}
+.bhero h1 .bchar:nth-child(6){animation-delay:.3s}
+.bhero h1 .bchar:nth-child(7){animation-delay:.35s}
+.bhero h1 .bchar:nth-child(8){animation-delay:.4s}
+.bhero h1 .bchar:nth-child(9){animation-delay:.45s}
+.bhero h1 .bchar:nth-child(10){animation-delay:.5s}
+.bhero h1 .bchar:nth-child(11){animation-delay:.55s}
+.bhero h1 .bchar:nth-child(12){animation-delay:.6s}
+.bhero h1 .bchar:nth-child(13){animation-delay:.65s}
+.bhero h1 .bchar:nth-child(14){animation-delay:.7s}
+
+.bhero-inner{animation:bSlideIn .8s ease}
+.bhero-tag{animation:bTypeReveal 1.5s ease .2s both}
+
+/* Section heading weight shift animation */
+.bsh{animation:bWeightShift 6s ease-in-out infinite}
+
+/* Card heading scale pulse */
+.bcard h3{animation:bScaleWord 3s ease-in-out infinite;display:inline-block}
+.bcard:nth-child(2) h3{animation-delay:1s}
+.bcard:nth-child(3) h3{animation-delay:2s}
+
+/* Logo glitch */
+.bh .logo{animation:bGlitch 3s ease-in-out infinite;display:inline-block}
+
+/* Metric values flash red */
+.bmet-v{animation:bFlashRed 5s ease-in-out infinite}
+.bmets>div:nth-child(2) .bmet-v{animation-delay:1.2s}
+.bmets>div:nth-child(3) .bmet-v{animation-delay:2.4s}
+.bmets>div:nth-child(4) .bmet-v{animation-delay:3.6s}
+
+/* Marquee ticker strip */
+.b-ticker{overflow:hidden;border-top:2px solid #FF4444;border-bottom:2px solid #FF4444;padding:.6rem 0;white-space:nowrap}
+.b-ticker-inner{display:inline-block;animation:bMarquee 18s linear infinite}
+.b-ticker-text{display:inline-block;font-weight:800;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;padding:0 2.5rem;color:#FF4444}
+
+/* Quote letter-dance on hover */
+.bquote blockquote{transition:letter-spacing .4s ease}
+.bquote blockquote:hover{letter-spacing:.02em}
+
+/* Fix contrast: #666666 -> #999999 for WCAG AA on #0A0A0A */
+.bhero p,.bcard p,.bmet-l,.bquote cite,.bfoot nav a,.bfoot small,.bh nav a{color:#999999}
+
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bhero h1{font-size:clamp(4rem,12vw,8rem);font-weight:900;letter-spacing:-.05em} .bsh{font-size:clamp(2rem,6vw,4rem);font-weight:800} .bcard{text-align:center;padding:3rem 1rem} .bcard-icon{display:none} .bcard h3{font-size:2rem;font-weight:800}
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
@@ -398,7 +456,8 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 </div>
 <div class="b-side">
 <header class="bh"><div class="logo">TYPE</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">The text IS the design</p><h1>WORDS<br>IN MOTION.</h1><p>Oversized bold type at dramatic display sizes. No images. No illustrations. Typography IS the design.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Read</button></div></div></section>
+<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">The text IS the design</p><h1><span class="bchar">W</span><span class="bchar">O</span><span class="bchar">R</span><span class="bchar">D</span><span class="bchar">S</span><br><span class="bchar">I</span><span class="bchar">N</span><span class="bchar"> </span><span class="bchar">M</span><span class="bchar">O</span><span class="bchar">T</span><span class="bchar">I</span><span class="bchar">O</span><span class="bchar">N</span><span class="bchar">.</span></h1><p>Oversized bold type at dramatic display sizes. No images. No illustrations. Typography IS the design.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Read</button></div></div></section>
+<div class="b-ticker"><div class="b-ticker-inner"><span class="b-ticker-text">KINETIC TYPE</span><span class="b-ticker-text">WORDS MOVE</span><span class="b-ticker-text">TEXT IS ALIVE</span><span class="b-ticker-text">MOTION DESIGN</span><span class="b-ticker-text">KINETIC TYPE</span><span class="b-ticker-text">WORDS MOVE</span><span class="b-ticker-text">TEXT IS ALIVE</span><span class="b-ticker-text">MOTION DESIGN</span></div></div>
 <section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>SCALE</h3><p>Enormous display sizes dominating the viewport. Each word a visual event.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>WEIGHT</h3><p>Maximum boldness. Letters as architecture. Stroke width as emphasis.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>RHYTHM</h3><p>Movement, rotation, scaling. Typography brought to kinetic life.</p></div></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">4rem</div><div class="bmet-l">Min Size</div></div><div><div class="bmet-v">900</div><div class="bmet-l">Weight</div></div><div><div class="bmet-v">0</div><div class="bmet-l">Images</div></div><div><div class="bmet-v">&#8734;</div><div class="bmet-l">Impact</div></div></div></div></section>
 <section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;When text IS the design, every word must earn its place on the screen.&rdquo;</blockquote><cite>&mdash; Type Directors Club</cite></div></div></section>

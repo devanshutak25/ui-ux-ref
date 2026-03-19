@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Scoreboard / Instrument Panel</title>
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=Russo+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
@@ -133,54 +134,54 @@
 body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
 /* B-Side: Sports Scoreboard / Instrument Panel */
-.b-side{background:#0A0A0A;color:#F0F0F0;font-family:'Oswald','Inter',sans-serif;line-height:1.6;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes blinkColon{0%,100%{opacity:1}50%{opacity:0}}
+.b-side{background:#0A0A0A;color:#F0F0F0;font-family:'Oswald','Inter',sans-serif;line-height:1.6;background-image:radial-gradient(circle,rgba(255,200,0,.03) 1px,transparent 1px);background-size:4px 4px}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
 .bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid #333333;position:sticky;top:0;z-index:100;background:#0A0A0A;}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#FF4444;;;}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#FF9500;text-shadow:0 0 10px rgba(255,149,0,.4)}
 .bh nav{display:flex;gap:1.5rem}
-.bh nav a{color:#666666;text-decoration:none;font-size:.85rem;transition:color .2s;}
-.bh nav a:hover{color:#FF4444}
+.bh nav a{color:#999999;text-decoration:none;font-size:.85rem;transition:color .2s;}
+.bh nav a:hover{color:#FF9500}
 .bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
 .bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#FF4444;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Share Tech Mono',monospace}
-.bhero p{font-size:1.05rem;color:#666666;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.bhero-tag{font-size:.8rem;color:#FF2020;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.bhero-tag::before{content:"";width:8px;height:8px;border-radius:50%;background:#FF2020;box-shadow:0 0 8px #FF2020;animation:pulse 1s infinite}
+.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Share Tech Mono',monospace;font-variant-numeric:tabular-nums}
+.bhero p{font-size:1.05rem;color:#999999;max-width:480px;margin:0 auto 2rem;line-height:1.7}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-.bbtn{font-family:'Oswald','Inter',sans-serif;padding:.8rem 2rem;border-radius:0px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
-.bbtn-p{background:#FF4444;color:#0A0A0A;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#F0F0F0;border:1.5px solid #666666;}.bbtn-s:hover{border-color:#FF4444;color:#FF4444}
+.bbtn{font-family:'Oswald','Inter',sans-serif;padding:.8rem 2rem;border-radius:0px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.bbtn-p{background:#FF9500;color:#0A0A0A;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 0 20px rgba(255,149,0,.4)}
+.bbtn-s{background:transparent;color:#F0F0F0;border:1.5px solid #999999;}.bbtn-s:hover{border-color:#FF9500;color:#FF9500}
 .bsec{padding:5rem 2rem;border-top:1px solid #333333}
 .bcon{max-width:1100px;margin:0 auto}
-.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#FF4444;text-align:center;margin-bottom:.5rem;font-weight:600}
-.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Share Tech Mono',monospace}
+.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#FF9500;text-align:center;margin-bottom:.5rem;font-weight:600}
+.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Share Tech Mono',monospace;text-shadow:0 0 12px rgba(255,149,0,.3)}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:#111111;border:1px solid #333333;border-radius:0px;padding:2rem;box-shadow:none;transition:transform .2s;}
+.bcard{background:#111111;border:1px solid #333333;border-radius:0px;padding:2rem;box-shadow:none;transition:transform .2s;position:relative;overflow:hidden}
 .bcard:hover{transform:translateY(-3px)}
-.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
-.bcard p{font-size:.88rem;color:#666666;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:6px;background:rgba(255,68,68,.08);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#FF4444}
+.bcard::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:#FF9500;box-shadow:0 0 8px rgba(255,149,0,.3)}
+.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600;color:#FF9500}
+.bcard p{font-size:.88rem;color:#999999;line-height:1.6}
+.bcard-icon{width:40px;height:40px;border-radius:6px;background:rgba(255,149,0,.08);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#FF9500}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#FF4444;line-height:1;font-family:'Share Tech Mono',monospace;text-shadow:0 0 10px rgba(255,68,68,.5)}
-.bmet-l{font-size:.78rem;color:#666666;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bmet-v{font-size:4rem;font-weight:800;color:#FFD700;line-height:1;font-family:'Share Tech Mono',monospace;letter-spacing:4px;text-shadow:0 0 20px rgba(255,215,0,.5);font-variant-numeric:tabular-nums}
+.bmet-l{font-size:.78rem;color:#999999;margin-top:.5rem;text-transform:uppercase;letter-spacing:1px}
+.bmet-colon{animation:blinkColon 1s step-end infinite}
 .bquote{max-width:580px;margin:0 auto;text-align:center}
 .bquote blockquote{font-size:1.15rem;line-height:1.7;color:#F0F0F0;margin-bottom:.75rem;font-family:inherit;font-style:italic}
-.bquote cite{font-size:.85rem;color:#666666;font-style:normal}
+.bquote cite{font-size:.85rem;color:#999999;font-style:normal}
 .bfoot{padding:2.5rem 2rem;border-top:1px solid #333333;text-align:center}
-.bfoot .logo{font-weight:700;color:#FF4444;margin-bottom:.75rem;font-size:1.1rem}
+.bfoot .logo{font-weight:700;color:#FF9500;margin-bottom:.75rem;font-size:1.1rem;text-shadow:0 0 10px rgba(255,149,0,.4)}
 .bfoot nav{margin-bottom:.75rem}
-.bfoot nav a{color:#666666;text-decoration:none;font-size:.8rem;margin:0 .75rem}
-.bfoot nav a:hover{color:#FF4444}
-.bfoot small{font-size:.75rem;color:#666666}
-.bmet-v{font-family:"Share Tech Mono",monospace;letter-spacing:4px}
-.bhero h1{text-shadow:0 0 10px rgba(255,68,68,.3)}
-.bcard::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:#FF4444;box-shadow:0 0 8px rgba(255,68,68,.3)}
-.bcard{position:relative;overflow:hidden}
-.bhero h1{text-shadow:0 0 20px rgba(255,68,68,0.4),0 0 40px rgba(255,68,68,0.2)} .bsh{text-shadow:0 0 12px rgba(255,68,68,0.3)}
-@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
+.bfoot nav a{color:#999999;text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a:hover{color:#FF9500}
+.bfoot small{font-size:.75rem;color:#999999}
+.bhero h1{text-shadow:0 0 20px rgba(255,149,0,0.4),0 0 40px rgba(255,149,0,0.2)}
+@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}.bmet-v{font-size:3rem}}
 
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
@@ -259,10 +260,10 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
   </section>
 </div>
 <div class="b-side">
-<header class="bh"><div class="logo">SCOREBOARD</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">LIVE</p><h1>Game<br>Day.</h1><p>LED seven-segment digits glowing against darkness. Real-time urgency. Electric tension.</p><div class="bhero-btns"><button class="bbtn bbtn-p">WATCH LIVE</button><button class="bbtn bbtn-s">STATS</button></div></div></section>
+<header class="bh"><div class="logo">SCOREBOARD</div><nav><a href="#">LIVE</a><a href="#">STATS</a><a href="#">STANDINGS</a><a href="#">SCHEDULE</a></nav></header>
+<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">LIVE NOW</p><h1>Game<br>Day.</h1><p>LED seven-segment digits glowing against darkness. Real-time urgency. Electric tension.</p><div class="bhero-btns"><button class="bbtn bbtn-p">WATCH LIVE</button><button class="bbtn bbtn-s">STATS</button></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>LED Digits</h3><p>Seven-segment display. Each numeral built from illuminated segments.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Live Data</h3><p>Numbers that could change any moment. Breathless competition.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Stadium Energy</h3><p>Jumbotrons, scoreboards, real-time data. The thrill of live.</p></div></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">88:88</div><div class="bmet-l">Clock</div></div><div><div class="bmet-v">000</div><div class="bmet-l">Home</div></div><div><div class="bmet-v">000</div><div class="bmet-l">Away</div></div><div><div class="bmet-v">Q4</div><div class="bmet-l">Period</div></div></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">04<span class="bmet-colon">:</span>23</div><div class="bmet-l">Clock</div></div><div><div class="bmet-v">87</div><div class="bmet-l">Home</div></div><div><div class="bmet-v">82</div><div class="bmet-l">Away</div></div><div><div class="bmet-v">Q4</div><div class="bmet-l">Period</div></div></div></div></section>
 <section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;The energy of a packed stadium, captured in pixels.&rdquo;</blockquote><cite>&mdash; Sports Illustrated Digital</cite></div></div></section>
 <footer class="bfoot"><div class="logo">SCOREBOARD</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 SCOREBOARD. All rights reserved.</small></footer>
 </div>

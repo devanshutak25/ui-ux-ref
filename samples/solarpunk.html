@@ -116,48 +116,62 @@
 body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
 /* B-Side: Solarpunk */
-.b-side{background:#FFF8E7;color:#2D4B20;font-family:'Nunito','Inter',sans-serif;line-height:1.6;background:linear-gradient(180deg,#FFF8E7,#F0F8E0)}
+.b-side{color:#2D4B20;font-family:'Nunito','Inter',sans-serif;line-height:1.6;background:linear-gradient(170deg,#C8E6F0 0%,#D8F0D0 30%,#EEF8E0 60%,#FFF8E7 100%)}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
-.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:none;position:sticky;top:0;z-index:100;background:rgba(255,248,231,.95);}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#4A7C59;;;}
+.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:none;position:sticky;top:0;z-index:100;background:rgba(230,245,235,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.bh .logo{font-weight:800;font-size:1.15rem;background:linear-gradient(135deg,#2D6A1E,#FFB300);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .bh nav{display:flex;gap:1.5rem}
-.bh nav a{color:#6B8B55;text-decoration:none;font-size:.85rem;transition:color .2s;}
-.bh nav a:hover{color:#4A7C59}
-.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
-.bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#4A7C59;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Nunito','Inter',sans-serif}
-.bhero p{font-size:1.05rem;color:#6B8B55;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.bh nav a{color:#4A6B40;text-decoration:none;font-size:.85rem;transition:color .2s}
+.bh nav a:hover{color:#FFB300}
+/* Hero with sky-to-green gradient, differentiated from biophilic */
+.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden;background:linear-gradient(170deg,#87CEEB 0%,#B8E6C8 35%,#D4E8B0 65%,#FFF8E7 100%)}
+.bhero-inner{max-width:640px;position:relative;z-index:2}
+/* Sun glow effect */
+.bhero::before{content:"";position:absolute;top:-60px;right:-40px;width:260px;height:260px;background:radial-gradient(circle,rgba(255,179,0,.2) 0%,rgba(255,215,0,.1) 40%,transparent 70%);pointer-events:none;border-radius:50%;z-index:0}
+/* Leaf decorations */
+.bhero::after{content:"";position:absolute;bottom:8%;left:5%;width:28px;height:48px;background:#6BBF59;border-radius:0 70% 0 70%;opacity:.25;transform:rotate(-25deg);z-index:0;pointer-events:none}
+.bhero-tag{font-size:.8rem;color:#FFB300;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:700}
+.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Nunito','Inter',sans-serif;color:#2D4A22}
+.bhero p{font-size:1.05rem;color:#4A6B40;max-width:480px;margin:0 auto 2rem;line-height:1.7}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-.bbtn{font-family:'Nunito','Inter',sans-serif;padding:.8rem 2rem;border-radius:16px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
-.bbtn-p{background:#4A7C59;color:#FFF8E7;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#2D4B20;border:1.5px solid #6B8B55;}.bbtn-s:hover{border-color:#4A7C59;color:#4A7C59}
-.bsec{padding:5rem 2rem;border-top:none}
+.bbtn{font-family:'Nunito','Inter',sans-serif;padding:.8rem 2rem;border-radius:50px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .3s}
+.bbtn-p{background:linear-gradient(135deg,#6BBF59,#4A9E3F);color:#fff;box-shadow:0 4px 15px rgba(107,191,89,.3)}.bbtn-p:hover{box-shadow:0 6px 25px rgba(107,191,89,.45);transform:translateY(-2px)}
+.bbtn-s{background:transparent;color:#2D4B20;border:2px solid #6BBF59;border-radius:50px}.bbtn-s:hover{background:#6BBF59;color:#fff}
+/* Art Nouveau arch section dividers */
+.bsec{padding:5rem 2rem;border-top:none;position:relative}
+.bsec::before{content:"";display:block;position:absolute;top:-30px;left:50%;transform:translateX(-50%);width:90%;max-width:1000px;height:40px;border-radius:50% 50% 0 0/100% 100% 0 0;background:linear-gradient(90deg,rgba(107,191,89,.08),rgba(255,179,0,.12),rgba(135,206,235,.08));pointer-events:none;z-index:1}
 .bcon{max-width:1100px;margin:0 auto}
-.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#4A7C59;text-align:center;margin-bottom:.5rem;font-weight:600}
+.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#FFB300;text-align:center;margin-bottom:.5rem;font-weight:700}
 .bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Nunito','Inter',sans-serif}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:#F0ECDA;border:none;border-radius:16px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:transform .2s;}
-.bcard:hover{transform:translateY(-3px)}
-.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
-.bcard p{font-size:.88rem;color:#6B8B55;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:16px;background:rgba(74,124,89,.08);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#4A7C59}
+/* Cards with green-gold-blue top bar and arched top radius */
+.bcard{background:rgba(255,255,255,.7);border:none;border-radius:20px 20px 12px 12px;padding:2rem;box-shadow:0 2px 12px rgba(0,0,0,.05);transition:all .3s;position:relative;overflow:hidden}
+.bcard::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#6BBF59,#FFB300,#87CEEB)}
+.bcard:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(107,191,89,.15)}
+.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:700;color:#2D6A1E}
+.bcard p{font-size:.88rem;color:#4A6B40;line-height:1.6}
+.bcard-icon{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,rgba(107,191,89,.12),rgba(255,179,0,.08));display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#FFB300}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#4A7C59;line-height:1;font-family:inherit;}
-.bmet-l{font-size:.78rem;color:#6B8B55;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
-.bquote{max-width:580px;margin:0 auto;text-align:center}
+.bmet-v{font-size:2.2rem;font-weight:800;color:#FFB300;line-height:1;font-family:inherit}
+.bmet-l{font-size:.78rem;color:#4A6B40;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+/* Quote with solar glow */
+.bquote{max-width:580px;margin:0 auto;text-align:center;position:relative}
+.bquote::before{content:"";position:absolute;top:-30px;left:50%;transform:translateX(-50%);width:80px;height:3px;background:linear-gradient(90deg,transparent,#FFB300,transparent);border-radius:2px}
 .bquote blockquote{font-size:1.15rem;line-height:1.7;color:#2D4B20;margin-bottom:.75rem;font-family:inherit;font-style:italic}
-.bquote cite{font-size:.85rem;color:#6B8B55;font-style:normal}
-.bfoot{padding:2.5rem 2rem;;text-align:center}
-.bfoot .logo{font-weight:700;color:#4A7C59;margin-bottom:.75rem;font-size:1.1rem}
+.bquote cite{font-size:.85rem;color:#4A6B40;font-style:normal}
+/* Footer with solar glow accent */
+.bfoot{padding:2.5rem 2rem;text-align:center;position:relative}
+.bfoot::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:200px;height:1px;background:linear-gradient(90deg,transparent,#FFB300,transparent)}
+.bfoot .logo{font-weight:800;margin-bottom:.75rem;font-size:1.1rem;background:linear-gradient(135deg,#2D6A1E,#FFB300);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .bfoot nav{margin-bottom:.75rem}
-.bfoot nav a{color:#6B8B55;text-decoration:none;font-size:.8rem;margin:0 .75rem}
-.bfoot nav a:hover{color:#4A7C59}
-.bfoot small{font-size:.75rem;color:#6B8B55}
-.bhero::before{content:"";position:absolute;top:-50%;left:50%;transform:translateX(-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(240,200,8,.08),transparent 70%);pointer-events:none;border-radius:50%}
-.bhero{position:relative;overflow:hidden}
+.bfoot nav a{color:#4A6B40;text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a:hover{color:#FFB300}
+.bfoot small{font-size:.75rem;color:#4A6B40}
+/* Tech-nature hybrid: circuit-leaf overlay on features section */
+.b-side .bsec:nth-of-type(1) .bcon::before{content:"";display:block;position:absolute;top:10%;right:2%;width:120px;height:120px;opacity:.06;pointer-events:none;background:repeating-linear-gradient(0deg,#2D6A1E 0,#2D6A1E 1px,transparent 1px,transparent 8px),repeating-linear-gradient(90deg,#2D6A1E 0,#2D6A1E 1px,transparent 1px,transparent 8px);border-radius:0 50% 50% 0;mix-blend-mode:multiply}
+.b-side .bsec:nth-of-type(1) .bcon{position:relative}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}} .bcard{animation:fadeInUp .6s ease both} .bcard:nth-child(2){animation-delay:.15s} .bcard:nth-child(3){animation-delay:.3s}
-@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bsec::before{display:none}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 
 </style>

@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Neumorphism - Sample</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family: 'Inter', sans-serif; background: #E0E5EC; color: #4A5568; line-height: 1.6; }
@@ -285,14 +286,13 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bcard-icon{box-shadow:inset -2px -2px 5px rgba(255,255,255,.7),inset 2px 2px 5px rgba(163,177,198,.4)}
 .bbtn-p{box-shadow:-4px -4px 10px rgba(255,255,255,.7),4px 4px 10px rgba(163,177,198,.5)}
 .bbtn-p:hover{box-shadow:inset -4px -4px 10px rgba(255,255,255,.5),inset 4px 4px 10px rgba(163,177,198,.3);transform:none}
+.bbtn-s:hover{box-shadow:inset -3px -3px 8px rgba(255,255,255,.5),inset 3px 3px 8px rgba(163,177,198,.25)}
 .bbtn-s{box-shadow:-4px -4px 10px rgba(255,255,255,.7),4px 4px 10px rgba(163,177,198,.5);border:none}
-.bh{box-shadow:0 4px 12px rgba(163,177,198,.3)}
+.bh{box-shadow:-4px -4px 10px rgba(255,255,255,.7),4px 4px 10px rgba(163,177,198,.4)}
 .bquote{padding:2rem;box-shadow:inset -4px -4px 10px rgba(255,255,255,.5),inset 4px 4px 10px rgba(163,177,198,.3);border-radius:16px;background:#E0E5EC}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bcard-icon{box-shadow:inset -2px -2px 5px rgba(255,255,255,.7),inset 2px 2px 5px rgba(163,177,198,.4)} .bbtn-p{box-shadow:-4px -4px 10px rgba(255,255,255,.7),4px 4px 10px rgba(163,177,198,.5)} .bbtn-p:hover{box-shadow:inset -4px -4px 10px rgba(255,255,255,.5),inset 4px 4px 10px rgba(163,177,198,.3);transform:none} .bbtn-s{box-shadow:-4px -4px 10px rgba(255,255,255,.7),4px 4px 10px rgba(163,177,198,.5);border:none} .bh{box-shadow:0 4px 12px rgba(163,177,198,.3)}
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>

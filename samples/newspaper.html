@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Newspaper Classified / Dense Type</title>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -243,52 +244,59 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 /* B-Side: Newspaper Classified / Dense Type */
 .b-side{background:#F5F0E8;color:#1A1A1A;font-family:'Source Serif 4','Georgia',serif;line-height:1.6;}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
-.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:2px solid #1A1A1A;position:sticky;top:0;z-index:100;background:#F5F0E8;}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#1A1A1A;;letter-spacing:.1em;text-transform:uppercase}
-.bh nav{display:flex;gap:1.5rem}
-.bh nav a{color:#666666;text-decoration:none;font-size:.85rem;transition:color .2s;}
-.bh nav a:hover{color:#1A1A1A}
-.bhero{min-height:80vh;display:flex;align-items:center;;padding:4rem 2rem;}
-.bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#1A1A1A;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Playfair Display',Georgia,serif}
-.bhero p{font-size:1.05rem;color:#666666;max-width:480px;margin-bottom:2rem;line-height:1.7}
-.bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;}
-.bbtn{font-family:'Source Serif 4','Georgia',serif;padding:.8rem 2rem;border-radius:0px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-transform:uppercase;letter-spacing:.1em}
-.bbtn-p{background:#1A1A1A;color:#F5F0E8;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#1A1A1A;border:1.5px solid #666666;}.bbtn-s:hover{border-color:#1A1A1A;color:#1A1A1A}
-.bsec{padding:5rem 2rem;border-top:1px solid #D4CFC5}
-.bcon{max-width:1100px;margin:0 auto}
-.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#1A1A1A;margin-bottom:.5rem;font-weight:600}
-.bsh{font-size:1.8rem;font-weight:700;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Playfair Display',Georgia,serif}
-.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:transparent;border:none;border-radius:0px;padding:2rem;box-shadow:none;transition:transform .2s;}
-.bcard:hover{transform:translateY(-3px)}
-.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
-.bcard p{font-size:.88rem;color:#666666;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:6px;background:#1A1A1A;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#F5F0E8}
-.bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#1A1A1A;line-height:1;font-family:inherit;}
-.bmet-l{font-size:.78rem;color:#666666;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
-.bquote{max-width:580px;margin:0 auto;text-align:center}
-.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#1A1A1A;margin-bottom:.75rem;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:1.3rem}
-.bquote cite{font-size:.85rem;color:#666666;font-style:normal}
-.bfoot{padding:2.5rem 2rem;border-top:1px solid #D4CFC5;text-align:center}
-.bfoot .logo{font-weight:700;color:#1A1A1A;margin-bottom:.75rem;font-size:1.1rem}
-.bfoot nav{margin-bottom:.75rem}
-.bfoot nav a{color:#666666;text-decoration:none;font-size:.8rem;margin:0 .75rem}
-.bfoot nav a:hover{color:#1A1A1A}
-.bfoot small{font-size:.75rem;color:#666666}
-.bcard{border-bottom:1px solid #D4CFC5;padding:1.5rem 0;border-radius:0}
+.bh{display:flex;justify-content:center;gap:20px;padding:8px 20px;border-bottom:1px solid #ccc;border-top:1px solid #ccc;position:sticky;top:0;z-index:100;background:rgba(245,240,232,.97);font-size:10px;text-transform:uppercase;letter-spacing:2px}
+.bh .logo{display:none}
+.bh nav{display:flex;gap:20px}
+.bh nav a{color:#333;text-decoration:none;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:color .2s;}
+.bh nav a:hover{text-decoration:underline;color:#1A1A1A}
+/* Masthead above hero */
+.b-side .bmasthead{text-align:center;padding:16px 20px 12px;border-bottom:1px solid #000}
+.b-side .bmasthead-date{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:3px;color:#666;margin-bottom:6px}
+.b-side .bmasthead-title{font-family:'Playfair Display',Georgia,serif;font-size:42px;font-weight:700;letter-spacing:4px;text-transform:uppercase;line-height:1;margin-bottom:4px}
+.b-side .bmasthead-motto{font-size:10px;font-style:italic;color:#666;letter-spacing:2px}
+.bhero{min-height:auto;display:grid;grid-template-columns:2fr 1fr;padding:0;border-bottom:3px double #000;}
+.bhero-inner{padding:20px}
+.bhero-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#666;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;font-weight:400;font-style:italic}
+.bhero h1{font-size:28px;font-weight:700;line-height:1.15;margin-bottom:10px;letter-spacing:0;font-family:'Playfair Display',Georgia,serif}
+.bhero p{font-size:12px;color:#1A1A1A;max-width:none;margin-bottom:0;line-height:1.7;column-count:2;column-gap:16px;column-rule:1px solid #ddd;text-align:justify;hyphens:auto}
+.bhero p::first-letter{font-family:'Playfair Display',Georgia,serif;font-size:38px;float:left;line-height:.8;margin-right:5px;font-weight:700;color:#1A1A1A}
+.bhero-btns{display:none}
+.bhero-sidebar{padding:16px;font-size:11px;border-left:1px solid #ccc}
+.bhero-sidebar .sidebar-headline{font-family:'Playfair Display',Georgia,serif;font-size:14px;font-weight:700;line-height:1.3;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid #ccc}
+.bhero-sidebar .sidebar-item{font-size:11px;line-height:1.5;padding:8px 0;border-bottom:1px solid #eee;color:#444}
+.bbtn{font-family:'Source Serif 4','Georgia',serif;padding:8px 18px;border-radius:0;font-size:11px;font-weight:700;cursor:pointer;border:1px solid #000;transition:all .2s;text-transform:uppercase;letter-spacing:1px;background:transparent;color:#1A1A1A}
+.bbtn-p{background:#000;color:#F5F0E8;border:1px solid #000}.bbtn-p:hover{background:#333}
+.bbtn-s{background:transparent;color:#1A1A1A;border:1px solid #000}.bbtn-s:hover{background:#000;color:#F5F0E8}
+/* Subscription banner */
+.b-side .bcta-banner{text-align:center;padding:10px 20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;background:#000;color:#F5F0E8}
+.bsec{padding:24px 20px;border-top:3px double #000}
+.bcon{max-width:560px;margin:0 auto}
+.bst{font-size:9px;text-transform:uppercase;letter-spacing:3px;color:#666;margin-bottom:8px;font-weight:700;padding:4px 0;border-top:1px solid #000;border-bottom:1px solid #000}
+.bsh{font-size:18px;font-weight:700;margin-bottom:16px;letter-spacing:4px;text-transform:uppercase;text-align:center;font-family:'Playfair Display',Georgia,serif;padding-bottom:8px;border-bottom:3px double #000}
+.bgrid{display:block;column-count:2;column-gap:16px;column-rule:1px solid #ddd}
+.bcard{background:transparent;border:none;border-radius:0;padding:0 0 12px;box-shadow:none;break-inside:avoid;margin-bottom:12px;border-bottom:1px solid #eee}
+.bcard:hover{transform:none}
 .bcard:last-child{border-bottom:none}
+.bcard h3{font-size:14px;margin-bottom:4px;font-weight:700;font-family:'Playfair Display',Georgia,serif;line-height:1.3}
+.bcard p{font-size:12px;color:#444;line-height:1.7;text-align:justify;hyphens:auto}
 .bcard-icon{display:none}
-.bcard h3{font-family:"Playfair Display",Georgia,serif;font-size:1.2rem}
-.bgrid{display:block;column-count:2;column-gap:2rem;column-rule:1px solid #D4CFC5}
-@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bcard{border-bottom:1px solid #D4CFC5;padding:1.5rem 0;border-radius:0} .bcard:last-child{border-bottom:none} .bcard-icon{display:none} .bcard h3{font-family:"Playfair Display",Georgia,serif;font-size:1.2rem}
+.bmets{display:grid;grid-template-columns:repeat(4,1fr);gap:0;text-align:center;border:1px solid #000;border-bottom:none}
+.bmets>div{padding:8px 4px;border-bottom:1px solid #000;border-right:1px solid #ccc}
+.bmets>div:last-child{border-right:none}
+.bmet-v{font-size:1rem;font-weight:700;color:#1A1A1A;line-height:1;font-family:'IBM Plex Mono',monospace}
+.bmet-l{font-size:8px;color:#666;margin-top:2px;text-transform:uppercase;letter-spacing:1px}
+.bquote{max-width:100%;margin:0;text-align:justify;border-left:3px double #000;padding-left:16px}
+.bquote blockquote{font-size:12px;line-height:1.7;color:#1A1A1A;margin-bottom:4px;font-family:'Source Serif 4','Georgia',serif;font-style:italic;font-size:12px}
+.bquote cite{font-size:9px;color:#666;font-style:normal;text-transform:uppercase;letter-spacing:1px}
+.bfoot{padding:10px 20px;border-top:3px double #000;text-align:center}
+.bfoot .logo{font-weight:700;color:#1A1A1A;margin-bottom:4px;font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.bfoot nav{margin-bottom:4px}
+.bfoot nav a{color:#666;text-decoration:none;font-size:9px;margin:0 .5rem;text-transform:uppercase;letter-spacing:1px}
+.bfoot nav a:hover{text-decoration:underline}
+.bfoot small{font-size:8px;color:#666;letter-spacing:1px}
+@media(max-width:768px){.bh nav{display:none}.bhero{grid-template-columns:1fr;min-height:auto;padding:0}.bhero p{column-count:1}.bsec{padding:16px 16px}.bgrid{column-count:1}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
@@ -353,12 +361,14 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
   </section>
 </div>
 <div class="b-side">
-<header class="bh"><div class="logo">THE CHRONICLE</div><nav><a href="#">News</a><a href="#">Opinion</a><a href="#">Culture</a><a href="#">Sports</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Est. 1842</p><h1>Stories That<br>Matter.</h1><p>In-depth reporting and thoughtful analysis. Independent journalism at its finest.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Read Today</button><button class="bbtn bbtn-s">Subscribe</button></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Investigations</h3><p>Deep-dive reporting uncovering stories behind the headlines.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Analysis</h3><p>Expert commentary on the most complex topics of our time.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Culture</h3><p>Exploring arts, ideas, and movements defining the landscape.</p></div></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">5M+</div><div class="bmet-l">Readers</div></div><div><div class="bmet-v">120+</div><div class="bmet-l">Countries</div></div><div><div class="bmet-v">30</div><div class="bmet-l">Awards</div></div><div><div class="bmet-v">Daily</div><div class="bmet-l">Edition</div></div></div></div></section>
-<section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;The most trustworthy source of news. Their investigative work is second to none.&rdquo;</blockquote><cite>&mdash; Press Freedom Index</cite></div></div></section>
-<footer class="bfoot"><div class="logo">THE CHRONICLE</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 THE CHRONICLE. All rights reserved.</small></footer>
+<div class="bmasthead"><div class="bmasthead-date">Thursday, March 20, 2026 &bull; Morning Edition</div><div class="bmasthead-title">The Chronicle</div><div class="bmasthead-motto">&ldquo;Record Every Detail, Report Every Truth&rdquo;</div></div>
+<header class="bh"><nav><a href="#">Front Page</a><a href="#">Classifieds</a><a href="#">Opinion</a><a href="#">Obituaries</a><a href="#">Weather</a></nav></header>
+<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">By the Editorial Staff &bull; 8 min read</p><h1>Typographic Density Gains Ground In Modern Interfaces</h1><p>The resurgence of newspaper-inspired design marks a significant departure from the minimalist ethos that dominated digital interfaces for the past decade. Designers are rediscovering the communicative power of dense, information-rich layouts that reward careful reading. Multi-column structures, justified text, and fine typographic hierarchy create an experience that channels the authority and efficiency of broadsheet journalism. The shift reflects a growing appetite for substance over whitespace, for content that respects readers rather than dazzling them with empty gestures.</p></div><div class="bhero-sidebar"><div class="sidebar-headline">Serif Typefaces See Record Adoption in Web Design</div><div class="sidebar-item">Column-based layouts outperform single-column alternatives in user engagement studies conducted across 12 markets</div><div class="sidebar-item">Dense typography advocates cite improved information scannability as primary advantage over modern spacious layouts</div><div class="sidebar-item">Print-inspired UI patterns now account for 18% of new design system implementations at enterprise scale</div></div></section>
+<div class="bcta-banner">Subscribe Today &mdash; First Month Free &mdash; All Editions Included</div>
+<section class="bsec"><div class="bcon"><p class="bst">Today's Stories</p><h2 class="bsh">Front Page</h2><div class="bgrid"><div class="bcard"><h3>The Classified Ad Renaissance</h3><p>Once considered relics of a bygone era, classified-style layouts are inspiring a new generation of modular UI components that prioritize information density over decorative whitespace.</p></div><div class="bcard"><h3>Opinion: Why Justified Text Still Matters</h3><p>In an age of ragged-right defaults, the case for justified columns remains strong. Proper hyphenation and careful column width produce a reading rhythm unmatched by left-aligned alternatives.</p></div><div class="bcard"><h3>Arts: The Beauty of the Broadsheet</h3><p>An exhibition at the National Design Museum examines the visual language of newspaper design, from the double-rule border to the classified grid, tracing its influence on contemporary interfaces.</p></div></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">Edition Data</p><h2 class="bsh">By The Numbers</h2><div class="bmets"><div><div class="bmet-v">48</div><div class="bmet-l">Columns</div></div><div><div class="bmet-v">VI</div><div class="bmet-l">Sections</div></div><div><div class="bmet-v">12pt</div><div class="bmet-l">Body Set</div></div><div><div class="bmet-v">Final</div><div class="bmet-l">Edition</div></div></div></div></section>
+<section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;A well-set column of type is among the most quietly beautiful objects in all of design. It asks nothing of the eye but to read.&rdquo;</blockquote><cite>&mdash; The Editors, Vol. XLII</cite></div></div></section>
+<footer class="bfoot"><div class="logo">The Chronicle</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Archive</a><a href="#">Contact</a></nav><small>&copy; 2026 The Chronicle. All rights reserved.</small></footer>
 </div>
 </body>
 </html>

@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Editorial Grid / Magazine</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -225,52 +226,59 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 /* B-Side: Editorial Grid / Magazine */
 .b-side{background:#F8F6F3;color:#1A1A1A;font-family:'Inter',system-ui,sans-serif;line-height:1.6;}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
-.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid #E0DDD8;position:sticky;top:0;z-index:100;background:#F8F6F3;}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#1A1A1A;;;}
+.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid #E0DDD8;position:sticky;top:0;z-index:100;background:rgba(248,246,243,.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.bh .logo{font-weight:900;font-size:1.3rem;color:#1A1A1A;font-family:'Playfair Display',Georgia,serif;font-style:italic}
 .bh nav{display:flex;gap:1.5rem}
-.bh nav a{color:#888888;text-decoration:none;font-size:.85rem;transition:color .2s;}
-.bh nav a:hover{color:#1A1A1A}
-.bhero{min-height:70vh;display:flex;align-items:center;;padding:4rem 2rem;}
-.bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#1A1A1A;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Playfair Display',Georgia,serif}
-.bhero p{font-size:1.05rem;color:#888888;max-width:480px;margin-bottom:2rem;line-height:1.7}
+.bh nav a{color:#757575;text-decoration:none;font-size:.75rem;transition:color .2s;text-transform:uppercase;letter-spacing:2px;font-weight:500}
+.bh nav a:hover{color:#DC143C}
+/* Hero: two-column editorial grid with asymmetric content */
+.bhero{min-height:380px;display:grid;grid-template-columns:1fr 1fr;padding:0;background:#000;color:#fff}
+.bhero-inner{padding:40px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid rgba(255,255,255,.1)}
+.bhero-tag{font-size:10px;color:#DC143C;text-transform:uppercase;letter-spacing:4px;margin-bottom:16px;font-weight:600}
+.bhero h1{font-size:clamp(2.2rem,5vw,3rem);font-weight:900;line-height:1.05;margin-bottom:1rem;letter-spacing:-1px;font-family:'Playfair Display',Georgia,serif}
+.bhero h1 em{font-style:italic;color:#DC143C}
+.bhero p{font-size:.85rem;color:rgba(255,255,255,.5);max-width:480px;margin-bottom:1.5rem;line-height:1.6}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;}
-.bbtn{font-family:'Inter',system-ui,sans-serif;padding:.8rem 2rem;border-radius:0px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
-.bbtn-p{background:#1A1A1A;color:#F8F6F3;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#1A1A1A;border:1.5px solid #888888;}.bbtn-s:hover{border-color:#1A1A1A;color:#1A1A1A}
+.bhero-right{padding:32px 24px;display:flex;flex-direction:column;justify-content:center;gap:20px}
+.bhero-right .hero-quote{font-family:'Playfair Display',Georgia,serif;font-size:18px;font-style:italic;line-height:1.5;color:rgba(255,255,255,.7);border-left:3px solid #DC143C;padding-left:16px}
+.bhero-right .hero-attr{font-size:11px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:2px}
+.bbtn{font-family:'Inter',system-ui,sans-serif;padding:10px 24px;border-radius:0;font-size:11px;font-weight:600;cursor:pointer;border:none;transition:all .3s;text-transform:uppercase;letter-spacing:3px}
+.bbtn-p{background:transparent;color:#DC143C;border:1.5px solid #DC143C}.bbtn-p:hover{background:#DC143C;color:#fff}
+.bbtn-s{background:transparent;color:rgba(255,255,255,.6);border:1.5px solid rgba(255,255,255,.3)}.bbtn-s:hover{border-color:#fff;color:#fff}
 .bsec{padding:5rem 2rem;border-top:1px solid #E0DDD8}
 .bcon{max-width:1100px;margin:0 auto}
-.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#1A1A1A;margin-bottom:.5rem;font-weight:600}
-.bsh{font-size:1.8rem;font-weight:700;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Playfair Display',Georgia,serif}
-.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:transparent;border:none;border-radius:0px;padding:2rem;box-shadow:none;transition:transform .2s;}
-.bcard:hover{transform:translateY(-3px)}
-.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
-.bcard p{font-size:.88rem;color:#888888;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:6px;background:#E0DDD8;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#1A1A1A}
-.bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#1A1A1A;line-height:1;font-family:inherit;}
-.bmet-l{font-size:.78rem;color:#888888;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
-.bquote{max-width:580px;margin:0 auto;text-align:center}
-.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#1A1A1A;margin-bottom:.75rem;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:1.4rem}
-.bquote cite{font-size:.85rem;color:#888888;font-style:normal}
-.bfoot{padding:2.5rem 2rem;border-top:1px solid #E0DDD8;text-align:center}
-.bfoot .logo{font-weight:700;color:#1A1A1A;margin-bottom:.75rem;font-size:1.1rem}
-.bfoot nav{margin-bottom:.75rem}
-.bfoot nav a{color:#888888;text-decoration:none;font-size:.8rem;margin:0 .75rem}
-.bfoot nav a:hover{color:#1A1A1A}
-.bfoot small{font-size:.75rem;color:#888888}
-.bgrid{grid-template-columns:1.5fr 1fr;gap:2rem}
+.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#DC143C;margin-bottom:.5rem;font-weight:600}
+.bsh{font-size:1.8rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.02em;font-family:'Playfair Display',Georgia,serif}
+.bsh-rule{width:60px;height:3px;background:#DC143C;margin-bottom:2.5rem}
+/* Asymmetric grid: 1.5fr 1fr with first card spanning */
+.bgrid{display:grid;grid-template-columns:1.5fr 1fr;gap:2rem}
 .bcard:first-child{grid-row:1/3}
-.bcard h3{font-family:"Playfair Display",Georgia,serif;font-size:1.3rem}
-.bcard{border-bottom:1px solid #E0DDD8;border-radius:0;padding:1.5rem 0}
+.bcard{background:transparent;border:none;border-bottom:1px solid #E0DDD8;border-radius:0;padding:1.5rem 0;box-shadow:none;transition:transform .2s;}
+.bcard:hover{transform:translateY(-2px)}
+.bcard h3{font-size:1.3rem;margin-bottom:.5rem;font-weight:700;font-family:'Playfair Display',Georgia,serif}
+.bcard p{font-size:.88rem;color:#757575;line-height:1.6}
+.bcard p::first-letter{font-family:'Playfair Display',Georgia,serif;font-size:2.4rem;float:left;line-height:.8;margin-right:6px;font-weight:900;color:#DC143C}
 .bcard-icon{display:none}
-@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
+/* Full-bleed crimson band for quote section */
+.bsec-quote{padding:4rem 2rem;background:#DC143C;color:#fff;border-top:none;margin:0 calc(-50vw + 50%);width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw}
+/* Metrics: different grid than features - 2fr 1fr 1fr 1fr */
+.bmets{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;text-align:center;padding-top:2rem;border-top:1px solid #E0DDD8}
+.bmet-v{font-size:2.2rem;font-weight:900;color:#1A1A1A;line-height:1;font-family:'Playfair Display',Georgia,serif}
+.bmet-l{font-size:.78rem;color:#757575;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bquote{max-width:580px;margin:0 auto;text-align:center}
+.bquote blockquote{font-size:1.4rem;line-height:1.7;color:#1A1A1A;margin-bottom:.75rem;font-family:'Playfair Display',Georgia,serif;font-style:italic}
+.bquote blockquote::before{content:'\201C';display:block;font-size:4rem;color:#DC143C;font-family:'Playfair Display',Georgia,serif;line-height:.5;margin-bottom:.5rem}
+.bquote cite{font-size:.85rem;color:#757575;font-style:normal;text-transform:uppercase;letter-spacing:2px}
+.bfoot{padding:2.5rem 2rem;border-top:1px solid #E0DDD8;text-align:center}
+.bfoot .logo{font-weight:900;color:#1A1A1A;margin-bottom:.75rem;font-size:1.3rem;font-family:'Playfair Display',Georgia,serif;font-style:italic}
+.bfoot nav{margin-bottom:.75rem}
+.bfoot nav a{color:#757575;text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a:hover{color:#DC143C}
+.bfoot small{font-size:.75rem;color:#757575}
+@media(max-width:768px){.bh nav{display:none}.bhero{grid-template-columns:1fr;min-height:auto}.bhero-inner{border-right:none}.bhero-right{display:none}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bcard:first-child{grid-row:auto}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
@@ -332,10 +340,10 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
   </section>
 </div>
 <div class="b-side">
-<header class="bh"><div class="logo">Atelier</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Curated perspectives</p><h1>The Art of<br>the Grid.</h1><p>Asymmetric columns. Oversized display type. Thin rules. High-end print publication art direction.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Read</button><button class="bbtn bbtn-s">Subscribe</button></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Display Type</h3><p>Dramatically oversized serif headlines commanding attention and setting tone.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Asymmetry</h3><p>Breaking free from rigid columns. Content flows where it needs to.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>White Space</h3><p>Generous breathing room. Letting content exist without crowding.</p></div></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">2024</div><div class="bmet-l">Issue</div></div><div><div class="bmet-v">48</div><div class="bmet-l">Pages</div></div><div><div class="bmet-v">12</div><div class="bmet-l">Features</div></div><div><div class="bmet-v">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="bmet-l">Reviews</div></div></div></div></section>
+<header class="bh"><div class="logo">Atelier</div><nav><a href="#">Culture</a><a href="#">Design</a><a href="#">Archive</a></nav></header>
+<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Vol. XII &mdash; Issue 03</p><h1>The Art of<br><em>Editorial</em><br>Design</h1><p>Where typography meets storytelling. A tradition refined for the digital age.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Read the Issue</button><button class="bbtn bbtn-s">Subscribe</button></div></div><div class="bhero-right"><div class="hero-quote">&ldquo;Good typography is invisible. Great typography is unforgettable.&rdquo;</div><div class="hero-attr">&mdash; The Editors</div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">Column Features</h2><div class="bsh-rule"></div><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>The Return of the Serif</h3><p>Display typefaces are reclaiming digital spaces with dramatic contrast and editorial authority. The pendulum swings back toward tradition with renewed purpose.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Asymmetric Tension</h3><p>Rigid grids give way to intentional imbalance. Content flows where the story demands, creating dynamic compositions.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Considered Space</h3><p>Generous margins and breathing room elevate the reading experience. Every element earns its place on the page.</p></div></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Issue Index</h2><div class="bsh-rule"></div><div class="bmets"><div><div class="bmet-v">2026</div><div class="bmet-l">Issue</div></div><div><div class="bmet-v">48</div><div class="bmet-l">Pages</div></div><div><div class="bmet-v">12</div><div class="bmet-l">Features</div></div><div><div class="bmet-v">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="bmet-l">Reviews</div></div></div></div></section>
 <section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;The most beautifully art-directed digital publication I have ever encountered.&rdquo;</blockquote><cite>&mdash; Print Magazine</cite></div></div></section>
 <footer class="bfoot"><div class="logo">Atelier</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 Atelier. All rights reserved.</small></footer>
 </div>

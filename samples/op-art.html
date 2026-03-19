@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Op Art</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root { --black: #000; --white: #FFF; --accent: #FF3300; }
@@ -111,15 +111,35 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#666666;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#FF0000}
 .bfoot small{font-size:.75rem;color:#666666}
-.bsec:nth-child(even){background:repeating-linear-gradient(45deg,transparent 0px,transparent 10px,rgba(0,0,0,.015) 10px,rgba(0,0,0,.015) 20px)}
-.bhero{position:relative}
-.bhero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0px,transparent 8px,rgba(0,0,0,.02) 8px,rgba(0,0,0,.02) 10px);pointer-events:none}
-.bhero::after{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 50% 50%,transparent 0px,transparent 20px,rgba(0,0,0,.015) 20px,rgba(0,0,0,.015) 21px);pointer-events:none}
+/* Strong Op Art pattern overlays on even sections */
+.bsec:nth-child(even){background:repeating-linear-gradient(45deg,transparent 0px,transparent 8px,rgba(0,0,0,.06) 8px,rgba(0,0,0,.06) 16px);position:relative}
+.bsec:nth-child(even)::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent 0px,transparent 8px,rgba(0,0,0,.04) 8px,rgba(0,0,0,.04) 16px);pointer-events:none}
+/* Hero with visible Op Art patterns */
+.bhero{position:relative;overflow:hidden}
+.bhero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0px,transparent 6px,rgba(0,0,0,.08) 6px,rgba(0,0,0,.08) 8px);pointer-events:none;z-index:0;animation:op-shift 12s ease-in-out infinite alternate}
+.bhero::after{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 50% 50%,transparent 0px,transparent 18px,rgba(0,0,0,.07) 18px,rgba(0,0,0,.07) 20px);pointer-events:none;z-index:0;animation:op-breathe 8s ease-in-out infinite}
+.bhero-inner{position:relative;z-index:1}
+@keyframes op-shift{0%{opacity:.8}50%{opacity:1}100%{opacity:.8}}
+@keyframes op-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+/* Op Art concentric pattern on card icons */
+.bcard-icon{background:repeating-radial-gradient(circle,#000 0,#000 3px,#fff 3px,#fff 6px)!important;color:#FF0000!important;position:relative}
+.bcard-icon::after{content:"";position:absolute;inset:25%;border-radius:50%;background:repeating-radial-gradient(circle,#fff 0,#fff 2px,#000 2px,#000 4px)}
+/* Moire pattern on cards via overlapping grids */
+.bcard{position:relative;overflow:hidden}
+.bcard::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:repeating-linear-gradient(0deg,transparent 0px,transparent 5px,rgba(0,0,0,.04) 5px,rgba(0,0,0,.04) 6px);transform:rotate(3deg);pointer-events:none;z-index:0}
+.bcard::after{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:repeating-linear-gradient(0deg,transparent 0px,transparent 5px,rgba(0,0,0,.04) 5px,rgba(0,0,0,.04) 6px);transform:rotate(-3deg);pointer-events:none;z-index:0}
+.bcard>*{position:relative;z-index:1}
+/* Vibrate effect on hero heading */
+.bhero h1{animation:b-vibrate 0.1s infinite}
+@keyframes b-vibrate{0%{transform:translate(0)}25%{transform:translate(0.3px,-0.3px)}50%{transform:translate(-0.3px,0.3px)}75%{transform:translate(0.3px,0.3px)}100%{transform:translate(0)}}
+/* Stripe divider between sections */
+.bsec{border-image:repeating-linear-gradient(90deg,#000 0,#000 8px,#fff 8px,#fff 16px) 4;border-top-width:4px!important;border-top-style:solid!important}
+/* Checker pattern on metrics */
+.bmets{position:relative}
+.bmets::before{content:"";position:absolute;inset:0;background:repeating-conic-gradient(rgba(0,0,0,.03) 0% 25%,transparent 0% 50%) 0 0/20px 20px;pointer-events:none}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bhero{background:repeating-linear-gradient(90deg,#000 0px,#000 4px,#fff 4px,#fff 8px);background-size:100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent} .bhero{background:none;-webkit-text-fill-color:inherit} .bsec:nth-child(even){background:repeating-linear-gradient(45deg,transparent 0px,transparent 10px,rgba(0,0,0,.02) 10px,rgba(0,0,0,.02) 20px)}
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>

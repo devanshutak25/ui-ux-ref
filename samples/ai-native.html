@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI-Native UI - Sample</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family: 'Space Grotesk', sans-serif; background: #0F0B2E; color: #E8E0F0; line-height: 1.6; }
@@ -298,32 +298,55 @@
 body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
 /* B-Side: AI-Native UI */
-.b-side{background:#1E1B4B;color:#E0E7FF;font-family:'Space Grotesk','Inter',sans-serif;line-height:1.6;background:radial-gradient(ellipse at 30% 20%,rgba(124,58,237,.15),transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(6,182,212,.1),transparent 50%),#1E1B4B}
+@keyframes aurora{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes typingDot{0%,80%,100%{opacity:.3;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.b-side{color:#E0E7FF;font-family:'Space Grotesk','Inter',sans-serif;line-height:1.6;background:radial-gradient(ellipse at 30% 20%,rgba(124,58,237,.18),transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(6,182,212,.12),transparent 50%),radial-gradient(ellipse at 50% 50%,rgba(129,140,248,.06),transparent 60%),#1E1B4B;background-size:300% 300%;animation:aurora 12s ease infinite}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
 .bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid rgba(129,140,248,.1);position:sticky;top:0;z-index:100;background:rgba(30,27,75,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#818CF8;;;}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#818CF8}
 .bh nav{display:flex;gap:1.5rem}
-.bh nav a{color:#A5B4FC;text-decoration:none;font-size:.85rem;transition:color .2s;}
+.bh nav a{color:#A5B4FC;text-decoration:none;font-size:.85rem;transition:color .2s}
 .bh nav a:hover{color:#818CF8}
-.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
+.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem}
 .bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#818CF8;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
+.bhero-tag{font-size:.8rem;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600;background:linear-gradient(90deg,#818CF8,#06B6D4,#818CF8);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 3s linear infinite}
 .bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Space Grotesk',sans-serif}
 .bhero p{font-size:1.05rem;color:#A5B4FC;max-width:480px;margin:0 auto 2rem;line-height:1.7}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-.bbtn{font-family:'Space Grotesk','Inter',sans-serif;padding:.8rem 2rem;border-radius:12px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
-.bbtn-p{background:#818CF8;color:#FFFFFF;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#E0E7FF;border:1.5px solid #A5B4FC;}.bbtn-s:hover{border-color:#818CF8;color:#818CF8}
+.bbtn{font-family:'Space Grotesk','Inter',sans-serif;padding:.8rem 2rem;border-radius:12px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.bbtn-p{background:linear-gradient(135deg,#7C3AED,#06B6D4);color:#FFFFFF;border:none}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
+.bbtn-s{background:transparent;color:#E0E7FF;border:1.5px solid #A5B4FC}.bbtn-s:hover{border-color:#818CF8;color:#818CF8}
 .bsec{padding:5rem 2rem;border-top:1px solid rgba(129,140,248,.1)}
 .bcon{max-width:1100px;margin:0 auto}
 .bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#818CF8;text-align:center;margin-bottom:.5rem;font-weight:600}
 .bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Space Grotesk',sans-serif}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:rgba(129,140,248,.06);border:1px solid rgba(129,140,248,.15);border-radius:12px;padding:2rem;box-shadow:0 4px 20px rgba(129,140,248,.08);transition:transform .2s;}
+.bcard{background:rgba(129,140,248,.06);border:1px solid rgba(129,140,248,.15);border-radius:12px;padding:2rem;box-shadow:0 4px 20px rgba(129,140,248,.08);transition:transform .2s;position:relative;overflow:hidden;animation:fadeInUp .6s ease both}
+.bcard:nth-child(2){animation-delay:.15s}.bcard:nth-child(3){animation-delay:.3s}
+.bcard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#7C3AED,#06B6D4)}
 .bcard:hover{transform:translateY(-3px)}
 .bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
 .bcard p{font-size:.88rem;color:#A5B4FC;line-height:1.6}
 .bcard-icon{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#7C3AED,#06B6D4);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#FFFFFF}
+/* Chat/conversational UI pattern on cards */
+.bcard .bchat-msg{margin-top:1rem;padding:.5rem .75rem;border-radius:12px 12px 12px 4px;background:rgba(129,140,248,.1);border:1px solid rgba(129,140,248,.12);font-size:.8rem;color:#A5B4FC;line-height:1.5;max-width:90%}
+.bcard .bchat-msg.user{margin-left:auto;border-radius:12px 12px 4px 12px;background:rgba(124,58,237,.15);border-color:rgba(124,58,237,.2);color:#E0E7FF;text-align:right}
+.bcard .bchat-typing{display:flex;gap:4px;align-items:center;margin-top:.5rem;padding:.4rem .6rem}
+.bcard .bchat-typing span{width:6px;height:6px;border-radius:50%;background:#818CF8;animation:typingDot 1.4s infinite}
+.bcard .bchat-typing span:nth-child(2){animation-delay:.2s}
+.bcard .bchat-typing span:nth-child(3){animation-delay:.4s}
+/* Shimmer loading state */
+.bcard .bshimmer-line{height:8px;border-radius:4px;margin-top:.5rem;background:linear-gradient(90deg,rgba(129,140,248,.08) 25%,rgba(129,140,248,.2) 50%,rgba(129,140,248,.08) 75%);background-size:200% 100%;animation:shimmer 2s linear infinite}
+.bcard .bshimmer-line:nth-child(2){width:60%;margin-top:.35rem}
+/* Prompt input styling */
+.bprompt-bar{display:flex;align-items:center;gap:.75rem;max-width:480px;margin:1.5rem auto 0;padding:.6rem 1rem;background:rgba(129,140,248,.08);border:1px solid rgba(129,140,248,.2);border-radius:24px}
+.bprompt-bar span{font-size:.85rem;color:rgba(165,180,252,.5);flex:1}
+.bprompt-bar .bprompt-cursor{width:2px;height:1em;background:#06B6D4;animation:blink .8s infinite}
+.bprompt-bar .bprompt-send{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#7C3AED,#06B6D4);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.bprompt-bar .bprompt-send::after{content:"";width:0;height:0;border-left:6px solid #fff;border-top:4px solid transparent;border-bottom:4px solid transparent;margin-left:2px}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
 .bmet-v{font-size:2.2rem;font-weight:800;color:#818CF8;line-height:1;font-family:inherit;text-shadow:0 0 20px rgba(129,140,248,.5)}
 .bmet-l{font-size:.78rem;color:#A5B4FC;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
@@ -336,17 +359,9 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#A5B4FC;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#818CF8}
 .bfoot small{font-size:.75rem;color:#A5B4FC}
-.bbtn-p{background:linear-gradient(135deg,#7C3AED,#06B6D4);border:none}
-.bcard{position:relative;overflow:hidden}
-.bcard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#7C3AED,#06B6D4)}
-@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
-.bhero-tag{background:linear-gradient(90deg,#818CF8,#06B6D4,#818CF8);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 3s linear infinite}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}} .bcard{animation:fadeInUp .6s ease both} .bcard:nth-child(2){animation-delay:.15s} .bcard:nth-child(3){animation-delay:.3s}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bbtn-p{background:linear-gradient(135deg,#7C3AED,#06B6D4);border:none} .bcard{position:relative;overflow:hidden} .bcard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#7C3AED,#06B6D4)} @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}} .bhero-tag{background:linear-gradient(90deg,#818CF8,#06B6D4,#818CF8);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 3s linear infinite}
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
@@ -415,8 +430,8 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 </div>
 <div class="b-side">
 <header class="bh"><div class="logo">Synth</div><nav><a href="#">Platform</a><a href="#">Models</a><a href="#">Docs</a><a href="#">Pricing</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Intelligence amplified</p><h1>Think Beyond.<br>Build Smarter.</h1><p>An AI-native platform that augments your creativity. Every interaction learns, adapts, and evolves with you.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Start Building</button><button class="bbtn bbtn-s">See AI in Action</button></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Adaptive Models</h3><p>AI that learns your preferences and anticipates your needs. The more you use it, the smarter it gets.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Generative Engine</h3><p>Create content, code, and designs from natural language prompts. Your ideas, amplified.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Neural Sync</h3><p>Real-time collaboration between human intuition and AI precision. Seamless and invisible.</p></div></div></div></section>
+<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Intelligence amplified</p><h1>Think Beyond.<br>Build Smarter.</h1><p>An AI-native platform that augments your creativity. Every interaction learns, adapts, and evolves with you.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Start Building</button><button class="bbtn bbtn-s">See AI in Action</button></div><div class="bprompt-bar"><span>Ask Synth anything...</span><span class="bprompt-cursor"></span><button class="bprompt-send" aria-label="Send"></button></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Adaptive Models</h3><p>AI that learns your preferences and anticipates your needs. The more you use it, the smarter it gets.</p><div class="bchat-msg user">Analyze this dataset</div><div class="bchat-msg">Found 3 patterns. Generating insights now...</div><div class="bchat-typing"><span></span><span></span><span></span></div></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Generative Engine</h3><p>Create content, code, and designs from natural language prompts. Your ideas, amplified.</p><div class="bshimmer-line"></div><div class="bshimmer-line"></div></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Neural Sync</h3><p>Real-time collaboration between human intuition and AI precision. Seamless and invisible.</p><div class="bchat-msg user">Deploy to production</div><div class="bchat-msg">Syncing with 12 nodes. All systems nominal.</div></div></div></div></section>
 <section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">10B+</div><div class="bmet-l">Parameters</div></div><div><div class="bmet-v">50ms</div><div class="bmet-l">Response</div></div><div><div class="bmet-v">99.97%</div><div class="bmet-l">Accuracy</div></div><div><div class="bmet-v">24/7</div><div class="bmet-l">Online</div></div></div></div></section>
 <section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;This platform completely changed how we approach design. The AI suggestions are genuinely insightful.&rdquo;</blockquote><cite>&mdash; Priya Sharma, Design Lead</cite></div></div></section>
 <footer class="bfoot"><div class="logo">Synth</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 Synth. All rights reserved.</small></footer>

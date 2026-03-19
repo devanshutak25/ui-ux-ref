@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cinematic / Film Noir</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root { --black: #0a0a0a; --dark: #1a1a1a; --gray: #888; --light: #ccc; --red: #c41e3a; }
@@ -59,54 +60,60 @@
 .a-side{display:none}.b-side{display:block}
 body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
-/* B-Side: Cinematic / Film Noir */
+/* B-Side: Cinematic */
 .b-side{background:#000000;color:#C0C0C0;font-family:'Playfair Display','Georgia',serif;line-height:1.6;}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
-.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:none;position:sticky;top:0;z-index:100;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#DC143C;;;}
+/* Letterbox bars - fixed top and bottom for widescreen feel */
+.b-side::before{content:"";position:fixed;top:0;left:0;right:0;height:6vh;background:#000;z-index:998;pointer-events:none}
+.b-side::after{content:"";position:fixed;bottom:0;left:0;right:0;height:6vh;background:#000;z-index:998;pointer-events:none}
+.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:none;position:sticky;top:6vh;z-index:100;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#CC7722;}
 .bh nav{display:flex;gap:1.5rem}
-.bh nav a{color:#666666;text-decoration:none;font-size:.85rem;transition:color .2s;}
-.bh nav a:hover{color:#DC143C}
+.bh nav a{color:#808080;text-decoration:none;font-size:.85rem;transition:color .2s;}
+.bh nav a:hover{color:#CC7722}
 .bhero{min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
 .bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#DC143C;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Playfair Display',serif}
-.bhero p{font-size:1.05rem;color:#666666;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.bhero-tag{font-size:.8rem;color:#CC7722;text-transform:uppercase;letter-spacing:4px;margin-bottom:1rem;font-weight:400;font-family:'Inter',sans-serif}
+.bhero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;line-height:1.08;margin-bottom:1.5rem;letter-spacing:.08em;font-family:'Playfair Display',serif;text-transform:uppercase;animation:fadeIn 2s ease-in both}
+.bhero p{font-size:1.05rem;color:#808080;max-width:480px;margin:0 auto 2rem;line-height:1.7}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-.bbtn{font-family:'Playfair Display','Georgia',serif;padding:.8rem 2rem;border-radius:0px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
-.bbtn-p{background:#DC143C;color:#000000;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#C0C0C0;border:1.5px solid #666666;}.bbtn-s:hover{border-color:#DC143C;color:#DC143C}
+.bbtn{font-family:'Inter','Playfair Display',serif;padding:.8rem 2rem;border-radius:0px;font-size:.85rem;font-weight:400;cursor:pointer;border:none;transition:all .2s;letter-spacing:2px;text-transform:uppercase}
+.bbtn-p{background:#CC7722;color:#000000;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
+.bbtn-s{background:transparent;color:#C0C0C0;border:1.5px solid #808080;}.bbtn-s:hover{border-color:#CC7722;color:#CC7722}
 .bsec{padding:5rem 2rem;border-top:1px solid #222222}
 .bcon{max-width:1100px;margin:0 auto}
-.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#DC143C;text-align:center;margin-bottom:.5rem;font-weight:600}
+.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#CC7722;text-align:center;margin-bottom:.5rem;font-weight:600}
 .bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Playfair Display',serif}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:#0A0A0A;border:1px solid #222222;border-radius:0px;padding:2rem;box-shadow:none;transition:transform .2s;}
+.bcard{background:#0A0A0A;border:1px solid #222222;border-radius:0px;padding:2rem;box-shadow:none;transition:transform .2s;aspect-ratio:2.39/1;display:flex;flex-direction:column;justify-content:center}
 .bcard:hover{transform:translateY(-3px)}
 .bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
-.bcard p{font-size:.88rem;color:#666666;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:6px;background:rgba(220,20,60,.08);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#DC143C}
+.bcard p{font-size:.88rem;color:#808080;line-height:1.6}
+.bcard-icon{width:40px;height:40px;border-radius:6px;background:rgba(0,128,128,.12);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#4DB8B8}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#DC143C;line-height:1;font-family:inherit;}
-.bmet-l{font-size:.78rem;color:#666666;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bmet-v{font-size:2.2rem;font-weight:800;color:#CC7722;line-height:1;font-family:inherit;}
+.bmet-l{font-size:.78rem;color:#808080;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
 .bquote{max-width:580px;margin:0 auto;text-align:center}
 .bquote blockquote{font-size:1.15rem;line-height:1.7;color:#C0C0C0;margin-bottom:.75rem;font-family:inherit;font-style:italic}
-.bquote cite{font-size:.85rem;color:#666666;font-style:normal}
-.bfoot{padding:2.5rem 2rem;border-top:1px solid #222222;text-align:center}
-.bfoot .logo{font-weight:700;color:#DC143C;margin-bottom:.75rem;font-size:1.1rem}
+.bquote cite{font-size:.85rem;color:#808080;font-style:normal}
+.bfoot{padding:2.5rem 2rem;border-top:1px solid #222222;text-align:center;padding-bottom:calc(2.5rem + 6vh)}
+.bfoot .logo{font-weight:700;color:#CC7722;margin-bottom:.75rem;font-size:1.1rem}
 .bfoot nav{margin-bottom:.75rem}
-.bfoot nav a{color:#666666;text-decoration:none;font-size:.8rem;margin:0 .75rem}
-.bfoot nav a:hover{color:#DC143C}
-.bfoot small{font-size:.75rem;color:#666666}
-.bhero{position:relative}
-.bhero::before{content:"";position:absolute;top:0;bottom:0;left:0;right:0;background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.3) 100%);pointer-events:none}
-.bcard::before{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#DC143C,transparent)}
+.bfoot nav a{color:#808080;text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a:hover{color:#CC7722}
+.bfoot small{font-size:.75rem;color:#808080}
+/* Cinematic vignette instead of venetian blinds */
+.bhero{position:relative;overflow:hidden}
+.bhero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 50%,rgba(0,0,0,.6) 100%);pointer-events:none}
+/* Teal-orange color grade overlay */
+.bhero::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,128,128,.06) 0%,transparent 50%,rgba(204,119,34,.06) 100%);pointer-events:none;mix-blend-mode:color}
+.bcard::before{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#4DB8B8,#CC7722);opacity:.6}
 .bcard{position:relative;overflow:hidden}
-@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bcard{aspect-ratio:auto}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>

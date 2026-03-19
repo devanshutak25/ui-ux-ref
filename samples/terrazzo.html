@@ -62,22 +62,22 @@
 body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
 /* B-Side: Terrazzo */
-.b-side{background:#E8D5B7;color:#5C4A3A;font-family:'Poppins','Inter',sans-serif;line-height:1.6;}
+.b-side{background:#E8D5B7;color:#5C4A3A;font-family:'Poppins','Inter',sans-serif;line-height:1.6;position:relative}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
 .bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:none;position:sticky;top:0;z-index:100;background:rgba(232,213,183,.95);}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#E88D97;;;}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#E88D97;}
 .bh nav{display:flex;gap:1.5rem}
-.bh nav a{color:#8B7B68;text-decoration:none;font-size:.85rem;transition:color .2s;}
+.bh nav a{color:#6B5A48;text-decoration:none;font-size:.85rem;transition:color .2s;}
 .bh nav a:hover{color:#E88D97}
 .bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
 .bhero-inner{max-width:640px}
 .bhero-tag{font-size:.8rem;color:#E88D97;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
 .bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Poppins','Inter',sans-serif}
-.bhero p{font-size:1.05rem;color:#8B7B68;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.bhero p{font-size:1.05rem;color:#6B5A48;max-width:480px;margin:0 auto 2rem;line-height:1.7}
 .bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-.bbtn{font-family:'Poppins','Inter',sans-serif;padding:.8rem 2rem;border-radius:16px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
+.bbtn{font-family:'Poppins','Inter',sans-serif;padding:.8rem 2rem;border-radius:16px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;}
 .bbtn-p{background:#E88D97;color:#fff;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#5C4A3A;border:1.5px solid #8B7B68;}.bbtn-s:hover{border-color:#E88D97;color:#E88D97}
+.bbtn-s{background:transparent;color:#5C4A3A;border:1.5px solid #6B5A48;}.bbtn-s:hover{border-color:#E88D97;color:#E88D97}
 .bsec{padding:5rem 2rem;border-top:none}
 .bcon{max-width:1100px;margin:0 auto}
 .bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#E88D97;text-align:center;margin-bottom:.5rem;font-weight:600}
@@ -86,26 +86,25 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bcard{background:#FFFFFF;border:none;border-radius:16px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:transform .2s;}
 .bcard:hover{transform:translateY(-3px)}
 .bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
-.bcard p{font-size:.88rem;color:#8B7B68;line-height:1.6}
+.bcard p{font-size:.88rem;color:#6B5A48;line-height:1.6}
 .bcard-icon{width:40px;height:40px;border-radius:16px;background:rgba(232,141,151,.15);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#E88D97}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
 .bmet-v{font-size:2.2rem;font-weight:800;color:#E88D97;line-height:1;font-family:inherit;}
-.bmet-l{font-size:.78rem;color:#8B7B68;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bmet-l{font-size:.78rem;color:#6B5A48;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
 .bquote{max-width:580px;margin:0 auto;text-align:center}
 .bquote blockquote{font-size:1.15rem;line-height:1.7;color:#5C4A3A;margin-bottom:.75rem;font-family:inherit;font-style:italic}
-.bquote cite{font-size:.85rem;color:#8B7B68;font-style:normal}
-.bfoot{padding:2.5rem 2rem;;text-align:center}
+.bquote cite{font-size:.85rem;color:#6B5A48;font-style:normal}
+.bfoot{padding:2.5rem 2rem;text-align:center}
 .bfoot .logo{font-weight:700;color:#E88D97;margin-bottom:.75rem;font-size:1.1rem}
 .bfoot nav{margin-bottom:.75rem}
-.bfoot nav a{color:#8B7B68;text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a{color:#6B5A48;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#E88D97}
-.bfoot small{font-size:.75rem;color:#8B7B68}
+.bfoot small{font-size:.75rem;color:#6B5A48}
 .bcard:nth-child(2) .bcard-icon{background:rgba(123,200,196,.15);color:#7BC8C4}
 .bcard:nth-child(3) .bcard-icon{background:rgba(219,161,89,.15);color:#DBA159}
-.b-side::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(3px 3px at 15% 25%,#E88D97,transparent),radial-gradient(2px 4px at 45% 60%,#7BC8C4,transparent),radial-gradient(4px 3px at 75% 35%,#DBA159,transparent),radial-gradient(3px 2px at 25% 80%,#9B8EC6,transparent),radial-gradient(2px 3px at 85% 70%,#E88D97,transparent),radial-gradient(3px 3px at 55% 15%,#7BC8C4,transparent);opacity:.4}
+.b-side::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 7px 4px at 12% 18%,#E88D97,transparent),radial-gradient(ellipse 4px 6px at 28% 42%,#7BC8C4,transparent),radial-gradient(ellipse 9px 5px at 55% 12%,#DBA159,transparent),radial-gradient(ellipse 5px 8px at 72% 65%,#9B8EC6,transparent),radial-gradient(ellipse 3px 5px at 88% 30%,#7FA87F,transparent),radial-gradient(ellipse 8px 4px at 35% 78%,#E88D97,transparent),radial-gradient(ellipse 4px 7px at 62% 88%,#7BC8C4,transparent),radial-gradient(ellipse 6px 3px at 90% 80%,#DBA159,transparent),radial-gradient(ellipse 3px 6px at 8% 60%,#9B8EC6,transparent),radial-gradient(ellipse 5px 3px at 48% 52%,#7FA87F,transparent),radial-gradient(ellipse 4px 7px at 20% 90%,#DBA159,transparent),radial-gradient(ellipse 8px 5px at 78% 15%,#E88D97,transparent),radial-gradient(ellipse 3px 5px at 42% 30%,#7BC8C4,transparent),radial-gradient(ellipse 6px 4px at 95% 55%,#7FA87F,transparent),radial-gradient(ellipse 5px 8px at 18% 50%,#DBA159,transparent),radial-gradient(ellipse 7px 3px at 65% 75%,#9B8EC6,transparent),radial-gradient(ellipse 4px 6px at 82% 48%,#E88D97,transparent),radial-gradient(ellipse 6px 4px at 38% 10%,#7BC8C4,transparent);opacity:.5}
 .bh,.bhero,.bsec,.bfoot{position:relative;z-index:1}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
-.bcard:nth-child(2) .bcard-icon{background:rgba(123,200,196,.15);color:#7BC8C4} .bcard:nth-child(3) .bcard-icon{background:rgba(219,161,89,.15);color:#DBA159}
 
 </style>
 </head>
