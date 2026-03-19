@@ -217,46 +217,64 @@
   .palette { display: flex; gap: 0.5rem; }
   .swatch { width: 48px; height: 48px; border: 1px solid #D5CBBD; }
 
+
+/* A/B Toggle */
 .side-toggle{position:fixed;top:12px;right:12px;z-index:99999;display:flex;background:rgba(0,0,0,.88);border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 24px rgba(0,0,0,.5);font-family:system-ui,sans-serif}
 .side-toggle button{padding:6px 16px;font-size:12px;font-weight:600;border:none;cursor:pointer;background:0 0;color:rgba(255,255,255,.45);font-family:inherit;transition:all .2s;letter-spacing:.5px}
 .side-toggle button.active{background:rgba(129,140,248,.25);color:#818CF8}
 .side-toggle button:hover:not(.active){color:rgba(255,255,255,.8)}
-.a-side{display:none}.b-side{display:block}body.show-a .a-side{display:block}body.show-a .b-side{display:none}
+.a-side{display:none}.b-side{display:block}
+body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
-.b-side{background:#FAF8F5;color:#000;font-family:Inter,system-ui,sans-serif;line-height:1.6}
+/* B-Side: E-Ink / Paper */
+.b-side{background:#FAF8F5;color:#2C2C2C;font-family:'Lora','Georgia',serif;line-height:1.6;}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
-.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid rgba(0,0,0,.08);position:sticky;top:0;z-index:100;background:#FAF8F5;}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#2C2C2C}.bh nav{display:flex;gap:1.5rem}.bh nav a{color:#666;text-decoration:none;font-size:.85rem;transition:color .2s}.bh nav a:hover{color:#2C2C2C}
-.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem}.bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#2C2C2C;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em}
-.bhero p{font-size:1.05rem;color:#666;max-width:480px;margin:0 auto 2rem;line-height:1.7}
-.bhero-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
-.bbtn{font-family:inherit;padding:.8rem 2rem;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
-.bbtn-p{background:#2C2C2C;color:#fff}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#000;border:1.5px solid #666}.bbtn-s:hover{border-color:#2C2C2C;color:#2C2C2C}
-.bsec{padding:5rem 2rem;border-top:1px solid rgba(0,0,0,.08)}.bcon{max-width:1100px;margin:0 auto}
-.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#2C2C2C;text-align:center;margin-bottom:.5rem;font-weight:600}
-.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em}
+.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid #E5E0D8;position:sticky;top:0;z-index:100;background:#FAF8F5;}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#8B7355;;;}
+.bh nav{display:flex;gap:1.5rem}
+.bh nav a{color:#8B8178;text-decoration:none;font-size:.85rem;transition:color .2s;}
+.bh nav a:hover{color:#8B7355}
+.bhero{min-height:60vh;display:flex;align-items:center;;padding:4rem 2rem;}
+.bhero-inner{max-width:640px}
+.bhero-tag{font-size:.8rem;color:#8B7355;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
+.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Lora',Georgia,serif}
+.bhero p{font-size:1.05rem;color:#8B8178;max-width:480px;margin-bottom:2rem;line-height:1.7}
+.bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;}
+.bbtn{font-family:'Lora','Georgia',serif;padding:.8rem 2rem;border-radius:2px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
+.bbtn-p{background:#8B7355;color:#FAF8F5;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
+.bbtn-s{background:transparent;color:#2C2C2C;border:1.5px solid #8B8178;}.bbtn-s:hover{border-color:#8B7355;color:#8B7355}
+.bsec{padding:5rem 2rem;border-top:1px solid #E5E0D8}
+.bcon{max-width:65ch;margin:0 auto}
+.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#8B7355;margin-bottom:.5rem;font-weight:600}
+.bsh{font-size:1.8rem;font-weight:700;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Lora',Georgia,serif}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:rgba(0,0,0,.02);border:1px solid rgba(0,0,0,.08);border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:transform .2s}.bcard:hover{transform:translateY(-3px)}
-.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}.bcard p{font-size:.88rem;color:#666;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:8px;background:rgba(44,44,44,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#2C2C2C}
+.bcard{background:#F0EDE8;border:1px solid #E5E0D8;border-radius:2px;padding:2rem;box-shadow:none;transition:transform .2s;}
+.bcard:hover{transform:translateY(-3px)}
+.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
+.bcard p{font-size:.88rem;color:#8B8178;line-height:1.6}
+.bcard-icon{width:40px;height:40px;border-radius:2px;background:#E5E0D8;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#8B7355}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#2C2C2C;line-height:1}.bmet-l{font-size:.78rem;color:#666;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
-.bquote{max-width:580px;margin:0 auto;text-align:center}.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#000;margin-bottom:.75rem;font-style:italic}.bquote cite{font-size:.85rem;color:#666;font-style:normal}
-.bfoot{padding:2.5rem 2rem;border-top:1px solid rgba(0,0,0,.08);text-align:center}.bfoot .logo{font-weight:700;color:#2C2C2C;margin-bottom:.75rem;font-size:1.1rem}
-.bfoot nav{margin-bottom:.75rem}.bfoot nav a{color:#666;text-decoration:none;font-size:.8rem;margin:0 .75rem}.bfoot nav a:hover{color:#2C2C2C}
-.bfoot small{font-size:.75rem;color:#666}
+.bmet-v{font-size:2.2rem;font-weight:800;color:#8B7355;line-height:1;font-family:inherit;}
+.bmet-l{font-size:.78rem;color:#8B8178;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bquote{max-width:580px;margin:0 auto;text-align:center}
+.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#2C2C2C;margin-bottom:.75rem;font-family:'Lora',Georgia,serif;font-style:italic}
+.bquote cite{font-size:.85rem;color:#8B8178;font-style:normal}
+.bfoot{padding:2.5rem 2rem;border-top:1px solid #E5E0D8;text-align:center}
+.bfoot .logo{font-weight:700;color:#8B7355;margin-bottom:.75rem;font-size:1.1rem}
+.bfoot nav{margin-bottom:.75rem}
+.bfoot nav a{color:#8B8178;text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a:hover{color:#8B7355}
+.bfoot small{font-size:.75rem;color:#8B8178}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
+.bhero p{line-height:1.8} .bcard p{line-height:1.8} .bquote blockquote{line-height:1.8;font-size:1.1rem}
 
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
 <div class="a-side">
-
-  <section class="hero">
+<section class="hero">
     <nav>
       <div class="logo">The Reader</div>
       <ul class="nav-links">
@@ -309,15 +327,14 @@
       </div>
     </div>
   </section>
-
 </div>
 <div class="b-side">
-<header class="bh"><div class="logo">E-Ink</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Distinctive by design</p><h1>E-Ink<br>Style.</h1><p>A distinctive visual approach that brings unique character and personality to every interface.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Explore</button><button class="bbtn bbtn-s">Learn More</button></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Visual Identity</h3><p>A strong, recognizable aesthetic that sets this style apart from all others.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Consistent Language</h3><p>Every element speaks the same visual dialect, creating cohesion.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Authentic Detail</h3><p>Small touches that make this style feel genuine rather than generic.</p></div></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Details</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">100%</div><div class="bmet-l">Authentic</div></div><div><div class="bmet-v">Unique</div><div class="bmet-l">Voice</div></div><div><div class="bmet-v">Bold</div><div class="bmet-l">Statement</div></div><div><div class="bmet-v">&#10004;</div><div class="bmet-l">Distinct</div></div></div></div></section>
-<section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;A truly distinctive design approach that brings real character to every project.&rdquo;</blockquote><cite>&mdash; Design Team</cite></div></div></section>
-<footer class="bfoot"><div class="logo">E-Ink</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 E-Ink. All rights reserved.</small></footer>
+<header class="bh"><div class="logo">Folio</div><nav><a href="#">Library</a><a href="#">Collections</a><a href="#">About</a><a href="#">Account</a></nav></header>
+<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Read without distraction</p><h1>Calm, Focused<br>Reading.</h1><p>A reading experience designed for deep focus. No visual noise, no distractions — just beautiful typography on paper-like surfaces.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Start Reading</button><button class="bbtn bbtn-s">Browse Library</button></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Paper Feel</h3><p>Warm, natural tones that mimic the experience of reading on physical paper. Easy on the eyes for hours.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Perfect Type</h3><p>Carefully set serif typography with generous line height and optimal reading width for sustained focus.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Zero Clutter</h3><p>No shadows, no gradients, no decorations. Content is the only thing that matters here.</p></div></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">65ch</div><div class="bmet-l">Line Width</div></div><div><div class="bmet-v">1.8</div><div class="bmet-l">Line Height</div></div><div><div class="bmet-v">0</div><div class="bmet-l">Distractions</div></div><div><div class="bmet-v">&#8734;</div><div class="bmet-l">Focus</div></div></div></div></section>
+<section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;I finally found a reading experience that respects both the content and the reader. Beautifully understated.&rdquo;</blockquote><cite>&mdash; James Morris, Author</cite></div></div></section>
+<footer class="bfoot"><div class="logo">Folio</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 Folio. All rights reserved.</small></footer>
 </div>
 </body>
 </html>

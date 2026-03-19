@@ -52,46 +52,64 @@
 
   @media (max-width: 600px) { .hero-content h1 { font-size: 2.4rem; } .grid { grid-template-columns: 1fr; } .nav-links { gap: 1rem; } }
 
+
+/* A/B Toggle */
 .side-toggle{position:fixed;top:12px;right:12px;z-index:99999;display:flex;background:rgba(0,0,0,.88);border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 24px rgba(0,0,0,.5);font-family:system-ui,sans-serif}
 .side-toggle button{padding:6px 16px;font-size:12px;font-weight:600;border:none;cursor:pointer;background:0 0;color:rgba(255,255,255,.45);font-family:inherit;transition:all .2s;letter-spacing:.5px}
 .side-toggle button.active{background:rgba(129,140,248,.25);color:#818CF8}
 .side-toggle button:hover:not(.active){color:rgba(255,255,255,.8)}
-.a-side{display:none}.b-side{display:block}body.show-a .a-side{display:block}body.show-a .b-side{display:none}
+.a-side{display:none}.b-side{display:block}
+body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
-.b-side{background:#FF0000;color:#fff;font-family:Inter,system-ui,sans-serif;line-height:1.6}
+/* B-Side: Bauhaus */
+.b-side{background:#FFFFFF;color:#000000;font-family:'DM Sans',sans-serif;line-height:1.6;}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
-.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:100;background:#FF0000ee;backdrop-filter:blur(12px)}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#0000FF}.bh nav{display:flex;gap:1.5rem}.bh nav a{color:#aaa;text-decoration:none;font-size:.85rem;transition:color .2s}.bh nav a:hover{color:#0000FF}
-.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem}.bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#0000FF;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em}
-.bhero p{font-size:1.05rem;color:#aaa;max-width:480px;margin:0 auto 2rem;line-height:1.7}
-.bhero-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
-.bbtn{font-family:inherit;padding:.8rem 2rem;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
-.bbtn-p{background:#0000FF;color:#fff}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#fff;border:1.5px solid #aaa}.bbtn-s:hover{border-color:#0000FF;color:#0000FF}
-.bsec{padding:5rem 2rem;border-top:1px solid rgba(255,255,255,.08)}.bcon{max-width:1100px;margin:0 auto}
-.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#0000FF;text-align:center;margin-bottom:.5rem;font-weight:600}
-.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em}
+.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:2px solid #000000;position:sticky;top:0;z-index:100;background:#FFFFFF;}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#FF0000;;;text-transform:uppercase}
+.bh nav{display:flex;gap:1.5rem}
+.bh nav a{color:#555555;text-decoration:none;font-size:.85rem;transition:color .2s;}
+.bh nav a:hover{color:#FF0000}
+.bhero{min-height:80vh;display:flex;align-items:center;;padding:4rem 2rem;}
+.bhero-inner{max-width:640px}
+.bhero-tag{font-size:.8rem;color:#FF0000;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
+.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'DM Sans',sans-serif}
+.bhero p{font-size:1.05rem;color:#555555;max-width:480px;margin-bottom:2rem;line-height:1.7}
+.bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;}
+.bbtn{font-family:'DM Sans',sans-serif;padding:.8rem 2rem;border-radius:0px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-transform:uppercase;}
+.bbtn-p{background:#FF0000;color:#FFFFFF;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
+.bbtn-s{background:transparent;color:#000000;border:1.5px solid #555555;}.bbtn-s:hover{border-color:#FF0000;color:#FF0000}
+.bsec{padding:5rem 2rem;border-top:2px solid #000000}
+.bcon{max-width:1100px;margin:0 auto}
+.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#FF0000;margin-bottom:.5rem;font-weight:600}
+.bsh{font-size:1.8rem;font-weight:700;margin-bottom:3rem;letter-spacing:-.02em;font-family:'DM Sans',sans-serif}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:transform .2s}.bcard:hover{transform:translateY(-3px)}
-.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}.bcard p{font-size:.88rem;color:#aaa;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:8px;background:rgba(0,0,255,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#0000FF}
+.bcard{background:#FFFFFF;border:2px solid #000000;border-radius:0px;padding:2rem;box-shadow:none;transition:transform .2s;}
+.bcard:hover{transform:translateY(-3px)}
+.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
+.bcard p{font-size:.88rem;color:#555555;line-height:1.6}
+.bcard-icon{width:40px;height:40px;border-radius:6px;background:#FF0000;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#FFFFFF}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#0000FF;line-height:1}.bmet-l{font-size:.78rem;color:#aaa;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
-.bquote{max-width:580px;margin:0 auto;text-align:center}.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#fff;margin-bottom:.75rem;font-style:italic}.bquote cite{font-size:.85rem;color:#aaa;font-style:normal}
-.bfoot{padding:2.5rem 2rem;border-top:1px solid rgba(255,255,255,.08);text-align:center}.bfoot .logo{font-weight:700;color:#0000FF;margin-bottom:.75rem;font-size:1.1rem}
-.bfoot nav{margin-bottom:.75rem}.bfoot nav a{color:#aaa;text-decoration:none;font-size:.8rem;margin:0 .75rem}.bfoot nav a:hover{color:#0000FF}
-.bfoot small{font-size:.75rem;color:#aaa}
+.bmet-v{font-size:2.2rem;font-weight:800;color:#FF0000;line-height:1;font-family:inherit;}
+.bmet-l{font-size:.78rem;color:#555555;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bquote{max-width:580px;margin:0 auto;text-align:center}
+.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#000000;margin-bottom:.75rem;font-family:inherit;font-style:italic}
+.bquote cite{font-size:.85rem;color:#555555;font-style:normal}
+.bfoot{padding:2.5rem 2rem;border-top:2px solid #000000;text-align:center}
+.bfoot .logo{font-weight:700;color:#FF0000;margin-bottom:.75rem;font-size:1.1rem}
+.bfoot nav{margin-bottom:.75rem}
+.bfoot nav a{color:#555555;text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a:hover{color:#FF0000}
+.bfoot small{font-size:.75rem;color:#555555}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
+.bcard:nth-child(2) .bcard-icon{background:#0000FF} .bcard:nth-child(3) .bcard-icon{background:#FFD700;color:#000}
 
 </style>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
 <div class="a-side">
-
-  <section class="hero">
+<section class="hero">
     <div class="geo-circle"></div>
     <div class="geo-square"></div>
     <div class="geo-tri"></div>
@@ -127,15 +145,14 @@
   </section>
 
   <footer>Bauhaus &mdash; Art + Industry &mdash; 2026</footer>
-
 </div>
 <div class="b-side">
-<header class="bh"><div class="logo">Bauhaus</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Distinctive by design</p><h1>Bauhaus<br>Style.</h1><p>A distinctive visual approach that brings unique character and personality to every interface.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Explore</button><button class="bbtn bbtn-s">Learn More</button></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Visual Identity</h3><p>A strong, recognizable aesthetic that sets this style apart from all others.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Consistent Language</h3><p>Every element speaks the same visual dialect, creating cohesion.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Authentic Detail</h3><p>Small touches that make this style feel genuine rather than generic.</p></div></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Details</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">100%</div><div class="bmet-l">Authentic</div></div><div><div class="bmet-v">Unique</div><div class="bmet-l">Voice</div></div><div><div class="bmet-v">Bold</div><div class="bmet-l">Statement</div></div><div><div class="bmet-v">&#10004;</div><div class="bmet-l">Distinct</div></div></div></div></section>
-<section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;A truly distinctive design approach that brings real character to every project.&rdquo;</blockquote><cite>&mdash; Design Team</cite></div></div></section>
-<footer class="bfoot"><div class="logo">Bauhaus</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 Bauhaus. All rights reserved.</small></footer>
+<header class="bh"><div class="logo">BAUHAUS</div><nav><a href="#">Work</a><a href="#">Theory</a><a href="#">Archive</a><a href="#">Contact</a></nav></header>
+<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Form follows function</p><h1>Art Meets<br>Industry.</h1><p>Where function dictates form. Primary colors, geometric shapes, and the total rejection of ornament.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Explore</button><button class="bbtn bbtn-s">Manifesto</button></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">Theory</p><h2 class="bsh">Core Principles</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Primary Only</h3><p>Red, blue, yellow. Three colors that contain all the energy a design needs. Nothing more required.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Pure Geometry</h3><p>Circles, squares, triangles. The fundamental building blocks of every visual composition.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Function First</h3><p>Every element exists because it must. Decoration is crime. Utility is beauty.</p></div></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">Legacy</p><h2 class="bsh">The Movement</h2><div class="bmets"><div><div class="bmet-v">1919</div><div class="bmet-l">Founded</div></div><div><div class="bmet-v">3</div><div class="bmet-l">Colors</div></div><div><div class="bmet-v">3</div><div class="bmet-l">Shapes</div></div><div><div class="bmet-v">0</div><div class="bmet-l">Ornament</div></div></div></div></section>
+<section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;Less is more.&rdquo;</blockquote><cite>&mdash; Ludwig Mies van der Rohe</cite></div></div></section>
+<footer class="bfoot"><div class="logo">BAUHAUS</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 BAUHAUS. All rights reserved.</small></footer>
 </div>
 </body>
 </html>

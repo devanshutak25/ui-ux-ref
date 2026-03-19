@@ -110,46 +110,63 @@
   .swatch:hover { transform: scale(1.15); filter: brightness(1.3); }
   .swatch span { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-family: 'Share Tech Mono', monospace; font-size: 0.45rem; color: rgba(0,240,255,0.4); white-space: nowrap; }
 
+
+/* A/B Toggle */
 .side-toggle{position:fixed;top:12px;right:12px;z-index:99999;display:flex;background:rgba(0,0,0,.88);border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 24px rgba(0,0,0,.5);font-family:system-ui,sans-serif}
 .side-toggle button{padding:6px 16px;font-size:12px;font-weight:600;border:none;cursor:pointer;background:0 0;color:rgba(255,255,255,.45);font-family:inherit;transition:all .2s;letter-spacing:.5px}
 .side-toggle button.active{background:rgba(129,140,248,.25);color:#818CF8}
 .side-toggle button:hover:not(.active){color:rgba(255,255,255,.8)}
-.a-side{display:none}.b-side{display:block}body.show-a .a-side{display:block}body.show-a .b-side{display:none}
+.a-side{display:none}.b-side{display:block}
+body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
-.b-side{background:#0a0a1a;color:#fff;font-family:Inter,system-ui,sans-serif;line-height:1.6}
+/* B-Side: Cyberpunk UI */
+.b-side{background:#0a0a1a;color:#e0e0e0;font-family:'Rajdhani','Share Tech Mono',sans-serif;line-height:1.6;background:linear-gradient(180deg,#0a0a1a,#0d0d2b 50%,#0a0a1a)}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
-.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:100;background:#0a0a1aee;backdrop-filter:blur(12px)}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#FF006E}.bh nav{display:flex;gap:1.5rem}.bh nav a{color:#aaa;text-decoration:none;font-size:.85rem;transition:color .2s}.bh nav a:hover{color:#FF006E}
-.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem}.bhero-inner{max-width:640px}
+.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid rgba(0,240,255,.15);position:sticky;top:0;z-index:100;background:rgba(10,10,26,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#FF006E;color:#FF006E;letter-spacing:4px;text-shadow:0 0 10px #FF006E;;}
+.bh nav{display:flex;gap:1.5rem}
+.bh nav a{color:rgba(0,240,255,.5);text-decoration:none;font-size:.85rem;transition:color .2s;}
+.bh nav a:hover{color:#FF006E}
+.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
+.bhero-inner{max-width:640px}
 .bhero-tag{font-size:.8rem;color:#FF006E;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em}
-.bhero p{font-size:1.05rem;color:#aaa;max-width:480px;margin:0 auto 2rem;line-height:1.7}
-.bhero-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
-.bbtn{font-family:inherit;padding:.8rem 2rem;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
-.bbtn-p{background:#FF006E;color:#fff}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#fff;border:1.5px solid #aaa}.bbtn-s:hover{border-color:#FF006E;color:#FF006E}
-.bsec{padding:5rem 2rem;border-top:1px solid rgba(255,255,255,.08)}.bcon{max-width:1100px;margin:0 auto}
+.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Share Tech Mono',monospace}
+.bhero p{font-size:1.05rem;color:rgba(0,240,255,.5);max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
+.bbtn{font-family:'Rajdhani','Share Tech Mono',sans-serif;padding:.8rem 2rem;border-radius:0px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
+.bbtn-p{background:#FF006E;color:#0a0a1a;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
+.bbtn-s{background:transparent;color:#e0e0e0;border:1.5px solid rgba(0,240,255,.5);}.bbtn-s:hover{border-color:#FF006E;color:#FF006E}
+.bsec{padding:5rem 2rem;border-top:1px solid rgba(255,0,110,.12)}
+.bcon{max-width:1100px;margin:0 auto}
 .bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#FF006E;text-align:center;margin-bottom:.5rem;font-weight:600}
-.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em}
+.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Share Tech Mono',monospace}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:transform .2s}.bcard:hover{transform:translateY(-3px)}
-.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}.bcard p{font-size:.88rem;color:#aaa;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:8px;background:rgba(255,0,110,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#FF006E}
+.bcard{background:rgba(255,255,255,.03);border:1px solid rgba(0,240,255,.12);border-radius:0px;padding:2rem;box-shadow:none;transition:transform .2s;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px))}
+.bcard:hover{transform:translateY(-3px)}
+.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
+.bcard p{font-size:.88rem;color:rgba(0,240,255,.5);line-height:1.6}
+.bcard-icon{width:40px;height:40px;border-radius:6px;background:rgba(0,240,255,.06);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#00F0FF}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#FF006E;line-height:1}.bmet-l{font-size:.78rem;color:#aaa;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
-.bquote{max-width:580px;margin:0 auto;text-align:center}.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#fff;margin-bottom:.75rem;font-style:italic}.bquote cite{font-size:.85rem;color:#aaa;font-style:normal}
-.bfoot{padding:2.5rem 2rem;border-top:1px solid rgba(255,255,255,.08);text-align:center}.bfoot .logo{font-weight:700;color:#FF006E;margin-bottom:.75rem;font-size:1.1rem}
-.bfoot nav{margin-bottom:.75rem}.bfoot nav a{color:#aaa;text-decoration:none;font-size:.8rem;margin:0 .75rem}.bfoot nav a:hover{color:#FF006E}
-.bfoot small{font-size:.75rem;color:#aaa}
+.bmet-v{font-size:2.2rem;font-weight:800;color:#FF006E;line-height:1;font-family:'Share Tech Mono',monospace;text-shadow:0 0 10px rgba(0,240,255,.5)}
+.bmet-l{font-size:.78rem;color:rgba(0,240,255,.5);margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bquote{max-width:580px;margin:0 auto;text-align:center}
+.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#e0e0e0;margin-bottom:.75rem;font-family:inherit;font-style:normal}
+.bquote cite{font-size:.85rem;color:rgba(0,240,255,.5);font-style:normal}
+.bfoot{padding:2.5rem 2rem;border-top:1px solid rgba(255,0,110,.12);text-align:center}
+.bfoot .logo{font-weight:700;color:#FF006E;margin-bottom:.75rem;font-size:1.1rem}
+.bfoot nav{margin-bottom:.75rem}
+.bfoot nav a{color:rgba(0,240,255,.5);text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a:hover{color:#FF006E}
+.bfoot small{font-size:.75rem;color:rgba(0,240,255,.5)}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
+.b-side::before{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.06) 0px,rgba(0,0,0,.06) 1px,transparent 1px,transparent 3px)} .bbtn-p{background:transparent;color:#FF006E;border:2px solid #FF006E;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));box-shadow:0 0 20px rgba(255,0,110,.2)} .bbtn-p:hover{background:#FF006E;color:#0a0a1a;box-shadow:0 0 40px rgba(255,0,110,.4);opacity:1} .bbtn-s{clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));border-color:rgba(0,240,255,.3)} .bhero h1{text-shadow:0 0 20px rgba(0,240,255,.3)}
 
 </style>
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
 <div class="a-side">
-
-  <section class="hero">
+<section class="hero">
     <div class="neon-line neon-line-1"></div>
     <div class="neon-line neon-line-2"></div>
     <div class="neon-line neon-line-3"></div>
@@ -189,15 +206,14 @@
       <div class="swatch" style="background:#FFD700"><span>#FFD700</span></div>
     </div>
   </section>
-
 </div>
 <div class="b-side">
-<header class="bh"><div class="logo">Cyberpunk UI</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Distinctive by design</p><h1>Cyberpunk UI<br>Style.</h1><p>A distinctive visual approach that brings unique character and personality to every interface.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Explore</button><button class="bbtn bbtn-s">Learn More</button></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Visual Identity</h3><p>A strong, recognizable aesthetic that sets this style apart from all others.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Consistent Language</h3><p>Every element speaks the same visual dialect, creating cohesion.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Authentic Detail</h3><p>Small touches that make this style feel genuine rather than generic.</p></div></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Details</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">100%</div><div class="bmet-l">Authentic</div></div><div><div class="bmet-v">Unique</div><div class="bmet-l">Voice</div></div><div><div class="bmet-v">Bold</div><div class="bmet-l">Statement</div></div><div><div class="bmet-v">&#10004;</div><div class="bmet-l">Distinct</div></div></div></div></section>
-<section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;A truly distinctive design approach that brings real character to every project.&rdquo;</blockquote><cite>&mdash; Design Team</cite></div></div></section>
-<footer class="bfoot"><div class="logo">Cyberpunk UI</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 Cyberpunk UI. All rights reserved.</small></footer>
+<header class="bh"><div class="logo">NEXUS://SYS</div><nav><a href="#">Protocols</a><a href="#">Network</a><a href="#">Terminal</a><a href="#">Uplink</a></nav></header>
+<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Systems online</p><h1>Initialize<br>The Grid.</h1><p>Next-gen interface systems for operators who demand absolute control. Precision-engineered. Battle-tested.</p><div class="bhero-btns"><button class="bbtn bbtn-p">ACCESS TERMINAL</button><button class="bbtn bbtn-s">SYS STATUS</button></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Neural Mesh</h3><p>Quantum-encrypted processing nodes with adaptive bandwidth allocation and real-time threat response.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Threat Matrix</h3><p>Predictive anomaly detection across all network segments. Sub-millisecond response times.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Core Sync</h3><p>Multi-system synchronization with zero-downtime failover. Seamless distributed handoff.</p></div></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">100%</div><div class="bmet-l">Uplink</div></div><div><div class="bmet-v">0.3ms</div><div class="bmet-l">Latency</div></div><div><div class="bmet-v">256bit</div><div class="bmet-l">Encrypted</div></div><div><div class="bmet-v">&infin;</div><div class="bmet-l">Scalable</div></div></div></div></section>
+<section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;The most robust command interface ever deployed. Performance exceeded all projections.&rdquo;</blockquote><cite>&mdash; Cmdr. K. Tanaka, Sector 7</cite></div></div></section>
+<footer class="bfoot"><div class="logo">NEXUS://SYS</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 NEXUS://SYS. All rights reserved.</small></footer>
 </div>
 </body>
 </html>

@@ -22,7 +22,15 @@
       "Bash(python3 _run.py)",
       "Bash(grep -rl \"background:;\" samples/*.html)",
       "Bash(grep -rl \"side-toggle\" samples/*.html)",
-      "Bash(grep -rl 'class=\"\"\"\"b-side\"\"\"\"' samples/*.html)"
+      "Bash(grep -rl 'class=\"\"\"\"b-side\"\"\"\"' samples/*.html)",
+      "Bash(ls G:/Personal/ui-ux-ref/samples/*.html)",
+      "Bash(ls -la G:/Personal/ui-ux-ref/_reports/*.md)",
+      "Bash(grep -h \"Authenticity Score\\\\|Score.*\\\\/10\\\\|: [0-9]*/10\\\\|★\\\\|\\\\/10\" *.md)",
+      "Bash(grep -ohP '\\\\d+\\\\s*/\\\\s*10' *.md)",
+      "Bash(grep -oh '[0-9]*/10' *.md)",
+      "Read(//g/Personal/ui-ux-ref/_reports/**)",
+      "Bash(python3 _rebuild.py)",
+      "Bash(grep -oh 'class=\"\"\"\"logo\"\"\"\">[^<]*' samples/*.html)"
     ]
   }
 }

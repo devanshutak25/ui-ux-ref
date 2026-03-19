@@ -42,46 +42,63 @@
   footer { text-align: center; padding: 20px; font-size: 12px; color: #7A6A5A; border-top: 3px dashed var(--green); background: rgba(245,230,211,.9); }
   footer span { letter-spacing: 4px; font-size: 10px; }
 
+
+/* A/B Toggle */
 .side-toggle{position:fixed;top:12px;right:12px;z-index:99999;display:flex;background:rgba(0,0,0,.88);border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 24px rgba(0,0,0,.5);font-family:system-ui,sans-serif}
 .side-toggle button{padding:6px 16px;font-size:12px;font-weight:600;border:none;cursor:pointer;background:0 0;color:rgba(255,255,255,.45);font-family:inherit;transition:all .2s;letter-spacing:.5px}
 .side-toggle button.active{background:rgba(129,140,248,.25);color:#818CF8}
 .side-toggle button:hover:not(.active){color:rgba(255,255,255,.8)}
-.a-side{display:none}.b-side{display:block}body.show-a .a-side{display:block}body.show-a .b-side{display:none}
+.a-side{display:none}.b-side{display:block}
+body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
-.b-side{background:#F5E6D3;color:#000;font-family:Inter,system-ui,sans-serif;line-height:1.6}
+/* B-Side: Embroidery / Cross-Stitch */
+.b-side{background:#F5E6D3;color:#4A3520;font-family:'Lora','Georgia',serif;line-height:1.6;}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
-.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid rgba(0,0,0,.08);position:sticky;top:0;z-index:100;background:#F5E6D3;}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#CC4444}.bh nav{display:flex;gap:1.5rem}.bh nav a{color:#666;text-decoration:none;font-size:.85rem;transition:color .2s}.bh nav a:hover{color:#CC4444}
-.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem}.bhero-inner{max-width:640px}
+.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:2px dashed #CC4444;position:sticky;top:0;z-index:100;background:#F5E6D3;}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#CC4444;;;}
+.bh nav{display:flex;gap:1.5rem}
+.bh nav a{color:#8B6B45;text-decoration:none;font-size:.85rem;transition:color .2s;}
+.bh nav a:hover{color:#CC4444}
+.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
+.bhero-inner{max-width:640px}
 .bhero-tag{font-size:.8rem;color:#CC4444;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em}
-.bhero p{font-size:1.05rem;color:#666;max-width:480px;margin:0 auto 2rem;line-height:1.7}
-.bhero-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
-.bbtn{font-family:inherit;padding:.8rem 2rem;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
-.bbtn-p{background:#CC4444;color:#fff}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#000;border:1.5px solid #666}.bbtn-s:hover{border-color:#CC4444;color:#CC4444}
-.bsec{padding:5rem 2rem;border-top:1px solid rgba(0,0,0,.08)}.bcon{max-width:1100px;margin:0 auto}
+.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Lora','Georgia',serif}
+.bhero p{font-size:1.05rem;color:#8B6B45;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
+.bbtn{font-family:'Lora','Georgia',serif;padding:.8rem 2rem;border-radius:0px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
+.bbtn-p{background:#CC4444;color:#F5E6D3;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
+.bbtn-s{background:transparent;color:#4A3520;border:1.5px solid #8B6B45;}.bbtn-s:hover{border-color:#CC4444;color:#CC4444}
+.bsec{padding:5rem 2rem;border-top:2px dashed #44AA44}
+.bcon{max-width:1100px;margin:0 auto}
 .bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#CC4444;text-align:center;margin-bottom:.5rem;font-weight:600}
-.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em}
+.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Lora','Georgia',serif}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:rgba(0,0,0,.02);border:1px solid rgba(0,0,0,.08);border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:transform .2s}.bcard:hover{transform:translateY(-3px)}
-.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}.bcard p{font-size:.88rem;color:#666;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:8px;background:rgba(204,68,68,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#CC4444}
+.bcard{background:#EBD8C0;border:2px dashed #4477AA;border-radius:0px;padding:2rem;box-shadow:none;transition:transform .2s;}
+.bcard:hover{transform:translateY(-3px)}
+.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
+.bcard p{font-size:.88rem;color:#8B6B45;line-height:1.6}
+.bcard-icon{width:40px;height:40px;border-radius:6px;background:rgba(204,68,68,.08);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#CC4444}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#CC4444;line-height:1}.bmet-l{font-size:.78rem;color:#666;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
-.bquote{max-width:580px;margin:0 auto;text-align:center}.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#000;margin-bottom:.75rem;font-style:italic}.bquote cite{font-size:.85rem;color:#666;font-style:normal}
-.bfoot{padding:2.5rem 2rem;border-top:1px solid rgba(0,0,0,.08);text-align:center}.bfoot .logo{font-weight:700;color:#CC4444;margin-bottom:.75rem;font-size:1.1rem}
-.bfoot nav{margin-bottom:.75rem}.bfoot nav a{color:#666;text-decoration:none;font-size:.8rem;margin:0 .75rem}.bfoot nav a:hover{color:#CC4444}
-.bfoot small{font-size:.75rem;color:#666}
+.bmet-v{font-size:2.2rem;font-weight:800;color:#CC4444;line-height:1;font-family:inherit;}
+.bmet-l{font-size:.78rem;color:#8B6B45;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bquote{max-width:580px;margin:0 auto;text-align:center}
+.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#4A3520;margin-bottom:.75rem;font-family:inherit;font-style:italic}
+.bquote cite{font-size:.85rem;color:#8B6B45;font-style:normal}
+.bfoot{padding:2.5rem 2rem;border-top:2px dashed #44AA44;text-align:center}
+.bfoot .logo{font-weight:700;color:#CC4444;margin-bottom:.75rem;font-size:1.1rem}
+.bfoot nav{margin-bottom:.75rem}
+.bfoot nav a{color:#8B6B45;text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a:hover{color:#CC4444}
+.bfoot small{font-size:.75rem;color:#8B6B45}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
+.bcard:nth-child(1){border-color:#CC4444} .bcard:nth-child(2){border-color:#4477AA} .bcard:nth-child(3){border-color:#44AA44} .bcard:nth-child(1) .bcard-icon{color:#CC4444} .bcard:nth-child(2) .bcard-icon{color:#4477AA;background:rgba(68,119,170,.08)} .bcard:nth-child(3) .bcard-icon{color:#44AA44;background:rgba(68,170,68,.08)}
 
 </style>
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
 <div class="a-side">
-
-  <nav>
+<nav>
     <div class="logo">&cross; Stitch</div>
     <div class="links"><a href="#">Patterns</a><a href="#">Gallery</a><a href="#">Threads</a><a href="#">About</a></div>
   </nav>
@@ -113,15 +130,14 @@
     <div class="swatch" style="background:var(--dark)"></div>
   </div>
   <footer><span>&times; &plus; &times; &plus; &times;</span><br>&copy; 2026 Embroidery Workshop</footer>
-
 </div>
 <div class="b-side">
-<header class="bh"><div class="logo">Embroidery</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Distinctive by design</p><h1>Embroidery<br>Style.</h1><p>A distinctive visual approach that brings unique character and personality to every interface.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Explore</button><button class="bbtn bbtn-s">Learn More</button></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Visual Identity</h3><p>A strong, recognizable aesthetic that sets this style apart from all others.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Consistent Language</h3><p>Every element speaks the same visual dialect, creating cohesion.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Authentic Detail</h3><p>Small touches that make this style feel genuine rather than generic.</p></div></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Details</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">100%</div><div class="bmet-l">Authentic</div></div><div><div class="bmet-v">Unique</div><div class="bmet-l">Voice</div></div><div><div class="bmet-v">Bold</div><div class="bmet-l">Statement</div></div><div><div class="bmet-v">&#10004;</div><div class="bmet-l">Distinct</div></div></div></div></section>
-<section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;A truly distinctive design approach that brings real character to every project.&rdquo;</blockquote><cite>&mdash; Design Team</cite></div></div></section>
-<footer class="bfoot"><div class="logo">Embroidery</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 Embroidery. All rights reserved.</small></footer>
+<header class="bh"><div class="logo">Stitch</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
+<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">One thread at a time</p><h1>Crafted<br>With Care.</h1><p>Linen fabric background. Cross-stitch patterns. Dashed stitch borders. Patient craft.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Thread</button><button class="bbtn bbtn-s">Pattern</button></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Red Thread</h3><p>Rich crimson stitches forming traditional patterns passed through generations.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Blue Thread</h3><p>True steady blue. The warp and weft of carefully planned design.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Green Thread</h3><p>Leaf green adding natural motifs. Flowers, vines, living things in thread.</p></div></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">&#9997;</div><div class="bmet-l">Stitches</div></div><div><div class="bmet-v">3</div><div class="bmet-l">Colors</div></div><div><div class="bmet-v">&#8734;</div><div class="bmet-l">Patience</div></div><div><div class="bmet-v">&#9829;</div><div class="bmet-l">Love</div></div></div></div></section>
+<section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;Patient, precise, imbued with the meditative care of art one stitch at a time.&rdquo;</blockquote><cite>&mdash; Textile Arts Monthly</cite></div></div></section>
+<footer class="bfoot"><div class="logo">Stitch</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 Stitch. All rights reserved.</small></footer>
 </div>
 </body>
 </html>

@@ -55,46 +55,63 @@
     footer { padding: 3rem 2rem; }
   }
 
+
+/* A/B Toggle */
 .side-toggle{position:fixed;top:12px;right:12px;z-index:99999;display:flex;background:rgba(0,0,0,.88);border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 24px rgba(0,0,0,.5);font-family:system-ui,sans-serif}
 .side-toggle button{padding:6px 16px;font-size:12px;font-weight:600;border:none;cursor:pointer;background:0 0;color:rgba(255,255,255,.45);font-family:inherit;transition:all .2s;letter-spacing:.5px}
 .side-toggle button.active{background:rgba(129,140,248,.25);color:#818CF8}
 .side-toggle button:hover:not(.active){color:rgba(255,255,255,.8)}
-.a-side{display:none}.b-side{display:block}body.show-a .a-side{display:block}body.show-a .b-side{display:none}
+.a-side{display:none}.b-side{display:block}
+body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
-.b-side{background:#000000;color:#fff;font-family:Inter,system-ui,sans-serif;line-height:1.6}
+/* B-Side: Whitespace Maximalism */
+.b-side{background:#FFFFFF;color:#000000;font-family:'Inter',system-ui,sans-serif;line-height:1.6;}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
-.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:100;background:#000000ee;backdrop-filter:blur(12px)}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#FFFFFF}.bh nav{display:flex;gap:1.5rem}.bh nav a{color:#aaa;text-decoration:none;font-size:.85rem;transition:color .2s}.bh nav a:hover{color:#FFFFFF}
-.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem}.bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#FFFFFF;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em}
-.bhero p{font-size:1.05rem;color:#aaa;max-width:480px;margin:0 auto 2rem;line-height:1.7}
-.bhero-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
-.bbtn{font-family:inherit;padding:.8rem 2rem;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
-.bbtn-p{background:#FFFFFF;color:#000}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#fff;border:1.5px solid #aaa}.bbtn-s:hover{border-color:#FFFFFF;color:#FFFFFF}
-.bsec{padding:5rem 2rem;border-top:1px solid rgba(255,255,255,.08)}.bcon{max-width:1100px;margin:0 auto}
-.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#FFFFFF;text-align:center;margin-bottom:.5rem;font-weight:600}
-.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em}
+.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:none;position:sticky;top:0;z-index:100;background:#FFFFFF;}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#000000;;;}
+.bh nav{display:flex;gap:1.5rem}
+.bh nav a{color:#999999;text-decoration:none;font-size:.85rem;transition:color .2s;}
+.bh nav a:hover{color:#000000}
+.bhero{min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;padding:8rem 2rem}
+.bhero-inner{max-width:640px}
+.bhero-tag{font-size:.8rem;color:#000000;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
+.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:inherit}
+.bhero p{font-size:1.05rem;color:#999999;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
+.bbtn{font-family:'Inter',system-ui,sans-serif;padding:.8rem 2rem;border-radius:0px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
+.bbtn-p{background:#000000;color:#FFFFFF;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
+.bbtn-s{background:transparent;color:#000000;border:1.5px solid #999999;}.bbtn-s:hover{border-color:#000000;color:#000000}
+.bsec{padding:5rem 2rem;border-top:none}
+.bcon{max-width:1100px;margin:0 auto}
+.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#000000;text-align:center;margin-bottom:.5rem;font-weight:600}
+.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:inherit}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:transform .2s}.bcard:hover{transform:translateY(-3px)}
-.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}.bcard p{font-size:.88rem;color:#aaa;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:8px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#FFFFFF}
+.bcard{background:transparent;border:none;border-radius:0px;padding:2rem;box-shadow:none;transition:transform .2s;}
+.bcard:hover{transform:translateY(-3px)}
+.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
+.bcard p{font-size:.88rem;color:#999999;line-height:1.6}
+.bcard-icon{width:40px;height:40px;border-radius:6px;background:rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#000000}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#FFFFFF;line-height:1}.bmet-l{font-size:.78rem;color:#aaa;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
-.bquote{max-width:580px;margin:0 auto;text-align:center}.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#fff;margin-bottom:.75rem;font-style:italic}.bquote cite{font-size:.85rem;color:#aaa;font-style:normal}
-.bfoot{padding:2.5rem 2rem;border-top:1px solid rgba(255,255,255,.08);text-align:center}.bfoot .logo{font-weight:700;color:#FFFFFF;margin-bottom:.75rem;font-size:1.1rem}
-.bfoot nav{margin-bottom:.75rem}.bfoot nav a{color:#aaa;text-decoration:none;font-size:.8rem;margin:0 .75rem}.bfoot nav a:hover{color:#FFFFFF}
-.bfoot small{font-size:.75rem;color:#aaa}
+.bmet-v{font-size:2.2rem;font-weight:800;color:#000000;line-height:1;font-family:inherit;}
+.bmet-l{font-size:.78rem;color:#999999;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bquote{max-width:580px;margin:0 auto;text-align:center}
+.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#000000;margin-bottom:.75rem;font-family:inherit;font-style:italic}
+.bquote cite{font-size:.85rem;color:#999999;font-style:normal}
+.bfoot{padding:2.5rem 2rem;;text-align:center}
+.bfoot .logo{font-weight:700;color:#000000;margin-bottom:.75rem;font-size:1.1rem}
+.bfoot nav{margin-bottom:.75rem}
+.bfoot nav a{color:#999999;text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a:hover{color:#000000}
+.bfoot small{font-size:.75rem;color:#999999}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
+.bsec{padding:6rem 2rem} .bhero h1{font-size:clamp(3rem,8vw,6rem);font-weight:300;letter-spacing:-.04em} .bhero p{font-size:.85rem} .bcard{text-align:center;padding:3rem 1rem} .bcard-icon{display:none} .bcard h3{font-size:.85rem;font-weight:400} .bcard p{font-size:.75rem} .bmet-v{font-size:1.5rem;font-weight:300} .bfoot{padding:4rem 2rem}
 
 </style>
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
 <div class="a-side">
-
-  <section class="hero">
+<section class="hero">
     <nav>
       <div class="logo">Void</div>
       <ul class="nav-links">
@@ -130,15 +147,14 @@
   </div>
 
   <footer>Void &mdash; Whitespace Maximalism &mdash; 2026</footer>
-
 </div>
 <div class="b-side">
-<header class="bh"><div class="logo">Whitespace Maximalis</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Distinctive by design</p><h1>Whitespace Maximalis<br>Style.</h1><p>A distinctive visual approach that brings unique character and personality to every interface.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Explore</button><button class="bbtn bbtn-s">Learn More</button></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Visual Identity</h3><p>A strong, recognizable aesthetic that sets this style apart from all others.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Consistent Language</h3><p>Every element speaks the same visual dialect, creating cohesion.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Authentic Detail</h3><p>Small touches that make this style feel genuine rather than generic.</p></div></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Details</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">100%</div><div class="bmet-l">Authentic</div></div><div><div class="bmet-v">Unique</div><div class="bmet-l">Voice</div></div><div><div class="bmet-v">Bold</div><div class="bmet-l">Statement</div></div><div><div class="bmet-v">&#10004;</div><div class="bmet-l">Distinct</div></div></div></div></section>
-<section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;A truly distinctive design approach that brings real character to every project.&rdquo;</blockquote><cite>&mdash; Design Team</cite></div></div></section>
-<footer class="bfoot"><div class="logo">Whitespace Maximalis</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 Whitespace Maximalis. All rights reserved.</small></footer>
+<header class="bh"><div class="logo">.</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
+<section class="bhero"><div class="bhero-inner"><h1>Space.</h1><p>Nothing more.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Enter</button></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Emptiness</h3><p>The luxury of having nothing to say that does not demand to be said.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Silence</h3><p>Visual quiet as a deliberate design choice. What is absent speaks loudly.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Focus</h3><p>When everything is removed, what remains is essential.</p></div></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">90%</div><div class="bmet-l">White</div></div><div><div class="bmet-v">10%</div><div class="bmet-l">Content</div></div><div><div class="bmet-v">0</div><div class="bmet-l">Noise</div></div><div><div class="bmet-v">&#8734;</div><div class="bmet-l">Space</div></div></div></div></section>
+<section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;In the beginner's mind there are many possibilities, in the expert's mind there are few.&rdquo;</blockquote><cite>&mdash; Shunryu Suzuki</cite></div></div></section>
+<footer class="bfoot"><div class="logo">.</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 .. All rights reserved.</small></footer>
 </div>
 </body>
 </html>

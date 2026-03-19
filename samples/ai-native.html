@@ -288,46 +288,64 @@
   .palette { display: flex; gap: 0.5rem; }
   .swatch { width: 48px; height: 48px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); }
 
+
+/* A/B Toggle */
 .side-toggle{position:fixed;top:12px;right:12px;z-index:99999;display:flex;background:rgba(0,0,0,.88);border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 24px rgba(0,0,0,.5);font-family:system-ui,sans-serif}
 .side-toggle button{padding:6px 16px;font-size:12px;font-weight:600;border:none;cursor:pointer;background:0 0;color:rgba(255,255,255,.45);font-family:inherit;transition:all .2s;letter-spacing:.5px}
 .side-toggle button.active{background:rgba(129,140,248,.25);color:#818CF8}
 .side-toggle button:hover:not(.active){color:rgba(255,255,255,.8)}
-.a-side{display:none}.b-side{display:block}body.show-a .a-side{display:block}body.show-a .b-side{display:none}
+.a-side{display:none}.b-side{display:block}
+body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 
-.b-side{background:#7C3AED;color:#fff;font-family:Inter,system-ui,sans-serif;line-height:1.6}
+/* B-Side: AI-Native UI */
+.b-side{background:#1E1B4B;color:#E0E7FF;font-family:'Space Grotesk','Inter',sans-serif;line-height:1.6;background:radial-gradient(ellipse at 30% 20%,rgba(124,58,237,.15),transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(6,182,212,.1),transparent 50%),#1E1B4B}
 .b-side *{box-sizing:border-box;margin:0;padding:0}
-.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:100;background:#7C3AEDee;backdrop-filter:blur(12px)}
-.bh .logo{font-weight:700;font-size:1.15rem;color:#A855F7}.bh nav{display:flex;gap:1.5rem}.bh nav a{color:#aaa;text-decoration:none;font-size:.85rem;transition:color .2s}.bh nav a:hover{color:#A855F7}
-.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem}.bhero-inner{max-width:640px}
-.bhero-tag{font-size:.8rem;color:#A855F7;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
-.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em}
-.bhero p{font-size:1.05rem;color:#aaa;max-width:480px;margin:0 auto 2rem;line-height:1.7}
-.bhero-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
-.bbtn{font-family:inherit;padding:.8rem 2rem;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
-.bbtn-p{background:#A855F7;color:#000}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
-.bbtn-s{background:transparent;color:#fff;border:1.5px solid #aaa}.bbtn-s:hover{border-color:#A855F7;color:#A855F7}
-.bsec{padding:5rem 2rem;border-top:1px solid rgba(255,255,255,.08)}.bcon{max-width:1100px;margin:0 auto}
-.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#A855F7;text-align:center;margin-bottom:.5rem;font-weight:600}
-.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em}
+.bh{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid rgba(129,140,248,.1);position:sticky;top:0;z-index:100;background:rgba(30,27,75,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.bh .logo{font-weight:700;font-size:1.15rem;color:#818CF8;;;}
+.bh nav{display:flex;gap:1.5rem}
+.bh nav a{color:#A5B4FC;text-decoration:none;font-size:.85rem;transition:color .2s;}
+.bh nav a:hover{color:#818CF8}
+.bhero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;}
+.bhero-inner{max-width:640px}
+.bhero-tag{font-size:.8rem;color:#818CF8;text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;font-weight:600}
+.bhero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.5rem;letter-spacing:-.03em;font-family:'Space Grotesk',sans-serif}
+.bhero p{font-size:1.05rem;color:#A5B4FC;max-width:480px;margin:0 auto 2rem;line-height:1.7}
+.bhero-btns{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
+.bbtn{font-family:'Space Grotesk','Inter',sans-serif;padding:.8rem 2rem;border-radius:12px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;;}
+.bbtn-p{background:#818CF8;color:#FFFFFF;}.bbtn-p:hover{opacity:.9;transform:translateY(-1px)}
+.bbtn-s{background:transparent;color:#E0E7FF;border:1.5px solid #A5B4FC;}.bbtn-s:hover{border-color:#818CF8;color:#818CF8}
+.bsec{padding:5rem 2rem;border-top:1px solid rgba(129,140,248,.1)}
+.bcon{max-width:1100px;margin:0 auto}
+.bst{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:#818CF8;text-align:center;margin-bottom:.5rem;font-weight:600}
+.bsh{font-size:1.8rem;font-weight:700;text-align:center;margin-bottom:3rem;letter-spacing:-.02em;font-family:'Space Grotesk',sans-serif}
 .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-.bcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:transform .2s}.bcard:hover{transform:translateY(-3px)}
-.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}.bcard p{font-size:.88rem;color:#aaa;line-height:1.6}
-.bcard-icon{width:40px;height:40px;border-radius:8px;background:rgba(168,85,247,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#A855F7}
+.bcard{background:rgba(129,140,248,.06);border:1px solid rgba(129,140,248,.15);border-radius:12px;padding:2rem;box-shadow:0 4px 20px rgba(129,140,248,.08);transition:transform .2s;}
+.bcard:hover{transform:translateY(-3px)}
+.bcard h3{font-size:1.05rem;margin-bottom:.5rem;font-weight:600}
+.bcard p{font-size:.88rem;color:#A5B4FC;line-height:1.6}
+.bcard-icon{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#7C3AED,#06B6D4);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.2rem;color:#FFFFFF}
 .bmets{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;text-align:center}
-.bmet-v{font-size:2.2rem;font-weight:800;color:#A855F7;line-height:1}.bmet-l{font-size:.78rem;color:#aaa;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
-.bquote{max-width:580px;margin:0 auto;text-align:center}.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#fff;margin-bottom:.75rem;font-style:italic}.bquote cite{font-size:.85rem;color:#aaa;font-style:normal}
-.bfoot{padding:2.5rem 2rem;border-top:1px solid rgba(255,255,255,.08);text-align:center}.bfoot .logo{font-weight:700;color:#A855F7;margin-bottom:.75rem;font-size:1.1rem}
-.bfoot nav{margin-bottom:.75rem}.bfoot nav a{color:#aaa;text-decoration:none;font-size:.8rem;margin:0 .75rem}.bfoot nav a:hover{color:#A855F7}
-.bfoot small{font-size:.75rem;color:#aaa}
+.bmet-v{font-size:2.2rem;font-weight:800;color:#818CF8;line-height:1;font-family:inherit;text-shadow:0 0 20px rgba(129,140,248,.5)}
+.bmet-l{font-size:.78rem;color:#A5B4FC;margin-top:.25rem;text-transform:uppercase;letter-spacing:1px}
+.bquote{max-width:580px;margin:0 auto;text-align:center}
+.bquote blockquote{font-size:1.15rem;line-height:1.7;color:#E0E7FF;margin-bottom:.75rem;font-family:inherit;font-style:italic}
+.bquote cite{font-size:.85rem;color:#A5B4FC;font-style:normal}
+.bfoot{padding:2.5rem 2rem;border-top:1px solid rgba(129,140,248,.1);text-align:center}
+.bfoot .logo{font-weight:700;color:#818CF8;margin-bottom:.75rem;font-size:1.1rem}
+.bfoot nav{margin-bottom:.75rem}
+.bfoot nav a{color:#A5B4FC;text-decoration:none;font-size:.8rem;margin:0 .75rem}
+.bfoot nav a:hover{color:#818CF8}
+.bfoot small{font-size:.75rem;color:#A5B4FC}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
+.bbtn-p{background:linear-gradient(135deg,#7C3AED,#06B6D4);border:none} .bcard{position:relative;overflow:hidden} .bcard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#7C3AED,#06B6D4)} @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}} .bhero-tag{background:linear-gradient(90deg,#818CF8,#06B6D4,#818CF8);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 3s linear infinite}
 
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="side-toggle"><button onclick="document.body.classList.add('show-a');this.classList.add('active');this.nextElementSibling.classList.remove('active')" id="btn-a">A Side</button><button onclick="document.body.classList.remove('show-a');this.classList.add('active');this.previousElementSibling.classList.remove('active')" id="btn-b" class="active">B Side</button></div>
 <div class="a-side">
-
-  <section class="hero">
+<section class="hero">
     <nav>
       <div class="logo">
         <div class="logo-dot"></div>
@@ -388,15 +406,14 @@
       </div>
     </div>
   </section>
-
 </div>
 <div class="b-side">
-<header class="bh"><div class="logo">AI-Native UI</div><nav><a href="#">Home</a><a href="#">About</a><a href="#">Work</a><a href="#">Contact</a></nav></header>
-<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Distinctive by design</p><h1>AI-Native UI<br>Style.</h1><p>A distinctive visual approach that brings unique character and personality to every interface.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Explore</button><button class="bbtn bbtn-s">Learn More</button></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Visual Identity</h3><p>A strong, recognizable aesthetic that sets this style apart from all others.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Consistent Language</h3><p>Every element speaks the same visual dialect, creating cohesion.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Authentic Detail</h3><p>Small touches that make this style feel genuine rather than generic.</p></div></div></div></section>
-<section class="bsec"><div class="bcon"><p class="bst">Details</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">100%</div><div class="bmet-l">Authentic</div></div><div><div class="bmet-v">Unique</div><div class="bmet-l">Voice</div></div><div><div class="bmet-v">Bold</div><div class="bmet-l">Statement</div></div><div><div class="bmet-v">&#10004;</div><div class="bmet-l">Distinct</div></div></div></div></section>
-<section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;A truly distinctive design approach that brings real character to every project.&rdquo;</blockquote><cite>&mdash; Design Team</cite></div></div></section>
-<footer class="bfoot"><div class="logo">AI-Native UI</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 AI-Native UI. All rights reserved.</small></footer>
+<header class="bh"><div class="logo">Synth</div><nav><a href="#">Platform</a><a href="#">Models</a><a href="#">Docs</a><a href="#">Pricing</a></nav></header>
+<section class="bhero"><div class="bhero-inner"><p class="bhero-tag">Intelligence amplified</p><h1>Think Beyond.<br>Build Smarter.</h1><p>An AI-native platform that augments your creativity. Every interaction learns, adapts, and evolves with you.</p><div class="bhero-btns"><button class="bbtn bbtn-p">Start Building</button><button class="bbtn bbtn-s">See AI in Action</button></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">Features</p><h2 class="bsh">What Sets Us Apart</h2><div class="bgrid"><div class="bcard"><div class="bcard-icon">&#9670;</div><h3>Adaptive Models</h3><p>AI that learns your preferences and anticipates your needs. The more you use it, the smarter it gets.</p></div><div class="bcard"><div class="bcard-icon">&#9674;</div><h3>Generative Engine</h3><p>Create content, code, and designs from natural language prompts. Your ideas, amplified.</p></div><div class="bcard"><div class="bcard-icon">&#10038;</div><h3>Neural Sync</h3><p>Real-time collaboration between human intuition and AI precision. Seamless and invisible.</p></div></div></div></section>
+<section class="bsec"><div class="bcon"><p class="bst">By The Numbers</p><h2 class="bsh">Numbers Speak</h2><div class="bmets"><div><div class="bmet-v">10B+</div><div class="bmet-l">Parameters</div></div><div><div class="bmet-v">50ms</div><div class="bmet-l">Response</div></div><div><div class="bmet-v">99.97%</div><div class="bmet-l">Accuracy</div></div><div><div class="bmet-v">24/7</div><div class="bmet-l">Online</div></div></div></div></section>
+<section class="bsec"><div class="bcon"><div class="bquote"><blockquote>&ldquo;This platform completely changed how we approach design. The AI suggestions are genuinely insightful.&rdquo;</blockquote><cite>&mdash; Priya Sharma, Design Lead</cite></div></div></section>
+<footer class="bfoot"><div class="logo">Synth</div><nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav><small>&copy; 2026 Synth. All rights reserved.</small></footer>
 </div>
 </body>
 </html>
