@@ -275,6 +275,11 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#8888AA;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#C084FC}
 .bfoot small{font-size:.75rem;color:#8888AA}
+@keyframes holoShift{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
+.bhero-tag{animation:holoShift 8s linear infinite}
+.bcard{position:relative;overflow:hidden}
+.bcard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#FF6B9D,#C084FC,#67E8F9,#34D399)}
+.bbtn-p:hover{box-shadow:0 0 20px rgba(192,132,252,.3)}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 @keyframes holoShift{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}} .bhero-tag{animation:holoShift 8s linear infinite}
 

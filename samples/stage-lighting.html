@@ -102,6 +102,10 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#8B6B50;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#FFD700}
 .bfoot small{font-size:.75rem;color:#8B6B50}
+.bhero{position:relative;overflow:hidden}
+.bhero::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:300px;height:100%;background:radial-gradient(ellipse at 50% 0%,rgba(255,215,0,.08),transparent 70%);pointer-events:none}
+.bhero h1{text-shadow:0 0 20px rgba(255,215,0,0.4),0 0 40px rgba(255,215,0,0.2)} .bsh{text-shadow:0 0 12px rgba(255,215,0,0.3)}
+.bquote blockquote{font-size:1.2rem}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 

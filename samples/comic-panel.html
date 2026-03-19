@@ -287,6 +287,11 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#666666;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#EF233C}
 .bfoot small{font-size:.75rem;color:#666666}
+.bh nav a:hover{color:#FFFFFF}
+.bhero h1{font-size:clamp(3rem,8vw,5rem);-webkit-text-stroke:2px #2B2D42}
+.bcard{position:relative}
+.bcard::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(43,45,66,.03) 1px,transparent 1px);background-size:4px 4px;pointer-events:none;border-radius:0}
+.bcard:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 #2B2D42}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 .bh nav a:hover{color:#FFFFFF} .bhero h1{font-size:clamp(3rem,8vw,5rem);-webkit-text-stroke:2px #2B2D42}
 

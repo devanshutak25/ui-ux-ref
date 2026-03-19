@@ -91,6 +91,11 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#008F11;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#00FF41}
 .bfoot small{font-size:.75rem;color:#008F11}
+.b-side::after{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.05) 0px,rgba(0,0,0,.05) 1px,transparent 1px,transparent 3px)}
+.bhero h1{text-shadow:0 0 8px rgba(0,255,65,.4)}
+.bcard::before{content:"$";position:absolute;top:8px;left:8px;font-size:.65rem;color:rgba(0,255,65,.3)}
+.bcard{position:relative}
+.bhero h1{text-shadow:0 0 20px rgba(0,255,65,0.4),0 0 40px rgba(0,255,65,0.2)} .bsh{text-shadow:0 0 12px rgba(0,255,65,0.3)}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 

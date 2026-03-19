@@ -169,6 +169,8 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#6B7B6B;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#2D5016}
 .bfoot small{font-size:.75rem;color:#6B7B6B}
+.bcard::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(0deg,transparent,transparent 8px,rgba(45,80,22,.03) 8px,rgba(45,80,22,.03) 9px);pointer-events:none;border-radius:2px}
+.bcard{position:relative;overflow:hidden}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 

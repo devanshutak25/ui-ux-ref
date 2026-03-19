@@ -158,6 +158,13 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:rgba(0,240,255,.5);text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#FF006E}
 .bfoot small{font-size:.75rem;color:rgba(0,240,255,.5)}
+.b-side::after{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.05) 0px,rgba(0,0,0,.05) 1px,transparent 1px,transparent 3px)}
+.bbtn-p{background:transparent;color:#FF006E;border:2px solid #FF006E;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));box-shadow:0 0 20px rgba(255,0,110,.2)}
+.bbtn-p:hover{background:#FF006E;color:#0a0a1a;box-shadow:0 0 40px rgba(255,0,110,.4);opacity:1}
+.bbtn-s{clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));border-color:rgba(0,240,255,.3)}
+.bhero h1{text-shadow:0 0 20px rgba(0,240,255,.3)}
+.bcard{position:relative}
+.bcard::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,240,255,.3),transparent)}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 .b-side::before{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.06) 0px,rgba(0,0,0,.06) 1px,transparent 1px,transparent 3px)} .bbtn-p{background:transparent;color:#FF006E;border:2px solid #FF006E;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));box-shadow:0 0 20px rgba(255,0,110,.2)} .bbtn-p:hover{background:#FF006E;color:#0a0a1a;box-shadow:0 0 40px rgba(255,0,110,.4);opacity:1} .bbtn-s{clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));border-color:rgba(0,240,255,.3)} .bhero h1{text-shadow:0 0 20px rgba(0,240,255,.3)}
 

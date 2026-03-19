@@ -93,6 +93,10 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#6C757D;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#C9A84C}
 .bfoot small{font-size:.75rem;color:#6C757D}
+.bcard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C9A84C,transparent)}
+.bcard{position:relative;overflow:hidden}
+.bquote blockquote{font-size:1.3rem}
+.bfoot::before{content:"";display:block;width:40px;height:1px;background:#C9A84C;margin:0 auto 1rem}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 

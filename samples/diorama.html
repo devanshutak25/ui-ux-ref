@@ -147,6 +147,10 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#8B98A8;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#5B9BD5}
 .bfoot small{font-size:.75rem;color:#8B98A8}
+.bhero{position:relative;overflow:hidden}
+.bhero::before{content:"";position:absolute;top:0;left:0;right:0;height:40px;background:linear-gradient(180deg,rgba(232,240,248,.5),transparent);pointer-events:none;filter:blur(2px)}
+.bhero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(0deg,rgba(232,240,248,.5),transparent);pointer-events:none;filter:blur(2px)}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}} .bcard{animation:fadeInUp .6s ease both} .bcard:nth-child(2){animation-delay:.15s} .bcard:nth-child(3){animation-delay:.3s}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 

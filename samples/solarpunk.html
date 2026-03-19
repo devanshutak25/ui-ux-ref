@@ -154,6 +154,9 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#6B8B55;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#4A7C59}
 .bfoot small{font-size:.75rem;color:#6B8B55}
+.bhero::before{content:"";position:absolute;top:-50%;left:50%;transform:translateX(-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(240,200,8,.08),transparent 70%);pointer-events:none;border-radius:50%}
+.bhero{position:relative;overflow:hidden}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}} .bcard{animation:fadeInUp .6s ease both} .bcard:nth-child(2){animation-delay:.15s} .bcard:nth-child(3){animation-delay:.3s}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 

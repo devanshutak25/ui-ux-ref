@@ -178,6 +178,11 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#666666;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#CC0000}
 .bfoot small{font-size:.75rem;color:#666666}
+.bhero h1{font-size:clamp(3rem,8vw,5rem);line-height:.85}
+.bh nav a:hover{color:#F5E6CC}
+.bhero{position:relative;overflow:hidden}
+.bhero::before{content:"";position:absolute;top:0;right:-20%;width:50%;height:100%;background:#CC0000;opacity:.06;transform:skewX(-15deg);pointer-events:none}
+.bsec:nth-child(3){background:repeating-linear-gradient(-45deg,transparent 0px,transparent 8px,rgba(204,0,0,.03) 8px,rgba(204,0,0,.03) 9px)}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 .bhero h1{font-size:clamp(3rem,8vw,5rem);line-height:.85} .bh nav a:hover{color:#F5E6CC}
 

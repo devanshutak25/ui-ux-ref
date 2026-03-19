@@ -145,6 +145,12 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#8B70A0;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#FF00FF}
 .bfoot small{font-size:.75rem;color:#8B70A0}
+.bbtn{border-radius:20px}
+.bhero h1{text-shadow:0 0 15px rgba(255,0,255,.3)}
+.bcard{position:relative;overflow:hidden}
+.bcard::before{content:"\2726";position:absolute;top:8px;right:12px;font-size:1rem;color:rgba(255,0,255,.2)}
+.bbtn-p{box-shadow:0 0 15px rgba(255,0,255,0.3)} .bbtn-p:hover{box-shadow:0 0 25px rgba(255,0,255,0.45)}
+@keyframes sparkle{0%,100%{opacity:.2}50%{opacity:.5}} .bcard::before{animation:sparkle 2s ease-in-out infinite}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 

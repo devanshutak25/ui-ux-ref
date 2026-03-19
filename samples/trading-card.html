@@ -298,6 +298,10 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#888888;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#FFD700}
 .bfoot small{font-size:.75rem;color:#888888}
+.bcard{border-image:linear-gradient(135deg,#FFD700,#B8860B) 1}
+@keyframes foilShine{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.bcard::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,215,0,.06) 45%,rgba(255,215,0,.12) 50%,rgba(255,215,0,.06) 55%,transparent 60%);background-size:200% 100%;animation:foilShine 3s linear infinite;pointer-events:none}
+.bcard{position:relative;overflow:hidden}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 .bcard{border-image:linear-gradient(135deg,#FFD700,#B8860B) 1}
 

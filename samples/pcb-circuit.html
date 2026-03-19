@@ -89,6 +89,10 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#6B8B4A;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#B87333}
 .bfoot small{font-size:.75rem;color:#6B8B4A}
+.b-side{background-image:repeating-linear-gradient(0deg,rgba(183,115,51,0.03) 0px,transparent 1px,transparent 20px),repeating-linear-gradient(90deg,rgba(183,115,51,0.03) 0px,transparent 1px,transparent 20px)}
+.bcard::before{content:"";position:absolute;top:50%;left:-1px;width:8px;height:8px;border-radius:50%;background:#FFD700;transform:translateY(-50%);box-shadow:0 0 4px rgba(255,215,0,.3)}
+.bcard::after{content:"";position:absolute;top:50%;right:-1px;width:8px;height:8px;border-radius:50%;background:#FFD700;transform:translateY(-50%);box-shadow:0 0 4px rgba(255,215,0,.3)}
+.bcard{position:relative}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 

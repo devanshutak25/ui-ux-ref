@@ -146,6 +146,11 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#888888;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#FF6600}
 .bfoot small{font-size:.75rem;color:#888888}
+.b-side::after{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.05) 0px,rgba(0,0,0,.05) 1px,transparent 1px,transparent 3px)}
+.bcard::before{content:"";position:absolute;top:0;left:0;width:6px;height:6px;border-radius:50%;background:#FF6600;opacity:.6;box-shadow:0 0 4px rgba(255,102,0,.4)}
+.bcard{position:relative}
+.bhero h1{text-shadow:0 0 20px rgba(255,102,0,0.3),0 0 40px rgba(255,102,0,0.2)} .bsh{text-shadow:0 0 12px rgba(255,102,0,0.3)}
+.bfoot{background:repeating-linear-gradient(0deg,rgba(255,102,0,.02) 0px,transparent 1px,transparent 4px),inherit}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 

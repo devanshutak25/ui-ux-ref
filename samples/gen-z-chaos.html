@@ -110,6 +110,15 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#AAAAAA;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#FF00FF}
 .bfoot small{font-size:.75rem;color:#AAAAAA}
+.bcard:nth-child(1){border-color:#FF00FF;box-shadow:6px 6px 0 #00CCFF}
+.bcard:nth-child(2){border-color:#FFFF00;box-shadow:6px 6px 0 #FF00FF}
+.bcard:nth-child(2) .bcard-icon{background:#00FF00;color:#000}
+.bcard:nth-child(3){border-color:#00CCFF;box-shadow:6px 6px 0 #00FF00}
+.bcard:nth-child(3) .bcard-icon{background:#FF3366;color:#000}
+.bbtn{border:3px solid #FF00FF}
+.bhero h1{font-size:clamp(3rem,10vw,6rem);font-weight:900}
+@keyframes chaosGlow{0%,100%{text-shadow:0 0 10px rgba(255,0,255,.4)}50%{text-shadow:0 0 20px rgba(0,255,0,.4),0 0 40px rgba(0,255,255,.2)}}
+.bhero h1{animation:chaosGlow 2s infinite}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 .bcard:nth-child(1){border-color:#FF00FF;box-shadow:6px 6px 0 #00CCFF} .bcard:nth-child(2){border-color:#FFFF00;box-shadow:6px 6px 0 #FF00FF} .bcard:nth-child(2) .bcard-icon{background:#00FF00;color:#000} .bcard:nth-child(3){border-color:#00CCFF;box-shadow:6px 6px 0 #00FF00} .bcard:nth-child(3) .bcard-icon{background:#FF3366;color:#000} .bbtn{border:3px solid #FF00FF} .bhero h1{font-size:clamp(3rem,10vw,6rem);font-weight:900}
 

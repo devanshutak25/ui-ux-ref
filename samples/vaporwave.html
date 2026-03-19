@@ -148,6 +148,11 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#8B70B0;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#FF71CE}
 .bfoot small{font-size:.75rem;color:#8B70B0}
+.b-side::after{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.05) 0px,rgba(0,0,0,.05) 1px,transparent 1px,transparent 3px)}
+.bhero{position:relative;overflow:hidden}
+.bhero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:150px;background:repeating-linear-gradient(transparent 0px,transparent 1px,rgba(255,113,206,.02) 1px,rgba(255,113,206,.02) 2px);perspective:300px;transform:rotateX(60deg);transform-origin:bottom;pointer-events:none;z-index:0}
+.bhero h1{text-shadow:0 0 20px rgba(255,113,206,0.5),0 0 40px rgba(255,113,206,0.2)} .bsh{text-shadow:0 0 12px rgba(255,113,206,0.3)}
+@keyframes gridFloat{0%{transform:rotateX(60deg) translateY(0)}100%{transform:rotateX(60deg) translateY(-20px)}} .bhero::after{animation:gridFloat 4s linear infinite}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 .bhero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:200px;background:repeating-linear-gradient(transparent 0px,transparent 1px,rgba(255,113,206,.03) 1px,rgba(255,113,206,.03) 2px),repeating-linear-gradient(90deg,transparent 0px,transparent 30px,rgba(1,205,254,.02) 30px,rgba(1,205,254,.02) 31px);perspective:300px;transform:rotateX(60deg);transform-origin:bottom;pointer-events:none;z-index:0} .bhero{position:relative;overflow:hidden}
 

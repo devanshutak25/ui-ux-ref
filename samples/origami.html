@@ -84,6 +84,9 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#8B7B68;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#C4956A}
 .bfoot small{font-size:.75rem;color:#8B7B68}
+.bcard{position:relative;overflow:hidden}
+.bcard::after{content:"";position:absolute;top:0;right:0;border-style:solid;border-width:0 24px 24px 0;border-color:transparent #F5F0E8 transparent transparent}
+.bcard::before{content:"";position:absolute;top:0;right:24px;width:0;height:0;border-style:solid;border-width:0 0 24px 1px;border-color:transparent transparent rgba(0,0,0,.05) transparent}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 .bcard{position:relative;overflow:hidden} .bcard::after{content:"";position:absolute;top:0;right:0;border-style:solid;border-width:0 24px 24px 0;border-color:transparent #F5F0E8 transparent transparent}
 

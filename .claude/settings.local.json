@@ -30,7 +30,8 @@
       "Bash(grep -oh '[0-9]*/10' *.md)",
       "Read(//g/Personal/ui-ux-ref/_reports/**)",
       "Bash(python3 _rebuild.py)",
-      "Bash(grep -oh 'class=\"\"\"\"logo\"\"\"\">[^<]*' samples/*.html)"
+      "Bash(grep -oh 'class=\"\"\"\"logo\"\"\"\">[^<]*' samples/*.html)",
+      "Bash(python3 _patch_effects.py)"
     ]
   }
 }

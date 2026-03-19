@@ -100,6 +100,10 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#8B7B68;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#E88D97}
 .bfoot small{font-size:.75rem;color:#8B7B68}
+.bcard:nth-child(2) .bcard-icon{background:rgba(123,200,196,.15);color:#7BC8C4}
+.bcard:nth-child(3) .bcard-icon{background:rgba(219,161,89,.15);color:#DBA159}
+.b-side::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(3px 3px at 15% 25%,#E88D97,transparent),radial-gradient(2px 4px at 45% 60%,#7BC8C4,transparent),radial-gradient(4px 3px at 75% 35%,#DBA159,transparent),radial-gradient(3px 2px at 25% 80%,#9B8EC6,transparent),radial-gradient(2px 3px at 85% 70%,#E88D97,transparent),radial-gradient(3px 3px at 55% 15%,#7BC8C4,transparent);opacity:.4}
+.bh,.bhero,.bsec,.bfoot{position:relative;z-index:1}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 .bcard:nth-child(2) .bcard-icon{background:rgba(123,200,196,.15);color:#7BC8C4} .bcard:nth-child(3) .bcard-icon{background:rgba(219,161,89,.15);color:#DBA159}
 

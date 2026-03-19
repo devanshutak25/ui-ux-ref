@@ -310,6 +310,10 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#888888;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#818CF8}
 .bfoot small{font-size:.75rem;color:#888888}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}} .bcard{animation:fadeInUp .6s ease both} .bcard:nth-child(2){animation-delay:.15s} .bcard:nth-child(3){animation-delay:.3s}
+.bbtn-p:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(129,140,248,.2)}
+.bcard{transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.bcard:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(129,140,248,.12)}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}} .bcard{animation:fadeInUp .6s ease both} .bcard:nth-child(2){animation-delay:.1s} .bcard:nth-child(3){animation-delay:.2s} .bbtn-p:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(129,140,248,.2)}
 

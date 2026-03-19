@@ -79,6 +79,11 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#8B7355;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#C9A84C}
 .bfoot small{font-size:.75rem;color:#8B7355}
+.bhero::before{content:"\2720";position:absolute;top:2rem;left:50%;transform:translateX(-50%);color:rgba(201,168,76,.12);font-size:3rem;pointer-events:none}
+.bhero{position:relative;overflow:hidden}
+.bcard{border-top:2px solid rgba(201,168,76,.15)}
+.bfoot::before{content:"\2720";display:block;color:rgba(201,168,76,.2);margin-bottom:.5rem;font-size:1.2rem}
+.b-side{background-image:repeating-linear-gradient(90deg,rgba(201,168,76,.015) 0px,transparent 1px,transparent 30px)}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 

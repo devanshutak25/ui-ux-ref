@@ -150,6 +150,10 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#8B9AAB;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#FF6B35}
 .bfoot small{font-size:.75rem;color:#8B9AAB}
+.bhero h1{font-weight:800;letter-spacing:.02em}
+.bcard::before{content:"";position:absolute;top:8px;right:8px;width:12px;height:12px;background:#FF6B35;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);opacity:.3}
+.bcard{position:relative}
+@keyframes starPulse{0%,100%{opacity:.3}50%{opacity:.6}} .bcard::before{animation:starPulse 2s ease-in-out infinite}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 

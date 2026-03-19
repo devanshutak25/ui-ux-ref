@@ -187,6 +187,12 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#888888;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#4ECDC4}
 .bfoot small{font-size:.75rem;color:#888888}
+.b-side{background-image:repeating-linear-gradient(0deg,rgba(78,205,196,0.015) 0px,transparent 1px,transparent 20px),repeating-linear-gradient(90deg,rgba(78,205,196,0.015) 0px,transparent 1px,transparent 20px)}
+.bcard{position:relative}
+.bcard::before{content:"";position:absolute;top:50%;left:-4px;width:8px;height:8px;border-radius:50%;background:#4ECDC4;transform:translateY(-50%)}
+.bcard::after{content:"";position:absolute;top:50%;right:-4px;width:8px;height:8px;border-radius:50%;background:#FF6B6B;transform:translateY(-50%)}
+.bcard:nth-child(2)::before{background:#FFD700}
+.bcard:nth-child(3)::before{background:#FF6B6B}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 

@@ -111,6 +111,10 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#666666;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#FF0000}
 .bfoot small{font-size:.75rem;color:#666666}
+.bsec:nth-child(even){background:repeating-linear-gradient(45deg,transparent 0px,transparent 10px,rgba(0,0,0,.015) 10px,rgba(0,0,0,.015) 20px)}
+.bhero{position:relative}
+.bhero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0px,transparent 8px,rgba(0,0,0,.02) 8px,rgba(0,0,0,.02) 10px);pointer-events:none}
+.bhero::after{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 50% 50%,transparent 0px,transparent 20px,rgba(0,0,0,.015) 20px,rgba(0,0,0,.015) 21px);pointer-events:none}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 .bhero{background:repeating-linear-gradient(90deg,#000 0px,#000 4px,#fff 4px,#fff 8px);background-size:100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent} .bhero{background:none;-webkit-text-fill-color:inherit} .bsec:nth-child(even){background:repeating-linear-gradient(45deg,transparent 0px,transparent 10px,rgba(0,0,0,.02) 10px,rgba(0,0,0,.02) 20px)}
 

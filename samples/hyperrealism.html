@@ -127,6 +127,10 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#95A5A6;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#3498DB}
 .bfoot small{font-size:.75rem;color:#95A5A6}
+.bcard{background:linear-gradient(145deg,#3D5166,#2C3E50)}
+.bcard::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent)}
+.bcard{position:relative;overflow:hidden}
+.bcard:hover{transform:perspective(800px) rotateY(-2deg) translateY(-4px)}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 

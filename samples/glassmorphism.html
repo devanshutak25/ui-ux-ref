@@ -282,6 +282,13 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#FFFFFF}
 .bfoot small{font-size:.75rem;color:rgba(255,255,255,.65)}
+.bbtn-p{background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25)}
+.bbtn-s{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.8)}
+.bbtn-s:hover{border-color:rgba(255,255,255,.4);color:#fff}
+.bquote{padding:2rem;background:rgba(255,255,255,.06);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-radius:20px}
+.b-side::before{content:"";position:fixed;top:-20%;left:-10%;width:350px;height:350px;background:radial-gradient(circle,rgba(102,126,234,.3),transparent 70%);border-radius:50%;pointer-events:none;z-index:0;filter:blur(40px)}
+.b-side::after{content:"";position:fixed;bottom:-10%;right:-10%;width:300px;height:300px;background:radial-gradient(circle,rgba(240,147,251,.25),transparent 70%);border-radius:50%;pointer-events:none;z-index:0;filter:blur(40px)}
+.bh,.bhero,.bsec,.bfoot{position:relative;z-index:1}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 .bbtn-p{background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25)} .bbtn-s{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.8)} .bbtn-s:hover{border-color:rgba(255,255,255,.4);color:#fff} .bquote{padding:2rem;background:rgba(255,255,255,.06);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-radius:20px}
 

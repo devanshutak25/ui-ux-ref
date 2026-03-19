@@ -321,6 +321,17 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#B08DA3;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#FFB3D9}
 .bfoot small{font-size:.75rem;color:#B08DA3}
+.bcard:nth-child(2){border-color:rgba(179,255,179,.5)}
+.bcard:nth-child(2) .bcard-icon{background:#E0FFE8;color:#22C55E}
+.bcard:nth-child(3){border-color:rgba(228,179,255,.5)}
+.bcard:nth-child(3) .bcard-icon{background:#F0E6FF;color:#A855F7}
+.bbtn-p{background:#FFB3D9;border:2.5px solid rgba(255,179,217,.5)}
+.bbtn-s{border:2.5px solid rgba(179,229,255,.5)}
+.bhero h1{font-size:clamp(2.5rem,7vw,4.5rem)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.bcard-icon{animation:float 3s ease-in-out infinite}
+.bcard:nth-child(2) .bcard-icon{animation-delay:.5s}
+.bcard:nth-child(3) .bcard-icon{animation-delay:1s}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 .bcard:nth-child(2){border-color:rgba(179,255,179,.5)} .bcard:nth-child(2) .bcard-icon{background:#E0FFE8;color:#22C55E} .bcard:nth-child(3){border-color:rgba(228,179,255,.5)} .bcard:nth-child(3) .bcard-icon{background:#F0E6FF;color:#A855F7} .bbtn-p{background:#FFB3D9;border:2.5px solid rgba(255,179,217,.5)} .bbtn-s{border:2.5px solid rgba(179,229,255,.5)}
 

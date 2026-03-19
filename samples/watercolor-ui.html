@@ -107,6 +107,10 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#8B7B68;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#A7C7E7}
 .bfoot small{font-size:.75rem;color:#8B7B68}
+.bcard{backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.bhero::before{content:"";position:absolute;top:20%;left:10%;width:200px;height:200px;background:radial-gradient(circle,rgba(167,199,231,.2),transparent 70%);pointer-events:none;border-radius:50%;filter:blur(30px)}
+.bhero::after{content:"";position:absolute;bottom:20%;right:10%;width:150px;height:150px;background:radial-gradient(circle,rgba(197,179,230,.15),transparent 70%);pointer-events:none;border-radius:50%;filter:blur(30px)}
+.bhero{position:relative;overflow:hidden}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 
 

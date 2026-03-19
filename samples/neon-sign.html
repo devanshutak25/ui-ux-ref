@@ -95,6 +95,12 @@ body.show-a .a-side{display:block}body.show-a .b-side{display:none}
 .bfoot nav a{color:#8B6060;text-decoration:none;font-size:.8rem;margin:0 .75rem}
 .bfoot nav a:hover{color:#FF0040}
 .bfoot small{font-size:.75rem;color:#8B6060}
+.bhero h1{text-shadow:0 0 10px rgba(255,0,64,.5),0 0 30px rgba(255,0,64,.2),0 0 60px rgba(255,0,64,.1)}
+@keyframes flicker{0%,92%,100%{opacity:1}93%{opacity:.7}94%{opacity:1}96%{opacity:.8}}
+.bh .logo{animation:flicker 4s infinite}
+.bbtn-p{box-shadow:0 0 12px rgba(255,0,64,.2)}
+.bcard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:rgba(255,0,64,.3);box-shadow:0 0 8px rgba(255,0,64,.2)}
+.bcard{position:relative;overflow:hidden}
 @media(max-width:768px){.bh nav{display:none}.bhero{min-height:60vh;padding:3rem 1.5rem}.bsec{padding:3rem 1.5rem}.bgrid{grid-template-columns:1fr}.bmets{grid-template-columns:repeat(2,1fr)}}
 .bhero h1{text-shadow:0 0 10px rgba(255,0,64,.5),0 0 30px rgba(255,0,64,.2),0 0 60px rgba(255,0,64,.1)} @keyframes flicker{0%,92%,100%{opacity:1}93%{opacity:.7}94%{opacity:1}96%{opacity:.8}} .bh .logo{animation:flicker 4s infinite}
 
