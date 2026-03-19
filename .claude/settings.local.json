@@ -4,7 +4,11 @@
       "Bash(cd:*)",
       "Bash(node add-prompts.js)",
       "Bash(node new-entries.js)",
-      "Bash(node -e \":*)"
+      "Bash(node -e \":*)",
+      "Bash(for f:*)",
+      "Bash(do grep:*)",
+      "Bash(sed -i 's|<meta charset=\"\"UTF-8\"\">|<meta charset=\"\"UTF-8\"\">\\\\n    <link rel=\"\"icon\"\" type=\"\"image/svg+xml\"\" href=\"\"favicon.svg\"\">|' \"$f\")",
+      "Bash(done)"
     ]
   }
 }
