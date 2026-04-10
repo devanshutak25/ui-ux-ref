@@ -1,5 +1,8 @@
 # CLAUDE.md — Session Instructions
 
+## Communication Style
+Always use caveman lite mode (`/caveman lite`). Tight, professional, no filler or hedging.
+
 ## Memory System
 
 This project uses a persistent memory system stored in `/memory/`.
