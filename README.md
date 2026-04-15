@@ -1,6 +1,6 @@
 # UI/UX Pro Max — Complete Design Reference
 
-The most comprehensive UI/UX reference ever assembled. A collection of standalone HTML pages covering visual styles, color systems, typography, charts, design patterns, and engineering guidelines — built as a companion to the [UI/UX Pro Max](https://ui-ux-pro-max-skill.nextlevelbuilder.io/) Claude Code Plugin.
+A comprehensive UI/UX reference. A collection of standalone HTML pages covering visual styles, color systems, typography, charts, design patterns, and engineering guidelines — built as a companion to the [UI/UX Pro Max](https://ui-ux-pro-max-skill.nextlevelbuilder.io/) Claude Code Plugin. Compiled using Claude.
 
 **Live site:** [https://devanshutak25.github.io/ui-ux-ref/](https://devanshutak25.github.io/ui-ux-ref/)
 
