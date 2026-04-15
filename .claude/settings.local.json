@@ -33,7 +33,9 @@
       "Bash(grep -oh 'class=\"\"\"\"logo\"\"\"\">[^<]*' samples/*.html)",
       "Bash(python3 _patch_effects.py)",
       "Bash(python _fix_bsides.py)",
-      "Bash(grep -l \"#8B7B68\" *.html)"
+      "Bash(grep -l \"#8B7B68\" *.html)",
+      "WebFetch(domain:www.designprompts.dev)",
+      "WebSearch"
     ]
   }
 }
